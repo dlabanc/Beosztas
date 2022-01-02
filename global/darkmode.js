@@ -5,9 +5,15 @@ $(function(){
   $('body').toggleClass("dark-mode-container");
   $('.dropdown-content').toggleClass("dark-mode");
   $('.dropdown-content2').toggleClass("dark-mode-container");
+  $('.dropdown-content3').toggleClass("dark-mode");
+  $('.dropdown-content4').toggleClass("dark-mode");
   $(".dropbtn aside").toggleClass("dark-mode-icons");
   $(".dropbtn2").toggleClass("dark-mode-container");
   $(".dropbtn2").toggleClass("dark-mode-a");
+  $(".dropbtn3").toggleClass("dark-mode-container");
+  $(".dropbtn3").toggleClass("dark-mode-a");
+  $(".dropbtn4").toggleClass("dark-mode-container");
+  $(".dropbtn4").toggleClass("dark-mode-a");
   $(".dropbtn").toggleClass("dark-mode-container");
   $(".dropbtn").toggleClass("dark-mode-icons");
   $(".dropbtn section").toggleClass("dark-mode-section");
