@@ -235,7 +235,8 @@ article {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-  height: fit-content;
+  height: 55vh ;
+  
   
 }
 
@@ -245,8 +246,7 @@ article {
   height: 33.5rem;
 }
 .container article .info {
-  display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(8rem, 1fr));
+  
   overflow-y: scroll;
   height: 30rem;
   
@@ -254,6 +254,7 @@ article {
 .container article .info div {
   text-align: justify;
   margin: 2rem;
+  padding: 1rem;
 }
 
 /* Footer */
@@ -277,10 +278,11 @@ article {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-  transition: .5s;
+  
   user-select: none;
 }
 .post:hover{
+  transition: .5s;
   text-indent: 20px;
   background-color: rgb(24, 206, 167);
   color: white;

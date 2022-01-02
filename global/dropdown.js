@@ -8,24 +8,24 @@ $(function () {
   
   function dropDownMenu() {
     $("#myDropdown").toggleClass("show");
-    asd();
+    dropDownOpen();
   }
   function dropDownMenu2() {
     $("#myDropdown2").toggleClass("show");
-    asd(2);
+    dropDownOpen(2);
   }
 
   function dropDownMenu3() {
     $("#myDropdown3").toggleClass("show");
-    asd(3);
+    dropDownOpen(3);
   }
 
   function dropDownMenu4() {
     $("#myDropdown4").toggleClass("show");
-    asd(4);
+    dropDownOpen(4);
   }
 
-  function asd(id){
+  function dropDownOpen(id){
     window.onclick = function (event) {
       if (!event.target.matches(".dropbtn"+id)) {
         let dropdowns = $(".dropdown-content"+id);

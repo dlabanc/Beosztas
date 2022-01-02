@@ -1,0 +1,63 @@
+.password-window{
+    visibility: hidden;
+     position: absolute;
+     left: 50%;
+     bottom: 50%;
+     transform: translate(-50%,50%);
+    background: rgba(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    min-width: 60%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    user-select: none;
+  /* visibility: hidden;
+  */
+  }
+  .password-window-bg{
+    background-color: white;
+    border-radius: 6px;
+    width: 100%;
+    padding: 5.rem;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    max-width: 500px;
+
+  }
+
+  .password-window-bg::before{
+    content: '';
+    background: rgb(24, 206, 166);
+     width: 5%;
+     height: 100%;
+     position: absolute;
+     left: 0;
+     top: 0;
+   }
+
+  .password-buttons{
+    display: flex;
+    width: 95%;
+    align-self: center;
+    justify-content: space-between;
+  }
+  .password-window-bg input{
+    padding: .5rem;
+    margin: 1rem;
+  }
+  .password-window-bg h3{
+    margin: 1rem;
+  }
+  .passwordOk, .passwordNo{
+    padding: 1rem 2rem 1rem 2rem; 
+  }
+  .password-notification{
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    color: red; 
+
+  }
