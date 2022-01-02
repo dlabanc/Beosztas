@@ -18,6 +18,7 @@
     <script src="/global/darkmode.js"></script>
     <script src="/global/compactmode.js"></script>
     <script src="/global/changepass.js"></script>
+    <script src="/global/changepage.js"></script>
     <title>Alkalmazott</title>
   </head>
   <header>
@@ -46,10 +47,10 @@
       >
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn">&times;</a>
-        <a href="#">Nem érek rá</a>
-        <a href="#">Statisztika</a>
-        <a href="#">Faliújság</a>
-        <a href="#">Beosztás</a>
+        <a id="nemerekra">Nem érek rá</a>
+        <a id="statisztika">Statisztika</a>
+        <a id="faliujsag">Faliújság</a>
+        <a id="beosztas">Beosztás</a>
       </div>
     </div>
   </header>
@@ -109,56 +110,24 @@
         </div>
       </aside>
       <article>
-        <h1>Tartalom</h1>
-        <div class="info">
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas iusto
-            nam, sapiente exercitationem saepe, ea quidem molestiae officiis,
-            ipsa tenetur placeat aperiam ipsum maxime ab voluptatibus delectus
-            atque numquam dicta.
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi
-            inventore laudantium adipisci. Natus et quis, ad doloremque
-            provident maxime, soluta fuga commodi atque quos aperiam molestiae
-            facere beatae eaque eligendi.
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
+        <div id="Nemerekra" class="tabcontent">
+          <h3>Nem érek rá</h3>
+          <p>Nem érek rá tartalom</p>
+        </div>
+        
+        <div id="Statisztika" class="tabcontent">
+          <h3>Statisztika</h3>
+          <p>Statisztika tartalom</p>
+        </div>
+        
+        <div id="Faliujsag" class="tabcontent">
+          <h3>Falújság</h3>
+          <p>Faliújság tartalom</p>
+        </div>
+        
+        <div id="Beosztas" class="tabcontent">
+          <h3>Beosztás</h3>
+          <p>Beosztás tartalom</p>
         </div>
       </article>
       <div class="password-window">

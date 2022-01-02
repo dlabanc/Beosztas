@@ -24,6 +24,7 @@ $(function(){
   $(".sidenav").toggleClass("dark-mode-container");
   $(".post-info").toggleClass("dark-mode");
   $(".info").toggleClass("dark-mode-container");
+  $(".tabcontent").toggleClass("dark-mode-white");
 })
 
 
