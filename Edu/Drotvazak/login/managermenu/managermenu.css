@@ -154,12 +154,12 @@ body{
   align-self: flex-start;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 70%;
+  height: 600px;
   width: 0;
-  position: fixed;
+  position: absolute;
+  right: 50px;
   z-index: 1;
-  top: 5rem;
-  right: 7.5%;
+  
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;

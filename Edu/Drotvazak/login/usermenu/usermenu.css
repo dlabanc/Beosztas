@@ -152,12 +152,12 @@ body{
   align-self: flex-start;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 50%;
+  height: 500px;
   width: 0;
-  position: fixed;
+  position: absolute;
+  right: 50px;
   z-index: 1;
   top: 5rem;
-  right: 7.5%;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -235,7 +235,7 @@ article {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-  height: 55vh ;
+
   
   
 }
