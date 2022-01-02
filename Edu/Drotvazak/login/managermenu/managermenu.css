@@ -472,3 +472,8 @@ article {
 .dark-mode-white{
   color: white !important;
 }
+/*!------------*/
+/* Compact mode*/
+.compact-mode{
+  font-size:15px;
+}
