@@ -33,10 +33,11 @@ header {
 .openbtn:hover{
   background-color: rgb(24, 206, 167);
 }
-.dropbtn2 {
+.dropbtn2,.dropbtn3,.dropbtn4 {
   
   color: black;
   padding: 16px;
+  margin: .3rem;
   font-size: 1.1rem;
   border-radius: 6px;
   border: none;
@@ -57,19 +58,21 @@ header {
 }
 
 .dropdown,
-.dropdown2 {
+.dropdown2,
+.dropdown3,
+.dropdown4 {
   position: relative;
   display: inline-block;
   
 }
 
 .dropdown-content,
-.dropdown-content2 {
+.dropdown-content2,.dropdown-content3,.dropdown-content4 {
   user-select: none;
   border-radius: 6px;
   display: none;
   position: absolute;
-  min-width: 160px;
+  min-width: 240px;
   z-index: 1;
   margin-bottom: 3rem;
   padding: 1rem;
@@ -80,7 +83,13 @@ header {
   border: none;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.253);
   cursor: pointer;
-  
+  width: 100%;
+}
+.dropdown-content2::after,.dropdown-content3::after,.dropdown-content4::after{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .passchange {
@@ -91,18 +100,16 @@ header {
 }
 
 .dropdown-content a,
-.dropdown-content2 a {
+.dropdown-content2 a,.dropdown-content3 a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown-content {
-}
 
 .dropdown-content a:hover,
-.dropdown-content2 a:hover {
+.dropdown-content2 a:hover,.dropdown-content3 a:hover,.dropdown-content4 a:hover {
   background-color: rgb(24, 206, 167);
   border-radius: 6px;
 }
@@ -149,7 +156,7 @@ body{
   align-self: flex-start;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 50%;
+  height: 70%;
   width: 0;
   position: fixed;
   z-index: 1;
@@ -168,6 +175,7 @@ body{
 }
 
 .sidenav a {
+  width: 100%;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -181,11 +189,10 @@ body{
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 10rem;
   font-size: 36px;
-  margin-left: 50px;
+  position: absolute; 
+  top: .1rem;
+
 }
 
 #main {
@@ -220,12 +227,9 @@ body {
 }
 .container {
   transition: width 1s;
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  gap: 2rem;
   margin-top: 2vh;
 }
-.container aside,
+.container 
 article {
   padding: 1rem;
   background: rgba(255, 255, 255, 0.1);
@@ -233,25 +237,18 @@ article {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-  height: fit-content;
-  
+  overflow-y: scroll;
+  height: 55vh ;
 }
-
 
 .container aside .posts{
-  
   height: 33.5rem;
 }
-.container article .info {
-  display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(8rem, 1fr));
-  overflow-y: scroll;
-  height: 30rem;
-  
-}
+
 .container article .info div {
   text-align: justify;
   margin: 2rem;
+  padding: 1rem;
 }
 
 /* Footer */
