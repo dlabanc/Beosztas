@@ -15,9 +15,9 @@ header {
   margin: 1rem;
   color: black;
   padding: 16px;
-  padding-left: 20px;
+  padding-left: 40px;
   position: relative;
-  right: 2rem;
+  right: 2.2rem;
   font-size: 1.1rem;
   border-radius: 6px;
   border: none;
@@ -49,14 +49,15 @@ header {
 
 .dropdown1 span {
   position: relative;
-  left: 10px;
+  left: 25px;
+  bottom: 1.5px;
   z-index: 15;
   margin: 0.2rem;
   color: rgb(24, 206, 167);
 }
 .dropbtn1{
   display: inline;
-  font-weight: lighter;
+  font-weight: bolder;
   color: black;
 }
 .dropdown1,
