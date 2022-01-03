@@ -47,6 +47,9 @@
   .password-window-bg input{
     padding: .5rem;
     margin: 1rem;
+    border-radius: 5px;
+    border: none; 
+    border:1px solid rgba(0, 0, 0, 0.404); 
   }
   .password-window-bg h3{
     margin: 1rem;
@@ -83,8 +86,25 @@
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
 
-  
 }
+.dark-mode-password{
+  
+  background: rgba(17, 17, 17, 0.733)!important;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+.dark-mode-buttons{
+  color:white;
+  padding: 1rem;
+  border: none;
+  width: 100px;
+
+  margin: 1rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, rgb(24, 206, 166), rgb(8, 138, 110), rgb(8, 73, 59));
+}
+
 .dark-mode-icons{
   color:rgb(8, 138, 110)!important;
   

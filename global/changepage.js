@@ -1,8 +1,21 @@
 $(function(){
+    
     esemenyek("#nemerekra","#Nemerekra");
     esemenyek("#statisztika","#Statisztika");
     esemenyek("#faliujsag","#Faliujsag");
     esemenyek("#beosztas","#Beosztas");
+
+    esemenyek("#muszaktipush","#Muszaktipush");
+    esemenyek("#muszaktipusn","#Muszaktipusn");
+    esemenyek("#muszaktipusm","#Muszaktipusm");
+    esemenyek("#munkakorok","#Munkakorok");
+    esemenyek("#alkamazottak","#Alkalmazottak");
+    esemenyek("#manstatisztika","#ManStatisztika");
+    esemenyek("#manfaliujsag","#ManFaliujsag");
+    esemenyek("#napimunka","#Napimunka");
+    esemenyek("#ujbeosztas","#Ujbeosztas");
+    esemenyek("#beosztasmod","#Beosztasmod");
+    esemenyek("#beosztasmeg","#Beosztasmeg");
     
     function openPage(pageName) {
 

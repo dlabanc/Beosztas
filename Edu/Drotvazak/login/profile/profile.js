@@ -16,6 +16,7 @@ $(function () {
 
   for (const [key, value] of Object.entries(adatok)) {
     kulcs = key.replace("_", " ");
+    console.log(`${key}: ${value}`);
     if (sor < 5) {
       $("#elso").append(
         "<tr id=" +

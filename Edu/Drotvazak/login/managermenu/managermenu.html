@@ -18,7 +18,7 @@
     <script src="/global/darkmode.js"></script>
     <script src="/global/compactmode.js"></script>
     <script src="/global/changepass.js"></script>
-
+    <script src="/global/changepage.js"></script>
     <title>Üzletvezető</title>
   </head>
   <header>
@@ -47,8 +47,8 @@
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn">&times;</a>
         <a href="/Edu/Drotvazak/login/managermenu/managermenu.html">Home</a>
-        <a href="#">Munkakörök</a>
-        <a href="#">Alkalmazottak</a>
+        <a id="munkakorok">Munkakörök</a>
+        <a id="alkamazottak">Alkalmazottak</a>
         
         <div class="dropdown3">
             <button class="dropbtn3">
@@ -56,9 +56,9 @@
             </button>  
               <div id="myDropdown3" class="dropdown-content3">
                   
-                <a href="#">Műszak típus hozzáadása</a>
-                <a href="#">Műszak típus naphoz rendelése</a>
-                <a href="#">Műszak eloszlás módosítása</a>
+                <a id="muszaktipush">Műszak típus hozzáadása</a>
+                <a id="muszaktipusn">Műszak típus naphoz rendelése</a>
+                <a id="muszaktipusm">Műszak eloszlás módosítása</a>
                </div>  
         </div>
 
@@ -67,16 +67,15 @@
                Beosztások ▼
             </button>  
               <div id="myDropdown4" class="dropdown-content4">
-                <a href="#">Műszak típus naphoz rendelése</a>
-                <a href="#">Napi munkaerőigény</a>
-                <a href="#">Új Beosztás készítése</a>
-                <a href="#">Beosztás módosítása</a>
-                <a href="#">Beosztás megtekintése</a>
+                <a id="napimunka">Napi munkaerőigény</a>
+                <a id="ujbeosztas">Új Beosztás készítése</a>
+                <a id="beosztasmod">Beosztás módosítása</a>
+                <a id="beosztasmeg">Beosztás megtekintése</a>
                </div>  
         </div>
         
-        <a href="#">Statisztika</a>
-        <a href="#">Faliújság</a>
+        <a id="manstatisztika">Statisztika</a>
+        <a id="manfaliujsag">Faliújság</a>
       </div>
     </div>
   </header>
@@ -85,56 +84,52 @@
     <div class="container">
 
       <article>
-        <h1>Tartalom</h1>
-        <div class="info">
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas iusto
-            nam, sapiente exercitationem saepe, ea quidem molestiae officiis,
-            ipsa tenetur placeat aperiam ipsum maxime ab voluptatibus delectus
-            atque numquam dicta.
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi
-            inventore laudantium adipisci. Natus et quis, ad doloremque
-            provident maxime, soluta fuga commodi atque quos aperiam molestiae
-            facere beatae eaque eligendi.
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
-          <div>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            molestiae omnis beatae voluptas architecto autem deserunt? Doloribus
-            voluptates reiciendis neque voluptatibus nihil hic aperiam officiis.
-            Aut veritatis dolorum ullam quia?
-          </div>
+        <div id="Muszaktipush" class="tabcontent">
+          <h3>Műszak típus hozzáadása</h3>
+          <p></p>
+        </div>
+        
+        <div id="Muszaktipusn" class="tabcontent">
+          <h3>Műszak típus naphoz rendelése</h3>
+          <p></p>
+        </div>
+        
+        <div id="Muszaktipusm" class="tabcontent">
+          <h3>Műszak eloszlás módosítása</h3>
+          <p></p>
+        </div>
+        
+        <div id="Munkakorok" class="tabcontent">
+          <h3>Munkakörök</h3>
+          <p></p>
+        </div>
+        <div id="Alkalmazottak" class="tabcontent">
+          <h3>Alkalmazottak megtekintése</h3>
+          <p></p>
+        </div>
+        <div id="ManStatisztika" class="tabcontent">
+          <h3>Statisztika </h3>
+          <p></p>
+        </div>
+        <div id="ManFaliujsag" class="tabcontent">
+          <h3>Faliújság</h3>
+          <p></p>
+        </div>
+        <div id="Napimunka" class="tabcontent">
+          <h3>Napimunka</h3>
+          <p></p>
+        </div>
+        <div id="Ujbeosztas" class="tabcontent">
+          <h3>Új beosztás készítése</h3>
+          <p></p>
+        </div>
+        <div id="Beosztasmod" class="tabcontent">
+          <h3>Beosztás módosítása</h3>
+          <p></p>
+        </div>
+        <div id="Beosztasmeg" class="tabcontent">
+          <h3>Beosztás megtekintése</h3>
+          <p></p>
         </div>
       </article>
       <div class="password-window">

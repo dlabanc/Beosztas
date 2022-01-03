@@ -1,5 +1,5 @@
 $(function(){
-  
+  //mindenmas
  $(".darkmode-user").on("click",function(){
   $("html").toggleClass(" dark-mode");
   $('body').toggleClass("dark-mode-container");
@@ -25,9 +25,13 @@ $(function(){
   $(".post-info").toggleClass("dark-mode");
   $(".info").toggleClass("dark-mode-container");
   $(".tabcontent").toggleClass("dark-mode-white");
+  $(".password-window").toggleClass("dark-mode");
+  $(".password-window-bg").toggleClass("dark-mode-password");
+  $(".password-window-bg input").toggleClass("dark-mode-inputs");
+  $(".password-buttons button").toggleClass("dark-mode-buttons");
 })
 
-
+//login
   $(".btn").on("click",myFunction);
   function myFunction() {
    
