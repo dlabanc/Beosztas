@@ -3,7 +3,7 @@ $(function () {
   $(".passchange").on("click", () => {
     $(".password-window").css("visibility", "visible");
     $(".container").css("visibility", "hidden");
-    $("#myDropdown").toggleClass("show");
+   
   });
   $(".passwordOk").on("click", function () {
     $(".password-window").css("visibility", "hidden");
