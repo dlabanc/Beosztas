@@ -154,9 +154,12 @@
 .compact-mode{
   font-size:15px;
 }
+
+/* PROFIL ADATOK */
 #Profiladatok {
+  user-select: none;
   overflow-y: visible!important;
-  height: auto!important;
+  height: inherit!important;
   text-align: center;
 }
 
