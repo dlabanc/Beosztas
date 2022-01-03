@@ -10,6 +10,7 @@
       href="/node_modules/@fortawesome/fontawesome-free/css/all.css"
     />
     <link rel="stylesheet" href="/Edu/Drotvazak/login/managermenu/managermenu.css" />
+
     <link rel="stylesheet" href="/global/global.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/global/dropdown.js"></script>
@@ -19,6 +20,7 @@
     <script src="/global/compactmode.js"></script>
     <script src="/global/changepass.js"></script>
     <script src="/global/changepage.js"></script>
+    <script src="/global/profile.js"></script>
     <title>Üzletvezető</title>
   </head>
   <header>
@@ -28,7 +30,7 @@
       </button>
       <div id="myDropdown" class="dropdown-content">
         <h3>Alkamazott menu</h3>
-        <a href="../profile/profile.html">Profil adatok</a>
+        <a id="profiladatok">Profil adatok</a>
         <div class="dropdown2">
           <button class="dropbtn2">Megjelenítés ▼</button>
           <div id="myDropdown2" class="dropdown-content2">
@@ -84,6 +86,15 @@
     <div class="container">
 
       <article>
+        <div id="Profiladatok" class="tabcontent">
+          <h1>Profil adatok</h1>
+        <h2>Labanc Dániel</h2>
+        <img src="/Edu/Drotvazak/login/profile/doctor.jpg" alt="kép"/>
+        <div id="tables">
+          <table id="elso"></table>
+          <table id="masodik"></table>
+        </div>
+        </div>
         <div id="Muszaktipush" class="tabcontent">
           <h3>Műszak típus hozzáadása</h3>
           <p></p>

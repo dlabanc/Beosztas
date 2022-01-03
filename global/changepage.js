@@ -16,9 +16,9 @@ $(function(){
     esemenyek("#ujbeosztas","#Ujbeosztas");
     esemenyek("#beosztasmod","#Beosztasmod");
     esemenyek("#beosztasmeg","#Beosztasmeg");
-    
+    esemenyek("#profiladatok","#Profiladatok");
     function openPage(pageName) {
-
+        
         for (let i = 0; i <$(".tabcontent").length; i++) {
             $(".tabcontent").css("display","none");
         }
@@ -29,6 +29,7 @@ $(function(){
     }
     function esemenyek(id1,id2){
         $(id1).on("click",function(){
+           
             openPage(id2);
         });
     }
