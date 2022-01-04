@@ -1,8 +1,20 @@
 $(function () {
-  //mindenmas
-  let s = 0;
+  $(".btn").on("click", loginDarkModeOn);
   $(".darkmode-user").on("click", function () {
     megjelenites();
+    userDarkModeOn();
+  });
+  let clickcounter = 0 ;
+  if(localStorage.getItem("darkmode")=="dark"){
+    userDarkModeOn();
+  }
+  function megjelenites() {
+    $("html").hasClass("dark-mode") ? 
+    $(".darkmode-user").text("Sötét mód") :  $(".darkmode-user").text("Világos mód");
+  }
+
+  function userDarkModeOn(){
+
     $("html").toggleClass("dark-mode");
     $("body").toggleClass("dark-mode-container");
     $(".dropdown-content1").toggleClass("dark-mode");
@@ -31,16 +43,18 @@ $(function () {
     $(".password-window-bg").toggleClass("dark-mode-password");
     $(".password-window-bg input").toggleClass("dark-mode-inputs");
     $(".password-buttons button").toggleClass("dark-mode-buttons");
-  });
+    clickcounter++;
+    if(clickcounter%2==0){
+      localStorage.setItem("darkmode","light");
+    }
+    else{
+      localStorage.setItem("darkmode","dark");
+    }
+    
 
-  function megjelenites() {
-    $("html").hasClass("dark-mode") ? 
-    $(".darkmode-user").text("Sötét mód") :  $(".darkmode-user").text("Világos mód");
   }
 
-  //login
-  $(".btn").on("click", myFunction);
-  function myFunction() {
+  function loginDarkModeOn() {
     $(".login").toggleClass("dark-mode");
     $(".container").toggleClass("dark-mode-container");
     $(".icons").toggleClass("dark-mode-icons");

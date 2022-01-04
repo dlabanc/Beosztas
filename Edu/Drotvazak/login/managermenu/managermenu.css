@@ -39,12 +39,16 @@ header {
   
   color: black;
   padding: 16px;
-  margin: .3rem;
+  
   font-size: 1.1rem;
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  background-color: white;
+ 
 }
+
+
 
 .dropbtn2:hover {
   background-color: rgb(24, 206, 167);
@@ -79,6 +83,7 @@ header {
   display: none;
   position: absolute;
   min-width: 240px;
+  max-width: 240px;
   z-index: 1;
   margin-bottom: 3rem;
   padding: 1rem;
@@ -95,7 +100,9 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  align-self: center;
+ 
 }
 
 .passchange {
@@ -163,7 +170,8 @@ body{
   height: 600px;
   width: 0;
   position: absolute;
-  right: 50px;
+  right: 11px;
+  transform: translateY(-10px);
   z-index: 1;
   overflow-x: hidden;
   transition: 0.5s;
@@ -415,3 +423,18 @@ article {
 }
 /* Change pass */
 
+@media screen and (max-width: 600px) {
+  header{
+    display: flex;
+    flex-direction: row;
+  }
+  .dropdown-content1{
+   position: sticky;
+   position: absolute;
+   
+  }
+  .sidenav{
+    right: 0;
+  }
+  
+}

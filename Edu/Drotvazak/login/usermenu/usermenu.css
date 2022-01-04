@@ -41,6 +41,7 @@ header {
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  background-color: white;
 }
 
 .dropbtn2:hover {
@@ -156,12 +157,12 @@ body{
   align-self: flex-start;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 500px;
+  height: 600px;
   width: 0;
   position: absolute;
-  right: 50px;
+  right: 11px;
+  transform: translateY(-10px);
   z-index: 1;
-  top: 5rem;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -228,7 +229,7 @@ body {
   transition: width 1s;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  gap: 2rem;
+  gap: 10px;
   margin-top: 2vh;
 }
 .container aside,
@@ -239,14 +240,16 @@ article {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-height: 55vh;
-overflow-y: scroll;
+  height: 55vh;
+  overflow-y: scroll;
   
+}
+.container aside{
+  width: 250px;
 }
 
 
 .container aside .posts{
-  
   height: 33.5rem;
 }
 .container article .info {
