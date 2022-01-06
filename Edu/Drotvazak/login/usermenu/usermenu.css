@@ -1,5 +1,6 @@
 * {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 /* Alkalmazott menu*/
@@ -27,14 +28,12 @@ header {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-  
 }
 
-.openbtn1:hover{
+.openbtn1:hover {
   background-color: rgb(24, 206, 167);
 }
 .dropbtn2 {
-  
   color: black;
   padding: 16px;
   font-size: 1.1rem;
@@ -56,7 +55,7 @@ header {
   margin: 0.2rem;
   color: rgb(24, 206, 167);
 }
-.dropbtn1{
+.dropbtn1 {
   display: inline;
   font-weight: bolder;
   color: black;
@@ -65,7 +64,6 @@ header {
 .dropdown2 {
   position: relative;
   display: inline-block;
-  
 }
 
 .dropdown-content1,
@@ -87,7 +85,7 @@ header {
   cursor: pointer;
   width: 100%;
 }
-.dropdown-content2::after{
+.dropdown-content2::after {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,9 +105,7 @@ header {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-
 }
-
 
 .dropdown-content1 a:hover,
 .dropdown-content2 a:hover {
@@ -125,11 +121,10 @@ header {
 }
 /*!--------------------!*/
 /* Alkalmazott menu vége*/
-html{
+html {
   background-color: rgb(24, 206, 167);
 }
-body{
-  
+body {
   margin: auto;
   background-color: rgba(255, 255, 255, 0.918);
   border-radius: 16px;
@@ -139,7 +134,6 @@ body{
 
 /* Mindenki menü */
 .openbtn {
-
   margin: 1rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.253);
   color: black;
@@ -191,8 +185,8 @@ body{
 
 .sidenav .closebtn {
   font-size: 36px;
-  position: absolute; 
-  top: .1rem;
+  position: absolute;
+  top: 0.1rem;
 }
 
 #main {
@@ -242,21 +236,17 @@ article {
   -webkit-backdrop-filter: blur(1px);
   height: 55vh;
   overflow-y: scroll;
-  
 }
-.container aside{
+.container aside {
   width: 250px;
 }
 
-
-.container aside .posts{
+.container aside .posts {
   height: 33.5rem;
 }
 .container article .info {
-  
   overflow-y: scroll;
   height: 30rem;
-  
 }
 .container article .info div {
   text-align: justify;
@@ -285,26 +275,25 @@ article {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
-  
+
   user-select: none;
 }
-.post:hover{
-  transition: .5s;
+.post:hover {
+  transition: 0.5s;
   text-indent: 20px;
   background-color: rgb(24, 206, 167);
   color: white;
   text-shadow: 1px 1px black;
-  
 }
 
-.post  p {
+.post p {
   background-color: white;
   font-weight: lighter;
   text-align: justify;
   display: block;
   display: none;
 }
-.post  h3 {
+.post h3 {
   text-transform: uppercase;
   font-weight: lighter;
   letter-spacing: 1px;
@@ -319,7 +308,7 @@ article {
   margin: 1rem;
   margin: auto;
 }
-.post-info{
+.post-info {
   visibility: hidden;
   position: absolute;
   top: 50%;
@@ -328,7 +317,7 @@ article {
   background: white;
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
-  z-index: 5; 
+  z-index: 5;
   padding: 1rem;
   user-select: none;
   display: flex;
@@ -337,7 +326,7 @@ article {
   width: 50rem;
   min-height: 20rem;
 }
-.post-info p{
+.post-info p {
   display: flex;
   position: relative;
   justify-content: center;
@@ -352,12 +341,13 @@ article {
   background-color: white;
   border-radius: 6px;
   text-indent: 15px;
-  box-shadow: .5rem .5rem 3rem 1px rgba(0, 0, 0, 0.205);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.205);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.post-info h3{
-  color:  rgb(24, 206, 167);
+.post-info h3 {
+  color: rgb(24, 206, 167);
   padding-top: 1rem;
   padding-bottom: 5px;
   text-align: left;
@@ -367,11 +357,12 @@ article {
   font-size: 2rem;
   position: absolute;
   left: 40%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.post-info img{
+.post-info img {
   display: block;
   position: relative;
   top: 50%;
@@ -379,12 +370,17 @@ article {
   float: left;
   width: 90%;
   object-fit: cover;
-  border-radius: .8rem;
-  box-shadow: .5rem .5rem 3rem 1px rgba(0,0,0, .05);
+  border-radius: 0.8rem;
+  box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.05);
 }
-.post-img::before{
- content: '';
- background: linear-gradient(to right, rgb(24, 206, 166), rgb(8, 138, 110), rgb(8, 73, 59));
+.post-img::before {
+  content: "";
+  background: linear-gradient(
+    to right,
+    rgb(24, 206, 166),
+    rgb(8, 138, 110),
+    rgb(8, 73, 59)
+  );
   width: 100%;
   height: 50%;
   position: absolute;
@@ -392,29 +388,27 @@ article {
   top: 0;
 }
 
-.closeinfo{
+.closeinfo {
   display: block;
   position: relative;
   bottom: 90%;
-  left:90%;
-  transform: translate(0,25%);
+  left: 90%;
+  transform: translate(0, 25%);
   font-size: 2rem;
-  padding: .3rem;
-  border-radius: .8rem;
+  padding: 0.3rem;
+  border-radius: 0.8rem;
   color: white;
   letter-spacing: 1px;
   text-transform: uppercase;
   border: none;
   background: none;
 }
-.post-img{
+.post-img {
   width: 50rem;
-  margin: 1rem;  
-
+  margin: 1rem;
 }
 
-.post-info-user-data section{
-
+.post-info-user-data section {
   position: absolute;
   top: 71%;
   right: 80%;
@@ -422,8 +416,83 @@ article {
   color: grey;
   font-size: larger;
 }
-.post-info-user-data p{
-  
+.post-info-user-data p {
   text-align: justify;
+}
+
+/*Nem érek rá fül kezd*/
+#Nemerekra {
+  user-select: none;
+}
+
+#Nemerekra #napok {
+  padding: 30px 0;
+  text-align: center;
   
+}
+
+
+#Nemerekra .lapoz {
+  display: none;
+  margin: auto;
+  justify-content: space-evenly;
+  background-color: rgb(24, 206, 167, 0.1);
+  margin-top: 20px;
+  border-radius: 5px;
+  margin-bottom: 70px;
+}
+
+#Nemerekra #datum {
+  text-align:center;
+}
+
+#Nemerekra #nemerekraMenu {
+  background-color: rgb(24, 206, 167, 0.3);
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  
+}
+
+#Nemerekra #nemerekraMenu a {
+  font-size: 20px;
+  margin: 0px;
+  cursor: pointer;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 5px;
+}
+
+#Nemerekra #nemerekraMenu a:hover {
+  background-color: rgb(24, 206, 167, 0.3)!important;
+}
+
+#Nemerekra .lapoz .muszakSzam {
+  padding:20px;
+  text-align:center;
+  cursor: pointer;
+  
+}
+
+#Nemerekra #kovetkezoNap {
+  background-color: rgb(24, 206, 167);
+  padding: 8px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+#Nemerekra #elozoNap {
+  background-color: rgb(24, 206, 167);
+  padding: 8px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.kijeloltNemErekRa {
+  color:rgb(0, 0, 0, 0.2);
+  text-decoration: line-through;
 }
