@@ -7,7 +7,7 @@ $(function () {
     let adat = event.currentTarget.children;
     console.log(adat);
     $(".post-info").css("visibility", "visible");
-    $("article").css("opacity", "0.3");
+   
     $(".post-info")
       .children(".post-info-user-data")
       .children("p")

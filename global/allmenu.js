@@ -14,7 +14,7 @@ $(function(){
       
     }); 
     function openNav() {
-        let screen = window.matchMedia("(max-width:600)");
+       
        document.getElementById("mySidenav").style.width = "240px";
         $(".container").css("opacity","0.3");
         width = 240;

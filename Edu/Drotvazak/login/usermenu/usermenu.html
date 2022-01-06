@@ -25,8 +25,10 @@
   </head>
   <header>
     <div class="dropdown1">
-      <span class="fas fa-user"></span>
-      <button class="dropbtn1">Alkalmazott ▼</button>
+      <button class="dropbtn1">
+        <div class="fas fa-user"></div>
+      Alkalmazott ▼
+      </button>
       <div id="myDropdown1" class="dropdown-content1">
         <h3>Alkamazott menu</h3>
         <a id="profiladatok">Profil adatok</a>
@@ -123,16 +125,24 @@
           </div>
         </div>
         <div id="Nemerekra" class="tabcontent">
-          <p id="datum"></p>
-          <div id="nemerekraMenu">
-            <a class="nap" id="hetfo">Hétfő</a>
-            <a class="nap" id="kedd">Kedd</a>
-            <a class="nap" id="szerda">Szerda</a>
-            <a class="nap" id="csutortok">Csütörtök</a>
-            <a class="nap" id="pentek">Péntek</a>
-            <a class="nap" id="szombat">Szombat</a>
-            <a class="nap" id="vasarnap">Vasárnap</a>
-          </div>
+             
+        
+          <div class="dates">
+            <div id="nemerekraMenu">
+              <select name="option" id="option">
+                <option id="hetfo" value="hetfo">Hétfő</option>
+                <option id="kedd" value="kedd">Kedd</option>
+                <option id="szerda" value="szerda">Szerda</option>
+                <option id="csutortok" value="csutortok">Csütörtök</option>
+                <option id="pentek" value="pentek">Péntek</option>
+                <option id="szombat" value="szombat">Szombat</option>
+                <option id="vasarnap" value="vasarnap">Vasárnap</option>
+              </select>
+             
+            </div>
+          <p id="datum"></p>   
+          <p class="aktdatum"></p>
+        </div>
           <div id="napok">
             <div id="Hetfo" class="lapoz"></div>
             <div id="Kedd" class="lapoz"></div>
@@ -141,9 +151,11 @@
             <div id="Pentek" class="lapoz"></div>
             <div id="Szombat" class="lapoz"></div>
             <div id="Vasarnap" class="lapoz"></div>
-            <span id="elozoNap"><< Előző nap</span>
-            <span id="kovetkezoNap">Következő nap >></span>
           </div>
+          <div class="gombok"> 
+            <div id="elozoNap">< Előző nap</div>
+            <div id="kovetkezoNap">Következő nap ></div>
+          </div>  
         </div>
 
         <div id="Statisztika" class="tabcontent">
