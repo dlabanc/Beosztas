@@ -10,7 +10,7 @@
       href="/node_modules/@fortawesome/fontawesome-free/css/all.css"
     />
     <link rel="stylesheet" href="/Edu/Drotvazak/login/usermenu/usermenu.css" />
-    <link rel="stylesheet" href="/global/global.css">
+    <link rel="stylesheet" href="/global/global.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/global/dropdown.js"></script>
     <script src="/global/allmenu.js"></script>
@@ -20,14 +20,13 @@
     <script src="/global/changepass.js"></script>
     <script src="/global/changepage.js"></script>
     <script src="/global/profile.js"></script>
+    <script src="/global/nemErekRa.js"></script>
     <title>Alkalmazott</title>
   </head>
   <header>
     <div class="dropdown1">
       <span class="fas fa-user"></span>
-      <button class="dropbtn1">
-        Alkalmazott ▼
-      </button>
+      <button class="dropbtn1">Alkalmazott ▼</button>
       <div id="myDropdown1" class="dropdown-content1">
         <h3>Alkamazott menu</h3>
         <a id="profiladatok">Profil adatok</a>
@@ -39,7 +38,9 @@
           </div>
         </div>
         <a href="#" class="passchange">Jelszó módosítás</a>
-        <a href="/Edu/Drotvazak/login/login.html" class="logout">Kijelentkezés</a>
+        <a href="/Edu/Drotvazak/login/login.html" class="logout"
+          >Kijelentkezés</a
+        >
       </div>
     </div>
     <div>
@@ -114,61 +115,86 @@
       <article>
         <div id="Profiladatok" class="tabcontent">
           <h1>Profil adatok</h1>
-        <h2>Labanc Dániel</h2>
-        <img src="/Edu/Drotvazak/login/profile/doctor.jpg" alt="kép"/>
-        <div id="tables">
-          <table id="elso"></table>
-          <table id="masodik"></table>
-        </div>
+          <h2>Labanc Dániel</h2>
+          <img src="/Edu/Drotvazak/login/profile/doctor.jpg" alt="kép" />
+          <div id="tables">
+            <table id="elso"></table>
+            <table id="masodik"></table>
+          </div>
         </div>
         <div id="Nemerekra" class="tabcontent">
-          <h3>Nem érek rá</h3>
-          <p>Nem érek rá tartalom</p>
+          <p id="datum"></p>
+          <div id="nemerekraMenu">
+            <a class="nap" id="hetfo">Hétfő</a>
+            <a class="nap" id="kedd">Kedd</a>
+            <a class="nap" id="szerda">Szerda</a>
+            <a class="nap" id="csutortok">Csütörtök</a>
+            <a class="nap" id="pentek">Péntek</a>
+            <a class="nap" id="szombat">Szombat</a>
+            <a class="nap" id="vasarnap">Vasárnap</a>
+          </div>
+          <div id="napok">
+            <div id="Hetfo" class="lapoz"></div>
+            <div id="Kedd" class="lapoz"></div>
+            <div id="Szerda" class="lapoz"></div>
+            <div id="Csutortok" class="lapoz"></div>
+            <div id="Pentek" class="lapoz"></div>
+            <div id="Szombat" class="lapoz"></div>
+            <div id="Vasarnap" class="lapoz"></div>
+            <span id="elozoNap"><< Előző nap</span>
+            <span id="kovetkezoNap">Következő nap >></span>
+          </div>
         </div>
-        
+
         <div id="Statisztika" class="tabcontent">
           <h3>Statisztika</h3>
           <p>Statisztika tartalom</p>
         </div>
-        
+
         <div id="Faliujsag" class="tabcontent">
           <h3>Falújság</h3>
           <p>Faliújság tartalom</p>
         </div>
-        
+
         <div id="Beosztas" class="tabcontent">
           <h3>Beosztás</h3>
           <p>Beosztás tartalom</p>
         </div>
       </article>
       <div class="password-window">
-        <div class="password-window-bg"> 
+        <div class="password-window-bg">
           <h3>Jelszó módosítása</h3>
-          <p class="password-notification">A megadott jelszavak nem egyeznek meg!</p>
-          <input type="text" placeholder="Régi jelszó...">
-          <br>
-          <input id="pass-first" type="text" placeholder="Új jelszó...">
-          <br>
-          <input id="pass-second" type="password" placeholder="Új jelszó ismét...">
-          <br>
+          <p class="password-notification">
+            A megadott jelszavak nem egyeznek meg!
+          </p>
+          <input type="text" placeholder="Régi jelszó..." />
+          <br />
+          <input id="pass-first" type="text" placeholder="Új jelszó..." />
+          <br />
+          <input
+            id="pass-second"
+            type="password"
+            placeholder="Új jelszó ismét..."
+          />
+          <br />
           <div class="password-buttons">
-          <button class="passwordOk" disabled>Ok</button>
-          <button class="passwordNo">Mégse</button>
-        </div>
+            <button class="passwordOk" disabled>Ok</button>
+            <button class="passwordNo">Mégse</button>
+          </div>
         </div>
       </div>
       <div class="post-info">
-          <div class="post-img">
+        <div class="post-img">
           <img src="" alt="123123122" />
-         </div>
-          <div class="post-info-user-data">
-            <section>Alkalmazott neve<br>Munkakör</section>
-            
-            <br>
-          <h3>123213231</h3>  
+        </div>
+        <div class="post-info-user-data">
+          <section>Alkalmazott neve<br />Munkakör</section>
+
+          <br />
+          <h3>123213231</h3>
           <p class="info">123123123</p>
           <button class="closeinfo">&times;</button>
-        </div>  
+        </div>
       </div>
     </div>
     <footer class="label">Vizsgamunka © 2021</footer>
