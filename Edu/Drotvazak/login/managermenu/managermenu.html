@@ -21,6 +21,10 @@
     <script src="/global/changepass.js"></script>
     <script src="/global/changepage.js"></script>
     <script src="/global/profile.js"></script>
+    <script src="/global/Munkakor.js"></script>
+    <script src="/global/munkakorok.js"></script>
+    <script src="/global/Muszak.js"></script>
+    <script src="/global/muszakok.js"></script>
     <title>Üzletvezető</title>
   </head>
   <header>
@@ -98,8 +102,18 @@
         </div>
         </div>
         <div id="Muszaktipush" class="tabcontent">
+          <div id="muszaktipush-minta">
+            <div class="muszaktipush-content">
+                <h3>Műszak típusa</h3><p>Műszaktípus leírása</p>
+            </div>
+            <button id="removemuszak">-</button>
+            <button id="editmuszak">E</button>
+          </div>
           <h3>Műszak típus hozzáadása</h3>
-          <p></p>
+          <button id="newmuszak">+</button>
+          <div class="muszaktipush-container">
+            
+          </div>
         </div>
         
         <div id="Muszaktipusn" class="tabcontent">
@@ -114,7 +128,19 @@
         
         <div id="Munkakorok" class="tabcontent">
           <h3>Munkakörök</h3>
-          <p></p>
+          <button id="newmunkakor">+</button>
+          <div id="munkakor-minta">
+            <div class="munkakor-content">
+              <div class="cimsor">
+                <div class="circle"><h2>Munkakör első betűje</h2></div>
+                <h3>Munkakör megnevezése</h3>
+              </div>
+              <p>Munkakör leírása</p>
+          </div>
+          </div>
+          <div class="munkakor-container">
+            
+          </div>
         </div>
         <div id="Alkalmazottak" class="tabcontent">
           <h3>Alkalmazottak megtekintése</h3>

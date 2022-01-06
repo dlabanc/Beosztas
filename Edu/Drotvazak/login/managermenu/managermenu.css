@@ -412,3 +412,188 @@ article {
 }
 /* Change pass */
 
+/*#############MUNKAKÖR###########*/
+.munkakor-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  margin-right: 15px;
+}
+
+
+.munkakor-content{
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  width: 100%;
+  margin: 1rem;
+  background-color: rgba(255, 255, 255);
+}
+
+.munkakor-content .cimsor{
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.munkakor-content  p {
+  /*position: relative;*/
+  bottom: 30px;
+  font-weight: lighter;
+  text-align: justify;
+  display: block;
+}
+
+.munkakor-content .circle{
+  border: 1px solid rgb(24, 206, 167);
+  background-color: rgb(24, 206, 167);
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+}
+
+.munkakor-content .circle h2{
+  position: relative;
+  bottom: 10px;
+}
+
+#newmunkakor{
+  float: right;
+  position: relative;
+  right: 35px;
+  bottom: 55px;
+  display: inline;
+  font-weight: bolder;
+  color: black;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  background: white;
+  margin-right: 15px;
+  user-select: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 20px;
+}
+
+#newmunkakor:hover{
+  color: white;
+  background-color: rgb(24, 206, 167);
+}
+
+
+/*#############MŰSZAKTÍPUS HOZZÁADÁS###########*/
+
+.muszaktipush-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 25px;
+}
+
+
+.muszaktipush-content{
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  width: 100%;
+  margin: 1rem;
+  background-color: rgba(255, 255, 255);
+}
+
+#newmuszak{
+  float: right;
+  position: relative;
+  right: 35px;
+  bottom: 55px;
+  display: inline;
+  font-weight: bolder;
+  color: black;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  background: white;
+  margin-right: 15px;
+  user-select: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 20px;
+}
+
+#newmuszak:hover{
+  color: white;
+  background-color: rgb(24, 206, 167);
+}
+
+#removemuszak{
+  float: right;
+  position: relative;
+  
+  bottom: 110px;
+  display: inline;
+  font-weight: bolder;
+  color: black;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  background: white;
+  margin-right: 15px;
+  user-select: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 20px;
+}
+
+#removemuszak:hover{
+  color: white;
+  background-color: rgb(24, 206, 167);
+}
+
+#editmuszak{
+  float: right;
+  position: relative;
+  right: 30px;
+  bottom: 110px;
+  display: inline;
+  font-weight: bolder;
+  color: black;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  background: white;
+  margin-right: 15px;
+  user-select: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 20px;
+}
+
+#editmuszak:hover{
+  color: white;
+  background-color: rgb(24, 206, 167);
+}
