@@ -25,6 +25,8 @@
     <script src="/global/munkakorok.js"></script>
     <script src="/global/Muszak.js"></script>
     <script src="/global/muszakok.js"></script>
+    <script src="/global/alkalmazotttabla.js"></script>
+    <script src="/global/Alkalmazott.js"></script>
     <title>Üzletvezető</title>
   </head>
   <header>
@@ -143,8 +145,28 @@
           </div>
         </div>
         <div id="Alkalmazottak" class="tabcontent">
-          <h3>Alkalmazottak megtekintése</h3>
-          <p></p>
+          <table id="AlkalmazottakTabla">
+              <tr id=0 class="foTabla">
+                <th>Név</th>
+                <th>Beosztás</th>
+                <th>Lakcím</th>
+                <th>Elérhetőség</th>
+                <th>E-mail</th>
+              </tr>
+              <tr class="TablaAdat">
+                <td id="nev">asd</td>
+                <td id="beosztas">asd</td>
+                <td id="lakcim">asd</td>
+                <td id="elerhetoseg">asd</td>
+                <td id="email">asd</td>
+              </tr>
+              <ul class="dropdown-content tablaDropdown">
+                <li><a class="tablaAl" href="#">Gyors módosítás</a></li>
+                  <li><a class="tablaAl" href="#">Profil megtekintése</a></li>
+              </ul>
+          </table>
+          
+          <span class="ujAlkalmazott fa fa-plus"></span>
         </div>
         <div id="ManStatisztika" class="tabcontent">
           <h3>Statisztika </h3>
