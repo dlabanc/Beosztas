@@ -51,16 +51,17 @@ $(function () {
  
     }
     
-    $("#option").on("change", function () {
+    $("#option").on("change", function (e) {
+      
       let ertek = $( "#option option:selected" ).val();
       ertek = ertek.replace(ertek.charAt(0),ertek.charAt(0).toUpperCase());
       let aktnap = napok.find(nap => nap.név == ertek);
       $(".aktdatum").html("Kiválaszott nap:<br>"+aktnap.date);
-      
-      //$(".nap").css("background-color", "transparent");
+      console.log("a");
+      $("#option option").css("background-color", "transparent");
      
-      //$(id1).css("background-color", "rgb(24, 206, 167, 0.7)");
-      // openPage(id2);
+      $("#option option:selected").css("background-color", "rgb(24, 206, 167, 0.7)");
+       openPage("#"+ertek);
       
     
     });
