@@ -43,7 +43,10 @@ $(function () {
     $(".password-window-bg").toggleClass("dark-mode-password");
     $(".password-window-bg input").toggleClass("dark-mode-inputs");
     $(".password-buttons button").toggleClass("dark-mode-buttons");
-    clickcounter++;
+    $("#datum").toggleClass("dark-mode-container");
+    $("#elozoNap").toggleClass("dark-mode-container");
+    $("#kovetkezoNap").toggleClass("dark-mode-container");
+    
     if(clickcounter%2==0){
       localStorage.setItem("darkmode","light");
     }
