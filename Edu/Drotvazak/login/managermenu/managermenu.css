@@ -509,6 +509,11 @@ article {
   width: 100%;
   margin: 1rem;
   background-color: rgba(255, 255, 255);
+  height: 150px;
+}
+
+.muszaktipush-content p{
+  font-size: 20px;
 }
 
 #newmuszak{
@@ -543,8 +548,7 @@ article {
 #removemuszak{
   float: right;
   position: relative;
-  
-  bottom: 110px;
+  bottom: 85px;
   display: inline;
   font-weight: bolder;
   color: black;
@@ -573,7 +577,7 @@ article {
   float: right;
   position: relative;
   right: 30px;
-  bottom: 110px;
+  bottom: 85px;
   display: inline;
   font-weight: bolder;
   color: black;

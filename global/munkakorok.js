@@ -27,7 +27,7 @@ $(function(){
 
     function munkakorLista(munkakorok) {
         const szuloElem = $(".munkakor-container");
-        const sablonElem = $("#munkakor-minta");
+        const sablonElem = $("#munkakor-minta").children();
         szuloElem.empty();
         sablonElem.show();
         munkakorok.forEach(function(elem) {

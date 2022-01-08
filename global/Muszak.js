@@ -2,8 +2,8 @@ class Muszak{
     constructor(node, adat){
         this.node=node;
         this.adat=adat;
-        this.muszakTipus=this.node.children(".muszaktipush-content").children("h3");
-        this.muszakLeiras=this.node.children(".muszaktipush-content").children("p");
+        this.muszakTipus=this.node.children("h2");
+        this.muszakLeiras=this.node.children("p");
         this.setAdat(this.adat);
     }
 

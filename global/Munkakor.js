@@ -2,9 +2,9 @@ class Munkakor{
     constructor(node, adat){
         this.node=node;
         this.adat=adat;
-        this.munkakorMegnevezes=this.node.children(".munkakor-content").children(".cimsor").children("h3");
-        this.munkakorKezdBetu=this.node.children(".munkakor-content").children(".cimsor").children(".circle").children("h2");
-        this.munkakorLeiras=this.node.children(".munkakor-content").children("p");
+        this.munkakorMegnevezes=this.node.children(".cimsor").children("h3");
+        this.munkakorKezdBetu=this.node.children(".cimsor").children(".circle").children("h2");
+        this.munkakorLeiras=this.node.children("p");
         this.setAdat(this.adat);
     }
 

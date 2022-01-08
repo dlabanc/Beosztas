@@ -21,7 +21,7 @@ $(function(){
 
     function muszakLista(muszakok) {
         const szuloElem = $(".muszaktipush-container");
-        const sablonElem = $("#muszaktipush-minta");
+        const sablonElem = $("#muszaktipush-minta").children();
         szuloElem.empty();
         sablonElem.show();
         muszakok.forEach(function(elem) {
