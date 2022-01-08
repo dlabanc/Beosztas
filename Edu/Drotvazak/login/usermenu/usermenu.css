@@ -33,9 +33,20 @@ header {
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
   margin-left: 2rem;
-  display: flex;
+  display: flex
 }
 
+article::-webkit-scrollbar-thumb{
+ 
+ border-radius: 25px;
+
+   background-color: rgba(24, 206, 167, 0.493);
+}
+article::-webkit-scrollbar{
+  border-radius: 25px;
+  background-color: rgba(128, 128, 128, 0.144);
+  
+}
 .openbtn1:hover {
   background-color: rgb(24, 206, 167);
 }
@@ -464,9 +475,6 @@ article {
 
 
 
-#Nemerekra #nemerekraMenu a:hover {
-  background-color: rgb(24, 206, 167, 0.3)!important;
-}
 
 #Nemerekra .lapoz .muszakSzam {
   padding:20px;

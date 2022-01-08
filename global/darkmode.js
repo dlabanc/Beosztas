@@ -14,7 +14,7 @@ $(function () {
   }
 
   function userDarkModeOn(){
-
+    $("*").toggleClass("scrollable-element");
     $("html").toggleClass("dark-mode");
     $("body").toggleClass("dark-mode-container");
     $(".dropdown-content1").toggleClass("dark-mode");
