@@ -203,8 +203,53 @@
   margin: auto;
   
 }
+article::-webkit-scrollbar-thumb{
+ 
+  border-radius: 25px;
+ 
+    background-color: rgba(24, 206, 167, 0.493);
+ }
+ article::-webkit-scrollbar{
+   border-radius: 25px;
+   background-color: rgba(128, 128, 128, 0.144);
+   
+ }
 
 
+
+
+@media screen and (max-width:1000px) {
+  aside{
+    width: max-content;
+  }
+  html{
+    min-width: 400px;
+  }
+  
+  #Nemerekra .lapoz {
+    
+    flex-direction: column;
+   
+  }
+  #Nemerekra #nemerekraMenu{
+    display: grid;
+    text-align: center;
+    width: 100%;
+    grid-template-columns: 1fr;
+    
+  }
+  #Nemerekra .lapoz .muszakSzam{
+    width: 90%;
+    height: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+  }
+  #Nemerekra .dates{
+    flex-direction: column;
+  }
+}
 @media screen and (max-width: 700px) {
   .dropdown1 .dropbtn1{
     display: flex;
@@ -251,39 +296,4 @@
    display: none;
   }
   
-}
-@media screen and (max-width:1250px) {
-  
-}
-@media screen and (max-width:1000px) {
-  aside{
-    width: max-content;
-  }
-  html{
-    min-width: 400px;
-  }
-  
-  #Nemerekra .lapoz {
-    
-    flex-direction: column;
-   
-  }
-  #Nemerekra #nemerekraMenu{
-    display: grid;
-    text-align: center;
-    width: 100%;
-    grid-template-columns: 1fr;
-    
-  }
-  #Nemerekra .lapoz .muszakSzam{
-    width: 90%;
-    height: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
-  }
-  #Nemerekra .dates{
-    flex-direction: column;
-  }
 }
