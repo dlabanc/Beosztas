@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@fortawesome/fontawesome-free/css/all.css"
+    />
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="/global/global.css">
+    <script src="/node_modules/darkmode-js/lib/darkmode-js.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/global/darkmode.js"></script>
+    
+    <title>Bejelentkezés</title>
+  </head>
+  <button class="btn"></button>
+  <body class="login">
+    <div class="container">
+      <div>
+        <h3 class="label">Login</h3>
+      </div>
+      <div class="form">
+        <form>
+          <div class="inputs">
+            <div class="field">
+              <li class="icons fas fa-user"></li>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Felhasználónév..."
+              />
+            </div>
+            <div class="field">
+              <li class="icons fas fa-lock"></li>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Jelszó..."
+              />
+            </div>
+            
+          </div>
+          <div class="rememberme">
+            
+            <input type="checkbox" name="remember" id="remember" value="" />
+            <label for="remember">Felhasználónév megjegyzése</label>
+          </div>
+          <div class="input_buttons">
+            <input
+              type="submit"
+              id="login"
+              name="login"
+              value="Bejelentkezés"
+            />
+            <a href="#" class="forgotpass">Elfelejtetted a jelszavadat?</a>
+          </div>
+        </form>
+      </div>
+      <div>
+        <footer class="label">Vizsgamunka © 2021</footer>
+      </div>
+    </div>
+
+  </body>
+
+</html>

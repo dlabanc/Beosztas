@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@fortawesome/fontawesome-free/css/all.css"
+    />
+    <link rel="stylesheet" href="/usermenu/usermenu.css" />
+    <link rel="stylesheet" href="/global/global.css" />
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/global/dropdown.js"></script>
+    <script src="/global/allmenu.js"></script>
+    <script src="/global/post.js"></script>
+    <script src="/global/darkmode.js"></script>
+    <script src="/global/compactmode.js"></script>
+    <script src="/global/changepass.js"></script>
+    <script src="/global/changepage.js"></script>
+    <script src="/global/profile.js"></script>
+    <script src="/global/nemErekRa.js"></script>
+    <title>Alkalmazott</title>
+  </head>
+  <header>
+    <div class="dropdown1">
+      <button class="dropbtn1">
+        <div class="fas fa-user"></div>
+      Alkalmazott ▼
+      </button>
+      <div id="myDropdown1" class="dropdown-content1">
+        <h3>Alkamazott menu</h3>
+        <a id="profiladatok">Profil adatok</a>
+        <div class="dropdown2">
+          <button class="dropbtn2">Megjelenítés ▼</button>
+          <div id="myDropdown2" class="dropdown-content2">
+            <a href="#" class="darkmode-user">Sötét mód</a>
+            <a class="compactmode">Kompakt mód</a>
+          </div>
+        </div>
+        <a href="#" class="passchange">Jelszó módosítás</a>
+        <a href="/login/login.html" class="logout"
+          >Kijelentkezés</a
+        >
+      </div>
+    </div>
+    <div>
+      <span style="font-size: 20px; cursor: pointer" class="openbtn"
+        >&#9776;</span
+      >
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+        <a href="/usermenu/usermenu.html">Kezdőlap</a>
+        <a id="nemerekra">Nem érek rá</a>
+        <a id="statisztika">Statisztika</a>
+        <a id="faliujsag">Faliújság</a>
+        <a id="beosztas">Beosztás</a>
+      </div>
+    </div>
+  </header>
+
+  <body>
+    <div class="container">
+      <aside class="useraside">
+        <div class="posts">
+          <h1>Faliújság</h1>
+          <div class="post">
+            <h3>Post 1</h3>
+
+            <img
+              src="persons/christopher-campbell-rDEOVtE7vOs-unsplash.jpg"
+              alt="alkalmazott_kep2"
+            />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              iusto nam, sapiente exercitationem saepe, ea quidem molestiae
+              officiis, ipsa tenetur placeat aperiam ipsum maxime ab
+              voluptatibus delectus atque numquam dicta.
+            </p>
+          </div>
+          <div class="post">
+            <h3>Post 2</h3>
+
+            <img
+              src="persons/jonas-kakaroto-mjRwhvqEC0U-unsplash.jpg"
+              alt="alkalmazott_kep2"
+            />
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              iusto nam, sapiente exercitationem saepe, ea quidem molestiae
+              officiis, ipsa tenetur placeat aperiam ipsum maxime ab
+              voluptatibus delectus atque numquam dicta.
+            </p>
+          </div>
+          <div class="post">
+            <h3>Post 3</h3>
+
+            <img
+              src="persons/vicky-hladynets-C8Ta0gwPbQg-unsplash.jpg"
+              alt="alkalmazott_kep2"
+            />
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              iusto nam, sapiente exercitationem saepe, ea quidem molestiae
+              officiis, ipsa tenetur placeat aperiam ipsum maxime ab
+              voluptatibus delectus atque numquam dicta. Lorem ipsum dolor sit
+              amet, consectetur adipisicing elit. Accusantium iure repudiandae
+              aperiam nam esse similique, odit commodi sit et quasi earum, est
+              officiis voluptas doloribus suscipit eveniet tempore. At, ut.
+            </p>
+          </div>
+        </div>
+      </aside>
+      <article>
+        <div id="Profiladatok" class="tabcontent">
+          <h1>Profil adatok</h1>
+          <h2>Labanc Dániel</h2>
+          <img src="/pictures/doctor.jpg" alt="kép" />
+          <div id="tables">
+            <table id="elso"></table>
+            <table id="masodik"></table>
+          </div>
+        </div>
+        <div id="Nemerekra" class="tabcontent">
+             
+        
+          <div class="dates">
+            <div id="nemerekraMenu">
+              <select name="option" id="option">
+                <option disabled selected>Válassz a napok közül...</option>
+                <option id="hetfo" value="hetfo">Hétfő</option>
+                <option id="kedd" value="kedd">Kedd</option>
+                <option id="szerda" value="szerda">Szerda</option>
+                <option id="csutortok" value="csutortok">Csütörtök</option>
+                <option id="pentek" value="pentek">Péntek</option>
+                <option id="szombat" value="szombat">Szombat</option>
+                <option id="vasarnap" value="vasarnap">Vasárnap</option>
+              </select>
+             
+            </div>
+          <p id="datum"></p>   
+          <p class="aktdatum"></p>
+        </div>
+          <div id="napok">
+            <div id="Hetfo" class="lapoz"></div>
+            <div id="Kedd" class="lapoz"></div>
+            <div id="Szerda" class="lapoz"></div>
+            <div id="Csutortok" class="lapoz"></div>
+            <div id="Pentek" class="lapoz"></div>
+            <div id="Szombat" class="lapoz"></div>
+            <div id="Vasarnap" class="lapoz"></div>
+          </div>
+          <div class="gombok"> 
+            <div id="elozoNap">< Előző nap</div>
+            <div id="kovetkezoNap">Következő nap ></div>
+          </div>  
+        </div>
+
+        <div id="Statisztika" class="tabcontent">
+          <h3>Statisztika</h3>
+          <p>Statisztika tartalom</p>
+        </div>
+
+        <div id="Faliujsag" class="tabcontent">
+          <h3 id="fu">Faliújság</h3>
+          <button id="newpost">Új bejegyzés</button>
+          <div class="posts-container">
+            <div class="post-content">
+              <img src="persons/christopher-campbell-rDEOVtE7vOs-unsplash.jpg" alt="alkalmazott_kep2" />
+              <div >
+              <h3>Post 1</h3>              
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
+                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
+                voluptatibus delectus atque numquam dicta.
+              </p>
+            </div>
+            </div>
+            <div class="post-content">
+              <div class="post-image">
+                <img src="persons/jonas-kakaroto-mjRwhvqEC0U-unsplash.jpg" alt="alkalmazott_kep2"/>
+              </div>
+              <div>
+              <h3>Post 2</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
+                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
+                voluptatibus delectus atque numquam dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
+                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
+                voluptatibus delectus atque numquam dicta.
+              </p>
+            </div>
+            </div>
+            <div class="post-content">
+              <img
+                src="persons/vicky-hladynets-C8Ta0gwPbQg-unsplash.jpg"
+                alt="alkalmazott_kep2"
+              />
+              <div>
+              <h3>Post 3</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
+                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
+                voluptatibus delectus atque numquam dicta. Lorem ipsum dolor sit
+                amet, consectetur adipisicing elit. Accusantium iure repudiandae
+                aperiam nam esse similique, odit commodi sit et quasi earum, est
+                officiis voluptas doloribus suscipit eveniet tempore. At, ut.
+              </p>
+            </div>
+            </div>
+        </div>
+
+        <div id="Beosztas" class="tabcontent">
+          <h3>Beosztás</h3>
+          <p>Beosztás tartalom</p>
+        </div>
+      </article>
+      <div class="password-window">
+        <div class="password-window-bg">
+          <h3>Jelszó módosítása</h3>
+          <p class="password-notification">
+            A megadott jelszavak nem egyeznek meg!
+          </p>
+          <input type="text" placeholder="Régi jelszó..." />
+          <br />
+          <input id="pass-first" type="text" placeholder="Új jelszó..." />
+          <br />
+          <input
+            id="pass-second"
+            type="password"
+            placeholder="Új jelszó ismét..."
+          />
+          <br />
+          <div class="password-buttons">
+            <button class="passwordOk" disabled>Ok</button>
+            <button class="passwordNo">Mégse</button>
+          </div>
+        </div>
+      </div>
+      <div class="post-info">
+        <div class="post-img">
+          <img src="" alt="123123122" />
+        </div>
+        <div class="post-info-user-data">
+          <section>Alkalmazott neve<br />Munkakör</section>
+
+          <br />
+          <h3>123213231</h3>
+          <p class="info">123123123</p>
+          <button class="closeinfo">&times;</button>
+        </div>
+      </div>
+    </div>
+    <footer class="label">Vizsgamunka © 2021</footer>
+  </body>
+</html>

@@ -1,22 +1,12 @@
 $(function(){
     
-    esemenyek("#nemerekra","#Nemerekra");
-    esemenyek("#statisztika","#Statisztika");
-    esemenyek("#faliujsag","#Faliujsag");
-    esemenyek("#beosztas","#Beosztas");
-    esemenyek("#muszaktipush","#Muszaktipush");
-    esemenyek("#muszaktipusn","#Muszaktipusn");
-    esemenyek("#muszaktipusm","#Muszaktipusm");
-    esemenyek("#munkakorok","#Munkakorok");
-    esemenyek("#alkamazottak","#Alkalmazottak");
-    esemenyek("#manstatisztika","#ManStatisztika");
-    esemenyek("#manfaliujsag","#ManFaliujsag");
-    esemenyek("#napimunka","#Napimunka");
-    esemenyek("#ujbeosztas","#Ujbeosztas");
-    esemenyek("#beosztasmod","#Beosztasmod");
-    esemenyek("#beosztasmeg","#Beosztasmeg");
-    esemenyek("#profiladatok","#Profiladatok");
 
+    for (let index = 0; index < $("article .tabcontent").length; index++) {
+      let elem = $("article .tabcontent").eq(index);
+      let id2 = "#"+elem.attr("id");
+      let id1 = id2.toLowerCase();
+      esemenyek(id1,id2);   
+    }
  
     function esemenyek(id1,id2){
         $(id1).on("click",function(){

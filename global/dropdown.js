@@ -21,7 +21,6 @@ $(function () {
     $("#myDropdown1").toggleClass("show");
     dropDownOpen(1);
     
-   
   }
   function dropDownMenu2() {
     $("#myDropdown2").toggleClass("show");
