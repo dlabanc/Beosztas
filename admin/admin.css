@@ -1,11 +1,8 @@
 *{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    box-sizing: border-box;
+    
 }
 
-
-header{grid-area: 'h';}
-main{grid-area: 'm';}
 :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
@@ -34,10 +31,10 @@ main{grid-area: 'm';}
     --bs-inverse: #4c5667;
 }
 
+  
 html{
-    background-color: rgb(24, 206, 167);
+    
     max-width: 95%;
-    min-width:1800px;
     scroll-behavior: smooth;
     margin: auto;
     /*background-color: rgb(24, 206, 167);*/
@@ -51,10 +48,8 @@ body{
  grid-template-areas: "h m";
  grid-template-columns: 1fr 6fr;
  gap:2.5vh;
- height: 95vh;
  margin: auto;
  background-color: rgba(255, 255, 255, 0.900);
- /*background-color: rgb(24, 206, 167);*/
  border-radius: 16px;
  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
  padding: 2rem;
@@ -69,7 +64,7 @@ header{
     margin-right: 5rem;
     margin-left: 5rem;
     height: 150px;
-    
+    text-align: center;
     user-select: none;
     border-radius: 16px;
     color: black;
@@ -86,25 +81,14 @@ header{
 
 
 aside nav{
-    position: relative;
-    bottom: 1rem;
-    margin-top: .5rem;
+   
     user-select: none;
-    border-radius: 16px;
-    display: flex;
-    min-width: 250px;
-    max-width: 250px;
-    height: 90vh;
     z-index: 1;
     background-color: white;
     color: black;
-    font-size: 1.1rem;
-    border-radius: 6px;
     border: none;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     width: 100%;
-    
 }
 
 aside nav h4{
@@ -137,8 +121,14 @@ aside nav ul{
     grid-template-columns: 
     repeat(auto-fit, minmax(200px, 1fr));
     align-items: center;
-
+    position: relative;
+    top:10.45rem;
+    right: .2rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    padding: 1rem;
+    height: 60vh;
 }
+
 
 aside nav ul li{
     list-style-type: none;
@@ -147,7 +137,7 @@ aside nav ul li{
 aside nav ul li:hover{
     transition: 0.3s;
     text-indent: 20px;
-    background-color: rgb(24, 206, 167);
+    background-color:var(--bs-teal);
     text-indent: 10px;
 }
 
@@ -207,7 +197,7 @@ aside nav ul li:hover{
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.155);
 }
 
-.darkmode--activated nav{
+.darkmode--activated nav ul{
     background-color: black;
     box-shadow: 0 1px 5px rgba(255, 255, 255, 0.155);
     border-radius: 16px;
@@ -216,6 +206,10 @@ aside nav ul li:hover{
 .darkmode--activated article{
     background-color: rgb(240, 240, 240);
     color:black;
+}
+.darkmode--activated header .box{
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.155);
+    
 }
 
 .darkmode--activated nav span{
@@ -227,4 +221,152 @@ aside nav ul li:hover{
 }
 .darkmode--activated .logout{
     color:var(--bs-red);
+}
+
+@media screen and (max-width:1600px) {
+    .grid{
+       display: grid;
+       grid-template-columns: 5fr 1fr;
+       grid-template-areas: 'a h';
+       gap: 1rem;
+    }
+    
+    header{
+        display: grid;
+        padding: 0;
+        margin: 0;
+        gap:1rem;
+        position: relative;
+        top:3rem;
+        right: 10px;
+        grid-template-rows: repeat(4,1fr);
+        margin: 1rem;
+        grid-area: h;
+ 
+    }
+    header .box{
+        padding-bottom: 1rem;
+        
+       
+    }
+    article{
+        height: 80vh ;
+        grid-area: a;
+    }
+    
+}
+@media screen and (max-width:1080px) {
+    .grid{
+       display: block;
+      
+    }
+    
+    header{
+      display: none;  
+        
+    }
+    article{
+        height: 80vh ;
+    }
+    
+}
+
+@media screen and (max-width:600px) {
+
+    .admininfo h4{
+        
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        border-bottom: 1px solid black;
+        
+        padding-top: 1rem;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+    }
+    .darkmode--activated .admininfo h4{
+        background-color: var(--bs-teal);
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        border-bottom: 1px solid black;
+        position: relative;
+        padding-top: 1rem;
+        color: var(--bs-light);
+        font-size: 1.5rem;
+        text-transform: uppercase;
+       
+    }
+    aside{
+        padding: 0;
+        margin: auto;
+        grid-area: aside;
+        width: calc(100% - 1px);
+        
+        
+    }
+    aside nav{
+
+        padding: 0;
+        margin: auto;
+        height: auto;
+        width: calc(100% - 1px);
+        
+        
+    }
+    .logout div{
+        width: auto;
+       
+    }
+    .darkmode--activated .logout span{
+        color: white !important;
+    }
+    
+    ul div{
+        width: 100%;
+        text-align: center;
+    }
+    aside nav ul{
+        display: block;
+        margin: auto;
+        top:0;
+        right: 0;
+        width: calc(100% - 1px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: auto;
+    }
+    aside nav ul li{
+        width: 100%;
+        margin: auto;
+        text-align: justify;
+    }
+    main{
+        width: calc(100% - 1px);
+        grid-area: main;
+        display: block;
+        margin: auto;
+    }
+    body{
+        position: static;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem;
+        gap: 5rem;
+        margin: auto;
+        width: calc(100% - 1px);
+        height: calc(100%-1px);
+    }
+    article{
+        width: calc(100% - 1px);
+        min-width: 90%;
+        height: auto;
+       
+    }
+    header{
+        width: 0;
+    }
 }
