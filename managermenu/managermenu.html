@@ -29,34 +29,30 @@
     <script src="/global/Alkalmazott.js"></script>
     <title>Üzletvezető</title>
   </head>
+  <div class="managerinfo">
+    <h4>Chill out Cafe</h4>
+  </div>
   <header>
-    <div class="dropdown1" >
     
-      <button class="dropbtn1">
-        <div class="fas fa-user"></div>
-      Üzletvezető ▼
-      </button>
-      <div id="myDropdown1" class="dropdown-content1">
-        <h3>Alkamazott menu</h3>
-        <a id="profiladatok">Profil adatok</a>
-        <div class="dropdown2">
-          <button class="dropbtn2" >Megjelenítés ▼</button>
-          <div id="myDropdown2" class="dropdown-content2">
+
+      <nav>
+        
+        <div  class="navbar"> 
+          
+            <a class="fas fa-user admin"><span> Üzletvezető</span></a>
+            <a id="profiladatok">Profil adatok</a>
             <a class="darkmode-user">Sötét mód</a>
-            <a class="compactmode">Kompakt mód</a>
-          </div>
+            <a href="#" class="passchange">Jelszó módosítás</a>
+            <a href="/login/login.html" class="logout">Kijelentkezés</a>
         </div>
-        <a href="#" class="passchange">Jelszó módosítás</a>
-        <a href="/login/login.html" class="logout">Kijelentkezés</a>
-      </div>
-    </div>
-    <div>
+      </nav>
       <span style="font-size: 20px; cursor: pointer" class="openbtn"
         >&#9776;</span
       >
       <div id="mySidenav" class="sidenav">
+        
         <a href="javascript:void(0)" class="closebtn">&times;</a>
-        <a href="/Edu/Drotvazak/login/managermenu/managermenu.html">Kezdőlap</a>
+        <a href="/admin/admin.html">Kezdőlap</a>
         <a id="munkakorok">Munkakörök</a>
         <a id="alkalmazottak">Alkalmazottak</a>
         
@@ -76,12 +72,12 @@
             <button class="dropbtn4">
                Beosztások ▼
             </button>  
-              <div id="myDropdown4" class="dropdown-content4">
+              <ul id="myDropdown4" class="dropdown-content4">
                 <a id="napimunka">Napi munkaerőigény</a>
                 <a id="ujbeosztas">Új Beosztás készítése</a>
                 <a id="beosztasmod">Beosztás módosítása</a>
                 <a id="beosztasmeg">Beosztás megtekintése</a>
-               </div>  
+              </ul>  
         </div>
         
         <a id="manstatisztika">Statisztika</a>
@@ -108,7 +104,7 @@
             <div class="muszaktipush-content">
                 <h2>Műszak típusa</h2><p>Műszaktípus leírása</p>
                 <button id="removemuszak">-</button>
-              <button id="editmuszak">E</button>
+              <button id="editmuszak" ><span class="fas fa-pen"></span></button>
             </div> 
           </div>
           <h3>Műszak típus hozzáadása</h3>
@@ -133,11 +129,13 @@
           <button id="newmunkakor">+</button>
           <div id="munkakor-minta">
             <div class="munkakor-content">
+
               <div class="cimsor">
                 <div class="circle"><h2>Munkakör első betűje</h2></div>
                 <h3>Munkakör megnevezése</h3>
               </div>
               <p>Munkakör leírása</p>
+              <div class="csik"></div>
           </div>
           </div>
           <div class="munkakor-container">
@@ -210,7 +208,7 @@
         </div>
       </div>
   </div>
-    <footer class="label">Vizsgamunka © 2021</footer>
+    <footer class="label"><div>Vizsgamunka © 2021</div></footer>
     
   </body>
 </html>

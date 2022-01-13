@@ -125,10 +125,8 @@
 article::-webkit-scrollbar-thumb{
  
   border-radius: 25px;
- 
-    background-color: rgba(24, 206, 167, 0.493);
- }
-
+  background-color: rgba(24, 206, 167, 0.493);
+}
 
 /*!DARKMODE!*/
 
