@@ -232,6 +232,12 @@ header nav a {
   display: flex;
   align-self: center;
   padding-bottom: .5rem;
+  border-bottom: 1px solid transparent;
+ 
+}
+nav a:hover{
+  transition: .5s;
+  border-bottom: 1px solid var(--bs-teal);
 }
 .openbtn {
   margin: 2rem;
