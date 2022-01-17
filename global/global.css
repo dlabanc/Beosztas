@@ -1,5 +1,5 @@
 .password-window{
-    visibility: hidden;
+     visibility: hidden;
      position: absolute;
      left: 50%;
      bottom: 50%;
@@ -67,8 +67,10 @@
 
   .tabcontent {
     color: black;
-    display: none;
+    display: grid;
+    visibility: hidden;
     height: 100%;
+    width: 1400px;
   }
 
 .compact-mode{

@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> c5f78956b3f7a09185c91a924cd7bc05497adc89
 class AlkalmazottTabla {
     constructor(node, adat) {
       this.node = node;
@@ -95,3 +100,43 @@ class Muszak{
         this.muszakLeiras.text(adat.leiras);
     }
 }
+<<<<<<< HEAD
+class Alkalmazott{
+
+  constructor(szulo,adat){
+  
+    this.node = szulo;
+    szulo.append("<tr></tr>");
+    this.elem = this.node.children("tr:last");
+    this.adat = adat;
+    this.adatMegjelenit();
+    
+    this.elem.on("click",() => {
+      this.kattintastrigger()
+    });
+  }
+
+  kattintastrigger() {
+    let esemeny = new CustomEvent("kivalaszt", { detail: this });
+    window.dispatchEvent(esemeny);
+    console.log(esemeny); 
+  }
+
+  adatMegjelenit(){
+    
+    for (const key in this.adat) {
+      
+      this.elem.append(`<td>${this.adat[key]}</td>`);
+      
+    }
+    if(!(this.adat.hasOwnProperty('munkaviszony_vége')))
+    {
+      this.elem.append('<td> - </td>');
+    }
+    this.elem.append(`<td><button class="fas fa-ban"></button></td>`);
+    this.elem.append(`<td><button class="fas fa-user-edit"></button></td>`);
+  }
+ 
+}
+=======
+>>>>>>> c5f78956b3f7a09185c91a924cd7bc05497adc89
