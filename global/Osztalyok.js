@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 
 
-=======
->>>>>>> c5f78956b3f7a09185c91a924cd7bc05497adc89
 class AlkalmazottTabla {
     constructor(node, adat) {
       this.node = node;
@@ -100,7 +97,6 @@ class Muszak{
         this.muszakLeiras.text(adat.leiras);
     }
 }
-<<<<<<< HEAD
 class Alkalmazott{
 
   constructor(szulo,adat){
@@ -138,5 +134,3 @@ class Alkalmazott{
   }
  
 }
-=======
->>>>>>> c5f78956b3f7a09185c91a924cd7bc05497adc89
