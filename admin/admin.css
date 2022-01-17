@@ -1,6 +1,6 @@
 *{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+    box-sizing: border-box;
 }
 
 :root {
@@ -37,33 +37,27 @@ html{
     max-width: 95%;
     scroll-behavior: smooth;
     margin: auto;
+    
     /*background-color: rgb(24, 206, 167);*/
 }
 
 body{
 
- position: relative;
- top: 1rem;
- display: grid;
- grid-template-areas: "h m";
- grid-template-columns: 1fr 6fr;
- gap:2.5vh;
+ height: 100%;    
  margin: auto;
  background-color: rgba(255, 255, 255, 0.900);
  border-radius: 16px;
  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
  padding: 2rem;
-
+ width: fit-content;
 }
 a{
     text-decoration: none;
     color: black;
 }
 header{
-    margin-top: 1rem;
-    margin-right: 5rem;
-    margin-left: 5rem;
-    height: 150px;
+   
+   
     text-align: center;
     user-select: none;
     border-radius: 16px;
@@ -72,23 +66,26 @@ header{
     border-radius: 6px;
     border: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    grid-template-columns: repeat(4,auto);
+    grid-template-rows: auto;
     gap: 4rem;
 }
 .box{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    
 }
 
 
 aside nav{
-   
+    display: block;
     user-select: none;
     z-index: 1;
     background-color: white;
     color: black;
     border: none;
     cursor: pointer;
-    width: 100%;
+    justify-self: center;
+    
 }
 
 aside nav h4{
@@ -97,6 +94,13 @@ aside nav h4{
     border-bottom: 1px solid gainsboro;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
+    text-align: center;
+}
+aside nav .fa-user{
+    text-align: center;
+}body{
+
+   
 }
 article{
     margin-top: 1rem;
@@ -107,8 +111,9 @@ article{
     background: rgba(255, 255, 255);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
-    overflow-y: scroll;
-    height: 60vh ;
+    overflow: scroll;
+    
+    
 }
 
 .fa-user, .fa-sign-out-alt {
@@ -117,16 +122,12 @@ article{
     color: rgb(24, 206, 167);
   }
 aside nav ul{
+   
     display: grid;
-    grid-template-columns: 
-    repeat(auto-fit, minmax(200px, 1fr));
     align-items: center;
-    position: relative;
-    top:10.45rem;
-    right: .2rem;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
     padding: 1rem;
-    height: 60vh;
+    
 }
 
 
@@ -223,23 +224,67 @@ aside nav ul li:hover{
     color:var(--bs-red);
 }
 
-@media screen and (max-width:1600px) {
-    .grid{
-       display: grid;
-       grid-template-columns: 5fr 1fr;
-       grid-template-areas: 'a h';
-       gap: 1rem;
-    }
+table tr:hover{
+    background-color: var(--bs-teal);
+}
+header{
+grid-area: header;
+}
+article{
+grid-area: article;
+
+}
+aside{
+grid-area: aside;
+height:550px;
+}
+body{
+    display:grid;
+    grid-template-columns: 15% auto;
+    grid-template-areas: 
+    "header header"
+    "aside article";
+    gap:2%;
+     
+}
+html{
+   
+   
+}
+main{
+   
+}
+header div{
+    justify-self: center;
+    padding: 10px;
+}
+article{
+    display:block;
+    width:100%;
+    height:550px;
+    overflow:scroll;
     
+}
+
+.admininfo{
+    text-align: center;
+    padding-bottom: 10px;
+}
+@media screen and (max-width:1600px) {
+   
+    aside{
+        margin-bottom: 0;
+        margin-top: 0;
+    }
     header{
         display: grid;
         padding: 0;
         margin: 0;
         gap:1rem;
-        position: relative;
         top:3rem;
         right: 10px;
-        grid-template-rows: repeat(4,1fr);
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto;
         margin: 1rem;
         grid-area: h;
  
@@ -252,13 +297,14 @@ aside nav ul li:hover{
     article{
         height: 80vh ;
         grid-area: a;
+      
     }
+  
     
 }
 @media screen and (max-width:1080px) {
     .grid{
-       display: block;
-      
+      grid-template-columns: auto;
     }
     
     header{
@@ -302,7 +348,8 @@ aside nav ul li:hover{
         margin: auto;
         grid-area: aside;
         width: calc(100% - 1px);
-        
+        position: static;
+      
         
     }
     aside nav{
@@ -323,10 +370,11 @@ aside nav ul li:hover{
     }
     
     ul div{
-        width: 100%;
+        width: 100aut;
         text-align: center;
     }
     aside nav ul{
+        position: static;
         display: block;
         margin: auto;
         top:0;
@@ -342,13 +390,16 @@ aside nav ul li:hover{
         width: 100%;
         margin: auto;
         text-align: justify;
+        height: auto;
     }
     main{
         width: calc(100% - 1px);
         grid-area: main;
         display: block;
         margin: auto;
+       
     }
+  
     body{
         position: static;
         display: flex;
