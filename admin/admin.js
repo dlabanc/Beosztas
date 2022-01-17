@@ -18,6 +18,9 @@ $(function(){
         alkalmazottak.push(alkalmazott);
       });
      
+
+     
+     
     }
 
 });

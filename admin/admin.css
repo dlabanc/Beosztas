@@ -37,19 +37,18 @@ html{
     max-width: 95%;
     scroll-behavior: smooth;
     margin: auto;
-    
-    /*background-color: rgb(24, 206, 167);*/
+    margin-top: 2rem;
 }
 
 body{
 
  height: 100%;    
- margin: auto;
  background-color: rgba(255, 255, 255, 0.900);
  border-radius: 16px;
  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
  padding: 2rem;
- width: fit-content;
+ width: 100%;
+ 
 }
 a{
     text-decoration: none;
@@ -57,7 +56,9 @@ a{
 }
 header{
    
-   
+    margin-left: auto;
+    margin-right: auto;
+    
     text-align: center;
     user-select: none;
     border-radius: 16px;
@@ -75,9 +76,8 @@ header{
     
 }
 
-
 aside nav{
-    display: block;
+    
     user-select: none;
     z-index: 1;
     background-color: white;
@@ -85,6 +85,8 @@ aside nav{
     border: none;
     cursor: pointer;
     justify-self: center;
+    height: 100%;
+    
     
 }
 
@@ -98,9 +100,6 @@ aside nav h4{
 }
 aside nav .fa-user{
     text-align: center;
-}body{
-
-   
 }
 article{
     margin-top: 1rem;
@@ -198,19 +197,10 @@ aside nav ul li:hover{
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.155);
 }
 
-.darkmode--activated nav ul{
-    background-color: black;
-    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.155);
-    border-radius: 16px;
-    color: white;
-}
+
 .darkmode--activated article{
     background-color: rgb(240, 240, 240);
     color:black;
-}
-.darkmode--activated header .box{
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.155);
-    
 }
 
 .darkmode--activated nav span{
@@ -218,15 +208,47 @@ aside nav ul li:hover{
 }
 .darkmode--activated nav ul li:hover{
     color:white;
-    text-shadow:0 1px 1px black;
+  
 }
 .darkmode--activated .logout{
     color:var(--bs-red);
 }
-
+.darkmode--activated a:hover{
+    color:rgb(201,34,95);
+}
 table tr:hover{
     background-color: var(--bs-teal);
 }
+table td{
+    text-align: center;
+}
+table{
+    border-collapse: collapse;
+}
+table thead td{
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--bs-teal);
+    text-align: center;
+    padding: 2rem;
+}
+table button{
+    text-align: center;
+}
+table .fa-ban,table .fa-user-edit{
+    border:none;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: transparent;
+}
+table .fa-ban{
+    color:var(--bs-danger);
+}
+
+table .fa-user-edit{
+    color:var(--bs-blue);
+}
+
 header{
 grid-area: header;
 }
@@ -239,6 +261,7 @@ grid-area: aside;
 height:550px;
 }
 body{
+    
     display:grid;
     grid-template-columns: 15% auto;
     grid-template-areas: 
@@ -247,13 +270,7 @@ body{
     gap:2%;
      
 }
-html{
-   
-   
-}
-main{
-   
-}
+
 header div{
     justify-self: center;
     padding: 10px;
@@ -270,154 +287,50 @@ article{
     text-align: center;
     padding-bottom: 10px;
 }
-@media screen and (max-width:1600px) {
+@media screen and (max-width:1360px) {
+   body{
+       
+       grid-template-columns: 25% auto;
+   }
    
-    aside{
-        margin-bottom: 0;
-        margin-top: 0;
-    }
-    header{
-        display: grid;
-        padding: 0;
-        margin: 0;
-        gap:1rem;
-        top:3rem;
-        right: 10px;
-        grid-template-columns: auto;
-        grid-template-rows: auto auto auto auto;
-        margin: 1rem;
-        grid-area: h;
- 
-    }
-    header .box{
-        padding-bottom: 1rem;
-        
-       
-    }
-    article{
-        height: 80vh ;
-        grid-area: a;
-      
-    }
-  
-    
 }
-@media screen and (max-width:1080px) {
-    .grid{
-      grid-template-columns: auto;
-    }
-    
-    header{
-      display: none;  
-        
-    }
-    article{
-        height: 80vh ;
-    }
-    
-}
-
-@media screen and (max-width:600px) {
-
-    .admininfo h4{
-        
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        border-bottom: 1px solid black;
-        
-        padding-top: 1rem;
-        font-size: 1.5rem;
-        text-transform: uppercase;
-    }
-    .darkmode--activated .admininfo h4{
-        background-color: var(--bs-teal);
-        display: flex;
-        justify-content: center;
-        align-self: center;
-        border-bottom: 1px solid black;
-        position: relative;
-        padding-top: 1rem;
-        color: var(--bs-light);
-        font-size: 1.5rem;
-        text-transform: uppercase;
-       
-    }
-    aside{
-        padding: 0;
-        margin: auto;
-        grid-area: aside;
-        width: calc(100% - 1px);
-        position: static;
-      
-        
-    }
-    aside nav{
-
-        padding: 0;
-        margin: auto;
-        height: auto;
-        width: calc(100% - 1px);
-        
-        
-    }
-    .logout div{
-        width: auto;
-       
-    }
-    .darkmode--activated .logout span{
-        color: white !important;
-    }
-    
-    ul div{
-        width: 100aut;
-        text-align: center;
-    }
-    aside nav ul{
-        position: static;
-        display: block;
-        margin: auto;
-        top:0;
-        right: 0;
-        width: calc(100% - 1px);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: auto;
-    }
-    aside nav ul li{
+@media screen and (max-width:1110px) {
+    html{
         width: 100%;
-        margin: auto;
-        text-align: justify;
-        height: auto;
-    }
-    main{
-        width: calc(100% - 1px);
-        grid-area: main;
-        display: block;
-        margin: auto;
-       
-    }
-  
-    body{
-        position: static;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 1rem;
-        gap: 5rem;
-        margin: auto;
-        width: calc(100% - 1px);
-        height: calc(100%-1px);
-    }
-    article{
-        width: calc(100% - 1px);
-        min-width: 90%;
-        height: auto;
-       
+        min-width: 100%;
+        max-width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
     }
     header{
-        width: 0;
+        
+        grid-template-columns: auto auto;
+
+    }
+    aside{
+      display: block;  
+      width: 100%;
+      text-align: center;
+     
+    }
+    
+    body{
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        "header"
+        "aside"
+        "article";
+        box-shadow: none;
+    }
+    
+}
+
+@media screen  and (max-width:400px){
+    header{
+        
+        grid-template-columns: auto ;
+        grid-template-rows: auto;
+
     }
 }
