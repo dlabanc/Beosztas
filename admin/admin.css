@@ -222,7 +222,9 @@ table tr:hover{
 table td{
     text-align: center;
 }
-table{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap');
+table > * {
+    
     border-collapse: collapse;
 }
 table thead td{
@@ -235,7 +237,7 @@ table thead td{
 table button{
     text-align: center;
 }
-table .fa-ban,table .fa-user-edit{
+table .fa-ban,table .fa-user-edit, table .fa-edit{
     border:none;
     padding: 10px;
     border-radius: 15px;
@@ -248,7 +250,9 @@ table .fa-ban{
 table .fa-user-edit{
     color:var(--bs-blue);
 }
-
+table .Faliujsag .tartalom{
+    text-align: left;
+}
 header{
 grid-area: header;
 }
