@@ -17,6 +17,7 @@
     <script src="/global/profile.js"></script>
     <script src="/global/munkakorok.js"></script>
     <script src="/global/muszakok.js"></script>
+    <script src="/global/muszakNaphozRendeles.js"></script>
     <script src="/global/alkalmazotttabla.js"></script>
     <script src="/global/Osztalyok.js"></script>
     <title>Üzletvezető</title>
@@ -107,8 +108,50 @@
         </div>
         
         <div id="Muszaktipusn" class="tabcontent">
+          <div id="muszaktipusn-minta">
+            <div class="muszaktipusn-content">
+                <h2>Műszak típusa</h2>
+                <div class="aktualisnapok"></div>
+                <p>Műszaktípus leírása</p>             
+            </div>
+          </div>
           <h3>Műszak típus naphoz rendelése</h3>
-          <p></p>
+          <button id="muszaktipushsave" class="fas fa-save"></button>
+          <div class="muszaktipusn-container">
+            <div id="muszaktipusn-subcontainer">
+
+            </div>
+            <div id="muszaktipusnapok-content">
+              <div id="mnap1" class="muszaktipusnap" draggable="true">
+                <h3>Hétfő</h3>
+                <p></p>
+              </div>
+              <div id="mnap2" class="muszaktipusnap" draggable="true">
+                <h3>Kedd</h3>
+                <p></p>
+              </div>
+              <div id="mnap3" class="muszaktipusnap" draggable="true">
+                <h3>Szerda</h3>
+                <p></p>
+              </div>
+              <div id="mnap4" class="muszaktipusnap" draggable="true">
+                <h3>Csütörtök</h3>
+                <p></p>
+              </div>
+              <div id="mnap5" class="muszaktipusnap" draggable="true">
+                <h3>Péntek</h3>
+                <p></p>
+              </div>
+              <div id="mnap6" class="muszaktipusnap" draggable="true">
+                <h3>Szombat</h3>
+                <p></p>
+              </div>
+              <div id="mnap7" class="muszaktipusnap" draggable="true">
+                <h3>Vasárnap</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div id="Muszaktipusm" class="tabcontent">

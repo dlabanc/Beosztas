@@ -511,7 +511,7 @@ article {
   padding: 1.5rem;
   width: 100%;
   margin: 1rem;
- 
+  border: 1px solid rgb(24, 206, 167);
 }
 
 .munkakor-content .cimsor {
@@ -764,3 +764,107 @@ article {
 }
 
 /*---------------------*/
+
+/*#############MŰSZAKTÍPUS NAPHOZ RENDELÉS###########*/
+
+.muszaktipusn-container{
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 70% 30%;
+  margin-right: 25px;
+}
+
+
+.muszaktipusn-content{
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  width: 90%;
+  margin: 1rem;
+  background-color: rgba(255, 255, 255);
+  height: 200px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  background-color: rgb(152, 216, 189);
+}
+
+
+.muszaktipusnap{
+  float: right;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-sizing: border-box;
+  padding: 1.5rem;
+  width: 70%;
+  margin: 1rem;
+  background-color: var(--bs-teal);
+  height: 150px;
+}
+
+.aktualisnapok{
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.aktualisnapok .muszaktipusnap{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-sizing: border-box;
+  width: 70%;
+  margin: 0px;
+  height: 50px;
+  bottom: 30px;
+}
+
+.aktualisnapok .muszaktipusnap h3{
+  position: relative;
+  bottom: 40px;
+  right: 20px;
+}
+.aktualisnapok .muszaktipusnap p{
+  position: relative;
+  bottom: 55px;
+  left:-20px;
+}
+
+.muszaktipusn-content p{
+  position: fixed;
+  bottom: 30px;
+  width: 25%;
+  left: 22px;
+}
+
+#muszaktipushsave{
+  float: right;
+  position: relative;
+  right: 35px;
+  bottom: 55px;
+  display: inline;
+  font-weight: bolder;
+  color: black;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  background: white;
+  margin-right: 15px;
+  user-select: none;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 10px;
+}
+
+#muszaktipushsave:hover {
+  color: white;
+  background-color: rgb(24, 206, 167);
+}
