@@ -39,5 +39,5 @@
     "leírás": "Aki a mocskot tisztává varázsolja",
     "munkafőnök": 40012
   },
-  { "megnevezés": "Üzletvezető", "leírás": "Ő jár a legjobban pénzügyileg" }
+  { "megnevezés": "Üzletvezető", "leírás": "Ő jár a legjobban pénzügyileg","munkafőnök":null }
 ]

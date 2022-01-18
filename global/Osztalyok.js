@@ -1,6 +1,38 @@
+class Adminelemek{
+  constructor(szulo,adat){
+  
+    this.node = szulo;
+    szulo.append("<tr></tr>");
+    this.elem = this.node.children("tr:last");
+    this.adat = adat;
+    this.adatMegjelenit();
+    
+    this.elem.on("click",() => {
+      this.kattintastrigger()
+    });
+    
+  }
 
+  kattintastrigger() {
+    let esemeny = new CustomEvent("kivalaszt", { detail: this });
+    window.dispatchEvent(esemeny);
+    console.log(esemeny); 
+  }
+
+  adatMegjelenit(){
+    
+    for (const key in this.adat) {
+    
+      this.elem.append(`<td>${this.adat[key]}</td>`);
+    }
+    
+    this.elem.append(`<td><button class="fas fa-ban"></button></td>`);
+    this.elem.append(`<td><button class="fas fa-edit"></button></td>`);
+  }
+}
 
 class AlkalmazottTabla {
+
     constructor(node, adat) {
       this.node = node;
       this.adat = adat;
@@ -97,27 +129,10 @@ class Muszak{
         this.muszakLeiras.text(adat.leiras);
     }
 }
-class Alkalmazott{
-
+class Alkalmazott extends Adminelemek{
   constructor(szulo,adat){
-  
-    this.node = szulo;
-    szulo.append("<tr></tr>");
-    this.elem = this.node.children("tr:last");
-    this.adat = adat;
-    this.adatMegjelenit();
-    
-    this.elem.on("click",() => {
-      this.kattintastrigger()
-    });
+    super(szulo,adat);
   }
-
-  kattintastrigger() {
-    let esemeny = new CustomEvent("kivalaszt", { detail: this });
-    window.dispatchEvent(esemeny);
-    console.log(esemeny); 
-  }
-
   adatMegjelenit(){
     
     for (const key in this.adat) {
@@ -132,42 +147,20 @@ class Alkalmazott{
     this.elem.append(`<td><button class="fas fa-ban"></button></td>`);
     this.elem.append(`<td><button class="fas fa-user-edit"></button></td>`);
   }
+}
+class FaliujsagPost extends Adminelemek{
+
+
+}
+class MunkakorA extends Adminelemek{
+}
+class Bejelentkezes extends Adminelemek{
  
 }
-class FaliujsagPost{
-  constructor(szulo,adat){
-  
-    this.node = szulo;
-    szulo.append("<tr></tr>");
-    this.elem = this.node.children("tr:last");
-    this.adat = adat;
-    this.adatMegjelenit();
-    
-    this.elem.on("click",() => {
-      this.kattintastrigger()
-    });
-    
-  }
-
-  kattintastrigger() {
-    let esemeny = new CustomEvent("kivalaszt", { detail: this });
-    window.dispatchEvent(esemeny);
-    console.log(esemeny); 
-  }
-
-  adatMegjelenit(){
-    
-    for (const key in this.adat) {
-      if(key=="tartalom"){
-        this.elem.append(`<td class="${key}">${this.adat[key]}</td>`);
-      }
-      else{
-      this.elem.append(`<td>${this.adat[key]}</td>`);
-    }
-    }
-    this.elem.append(`<td><button class="fas fa-ban"></button></td>`);
-    this.elem.append(`<td><button class="fas fa-edit"></button></td>`);
-  }
-
-  
+class Muszaktipus extends Adminelemek{
 }
+class Napimunkaeroigeny extends Adminelemek{}
+class Napok extends Adminelemek{}
+class Beosztas extends Adminelemek{}
+class Szabadsag extends Adminelemek{}
+class Nemdolgozna extends Adminelemek{}
