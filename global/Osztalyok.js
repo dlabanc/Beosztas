@@ -134,3 +134,40 @@ class Alkalmazott{
   }
  
 }
+class FaliujsagPost{
+  constructor(szulo,adat){
+  
+    this.node = szulo;
+    szulo.append("<tr></tr>");
+    this.elem = this.node.children("tr:last");
+    this.adat = adat;
+    this.adatMegjelenit();
+    
+    this.elem.on("click",() => {
+      this.kattintastrigger()
+    });
+    
+  }
+
+  kattintastrigger() {
+    let esemeny = new CustomEvent("kivalaszt", { detail: this });
+    window.dispatchEvent(esemeny);
+    console.log(esemeny); 
+  }
+
+  adatMegjelenit(){
+    
+    for (const key in this.adat) {
+      if(key=="tartalom"){
+        this.elem.append(`<td class="${key}">${this.adat[key]}</td>`);
+      }
+      else{
+      this.elem.append(`<td>${this.adat[key]}</td>`);
+    }
+    }
+    this.elem.append(`<td><button class="fas fa-ban"></button></td>`);
+    this.elem.append(`<td><button class="fas fa-edit"></button></td>`);
+  }
+
+  
+}
