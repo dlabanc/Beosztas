@@ -1,0 +1,38 @@
+[
+  {
+    "alkalmazott": 30001,
+    "tól": "2022-09-05",
+    "ig": "2022-09-10",
+    "szabadságtípus": "N"
+  },
+  {
+    "alkalmazott": 40020,
+    "tól": "2022-01-12",
+    "ig": "2022-01-14",
+    "szabadságtípus": "B"
+  },
+  {
+    "alkalmazott": 40024,
+    "tól": "2022-01-13",
+    "ig": "2022-01-15",
+    "szabadságtípus": "N"
+  },
+  {
+    "alkalmazott": 40025,
+    "tól": "2022-01-11",
+    "ig": "2022-01-12",
+    "szabadságtípus": "F"
+  },
+  {
+    "alkalmazott": 40025,
+    "tól": "2022-05-10",
+    "ig": "2022-05-25",
+    "szabadságtípus": "F"
+  },
+  {
+    "alkalmazott": 40025,
+    "tól": "2022-06-10",
+    "ig": "2022-06-20",
+    "szabadságtípus": "F"
+  }
+]

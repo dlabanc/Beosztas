@@ -1,0 +1,20 @@
+[
+  { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 },
+  { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 },
+  { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 },
+  { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 },
+  { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 },
+  { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 },
+  { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 },
+  { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 },
+  { "műszaktipus": "B", "műszakszám": 1, "órától": 8, "óráig": 10 },
+  { "műszaktipus": "B", "műszakszám": 2, "órától": 10, "óráig": 12 },
+  { "műszaktipus": "B", "műszakszám": 3, "órától": 12, "óráig": 14 },
+  { "műszaktipus": "B", "műszakszám": 4, "órától": 14, "óráig": 16 },
+  { "műszaktipus": "B", "műszakszám": 5, "órától": 16, "óráig": 18 },
+  { "műszaktipus": "B", "műszakszám": 6, "órától": 18, "óráig": 20 },
+  { "műszaktipus": "C", "műszakszám": 1, "órától": 6, "óráig": 8 },
+  { "műszaktipus": "C", "műszakszám": 2, "órától": 8, "óráig": 10 },
+  { "műszaktipus": "C", "műszakszám": 3, "órától": 10, "óráig": 12 },
+  { "műszaktipus": "C", "műszakszám": 4, "órától": 12, "óráig": 14 }
+]

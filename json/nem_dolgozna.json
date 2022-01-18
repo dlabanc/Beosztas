@@ -1,0 +1,68 @@
+[
+  {
+    "alkalmazott": 30001,
+    "dátum": "2022-01-11",
+    "műszaktípus": "A",
+    "műszakszám": 1
+  },
+  {
+    "alkalmazott": 30001,
+    "dátum": "2022-01-12",
+    "műszaktípus": "A",
+    "műszakszám": 1
+  },
+  {
+    "alkalmazott": 35001,
+    "dátum": "2022-01-11",
+    "műszaktípus": "A",
+    "műszakszám": 3
+  },
+  {
+    "alkalmazott": 40001,
+    "dátum": "2022-01-13",
+    "műszaktípus": "A",
+    "műszakszám": 4
+  },
+  {
+    "alkalmazott": 40006,
+    "dátum": "2022-01-14",
+    "műszaktípus": "A",
+    "műszakszám": 1
+  },
+  {
+    "alkalmazott": 40006,
+    "dátum": "2022-01-14",
+    "műszaktípus": "A",
+    "műszakszám": 2
+  },
+  {
+    "alkalmazott": 40006,
+    "dátum": "2022-01-14",
+    "műszaktípus": "A",
+    "műszakszám": 3
+  },
+  {
+    "alkalmazott": 40006,
+    "dátum": "2022-01-14",
+    "műszaktípus": "A",
+    "műszakszám": 4
+  },
+  {
+    "alkalmazott": 40006,
+    "dátum": "2022-01-14",
+    "műszaktípus": "A",
+    "műszakszám": 5
+  },
+  {
+    "alkalmazott": 40016,
+    "dátum": "2022-01-15",
+    "műszaktípus": "A",
+    "műszakszám": 2
+  },
+  {
+    "alkalmazott": 40025,
+    "dátum": "2022-01-15",
+    "műszaktípus": "A",
+    "műszakszám": 8
+  }
+]

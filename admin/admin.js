@@ -7,22 +7,15 @@ $(function(){
     ajax.ajaxGet(local+"faliujsag.json",faliujsagAdmin);
     
     function alkalmazottAdmin(eredmeny){
-      const SZULO = $(".Alkalmazottak");
-      let fej = "";
-      for (const key in eredmeny[0]) {
-        fej+=`<td>${key}</td>`;
-      }
-      fej+=`<td>munkaviszony_vége</td>`;
-      $(".Alkalmazottak .fejlec").html(fej); 
-      
-      eredmeny.forEach((e)=>{
-        let alkalmazott = new Alkalmazott(SZULO,e);
-        alkalmazottak.push(alkalmazott);
-      });
+     beallitasok(eredmeny,".Alkalmazottak",Alkalmazott,alkalmazottak);
     }
 
     function faliujsagAdmin(eredmeny){
-      const SZULO = $(".Faliujsag");
+      beallitasok(eredmeny,".Faliujsag",FaliujsagPost,faliujsagok);
+    }
+    
+    function beallitasok(eredmeny,szulo,osztaly,osztalyTomb){
+      const SZULO = $(szulo);
       let fej = "";
       for (const key in eredmeny[0]) {
         fej+=`<td>${key}</td>`;
@@ -30,9 +23,9 @@ $(function(){
       
       $(".Faliujsag .fejlec").html(fej); 
       eredmeny.forEach((e)=>{
-        let faliujsag = new FaliujsagPost(SZULO,e);
-        faliujsagok.push(faliujsag);
+        let faliujsag = new osztaly(SZULO,e);
+        osztalyTomb.push(faliujsag);
       });
-    }  
+    }
 
 });
