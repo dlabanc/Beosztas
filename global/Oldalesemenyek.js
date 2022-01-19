@@ -20,16 +20,18 @@ darkMode();
       }
     });
     function openNav() {
-      document.getElementById("mySidenav").style.width = "240px";
+      document.getElementById("mySidenav").style.width = "300px";
+      document.getElementById("mySidenav").style.visibility = "visible";
   
-      width = 240;
     }
   
     function closeNav() {
       if(document.getElementById("mySidenav")){
       document.getElementById("mySidenav").style.width = "0px";
+      document.getElementById("mySidenav").style.visibility = "hidden";
+
     }
-      width = 0;
+     
     }
   }
   

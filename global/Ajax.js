@@ -10,8 +10,10 @@ class Ajax{
                 url:vegpont,
                 
                 success:function(eredmeny){
+                    
                     callback(eredmeny);
                 }
+                
                 
             }
         )

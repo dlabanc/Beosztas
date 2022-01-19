@@ -12,7 +12,7 @@
     
     <link rel="stylesheet" href="/managermenu/managermenu.css" />
     <link rel="stylesheet" href="/global/global.css">
-    
+    <script src="/node_modules/darkmode-js/lib/darkmode-js.min.js"></script>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="/node_modules/jquery-ui-1.13.0/jquery-ui.min.css">
     <script src="/node_modules/jquery-ui-1.13.0/jquery-ui.js"></script>
@@ -37,10 +37,10 @@
         
         <div  class="navbar"> 
           
-            <a class="admin"> Üzletvezető</a>
-            <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
-            <a class="darkmode-user fas fa-moon"><span>Sötét mód</span></a>
-            <a href="#" class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
+            <a class="fas fa-user admin"><span> Üzletvezető</span></a>
+            <a id="profiladatok">Profil adatok</a>
+            <a class="darkmode-user">Sötét mód</a>
+            <a href="#" class="passchange">Jelszó módosítás</a>
             <a href="/login/login.html" class="logout">Kijelentkezés</a>
         </div>
       </nav>
@@ -113,10 +113,10 @@
         </div>
         
         <div id="Muszaktipusn" class="tabcontent">
-          
+         
+          <h3 class="muszaktipusn-title">Műszak típus naphoz rendelése</h3>
           <button id="muszaktipushsave" class="fas fa-save"></button>
-          <h3 class="muszaktipusn-title">Műszak típus naphoz rendelése </h3>
-          
+         
           <div class="muszaktipusn-container">
             <div id="muszaktipusn-subcontainer">
 
