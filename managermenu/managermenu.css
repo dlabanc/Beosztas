@@ -791,6 +791,10 @@ article {
   padding: 10px;
 }
 
+#AlkalmazottakTabla tr:hover {
+  background-color:rgb(24, 206, 167, 0.4);
+}
+
 #Alkalmazottak .ujAlkalmazott {
   background-color: rgb(24, 206, 167, 0.4);
   padding: 7px;
