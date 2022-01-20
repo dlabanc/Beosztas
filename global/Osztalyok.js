@@ -84,23 +84,45 @@ class AlkalmazottTabla {
   }
 }
 class Munkakor {
-  constructor(node, adat) {
-    this.node = node;
+  constructor(szulo, adat) {
+    this.szulo = szulo;
+    szulo.append(
+      `<div class="munkakor-content">
+      <div class="cimsor">
+      <div class="circle"><h2>Munkakör első betűje</h2></div>
+      <h3>Munkakör megnevezése</h3>
+      </div>
+      <p>Munkakör leírása</p>`
+    );
     this.adat = adat;
-    this.munkakorMegnevezes = this.node.children(".cimsor").children("h3");
-    this.munkakorKezdBetu = this.node
-      .children(".cimsor")
-      .children(".circle")
-      .children("h2");
-    this.munkakorLeiras = this.node.children("p");
-    this.setAdat(this.adat);
+    this.elem=$(".circle:last");
+    this.elem.children("h2").text(this.adat.megnevezés.substring(0, 1).toUpperCase());
+    this.szulo.children(".munkakor-content:last").children(".cimsor").children("h3").text(this.adat.megnevezés);
+    this.szulo.children(".munkakor-content:last").children("p").text(this.adat.leírás);
+    
   }
+}
 
-  setAdat(adat) {
+class MuszakHozzaAdas{
+  constructor(szulo, adat){
+    this.szulo = szulo;
+    szulo.append(
+      `<div class="muszaktipush-content">
+      <h2>Műszak típusa</h2><p>Műszaktípus leírása</p>
+      <button id="removemuszak">-</button>
+      <button id="editmuszak" ><span class="fas fa-pen"></span></button>
+      </div>`
+    );
     this.adat = adat;
-    this.munkakorMegnevezes.text(adat.megnevezes);
-    this.munkakorKezdBetu.text(adat.megnevezes.substring(0, 1).toUpperCase());
-    this.munkakorLeiras.text(adat.leiras);
+    this.elem=$(".muszaktipush-content:last");
+    this.elem.children("h2").text(this.adat.típus);
+    this.elem.children("p").text(this.adat.leírás);
+    this.elem.children("#removemuszak").on("click",()=>{
+      this.kattintasTrigger("torol");
+    });
+    this.elem.children("#editmuszak").on("click",()=>{
+      this.kattintasTrigger("modosit");
+    });
   }
 
   kattintasTrigger(gomb) {
@@ -109,7 +131,9 @@ class Munkakor {
     });
     window.dispatchEvent(esemeny);
   }
+
 }
+
 class Muszak {
 
   constructor(szulo, adat) {
