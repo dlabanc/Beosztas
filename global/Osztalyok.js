@@ -109,6 +109,25 @@ class Munkakor {
     window.dispatchEvent(esemeny);
   }
 }
+
+class MuszakHozzaAdas{
+  constructor(szulo, adat){
+    this.szulo = szulo;
+    szulo.append(
+      `<div class="muszaktipush-content">
+      <h2>Műszak típusa</h2><p>Műszaktípus leírása</p>
+      <button id="removemuszak">-</button>
+      <button id="editmuszak" ><span class="fas fa-pen"></span></button>
+      </div>`
+    );
+    this.adat = adat;
+    this.elem=$(".muszaktipush-content:last");
+    this.elem.children("h2").text(this.adat.típus);
+    this.elem.children("p").text(this.adat.leírás);
+  }
+
+}
+
 class Muszak {
 
   constructor(szulo, adat) {

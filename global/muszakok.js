@@ -1,43 +1,12 @@
 $(function(){
-    const muszakok={
-        "1":{
-            "tipus":"A",
-            "leiras":"Hétköznapi, normál munkarend"
-        },
-        "2":{
-            "tipus":"B",
-            "leiras":"Hétvégi munkarend"
-        },
-        "3":{
-            "tipus":"C",
-            "leiras":"Rendkívüli munkarend"
-        },
-    };
+    let vegpont="http://127.0.0.1:5500/json/muszaktipus.json";
+    const ajax=new Ajax();
+    ajax.ajaxGet(vegpont, muszakBeallitas);
 
-    const muszakTomb=[];
-    muszakBeallitas(muszakok, muszakTomb, muszakLista);
-
-      
-
-    function muszakLista(muszakok) {
-        const szuloElem = $(".muszaktipush-container");
-        const sablonElem = $("#muszaktipush-minta").children();
-        szuloElem.empty();
-        sablonElem.show();
-        muszakok.forEach(function(elem) {
-            let node = sablonElem.clone().appendTo(szuloElem);
-            const obj = new Muszak(node, elem);
-
+    function muszakBeallitas(muszakok) {
+        const szuloElem=$(".muszaktipush-container");
+        muszakok.forEach((elem)=> {
+            new MuszakHozzaAdas(szuloElem,elem);
         });
-        sablonElem.hide();
-    };
-
-    function muszakBeallitas(objektum, tomb, callback){
-        tomb.splice(0,tomb.length);
-        Object.keys(objektum).forEach(function(key) {
-            tomb.push(objektum[key]);
-          
-          });
-        callback(tomb);
-    };
+    }
 });
