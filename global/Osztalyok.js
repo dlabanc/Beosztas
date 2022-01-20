@@ -26,61 +26,38 @@ class Adminelemek {
     this.elem.append(`<td><button class="fas fa-edit"></button></td>`);
   }
 }
+
 class AlkalmazottTabla {
-  constructor(node, adat) {
-    this.node = node;
+  constructor(szulo, adat) {
+    this.szulo = szulo;
+    szulo.append(
+      `<tr>
+          <td id='nev'>Név</td>
+          <td id='beosztas'>Beosztás</td>
+          <td id='lakcim'>Lakcím</td>
+          <td id='elerhetoseg'>Elérhetőség</td>
+          <td id='email'>E-mail</td>
+        </tr>`
+    );
+
     this.adat = adat;
-    this.nev = this.node.children("#nev");
-    this.beosztas = this.node.children("#beosztas");
-    this.lakcim = this.node.children("#lakcim");
-    this.elerhetoseg = this.node.children("#elerhetoseg");
-    this.email = this.node.children("#email");
-    this.setAdatok(this.adat);
+    this.elem = $("tr:last");
+    console.log(this.elem);
+    this.elem.children("#nev").text(this.adat.név);
+    this.elem.children("#beosztas").text(this.adat.munkakör);
+    this.elem.children("#lakcim").text(this.adat.lakcím);
+    this.elem.children("#elerhetoseg").text(this.adat.Elérhetőség);
+    this.elem.children("#email").text(this.adat.Email);
 
-    this.node.on("click", () => {
-      this.KattintasTrigger();
-    });
-
-    this.node.on("mouseenter", () => {
-      this.belepTrigger();
-    });
-
-    this.node.on("mouseleave", () => {
-      this.kilepTrigger();
-    });
-
-    this.node.on("contextmenu", () => {
+    this.elem.on("contextmenu", () => {
       this.jobbklikkTrigger();
     });
-  }
-
-  setAdatok(adat) {
-    this.adat = adat;
-    this.nev.text(adat.nev);
-    this.beosztas.text(adat.beosztas);
-    this.lakcim.text(adat.lakcim);
-    this.elerhetoseg.text(adat.elerhetoseg);
-    this.email.text(adat.email);
-  }
-
-  KattintasTrigger() {
-    let esemeny = new CustomEvent("balklikk", { detail: this });
-    window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
-  }
-
-  belepTrigger() {
-    let esemeny = new CustomEvent("belep", { detail: this });
-    window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
-  }
-
-  kilepTrigger() {
-    let esemeny = new CustomEvent("kilep", { detail: this });
-    window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
   }
 
   jobbklikkTrigger() {
     let esemeny = new CustomEvent("jobbklikk", { detail: this });
     window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
+    
   }
 }
 class Munkakor {
@@ -95,16 +72,24 @@ class Munkakor {
       <p>Munkakör leírása</p>`
     );
     this.adat = adat;
-    this.elem=$(".circle:last");
-    this.elem.children("h2").text(this.adat.megnevezés.substring(0, 1).toUpperCase());
-    this.szulo.children(".munkakor-content:last").children(".cimsor").children("h3").text(this.adat.megnevezés);
-    this.szulo.children(".munkakor-content:last").children("p").text(this.adat.leírás);
-    
+    this.elem = $(".circle:last");
+    this.elem
+      .children("h2")
+      .text(this.adat.megnevezés.substring(0, 1).toUpperCase());
+    this.szulo
+      .children(".munkakor-content:last")
+      .children(".cimsor")
+      .children("h3")
+      .text(this.adat.megnevezés);
+    this.szulo
+      .children(".munkakor-content:last")
+      .children("p")
+      .text(this.adat.leírás);
   }
 }
 
-class MuszakEloszlas{
-  constructor(szulo, adat){
+class MuszakEloszlas {
+  constructor(szulo, adat) {
     this.szulo = szulo;
     szulo.append(
       `<div class="muszaktipusm-content">
@@ -121,24 +106,30 @@ class MuszakEloszlas{
     </div>`
     );
     this.adat = adat;
-    this.elem=$(".muszaktipusm-content:last");
+    this.elem = $(".muszaktipusm-content:last");
     this.elem.children("h3").text(this.adat.műszaktipus);
-    this.tabla=this.elem.children("table");
-    
+    this.tabla = this.elem.children("table");
+
     for (const key in this.adat.műszakok) {
       this.tabla.append("<tr></tr>");
-      this.tablaElem=this.tabla.children("tbody").children("tr:last");
-      this.tablaElem.append("<td>"+this.adat.műszakok[key].műszakszám+"</td>");
-      this.tablaElem.append("<td>"+this.adat.műszakok[key].órától+"</td>");
-      this.tablaElem.append("<td>"+this.adat.műszakok[key].óráig+"</td>");
-      this.tablaElem.append('<td><button class="editmuszakm" ><span class="fas fa-pen"></span></button></td>');
-      this.tablaElem.append('<td><button class="removemuszakm">-</button></td>');
+      this.tablaElem = this.tabla.children("tbody").children("tr:last");
+      this.tablaElem.append(
+        "<td>" + this.adat.műszakok[key].műszakszám + "</td>"
+      );
+      this.tablaElem.append("<td>" + this.adat.műszakok[key].órától + "</td>");
+      this.tablaElem.append("<td>" + this.adat.műszakok[key].óráig + "</td>");
+      this.tablaElem.append(
+        '<td><button class="editmuszakm" ><span class="fas fa-pen"></span></button></td>'
+      );
+      this.tablaElem.append(
+        '<td><button class="removemuszakm">-</button></td>'
+      );
     }
-    
-    this.elem.children(".removemuszakm").on("click",()=>{
+
+    this.elem.children(".removemuszakm").on("click", () => {
       this.kattintasTrigger("torolm");
     });
-    this.elem.children(".editmuszakm").on("click",()=>{
+    this.elem.children(".editmuszakm").on("click", () => {
       this.kattintasTrigger("modositm");
     });
   }
@@ -149,11 +140,10 @@ class MuszakEloszlas{
     });
     window.dispatchEvent(esemeny);
   }
-
 }
 
-class MuszakHozzaAdas{
-  constructor(szulo, adat){
+class MuszakHozzaAdas {
+  constructor(szulo, adat) {
     this.szulo = szulo;
     szulo.append(
       `<div class="muszaktipush-content">
@@ -163,13 +153,13 @@ class MuszakHozzaAdas{
       </div>`
     );
     this.adat = adat;
-    this.elem=$(".muszaktipush-content:last");
+    this.elem = $(".muszaktipush-content:last");
     this.elem.children("h2").text(this.adat.típus);
     this.elem.children("p").text(this.adat.leírás);
-    this.elem.children("#removemuszakh").on("click",()=>{
+    this.elem.children("#removemuszakh").on("click", () => {
       this.kattintasTrigger("torolh");
     });
-    this.elem.children("#editmuszakh").on("click",()=>{
+    this.elem.children("#editmuszakh").on("click", () => {
       this.kattintasTrigger("modosith");
     });
   }
@@ -180,11 +170,9 @@ class MuszakHozzaAdas{
     });
     window.dispatchEvent(esemeny);
   }
-
 }
 
 class Muszak {
-
   constructor(szulo, adat) {
     this.node = szulo;
 
@@ -202,33 +190,31 @@ class Muszak {
       </div> 
       </div>          
       </div>`
-      
     );
     this.elem = this.node.children(".muszaktipusn-content:last");
     this.adat = adat;
     this.napok = [];
     this.elem.children("div").children("p").text(this.adat.leírás);
     this.elem.children("div").children("h2").text(this.adat.típus);
-    this.napokTarolo = this.elem.children(".mtc-inline-grid").children(".aktualisnapok");
-    this.elem.find(".send").on("click",()=>{
+    this.napokTarolo = this.elem
+      .children(".mtc-inline-grid")
+      .children(".aktualisnapok");
+    this.elem.find(".send").on("click", () => {
       this.kattintastrigger();
     });
-    this.elem.find(".delete").on("click",()=>{
+    this.elem.find(".delete").on("click", () => {
       this.torles();
     });
   }
-    torles(){
-      let esemeny = new CustomEvent("Torles", { detail: this });
-      window.dispatchEvent(esemeny);
-      
-    }
-    kattintastrigger() {
-      let esemeny = new CustomEvent("Hozzarendeles", { detail: this });
-      window.dispatchEvent(esemeny);
-      
-    }
+  torles() {
+    let esemeny = new CustomEvent("Torles", { detail: this });
+    window.dispatchEvent(esemeny);
   }
-
+  kattintastrigger() {
+    let esemeny = new CustomEvent("Hozzarendeles", { detail: this });
+    window.dispatchEvent(esemeny);
+  }
+}
 
 class Alkalmazott extends Adminelemek {
   constructor(szulo, adat) {
