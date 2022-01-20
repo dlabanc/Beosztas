@@ -8,5 +8,13 @@ $(function(){
         muszakok.forEach((elem)=> {
             new MuszakHozzaAdas(szuloElem,elem);
         });
+
+        $(window).on("torol",(event)=>{            
+            console.log(event.detail.típus);
+        });
+
+        $(window).on("modosit",(event)=>{            
+            console.log(event.detail.típus);
+        });
     }
 });

@@ -101,13 +101,6 @@ class Munkakor {
     this.szulo.children(".munkakor-content:last").children("p").text(this.adat.leírás);
     
   }
-
-  kattintasTrigger(gomb) {
-    let esemeny = new CustomEvent(gomb, {
-      detail: this.adat,
-    });
-    window.dispatchEvent(esemeny);
-  }
 }
 
 class MuszakHozzaAdas{
@@ -124,6 +117,19 @@ class MuszakHozzaAdas{
     this.elem=$(".muszaktipush-content:last");
     this.elem.children("h2").text(this.adat.típus);
     this.elem.children("p").text(this.adat.leírás);
+    this.elem.children("#removemuszak").on("click",()=>{
+      this.kattintasTrigger("torol");
+    });
+    this.elem.children("#editmuszak").on("click",()=>{
+      this.kattintasTrigger("modosit");
+    });
+  }
+
+  kattintasTrigger(gomb) {
+    let esemeny = new CustomEvent(gomb, {
+      detail: this.adat,
+    });
+    window.dispatchEvent(esemeny);
   }
 
 }
