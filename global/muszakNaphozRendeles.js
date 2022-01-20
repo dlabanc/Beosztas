@@ -46,8 +46,14 @@ $(function () {
   $(".selectable").selectable();
   $(window).on("Torles",({detail})=>{
     detail.napok.forEach(n=>{
-      elemTarolo.append(n.elem);
+      n.elem.effect("fade","slow",()=>{
+        elemTarolo.append(n.elem);
+        n.elem.show();
+      });
+      
     })
+    detail.napok = [];
+    console.log(detail);
   });
   $(window).on("Hozzarendeles",({detail})=>{
     for (let index = 0; index < napok.length; index++) {

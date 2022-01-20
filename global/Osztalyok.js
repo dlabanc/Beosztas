@@ -171,6 +171,7 @@ class Muszak {
     torles(){
       let esemeny = new CustomEvent("Torles", { detail: this });
       window.dispatchEvent(esemeny);
+      
     }
     kattintastrigger() {
       let esemeny = new CustomEvent("Hozzarendeles", { detail: this });
