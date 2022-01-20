@@ -2,8 +2,58 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-sizing: border-box;
 }
-
 :root {
+    --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
+    --fds-black-alpha-10: rgba(0, 0, 0, 0.1);
+    --fds-black-alpha-15: rgba(0, 0, 0, 0.15);
+    --fds-black-alpha-20: rgba(0, 0, 0, 0.2);
+    --fds-black-alpha-30: rgba(0, 0, 0, 0.3);
+    --fds-black-alpha-40: rgba(0, 0, 0, 0.4);
+    --fds-black-alpha-50: rgba(0, 0, 0, 0.5);
+    --fds-black-alpha-60: rgba(0, 0, 0, 0.6);
+    --fds-black-alpha-80: rgba(0, 0, 0, 0.8);
+    --fds-blue-05: #ecf3ff;
+    --fds-blue-30: #aac9ff;
+    --fds-blue-40: #77a7ff;
+    --fds-blue-60: #1877f2;
+    --fds-blue-70: #2851a3;
+    --fds-blue-80: #1d3c78;
+    --fds-button-text: #444950;
+    --fds-comment-background: #f2f3f5;
+    --fds-gray-00: #f5f6f7;
+    --fds-gray-05: #f2f3f5;
+    --fds-gray-10: #ebedf0;
+    --fds-gray-20: #dadde1;
+    --fds-gray-25: #ccd0d5;
+    --fds-gray-30: #bec3c9;
+    --fds-gray-45: #8d949e;
+    --fds-gray-70: #606770;
+    --fds-gray-80: #444950;
+    --fds-gray-90: #303338;
+    --fds-gray-100: #1c1e21;
+    --fds-green-55: #00a400;
+    --fds-highlight-cell-background: #ecf3ff;
+    --fds-primary-icon: #1c1e21;
+    --fds-primary-text: #1c1e21;
+    --fds-red-55: #fa383e;
+    --fds-soft: cubic-bezier(0.08, 0.52, 0.52, 1);
+    --fds-spectrum-aluminum-tint-70: #e4f0f6;
+    --fds-spectrum-blue-gray-tint-70: #cfd1d5;
+    --fds-spectrum-cherry: #f35369;
+    --fds-spectrum-lime: #a3ce71;
+    --fds-spectrum-seafoam-tint-70: #caeef9;
+    --fds-spectrum-slate-dark-2: #89a1ac;
+    --fds-spectrum-slate-tint-70: #eaeff2;
+    --fds-spectrum-teal: #6bcebb;
+    --fds-spectrum-teal-dark-1: #4dbba6;
+    --fds-spectrum-teal-dark-2: #31a38d;
+    --fds-spectrum-teal-tint-70: #d2f0ea;
+    --fds-spectrum-teal-tint-90: #f0faf8;
+    --fds-spectrum-tomato: #fb724b;
+    --fds-spectrum-tomato-tint-30: #f38e7b;
+    --fds-spectrum-tomato-tint-90: #fdefed;
+    --always-white: #ffffff;
+    --always-black: black;
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
@@ -29,11 +79,11 @@
     --bs-orange: #ffc36d;
     --bs-purple: #707cd2;
     --bs-inverse: #4c5667;
-}
+  }
 
-  
+ 
 html{
-    
+    background-color: black!important;
     max-width: 95%;
     scroll-behavior: smooth;
     margin: auto;
@@ -41,11 +91,11 @@ html{
 }
 
 body{
-
+    background-color: var(--fds-gray-05);
  height: 100%;    
- background-color: rgba(255, 255, 255, 0.900);
+
  border-radius: 16px;
- box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
+ border: 1px solid var(--fds-gray-20);
  padding: 2rem;
  width: 100%;
  
@@ -58,7 +108,9 @@ header{
    
     margin-left: auto;
     margin-right: auto;
-    
+   
+   
+    padding: 2rem;
     text-align: center;
     user-select: none;
     border-radius: 16px;
@@ -72,7 +124,7 @@ header{
     gap: 4rem;
 }
 .box{
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
     
 }
 
@@ -87,15 +139,35 @@ aside nav{
     justify-self: center;
     height: 100%;
     
-    
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
-
+.tabcontent {
+    color: black;
+    display: grid;
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+}
+.tabcontent h3{
+   
+  padding: 1rem;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 550;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  margin:auto;
+}
 aside nav h4{
     padding:0;
     margin: 0;
     border-bottom: 1px solid gainsboro;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
+    text-transform: uppercase;
+    font-family: "Mochiy Pop P One", sans-serif;
+   
     text-align: center;
 }
 aside nav .fa-user{
@@ -109,7 +181,7 @@ article{
     padding: 1rem;
     background: rgba(255, 255, 255);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
     overflow: scroll;
     
     
@@ -124,7 +196,7 @@ aside nav ul{
    
     display: grid;
     align-items: center;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  
     padding: 1rem;
     
 }

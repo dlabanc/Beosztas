@@ -65,13 +65,7 @@
 
   }
 
-  .tabcontent {
-    color: black;
-    display: grid;
-    visibility: hidden;
-    height: 100%;
-    width: fit-content;
-  }
+  
 
 .compact-mode{
   font-size:15px;

@@ -25,7 +25,7 @@ $(function(){
     ajax.ajaxGet(local+"napok.json",szabadsagAdmin);
     
     function alkalmazottAdmin(eredmeny){
-     beallitasok(eredmeny,".Alkalmazottak",Alkalmazott,alkalmazottak);
+     alkalmazottBeallitasok(eredmeny,".Alkalmazottak",Alkalmazott,alkalmazottak);
     }
     function faliujsagAdmin(eredmeny){
       beallitasok(eredmeny,".Faliujsag",FaliujsagPost,faliujsagok);
@@ -61,7 +61,22 @@ $(function(){
       for (const key in eredmeny[0]) {
         fej+=`<td>${key}</td>`;
       }
+      fej+=`<td></td><td></td>`;
+      $(`${szulo} .fejlec`).html(fej); 
+      eredmeny.forEach((e)=>{
+        let objektum = new osztaly(SZULO,e);
       
+        osztalyTomb.push(objektum);
+      });
+    }
+
+    function alkalmazottBeallitasok(eredmeny,szulo,osztaly,osztalyTomb){
+      const SZULO = $(szulo);
+      let fej = "";
+      for (const key in eredmeny[0]) {
+        fej+=`<td>${key}</td>`;
+      }
+      fej+=`<td>Munkaviszony_vége</td><td></td><td></td>`;
       $(`${szulo} .fejlec`).html(fej); 
       eredmeny.forEach((e)=>{
         let objektum = new osztaly(SZULO,e);
