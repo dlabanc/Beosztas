@@ -9,11 +9,11 @@ $(function(){
             new MuszakHozzaAdas(szuloElem,elem);
         });
 
-        $(window).on("torol",(event)=>{            
+        $(window).on("torolh",(event)=>{            
             console.log(event.detail.típus);
         });
 
-        $(window).on("modosit",(event)=>{            
+        $(window).on("modosith",(event)=>{            
             console.log(event.detail.típus);
         });
     }

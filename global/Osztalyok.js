@@ -103,6 +103,55 @@ class Munkakor {
   }
 }
 
+class MuszakEloszlas{
+  constructor(szulo, adat){
+    this.szulo = szulo;
+    szulo.append(
+      `<div class="muszaktipusm-content">
+        <h3></h3>  
+        <table>
+            <tr>
+              <th>Műszakszám</th>
+              <th>Órától</th>
+              <th>Óráig</th>
+              <th>Szerkesztés</th>
+              <th>Törlés</th>
+            </tr>
+        </table>
+    </div>`
+    );
+    this.adat = adat;
+    this.elem=$(".muszaktipusm-content:last");
+    this.elem.children("h3").text(this.adat.műszaktipus);
+    this.tabla=this.elem.children("table");
+    
+    for (const key in this.adat.műszakok) {
+      this.tabla.append("<tr></tr>");
+      this.tablaElem=this.tabla.children("tbody").children("tr:last");
+      this.tablaElem.append("<td>"+this.adat.műszakok[key].műszakszám+"</td>");
+      this.tablaElem.append("<td>"+this.adat.műszakok[key].órától+"</td>");
+      this.tablaElem.append("<td>"+this.adat.műszakok[key].óráig+"</td>");
+      this.tablaElem.append('<td><button class="editmuszakm" ><span class="fas fa-pen"></span></button></td>');
+      this.tablaElem.append('<td><button class="removemuszakm">-</button></td>');
+    }
+    
+    this.elem.children(".removemuszakm").on("click",()=>{
+      this.kattintasTrigger("torolm");
+    });
+    this.elem.children(".editmuszakm").on("click",()=>{
+      this.kattintasTrigger("modositm");
+    });
+  }
+
+  kattintasTrigger(gomb) {
+    let esemeny = new CustomEvent(gomb, {
+      detail: this.adat,
+    });
+    window.dispatchEvent(esemeny);
+  }
+
+}
+
 class MuszakHozzaAdas{
   constructor(szulo, adat){
     this.szulo = szulo;
@@ -117,11 +166,11 @@ class MuszakHozzaAdas{
     this.elem=$(".muszaktipush-content:last");
     this.elem.children("h2").text(this.adat.típus);
     this.elem.children("p").text(this.adat.leírás);
-    this.elem.children("#removemuszak").on("click",()=>{
-      this.kattintasTrigger("torol");
+    this.elem.children("#removemuszakh").on("click",()=>{
+      this.kattintasTrigger("torolh");
     });
-    this.elem.children("#editmuszak").on("click",()=>{
-      this.kattintasTrigger("modosit");
+    this.elem.children("#editmuszakh").on("click",()=>{
+      this.kattintasTrigger("modosith");
     });
   }
 
