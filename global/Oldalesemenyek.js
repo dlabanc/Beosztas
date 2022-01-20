@@ -175,18 +175,7 @@ darkMode();
   $(".dropbtn3").on("click", dropDownMenu3);
   $(".dropbtn4").on("click", dropDownMenu4);
 
-  $(".dropdown-content1 a").on("click", ()=>  {
-       $(".dropdown-content1").removeClass("show");
-       
-  });
 
-  $(document).click(function(e) {
-    if (!$(e.target).is('a, ul, span, button'))
-    {
-      $(".dropdown-content1").removeClass("show");
-    }
-    
-  });
 
   function dropDownMenu3() {
     $("#myDropdown3").toggleClass("show");

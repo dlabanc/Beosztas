@@ -70,7 +70,7 @@
     display: grid;
     visibility: hidden;
     height: 100%;
-    width: 1400px;
+    width: fit-content;
   }
 
 .compact-mode{
