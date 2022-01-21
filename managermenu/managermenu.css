@@ -648,13 +648,7 @@ article {
 }
 /*#############MŰSZAKELOSZLÁS MÓDOSÍTÁSA#######*/
 
-.muszaktipusm-container{
-  width: fit-content;
-  margin: auto;
-  display: grid;
-  grid-template-columns:repeat(3,auto);
-  gap: 1.5rem;
-}
+
 #Muszaktipusm h3{
   padding: 1.5rem;
   font-weight: 450;
@@ -716,9 +710,9 @@ article {
 
 /*#############MŰSZAKTÍPUS HOZZÁADÁS###########*/
 #Muszaktipush{
-  width: fit-content;
-  margin: auto;
-  width: 50%;
+ 
+  width: 100%!important; 
+  
 }
 .muszaktipush-container {
   display: grid;
