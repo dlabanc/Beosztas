@@ -49,8 +49,10 @@ class AlkalmazottTabla {
     this.elem.children("#elerhetoseg").text(this.adat.Elérhetőség);
     this.elem.children("#email").text(this.adat.Email);
 
-    this.elem.on("contextmenu", () => {
+    this.elem.on("contextmenu", (e) => {
       this.jobbklikkTrigger();
+     
+      
     });
   }
 
@@ -122,7 +124,7 @@ class MuszakEloszlas {
         '<td><button class="editmuszakm" ><span class="fas fa-pen"></span></button></td>'
       );
       this.tablaElem.append(
-        '<td><button class="removemuszakm">-</button></td>'
+        '<td><button class="removemuszakm"><span class="fas fa-minus"></span></button></td>'
       );
     }
 

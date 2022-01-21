@@ -16,11 +16,11 @@ $(function () {
   $(window).on("jobbklikk", (event) => {
     if (event.target.id != 0) {
       console.log(event);
-      event.preventDefault;
+      event.preventDefault();
       var x = event.pageX - $("#Alkalmazottak").offset().left;
       var y = event.pageY - $("#Alkalmazottak").offset().top;
-
-      $(menu).css("left", x + 25);
+      
+      $(menu).css("left", x);
       $(menu).css("top", y);
       $(menu).css("z-index", 1);
       $(menu).removeClass("tablaDropdown");
