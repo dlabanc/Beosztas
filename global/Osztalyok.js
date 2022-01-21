@@ -48,16 +48,21 @@ class AlkalmazottTabla {
     this.elem.children("#lakcim").text(this.adat.lakcím);
     this.elem.children("#elerhetoseg").text(this.adat.Elérhetőség);
     this.elem.children("#email").text(this.adat.Email);
-
+    this.menu =  "#Alkalmazottak .dropdown-content";
     this.elem.on("contextmenu", (e) => {
       this.jobbklikkTrigger();
       document.addEventListener('contextmenu', event => event.preventDefault());
-      
+      this.x = e.clientX;
+      this.y = e.clientY;
+      $(this.menu).css("left", this.x);
+      $(this.menu).css("top", this.y);
     });
   }
 
   jobbklikkTrigger() {
+
     let esemeny = new CustomEvent("jobbklikk", { detail: this });
+    
     window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
     
   }

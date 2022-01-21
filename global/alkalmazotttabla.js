@@ -17,11 +17,6 @@ $(function () {
     if (event.target.id != 0) {
       console.log(event);
       
-      var x = event.pageX - $("#Alkalmazottak").offset().left;
-      var y = event.pageY - $("#Alkalmazottak").offset().top;
-      
-      $(menu).css("left", x);
-      $(menu).css("top", y);
       $(menu).css("z-index", 1);
       $(menu).removeClass("tablaDropdown");
     }
