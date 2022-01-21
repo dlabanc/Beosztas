@@ -51,7 +51,7 @@ class AlkalmazottTabla {
 
     this.elem.on("contextmenu", (e) => {
       this.jobbklikkTrigger();
-     
+      document.addEventListener('contextmenu', event => event.preventDefault());
       
     });
   }

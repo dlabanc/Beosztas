@@ -16,7 +16,7 @@ $(function () {
   $(window).on("jobbklikk", (event) => {
     if (event.target.id != 0) {
       console.log(event);
-      event.preventDefault();
+      
       var x = event.pageX - $("#Alkalmazottak").offset().left;
       var y = event.pageY - $("#Alkalmazottak").offset().top;
       
