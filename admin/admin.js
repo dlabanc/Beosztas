@@ -61,7 +61,8 @@ $(function(){
       const SZULO = $(szulo);
       let fej = "";
       for (const key in eredmeny[0]) {
-        fej+=`<td>${key}</td>`;
+        kulcs = key.replace("_", " ");
+        fej+=`<td>${kulcs}</td>`;
       }
       fej+=`<td></td><td></td>`;
       $(`${szulo} .fejlec`).html(fej); 
@@ -76,9 +77,10 @@ $(function(){
       const SZULO = $(szulo);
       let fej = "";
       for (const key in eredmeny[0]) {
-        fej+=`<td>${key}</td>`;
+        kulcs = key.replace("_", " ");
+        fej+=`<td>${kulcs}</td>`;
       }
-      fej+=`<td>Munkaviszony_vége</td><td></td><td></td>`;
+      fej+=`<td>Munkaviszony vége</td><td></td><td></td>`;
       $(`${szulo} .fejlec`).html(fej); 
       eredmeny.forEach((e)=>{
         let objektum = new osztaly(SZULO,e);
