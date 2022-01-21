@@ -49,6 +49,7 @@ class AlkalmazottTabla {
     this.elem.children("#elerhetoseg").text(this.adat.Elérhetőség);
     this.elem.children("#email").text(this.adat.Email);
     this.menu =  "#Alkalmazottak .dropdown-content";
+    
     this.elem.on("contextmenu", (e) => {
       this.jobbklikkTrigger();
       document.addEventListener('contextmenu', event => event.preventDefault());
