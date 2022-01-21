@@ -23,7 +23,9 @@ $(function(){
     ajax.ajaxGet(local+"napok.json",beosztasAdmin);
     ajax.ajaxGet(local+"napok.json",nemdolgoznaAdmin);
     ajax.ajaxGet(local+"napok.json",szabadsagAdmin);
-    
+
+    infoAblak();
+
     function alkalmazottAdmin(eredmeny){
      alkalmazottBeallitasok(eredmeny,".Alkalmazottak",Alkalmazott,alkalmazottak);
     }
@@ -82,6 +84,29 @@ $(function(){
         let objektum = new osztaly(SZULO,e);
       
         osztalyTomb.push(objektum);
+      });
+    }
+
+    function infoAblak(){
+      ajax.ajaxGet(local+"alkalmazott.json",(adatok)=>{$(".stat1value").html(`${adatok.length}`)});
+      ajax.ajaxGet(local+"alkalmazott.json",(adatok)=>{$(".stat2value").html(`${adatok[adatok.length-1].név}`)});
+      ajax.ajaxGet(local+"bejelentkezesi_adatok.json",(adatok)=>{$(".stat4value").html(`${adatok.length}`)});
+      ajax.ajaxGet(local+"faliujsag.json",(adatok)=>{
+        let d = new Date();
+        let db = 0;
+        let nap =
+        String(d.getFullYear()) +
+        "-" +
+        String(d.getMonth()+1 ).padStart(2, "0") +
+        "-" +
+        String(d.getDate() ).padStart(2, "0");
+        console.log(nap);
+        adatok.forEach((a)=>{
+          if(a.mikor === nap){
+            db++;
+          }
+        })
+        $(".stat3value").html(`${db}`)
       });
     }
 
