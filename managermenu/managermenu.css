@@ -366,8 +366,7 @@ article {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   overflow-y: scroll;
   overflow-x: scroll;
-  height: fit-content;
-  width: fit-content;
+  width: 100%;
   margin: auto;
   margin-top: 1rem;
 }
@@ -402,8 +401,7 @@ article {
   display: list-item;
   list-style-type: none;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  
   transition: 0.5s;
   user-select: none;
 }
@@ -573,8 +571,7 @@ article {
 .munkakor-content {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   background-color: var(--bs-light);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+
   box-sizing: border-box;
   padding: 1.5rem;
   width: 100%;
@@ -628,8 +625,6 @@ article {
     45deg,
     var(--fds-blue-05),var(--fds-spectrum-aluminum-tint-70),var(--always-white)
   );
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(12, 0, 0, 0.18);
   cursor: pointer;
@@ -647,7 +642,10 @@ article {
   background-color: rgb(24, 206, 167);
 }
 /*#############MŰSZAKELOSZLÁS MÓDOSÍTÁSA#######*/
-
+.muszaktipusm-container{
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+}
 
 #Muszaktipusm h3{
   padding: 1.5rem;
@@ -668,7 +666,7 @@ article {
   
   text-align: center;
   margin: auto;
-  width: 70%;
+  
   margin-bottom: 1rem;
   background-color:rgba(255, 255, 255, 0.150);
 }
@@ -683,8 +681,7 @@ article {
 .muszaktipusm-content td{
   text-align: center;
   padding: 1rem;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  
   background-color: var(--always-white);
   
 }
@@ -692,6 +689,10 @@ article {
   border-collapse: collapse;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   color:var(--fds-primary-text);
+  margin: auto;
+  
+
+  
 }
 .editmuszakm, .removemuszakm{
   width: 40px;
@@ -699,8 +700,7 @@ article {
   background: var(--bs-light);
   border: none;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+ 
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -723,8 +723,7 @@ article {
 
 .muszaktipush-content {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  
   box-sizing: border-box;
   padding: 1.5rem;
   width: 100%;
@@ -762,8 +761,7 @@ article {
     45deg,
     var(--fds-blue-05),var(--fds-spectrum-aluminum-tint-70),var(--always-white)
   );
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+ 
   border-radius: 10px;
   border: 1px solid rgba(12, 0, 0, 0.18);
   cursor: pointer;
@@ -813,8 +811,7 @@ article {
  
   background: var(--bs-light);
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -836,8 +833,7 @@ article {
   font-size: 1.2em;
   border-radius: 50%;
   background: var(--always-white);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+
   border-radius: 10px;
   border: 1px solid rgba(12, 0, 0, 0.18);
   cursor: pointer;
@@ -996,8 +992,7 @@ article {
   flex-direction: column;
   justify-content: center;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+ 
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.9);
 }
@@ -1013,8 +1008,7 @@ article {
   padding: 0.8em;
   border: none;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   
@@ -1060,8 +1054,7 @@ h3 {
 .aktualisnapok .muszaktipusnap {
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  
   box-sizing: border-box;
   width: 70%;
   margin: 0px;
@@ -1101,8 +1094,7 @@ h3 {
     45deg,
     var(--fds-blue-05),var(--fds-spectrum-aluminum-tint-70),var(--always-white)
   );
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+ 
   border-radius: 10px;
   border: 1px solid rgba(12, 0, 0, 0.18);
   cursor: pointer;
@@ -1123,8 +1115,9 @@ h3 {
   color: black;
   display: grid;
   visibility: hidden;
-  height: 100%;
-  width: fit-content;
+ 
+
+
 }
 @media screen and (max-width:1820px) {
    footer{
