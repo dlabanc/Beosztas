@@ -945,7 +945,7 @@ h3 {
 }
 .tabcontent {
   color: black;
-  display: grid;
+  display: none;
   visibility: hidden;
  
 
@@ -978,7 +978,7 @@ h3 {
     background-color: var(--fds-spectrum-teal);
   }
   article{
-    margin-top: 2rem;
+    margin-top: rem;
   }
   header{
     
