@@ -1,9 +1,8 @@
 
 
-
 $(function () {
-  const {ajaxGet} = new Ajax();
-  ajaxGet("http://127.0.0.1:5500/json/alkalmazott.json",(adatok)=>{
+  const ajax = new Ajax();
+  ajax.ajaxGet("http://127.0.0.1:5500/json/alkalmazott.json",(adatok)=>{
     
   sor = 0;
 

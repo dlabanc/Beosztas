@@ -1,11 +1,9 @@
-* {
+* {user-select: none;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-html {
-  
-}
+
 :root {
   --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
   --fds-black-alpha-10: rgba(0, 0, 0, 0.1);
@@ -158,15 +156,6 @@ header {
   width: 100%;
 }
 
-.dropdown-content2::after,
-.dropdown-content3::after,
-.dropdown-content4::after {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-}
 
 
 .dropdown-content1 a,
@@ -371,9 +360,7 @@ article {
   margin-top: 1rem;
 }
 
-.container aside .posts {
-  height: 33.5rem;
-}
+
 
 .container article .info div {
   text-align: justify;
@@ -397,161 +384,6 @@ article {
 /*!------------!*/
 /* Footer vége */
 
-.post {
-  display: list-item;
-  list-style-type: none;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  
-  transition: 0.5s;
-  user-select: none;
-}
-.post:hover {
-  text-indent: 20px;
-  background-color: rgb(24, 206, 167);
-  color: white;
-  text-shadow: 1px 1px black;
-}
-
-.post p {
-  background-color: white;
-  font-weight: lighter;
-  text-align: justify;
-  display: block;
-  display: none;
-}
-.post h3 {
-  text-transform: uppercase;
-  font-weight: lighter;
-  letter-spacing: 1px;
-  padding: 10px;
-}
-
-.post img {
-  display: none;
-  width: 200px;
-  border-bottom-left-radius: 100px;
-  border-top-right-radius: 100px;
-  margin: 1rem;
-  margin: auto;
-}
-.post-info {
-  visibility: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
-  z-index: 5;
-  padding: 1rem;
-  user-select: none;
-  display: flex;
-  flex-direction: row;
-  gap: 3rem;
-  width: 50rem;
-  min-height: 20rem;
-}
-.post-info p {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-self: center;
-  align-items: center;
-  margin: 3rem;
-  margin-top: 5rem;
-  padding: 1rem;
-  letter-spacing: 1px;
-  font-weight: lighter;
-  font-size: 1.2rem;
-  background-color: white;
-  border-radius: 6px;
-  text-indent: 15px;
-  box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.205);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.post-info h3 {
-  color: rgb(24, 206, 167);
-  padding-top: 1rem;
-  padding-bottom: 5px;
-  text-align: left;
-  margin: auto;
-  text-transform: uppercase;
-  font-weight: bolder;
-  font-size: 2rem;
-  position: absolute;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-.post-info img {
-  display: block;
-  position: relative;
-  top: 50%;
-  transform: translate(5%, -50%);
-  float: left;
-  width: 90%;
-  object-fit: cover;
-  border-radius: 0.8rem;
-  box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.05);
-}
-.post-img::before {
-  content: "";
-  background: linear-gradient(
-    to right,
-    rgb(24, 206, 166),
-    rgb(8, 138, 110),
-    rgb(8, 73, 59)
-  );
-  width: 100%;
-  height: 50%;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.closeinfo {
-  display: block;
-  position: relative;
-  bottom: 90%;
-  left: 90%;
-  transform: translate(0, 25%);
-  font-size: 2rem;
-  padding: 0.3rem;
-  border-radius: 0.8rem;
-  color: white;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border: none;
-  background: none;
-}
-.post-img {
-  width: 50rem;
-  margin: 1rem;
-}
-
-.post-info-user-data section {
-  position: absolute;
-  top: 71%;
-  right: 80%;
-  transform: translateX(15%);
-  color: grey;
-  font-size: larger;
-}
-.post-info-user-data p {
-  text-align: justify;
-}
-
-/*!------------*/
-/* Compact mode*/
-.compact-mode {
-  font-size: 15px;
-}
-/* Change pass */
 
 /*#############MUNKAKÖR###########*/
 
@@ -1133,7 +965,9 @@ h3 {
     position: static;
     display: block;
   }
+
   
+
 }
 @media screen and (max-width:1415px) {
   .openbtn{
@@ -1143,8 +977,11 @@ h3 {
     padding: 1rem;
     background-color: var(--fds-spectrum-teal);
   }
+  article{
+    margin-top: 2rem;
+  }
   header{
-    position: static;
+    
     display: block;
   }
   .navbar{
