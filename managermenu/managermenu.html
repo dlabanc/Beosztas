@@ -12,7 +12,6 @@
     
     <link rel="stylesheet" href="../managermenu/managermenu.css" />
     <link rel="stylesheet" href="../global/global.css">
-    
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="../node_modules/jquery-ui-1.13.0/jquery-ui.min.css">
     <script src="../node_modules/jquery-ui-1.13.0/jquery-ui.js"></script>
@@ -26,6 +25,9 @@
     <script src="../global/muszakok.js"></script>
     <script src="../global/muszakEloszlas.js"></script>
     <script src="../global/alkalmazotttabla.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="../managermenu/managerstat.js"></script>
     <title>Üzletvezető</title>
   </head>
   <div class="managerinfo">
@@ -181,8 +183,22 @@
           <span class="ujAlkalmazott fa fa-plus">Új alkalmazott</span>
         </div>
         <div id="ManStatisztika" class="tabcontent">
-          <h3>Statisztika </h3>
-          <p></p>
+          
+      
+            
+        <div class="statmenu">
+          <div>
+        
+          <button class="fas fa-chart-bar" id="bar"><span> Munkakörök</span></button>
+          <button class="fas fa-chart-pie" id="pie"><span> Heti óraszám</span></button>
+          <button class="fas fa-stream" id="stream"><span> Szabadságon</span></button>
+       
+          </div>
+          <div id="Man-statisztika-elem">
+            
+          </div>
+        
+        </div>
         </div>
         <div id="ManFaliujsag" class="tabcontent">
           <h3>Faliújság</h3>

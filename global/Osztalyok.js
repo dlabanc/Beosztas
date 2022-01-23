@@ -42,7 +42,6 @@ class AlkalmazottTabla {
 
     this.adat = adat;
     this.elem = $("tr:last");
-    console.log(this.elem);
     this.elem.children("#nev").text(this.adat.név);
     this.elem.children("#beosztas").text(this.adat.munkakör);
     this.elem.children("#lakcim").text(this.adat.lakcím);

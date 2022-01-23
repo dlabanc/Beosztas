@@ -949,8 +949,49 @@ h3 {
   display: none;
   visibility: hidden;
  
+}
+
+/*#### STATISZTIKA ####*/
 
 
+#Man-statisztika-elem {
+  width: fit-content;
+  margin: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  margin-top: 2rem;
+  
+  
+}
+
+.statmenu{
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 15% auto ;
+ 
+}
+
+.statmenu button{
+  width: 200px;
+  height: fit-content;
+  padding: 1em;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color:var(--bs-blue);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: auto;
+  margin-top: 1rem;
+}
+.statmenu button:hover{
+    color:var(--bs-teal);
+    transition: .3s ease-in-out;
+}
+.statmenu button span{
+  font-weight: 400;
+  color:var(--fds-button-text);
 }
 @media screen and (max-width:1820px) {
    footer{
