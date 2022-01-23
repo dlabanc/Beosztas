@@ -82,7 +82,6 @@ $(function () {
           data.addColumn({ type: 'date', id: 'Vége' });
          
           for (const iterator of adatok) {
-         
             data.addRows([[iterator.név, new Date(iterator.SZABADSAG[0].tól), new Date(iterator.SZABADSAG[0].ig)]]);
           }
           

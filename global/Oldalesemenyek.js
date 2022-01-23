@@ -6,7 +6,7 @@ $(function(){
   compactMode();
   postAll();
   dropDownMenus();
-  //darkMode();
+  darkMode();
   function sideNav(){
     let width = 0;
     $(".openbtn").on("click", function () {
