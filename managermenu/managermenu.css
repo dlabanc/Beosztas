@@ -1101,7 +1101,7 @@ h3 {
 .darkmode--activated .sidenav a:hover{
   background-color: palevioletred;
 }
-.darkmode--activated .ujAlkalmazott{
+.darkmode--activated .ujAlkalmazott,.darkmode--activated #newpost{
   background-color: rgb(19, 18, 18)!important;
   color: palevioletred !important;
 }
@@ -1118,6 +1118,10 @@ color:white;
 }
 .darkmode--activated #tables tr{
   border-bottom: 1px solid palevioletred;
+}
+.darkmode--activated .post-content{
+  background-color: rgb(19, 18, 18)!important;
+  color:var(--fds-spectrum-slate-tint-70);
 }
 @media screen and (max-width:1820px) {
    footer{

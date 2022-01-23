@@ -1,5 +1,5 @@
 $(function(){
-    let vegpont="http://127.0.0.1:5500/json/faliujsag.json";
+    let vegpont="../json/faliujsag.json";
     const ajax=new Ajax();
     ajax.ajaxGet(vegpont, faliujsagBeallitas);
 
