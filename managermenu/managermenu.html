@@ -20,15 +20,16 @@
     <script src="../global/Oldalesemenyek.js"></script>
     <script src="../global/Osztalyok.js"></script>
     <script src="../global/Ajax.js"></script>
-    <script src="../global/muszakNaphozRendeles.js"></script>
+    <script src="js/muszakNaphozRendeles.js"></script>
     <script src="../global/profile.js"></script>
-    <script src="../global/munkakorok.js"></script>
-    <script src="../global/muszakok.js"></script>
-    <script src="../global/muszakEloszlas.js"></script>
+    <script src="js/munkakorok.js"></script>
+    <script src="js/muszakok.js"></script>
+    <script src="js/muszakEloszlas.js"></script>
+    <script src="js/faliujsag.js"></script>
     <script src="../global/alkalmazotttabla.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="../managermenu/managerstat.js"></script>
+    <script src="js/managerstat.js"></script>
     <title>Üzletvezető</title>
   </head>
   <div class="managerinfo">
@@ -202,8 +203,11 @@
         </div>
         </div>
         <div id="ManFaliujsag" class="tabcontent">
-          <h3>Faliújság</h3>
-          <p></p>
+          <h3 id="mfu">Faliújság</h3>
+          <button id="newpost">Új bejegyzés</button>
+          <div class="faliujsag-container">
+
+          </div>
         </div>
         <div id="Napimunka" class="tabcontent">
           <h3>Napimunka</h3>

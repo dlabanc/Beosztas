@@ -950,6 +950,76 @@ h3 {
  
 }
 
+/*#############FALIÚJSÁG###########*/
+#ManFaliujsag #mfu{
+  margin-left: 18px;
+}
+
+.posts-container{
+  padding-right: 30px;
+}
+
+.post-content {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  padding: 1.5rem;
+  width: 100%;
+  margin: 1rem;
+  background-color: rgba(255, 255, 255);
+} 
+
+.post-content  p {
+  position: relative;
+  bottom: 30px;
+  font-weight: lighter;
+  text-align: justify;
+  display: block;
+}
+.post-content  h3 {
+  position: relative;
+  bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+.post-content img{
+  float: left;
+  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  user-select: none;
+}
+
+#newpost{
+  float: right;
+  position: relative;
+  bottom: 55px;
+  display: inline;
+  font-weight: bolder;
+  color: black;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  background: white;
+  margin-right: 15px;
+  user-select: none;
+}
+
+#newpost:hover{
+  background-color: rgb(24, 206, 167);
+}
+
 /*#### STATISZTIKA ####*/
 
 
