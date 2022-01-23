@@ -207,18 +207,53 @@ class Muszak {
       .children(".mtc-inline-grid")
       .children(".aktualisnapok");
     this.elem.find(".send").on("click", () => {
-      this.kattintastrigger();
+      this.kattintasTrigger("Hozzarendeles");
     });
     this.elem.find(".delete").on("click", () => {
-      this.torles();
+      this.kattintasTrigger("Torles");
     });
   }
-  torles() {
-    let esemeny = new CustomEvent("Torles", { detail: this });
+  kattintasTrigger(gomb) {
+    let esemeny = new CustomEvent(gomb, {detail: this});
     window.dispatchEvent(esemeny);
   }
-  kattintastrigger() {
-    let esemeny = new CustomEvent("Hozzarendeles", { detail: this });
+}
+
+class Faliujsag{
+  constructor(szulo, adat) {
+    this.szulo = szulo;
+    szulo.append(
+      `<div class="post-content">
+        <img src="" alt="" />
+        <div>
+          <h3></h3>              
+          <p></p>
+          <h4></h4>
+          <button id="removefaliujsagm"><span class="fa fa-minus"></span></button>
+          <button id="editfaliujsagm" ><span class="fas fa-pen"></span></button>
+        </div>
+      </div>`
+    );
+    this.adat = adat;
+    this.elem = $(".post-content:last div");
+    this.szulo.children("div").children("img").attr("src","../usermenu/persons/christopher-campbell-rDEOVtE7vOs-unsplash.jpg");
+    this.elem.children("h3").text(this.adat.cím);
+    this.elem.children("p").text(this.adat.tartalom);
+    this.elem.children("h4").text(this.adat.mikor);
+    this.elem.children("#removefaliujsagm").on("click", () => {
+      this.kattintasTrigger("torolf");
+    });
+
+    this.elem.children("#editfaliujsagm").on("click", () => {
+      this.kattintasTrigger("modositf");
+    });
+
+  }
+
+  kattintasTrigger(gomb) {
+    let esemeny = new CustomEvent(gomb, {
+      detail: this.adat,
+    });
     window.dispatchEvent(esemeny);
   }
 }

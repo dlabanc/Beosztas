@@ -158,6 +158,7 @@ header {
 
 
 
+
 .dropdown-content1 a,
 .dropdown-content2 a,
 .dropdown-content3 a {
@@ -666,15 +667,13 @@ article {
   font-size: 1.2em;
   border-radius: 50%;
   background: var(--always-white);
-
   border-radius: 10px;
   border: 1px solid rgba(12, 0, 0, 0.18);
   cursor: pointer;
-  padding: 10px;
   user-select: none;
   text-align: center;
   line-height: 20px;
-  padding-bottom: 10px;
+  padding: 1.2rem;
   color: var(--fds-spectrum-teal-dark-2);
   right:125px;
   top:300px;
@@ -949,8 +948,180 @@ h3 {
   display: none;
   visibility: hidden;
  
+}
+
+/*#############FALIÚJSÁG###########*/
+#ManFaliujsag #mfu{
+  margin-left: 18px;
+}
+
+.posts-container{
+  padding-right: 30px;
+}
+
+.post-content {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  padding: 1.5rem;
+  width: 100%;
+  margin: 1rem;
+  background-color: rgba(255, 255, 255);
+} 
+
+.post-content  p {
+  position: relative;
+  bottom: 30px;
+  font-weight: lighter;
+  text-align: justify;
+  display: block;
+}
+.post-content  h3 {
+  position: relative;
+  bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+.post-content img{
+  float: left;
+  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  user-select: none;
+}
+
+#newpost{
+  float: right;
+  position: relative;
+  bottom: 55px;
+  display: inline;
+  font-weight: bolder;
+  color: black;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  background: white;
+  margin-right: 15px;
+  user-select: none;
+}
+
+#newpost:hover{
+  background-color: rgb(24, 206, 167);
+}
+
+/*#### STATISZTIKA ####*/
 
 
+#Man-statisztika-elem {
+  width: fit-content;
+  margin: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  margin-top: 2rem;
+  
+  
+}
+
+.statmenu{
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: 15% auto ;
+ 
+}
+
+.statmenu button{
+  width: 200px;
+  height: fit-content;
+  padding: 1em;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  color:var(--bs-blue);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: auto;
+  margin-top: 1rem;
+}
+.statmenu button:hover{
+    color:var(--bs-teal);
+    transition: .3s ease-in-out;
+}
+.statmenu button span{
+  font-weight: 400;
+  color:var(--fds-button-text);
+}
+
+.darkmode--activated .managerinfo,.darkmode--activated footer{
+  background-color: rgb(29, 28, 28);
+  color:var(--fds-gray-30);
+}
+.darkmode--activated .managerinfo {
+  border-bottom: 1px solid palevioletred;
+}
+.darkmode--activated nav{
+  background-color: rgb(29, 28, 28);
+  
+}
+.darkmode--activated nav a{
+  color:palevioletred;
+}
+.darkmode--activated nav span{
+  color:var(--fds-gray-30);
+}
+.darkmode--activated .logout{
+  background-color: rgb(19, 18, 18);
+}
+.darkmode--activated .openbtn{
+  background-color: rgb(19, 18, 18);
+  color:palevioletred;
+}
+.darkmode--activated .sidenav{
+  background-color: rgb(19, 18, 18);
+}
+.darkmode--activated .sidenav a,.darkmode--activated .sidenav button{
+  color:var(--fds-gray-20 );
+}
+.darkmode--activated .dropdown-content4,
+.darkmode--activated .dropdown-content2,
+.darkmode--activated .dropdown-content3{
+  background-color: var(--always-black);
+}
+.darkmode--activated .sidenav a:hover{
+  background-color: palevioletred;
+}
+.darkmode--activated .ujAlkalmazott,.darkmode--activated #newpost{
+  background-color: rgb(19, 18, 18)!important;
+  color: palevioletred !important;
+}
+.darkmode--activated .cimsor{
+  background-color: var(--fds-spectrum-teal-tint-90);
+  border-radius: 30px;
+  color:var(--fds-spectrum-seafoam-tint-70);
+}
+.darkmode--activated #Man-statisztika-elem{
+  background-color: rgba(0, 0, 0, 0)!important;
+}
+.darkmode--activated #tables{
+color:white;
+}
+.darkmode--activated #tables tr{
+  border-bottom: 1px solid palevioletred;
+}
+.darkmode--activated .post-content{
+  background-color: rgb(19, 18, 18)!important;
+  color:var(--fds-spectrum-slate-tint-70);
 }
 
 .napiMin input {
