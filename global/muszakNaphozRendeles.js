@@ -2,7 +2,7 @@
 
 $(function () {
   const napok = [];
-  let vegpont = "http://127.0.0.1:5500/json/muszaktipus.json";
+  let vegpont = "../json/muszaktipus.json";
   const ajax = new Ajax();
   ajax.ajaxGet(vegpont, muszakBeallitas);
   KovHetDatumBeallitas();

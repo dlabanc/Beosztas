@@ -1,7 +1,7 @@
 $(function () {
   let menu = "#Alkalmazottak .dropdown-content";
 
-  let vegpont = "http://127.0.0.1:5500/json/alkalmazott.json";
+  let vegpont = "../json/alkalmazott.json";
   const ajax = new Ajax();
 
   ajax.ajaxGet(vegpont, alkalmazottTabla);

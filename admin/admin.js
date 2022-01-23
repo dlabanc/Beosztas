@@ -11,7 +11,7 @@ $(function(){
     const szabadsagok = [];
 
     const ajax = new Ajax(); 
-    const local = "http://127.0.0.1:5500/json/";
+    const local = "../json/";
 
     ajax.ajaxGet(local+"alkalmazott.json",alkalmazottAdmin);  
     ajax.ajaxGet(local+"faliujsag.json",faliujsagAdmin);
