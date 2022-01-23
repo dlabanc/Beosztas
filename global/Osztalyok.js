@@ -42,17 +42,18 @@ class AlkalmazottTabla {
 
     this.adat = adat;
     this.elem = $("tr:last");
-    console.log(this.elem);
     this.elem.children("#nev").text(this.adat.név);
     this.elem.children("#beosztas").text(this.adat.munkakör);
     this.elem.children("#lakcim").text(this.adat.lakcím);
     this.elem.children("#elerhetoseg").text(this.adat.Elérhetőség);
     this.elem.children("#email").text(this.adat.Email);
-    this.menu =  "#Alkalmazottak .dropdown-content";
-    
+    this.menu = "#Alkalmazottak .dropdown-content";
+
     this.elem.on("contextmenu", (e) => {
       this.jobbklikkTrigger();
-      document.addEventListener('contextmenu', event => event.preventDefault());
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault()
+      );
       this.x = e.clientX;
       this.y = e.clientY;
       $(this.menu).css("left", this.x);
@@ -61,11 +62,9 @@ class AlkalmazottTabla {
   }
 
   jobbklikkTrigger() {
-
     let esemeny = new CustomEvent("jobbklikk", { detail: this });
-    
+
     window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
-    
   }
 }
 class Munkakor {
@@ -221,6 +220,68 @@ class Muszak {
   kattintastrigger() {
     let esemeny = new CustomEvent("Hozzarendeles", { detail: this });
     window.dispatchEvent(esemeny);
+  }
+}
+
+class NapiMin {
+  constructor(szulo, adat, datum) {
+    this.szulo = szulo;
+    this.adat = adat;
+    this.muszak = [];
+    this.munkakor = [];
+    this.datum = datum;
+    szulo.append(
+      `<div class='napiMin'>
+      <h2>datum</h2>
+      <table class='tablaLatszik'>
+      <tr></tr>
+      </table>
+    </div>`
+    );
+
+    this.tabla = this.szulo.children(".napiMin:last");
+    this.tabla.children("h2").html(this.datum);
+    this.tablaAdat = this.tabla.children("table").children("tbody")
+
+    for (const elem in adat) {
+      if (!this.munkakor.includes(adat[elem].munkakör)) {
+        this.munkakor.push(adat[elem].munkakör);
+      }
+      for (const tombElem in adat[elem]) {
+        if (tombElem == "MUSZAKELOSZLAS") {
+          for (const kisAdat in adat[elem][tombElem]) {
+            const tolIg =
+              adat[elem][tombElem][kisAdat].órától +
+              " - " +
+              adat[elem][tombElem][kisAdat].óráig;
+            if (!this.muszak.includes(tolIg)) this.muszak.push(tolIg);
+          }
+        }
+      }
+    }
+    
+    this.tablaAdat.children("tr:last").append("<td></td>");
+
+    this.muszak.forEach((elem) => {
+      this.tablaAdat.children("tr:last")
+        .append("<td>" + elem + "</td>");
+    });
+
+    this.munkakor.forEach((elem) => {
+      this.tablaAdat.append("<tr class='"+ elem +"'><td>" + elem + "</td></tr>");
+        for (let index = 0; index < this.muszak.length; index++) {
+          this.tablaAdat.children("tr:last").append("<td class='" + this.muszak[index] + "'><input type='number' min='0'></td>");
+          
+        }
+          
+         
+    });
+
+    this.tabla.children("h2").on("click", () => {
+
+      this.tabla.children("table").toggleClass("tablaLatszik");
+    });
+
   }
 }
 
