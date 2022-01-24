@@ -1,0 +1,11 @@
+[
+  { "munkakör": "Felszolgáló", "db": 5 },
+  { "munkakör": "Konyhai kisegítő", "db": 3 },
+  { "munkakör": "Leszedő", "db": 5 },
+  { "munkakör": "Pultos", "db": 4 },
+  { "munkakör": "Sommelier", "db": 2 },
+  { "munkakör": "Szakács", "db": 2 },
+  { "munkakör": "Szakácssegéd", "db": 2 },
+  { "munkakör": "Takarító", "db": 3 },
+  { "munkakör": "Üzletvezető", "db": 1 }
+]

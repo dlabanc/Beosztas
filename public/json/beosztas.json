@@ -1,0 +1,450 @@
+﻿ [
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 1,
+    "munkakör": "Konyhai kisegítő",
+    "alkalmazott": 40016,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 1,
+    "munkakör": "Szakács",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 1,
+    "munkakör": "Szakács",
+    "alkalmazott": 40009,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40001,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40002,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Konyhai kisegítő",
+    "alkalmazott": 40016,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40021,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40022,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Pultos",
+    "alkalmazott": 40006,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Pultos",
+    "alkalmazott": 40007,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Szakács",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Szakács",
+    "alkalmazott": 40009,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 2,
+    "munkakör": "Üzletvezető",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Konyhai kisegítő",
+    "alkalmazott": 40016,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40021,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40022,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Pultos",
+    "alkalmazott": 40006,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Pultos",
+    "alkalmazott": 40007,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Szakács",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Szakács",
+    "alkalmazott": 40009,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 3,
+    "munkakör": "Üzletvezető",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 30001,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40001,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40002,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Konyhai kisegítő",
+    "alkalmazott": 40016,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Konyhai kisegítő",
+    "alkalmazott": 40017,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40021,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40022,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40023,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Pultos",
+    "alkalmazott": 40005,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Pultos",
+    "alkalmazott": 40006,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Pultos",
+    "alkalmazott": 40007,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Sommelier",
+    "alkalmazott": 40020,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Szakács",
+    "alkalmazott": 40009,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 4,
+    "munkakör": "Üzletvezető",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40001,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40002,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Konyhai kisegítő",
+    "alkalmazott": 40016,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40022,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40023,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Pultos",
+    "alkalmazott": 40005,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Pultos",
+    "alkalmazott": 40006,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Sommelier",
+    "alkalmazott": 40020,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Szakácssegéd",
+    "alkalmazott": 40010,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 5,
+    "munkakör": "Szakácssegéd",
+    "alkalmazott": 40011,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 30001,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40002,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Konyhai kisegítő",
+    "alkalmazott": 40017,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40022,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Leszedő",
+    "alkalmazott": 40023,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Pultos",
+    "alkalmazott": 40005,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Pultos",
+    "alkalmazott": 40006,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Sommelier",
+    "alkalmazott": 40020,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Szakácssegéd",
+    "alkalmazott": 40010,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 6,
+    "munkakör": "Szakácssegéd",
+    "alkalmazott": 40011,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 7,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40001,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 7,
+    "munkakör": "Felszolgáló",
+    "alkalmazott": 40002,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 7,
+    "munkakör": "Pultos",
+    "alkalmazott": 40005,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 7,
+    "munkakör": "Pultos",
+    "alkalmazott": 40006,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 7,
+    "munkakör": "Pultos",
+    "alkalmazott": 40007,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 7,
+    "munkakör": "Sommelier",
+    "alkalmazott": 40020,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 7,
+    "munkakör": "Szakácssegéd",
+    "alkalmazott": 40011,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 8,
+    "munkakör": "Takarító",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  },
+  {
+    "dátum": "2022-01-10",
+    "műszakszám": 8,
+    "munkakör": "Üzletvezető",
+    "alkalmazott": 40008,
+    "műszaktípus": "A"
+  }
+]

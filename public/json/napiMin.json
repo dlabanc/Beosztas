@@ -1,0 +1,578 @@
+﻿[
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 1, "órától": 6, "óráig": 8 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 2, "órától": 8, "óráig": 10 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 3, "órától": 10, "óráig": 12 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 3,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 3,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 3,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 4, "órától": 12, "óráig": 14 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 5, "órától": 14, "óráig": 16 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 6, "órától": 16, "óráig": 18 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 3,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 7, "órától": 18, "óráig": 20 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Felszolgáló",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Konyhai kisegítő",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Leszedő",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Pultos",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Sommelier",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakács",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Szakácssegéd",
+    "db": 0,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Takarító",
+    "db": 2,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  },
+  {
+    "dátum": "2022-01-10",
+    "munkakör": "Üzletvezető",
+    "db": 1,
+    "MUSZAKELOSZLAS": [
+      { "műszaktipus": "A", "műszakszám": 8, "órától": 20, "óráig": 22 }
+    ]
+  }
+]

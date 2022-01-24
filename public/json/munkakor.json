@@ -1,0 +1,43 @@
+[
+  {
+    "megnevezés": "Felszolgáló",
+    "leírás": "Az, aki kiviszi a kajákat és a piákat",
+    "munkafőnök": 30001
+  },
+  {
+    "megnevezés": "Konyhai kisegítő",
+    "leírás": "Ő mos. Csak fancy néven.",
+    "munkafőnök": 40016
+  },
+  {
+    "megnevezés": "Leszedő",
+    "leírás": "Aki leszedi az asztalt.",
+    "munkafőnök": 40021
+  },
+  {
+    "megnevezés": "Pultos",
+    "leírás": "Aki piákat csinál",
+    "munkafőnök": 40004
+  },
+  {
+    "megnevezés": "Sommelier",
+    "leírás": "Fancy névvel, fancy munka. Ő tölti a bort.",
+    "munkafőnök": 40019
+  },
+  {
+    "megnevezés": "Szakács",
+    "leírás": "Aki kaját csinál",
+    "munkafőnök": 40008
+  },
+  {
+    "megnevezés": "Szakácssegéd",
+    "leírás": "Aki segít a szakácsnak kaját csinálni",
+    "munkafőnök": 40008
+  },
+  {
+    "megnevezés": "Takarító",
+    "leírás": "Aki a mocskot tisztává varázsolja",
+    "munkafőnök": 40012
+  },
+  { "megnevezés": "Üzletvezető", "leírás": "Ő jár a legjobban pénzügyileg","munkafőnök":null }
+]
