@@ -1,113 +1,118 @@
 $(function () {
-  const { ajaxGet } = new Ajax();
-  const localhost = "/statisztikak/";
-  const statisztikaElem = document.getElementById("Man-statisztika-elem");
+    const { ajaxGet } = new Ajax();
+    const localhost = "/statisztikak/";
+    const statisztikaElem = document.getElementById("Man-statisztika-elem");
+    let data, chart, options;
+
     oszlop();
     statisztikaEsemenyek();
 
+    function oszlop() {
+        ajaxGet(localhost + "munkakorDb.json", (adatok) => {
+            googleChartsKonyvtar("corechart", drawChart);
 
+            function drawChart() {
+                
+                data = new google.visualization.DataTable();
+                chart = new google.visualization.ColumnChart(statisztikaElem);
 
-  function oszlop() {
-    ajaxGet(localhost + "munkakorDb.json", (adatok) => {
-      google.charts.load("current", { packages: ["corechart"] });
-      google.charts.setOnLoadCallback(drawChart);
-      
-      function drawChart() {
-        let elem = statisztikaElem;
-        let data = new google.visualization.DataTable();
-        let chart = new google.visualization.ColumnChart(elem);
+                data.addColumn("string", "munkakör");
+                data.addColumn("number", "db");
 
-        data.addColumn("string", "munkakör");
-        data.addColumn("number", "db");
+                for (const iterator of adatok) {
+                    data.addRows([[iterator.munkakör, iterator.db]]);
+                }
+                options = statisztikaBeallitasok("Munkakörök", 1500, 500);
+                chart.draw(data, options);
+            }
+        });
+    }
+    
+    function kor() {
+        ajaxGet(localhost + "hetioraszamDb.json", (adatok) => {
+            googleChartsKonyvtar("corechart", drawChart);
 
-        for (const iterator of adatok) {
-          data.addRows([[iterator.munkakör, iterator.db]]);
-        }
-        var options = {
-          title: "Munkakörök",
-          width: 1500,
-          height: 500,
-          colors: ["#4dbba6"],
-          backgroundColor: "transparent",
-          bar: { groupWidth: "20%" },
+            function drawChart() {
+                
+                 data = new google.visualization.DataTable();
+                 chart = new google.visualization.PieChart(statisztikaElem);
+
+                data.addColumn("string", "heti óraszám");
+                data.addColumn("number", "db");
+
+                for (const iterator of adatok) {
+                    data.addRows([
+                        [
+                            iterator.heti_óraszám.toString() + " óra",
+                            iterator.db,
+                        ],
+                    ]);
+                }
+                options = statisztikaBeallitasok("Heti Óraszám", 1500, 500);
+                chart.draw(data, options);
+            }
+        });
+    }
+    
+    function timeLine() {
+        ajaxGet(localhost + "szabadsagon.json", (adatok) => {
+            googleChartsKonyvtar("timeline", drawChart);
+
+            function drawChart() {
+                
+                chart = new google.visualization.Timeline(statisztikaElem);
+                data = new google.visualization.DataTable();
+
+                data.addColumn({ type: "string", id: "Név" });
+                data.addColumn({ type: "date", id: "Kezdete" });
+                data.addColumn({ type: "date", id: "Vége" });
+                for (const iterator of adatok) {
+                    data.addRows([
+                        [
+                            iterator.név,
+                            new Date(iterator.SZABADSAG[0].tól),
+                            new Date(iterator.SZABADSAG[0].ig),
+                        ],
+                    ]);
+                }
+                chart.draw(data);
+            }
+        });
+    }
+
+    function googleChartsKonyvtar(csomag, metodus) {
+        google.charts.load("current", { packages: [csomag] });
+        google.charts.setOnLoadCallback(metodus);
+    }
+
+    function statisztikaBeallitasok(title, szelesseg, magassag) {
+        let options = {
+            title: title,
+            width: szelesseg,
+            height: magassag,
+            colors: ["#4dbba6"],
+            backgroundColor: "transparent",
+            bar: { groupWidth: "20%" },
         };
-        chart.draw(data, options);
-      }
-    });
-  }
-  function kor() {
-    ajaxGet(localhost + "hetioraszamDb.json", (adatok) => {
-      google.charts.load("current", { packages: ["corechart"] });
-      google.charts.setOnLoadCallback(drawChart);
-      
-      
-      function drawChart() {
-        let elem = statisztikaElem;
-        let data = new google.visualization.DataTable();
-        let chart = new google.visualization.PieChart(elem);
+        return options;
+    }
 
-        data.addColumn("string", "heti óraszám");
-        data.addColumn("number", "db");
-
-        for (const iterator of adatok) {
-          data.addRows([
-            [iterator.heti_óraszám.toString() + " óra", iterator.db],
-          ]);
+    function statisztikaEsemenyek() {
+        const elemek = [
+            { elem: "#pie", metodus: kor },
+            { elem: "#stream", metodus: timeLine },
+            { elem: "#bar", metodus: oszlop },
+        ];
+        elemek.forEach(({ elem, metodus }) => {
+            statisztikaValt(elem, metodus);
+        });
+        function statisztikaValt(ID, diagram) {
+            $(`${ID.toString()}`).on("click", (e) => {
+                $(statisztikaElem).effect("clip", "2000", () => {
+                    diagram();
+                    $(statisztikaElem).fadeIn("slow");
+                });
+            });
         }
-        var options = {
-          title: "Heti Óraszám",
-          width: 900,
-          height: 500,
-          colors: ["#4dbba6"],
-          backgroundColor: "transparent",
-        };
-        chart.draw(data, options);
-      }
-    });
-  }
-  function timeLine(){
-
-    ajaxGet(localhost + "szabadsagon.json", (adatok) => {
-        console.log(adatok);
-        google.charts.load('current', {'packages':['timeline']});
-        google.charts.setOnLoadCallback(drawChart);
-        
-        function drawChart() {
-          let elem = statisztikaElem;
-          let chart = new google.visualization.Timeline(elem);
-          let data = new google.visualization.DataTable();
-      
-          data.addColumn({ type: 'string', id: 'Név' });
-          data.addColumn({ type: 'date', id: 'Kezdete' });
-          data.addColumn({ type: 'date', id: 'Vége' });
-         
-          for (const iterator of adatok) {
-            data.addRows([[iterator.név, new Date(iterator.SZABADSAG[0].tól), new Date(iterator.SZABADSAG[0].ig)]]);
-          }
-          
-          chart.draw(data);
-        }
-      });
-  }
-  function statisztikaEsemenyek(){  
-
-    $("#pie").on("click", (e) => {
-      $(statisztikaElem).effect("clip","2000",()=>{
-          kor();
-          $(statisztikaElem).fadeIn("slow");
-      });
-    });
-    $("#bar").on("click", () => {
-      $(statisztikaElem).effect("clip","2000",()=>{
-          oszlop();
-          $(statisztikaElem).fadeIn("slow");
-      });
-    });
-    $("#stream").on("click", () => {
-      $(statisztikaElem).effect("clip","2000",()=>{
-          timeLine();
-          $(statisztikaElem).fadeIn("slow");
-      });
-    });
-  }
+    }
 });
