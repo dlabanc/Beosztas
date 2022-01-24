@@ -85,7 +85,7 @@ class AlkalmazottController extends Controller
      */
     public function update(Request $request, $alkalmazottId)
     {
-        $alkalmazott=Alkalmazott::find($taskId);
+        $alkalmazott=Alkalmazott::find($alkalmazottId);
         $alkalmazott->dolgozoi_azon=$request->dolgozoi_azon;
         $alkalmazott->nev=$request->nev;
         $alkalmazott->munkakor=$request->munkakor;
