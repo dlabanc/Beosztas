@@ -9,6 +9,6 @@ class Alkalmazott extends Model
 {
     use HasFactory;
     protected $table = 'Alkalmazott';
-    // protected $primaryKey = 'dolgozoi_azon';
-    // protected $keyType = 'int';
+    protected $primaryKey = 'dolgozoi_azon';
+    protected $keyType = 'int';
 }
