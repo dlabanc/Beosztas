@@ -805,3 +805,13 @@ margin: auto;
   background-color: rgb(24, 206, 167);
 }
 
+.darkmode--activated .container{
+  background-color: rgb(240, 240, 240);
+  color:white;
+}
+.darkmode--activated nav span{
+  color:rgb(8, 138, 110)!important;
+}
+.darkmode--activated nav {
+  background-color: transparent;
+}

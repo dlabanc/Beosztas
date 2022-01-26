@@ -62,15 +62,17 @@ $(function(){
     function beallitasok(eredmeny,szulo,osztaly,osztalyTomb){
       const SZULO = $(szulo);
       let fej = "";
+      let i = 0;
       for (const key in eredmeny[0]) {
         kulcs = key.replace("_", " ");
         fej+=`<td>${kulcs}</td>`;
+        i++;
       }
       fej+=`<td></td><td></td>`;
       $(`${szulo} .fejlec`).html(fej); 
-      eredmeny.forEach((e)=>{
+      eredmeny.forEach((e,index)=>{
         let objektum = new osztaly(SZULO,e);
-      
+        
         osztalyTomb.push(objektum);
       });
     }
@@ -100,10 +102,15 @@ $(function(){
 
     $(window).on("torles",({detail})=>{
       
-      let api = "http://localhost:8000/api/alkalmazott";
+      
       if(detail instanceof Alkalmazott){
-        
+        let api = "http://localhost:8000/api/alkalmazott";
         ajax.ajaxApiDelete(api,detail.adat.dolgozoi_azon);
+      }
+      else if(detail instanceof Muszaktipus)
+      {
+        console.log(detail.tipus);
+       // ajax.ajaxApiDelete(api,detail.adat.dolgozoi_azon);
       }
     })
 
