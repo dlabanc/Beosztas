@@ -9,8 +9,8 @@ $(function(){
     const beosztasok = [];
     const nemdolgoznanak = [];
     const szabadsagok = [];
-
-    const ajax = new Ajax(); 
+    const token=$('meta[name="csrf-token"]').attr('content');
+    const ajax = new Ajax(token); 
     const local = "../json/";
     const apivegpont = 'http://localhost:8000/api/alkalmazottak';
 
@@ -29,7 +29,7 @@ $(function(){
     infoAblak();
 
     function alkalmazottAdmin(eredmeny){
-     alkalmazottBeallitasok(eredmeny,".Alkalmazottak",Alkalmazott,alkalmazottak);
+     beallitasok(eredmeny,".Alkalmazottak",Alkalmazott,alkalmazottak);
     }
     function faliujsagAdmin(eredmeny){
       beallitasok(eredmeny,".Faliujsag",FaliujsagPost,faliujsagok);
@@ -75,22 +75,6 @@ $(function(){
       });
     }
 
-    function alkalmazottBeallitasok(eredmeny,szulo,osztaly,osztalyTomb){
-      const SZULO = $(szulo);
-      let fej = "";
-      for (const key in eredmeny[0]) {
-        kulcs = key.replace("_", " ");
-        fej+=`<td>${kulcs}</td>`;
-      }
-      fej+=`<td>Munkaviszony vége</td><td></td><td></td>`;
-      $(`${szulo} .fejlec`).html(fej); 
-      eredmeny.forEach((e)=>{
-        let objektum = new osztaly(SZULO,e);
-      
-        osztalyTomb.push(objektum);
-      });
-    }
-
     function infoAblak(){
       ajax.ajaxGet(local+"alkalmazott.json",(adatok)=>{$(".stat1value").html(`${adatok.length}`)});
       ajax.ajaxGet(local+"alkalmazott.json",(adatok)=>{$(".stat2value").html(`${adatok[adatok.length-1].név}`)});
@@ -113,5 +97,14 @@ $(function(){
         $(".stat3value").html(`${db}`)
       });
     }
+
+    $(window).on("torles",({detail})=>{
+      
+      let api = "http://localhost:8000/api/alkalmazott";
+      if(detail instanceof Alkalmazott){
+        
+        ajax.ajaxApiDelete(api,detail.adat.dolgozoi_azon);
+      }
+    })
 
 });

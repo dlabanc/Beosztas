@@ -1,5 +1,7 @@
 class Ajax{
-    constructor(){
+    constructor(token){
+        this.token = token;
+        
     }
 
     ajaxGet(vegpont,callback){
@@ -27,6 +29,29 @@ class Ajax{
                 success: function(result){
                     callback(result);
                 }
+            }
+        );
+    }
+    
+    ajaxApiDelete(apivegpont,id){   
+        $.ajax(
+            {
+                headers: {
+                    'X-CSRF-TOKEN': this.token  
+                },
+                url: apivegpont+"/"+id, 
+                
+                type: "DELETE",
+                success: function(){
+                   alert("siker");
+                },
+                error:function(data,textStatus,errorThrown){
+                    
+                        console.log(data);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                }
+                
             }
         );
     }

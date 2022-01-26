@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="/css/admin/admin.css">
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css">
     <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-   
+    <script src="/js/global/Ajax.js"></script>
     <script src="/node_modules/darkmode-js/lib/darkmode-js.min.js"></script>
     <script src="/js/global/Oldalesemenyek.js"></script>
     <script src="/js/global/Osztalyok.js"></script>
-    <script src="/js/global/Ajax.js"></script>
     <script src="/js/admin/admin.js"></script>
     <title>Admin</title>
   

@@ -1,3 +1,4 @@
+
 class Adminelemek {
   constructor(szulo, adat) {
     this.node = szulo;
@@ -6,15 +7,25 @@ class Adminelemek {
     this.adat = adat;
     this.adatMegjelenit();
 
-    this.elem.on("click", () => {
-      this.kattintastrigger();
+    
+    this.elem.find(".admin-edit").on("click", () => {
+      this.modosit();
     });
+    this.elem.find(".admin-torol").on("click",(event)=>{
+      this.torol();
+    }); 
+    
   }
 
-  kattintastrigger() {
-    let esemeny = new CustomEvent("kivalaszt", { detail: this });
+  torol(){
+    let esemeny = new CustomEvent("torles", { detail: this});
     window.dispatchEvent(esemeny);
-    console.log(esemeny);
+  }
+
+  modosit(){
+    let esemeny = new CustomEvent("modosit", { detail: this });
+    window.dispatchEvent(esemeny);
+    
   }
 
   adatMegjelenit() {
@@ -22,9 +33,10 @@ class Adminelemek {
       this.elem.append(`<td>${this.adat[key]}</td>`);
     }
 
-    this.elem.append(`<td><button class="fas fa-ban"></button></td>`);
-    this.elem.append(`<td><button class="fas fa-edit"></button></td>`);
+    this.elem.append(`<td><button class="fas fa-ban admin-torol"></button></td>`);
+    this.elem.append(`<td><button class="fas fa-edit admin-edit"></button></td>`);
   }
+
 }
 
 class AlkalmazottTabla {
@@ -319,19 +331,8 @@ class NapiMin{
 }
 
 class Alkalmazott extends Adminelemek {
-  constructor(szulo, adat) {
-    super(szulo, adat);
-  }
-  adatMegjelenit() {
-    for (const key in this.adat) {
-      this.elem.append(`<td>${this.adat[key]}</td>`);
-    }
-    if (!this.adat.hasOwnProperty("munkaviszony_vége")) {
-      this.elem.append("<td> - </td>");
-    }
-    this.elem.append(`<td><button class="fas fa-ban"></button></td>`);
-    this.elem.append(`<td><button class="fas fa-user-edit"></button></td>`);
-  }
+  
+  
 }
 class FaliujsagPost extends Adminelemek {}
 class MunkakorA extends Adminelemek {}

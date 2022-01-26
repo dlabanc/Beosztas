@@ -9,13 +9,17 @@
       rel="stylesheet"
       href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
     />
-    <link rel="stylesheet" href="../usermenu/usermenu.css" />
-    <link rel="stylesheet" href="../global/global.css" />
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../global/Ajax.js"></script>
-    <script src="../global/Oldalesemenyek.js"></script>
-    <script src="../global/profile.js"></script>
-    <script src="../global/nemErekRa.js"></script>
+    <link rel="stylesheet" href="css/usermenu/usermenu.css" />
+    <link rel="stylesheet" href="/css/global/global.css">
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/jquery-ui-1.13.0/jquery-ui.min.js"></script>
+    <script src="/js/global/Ajax.js"></script>
+    <script src="/node_modules/darkmode-js/lib/darkmode-js.min.js"></script>
+    <script src="/js/global/Oldalesemenyek.js"></script>
+    <script src="/js/global/Osztalyok.js"></script>
+    <script src="/js/global/profile.js"></script>
+    <script src="/js/global/nemErekRa.js"></script>
+    <script src="/js/user/user.js"></script>
     <title>Alkalmazott</title>
   </head>
   <div class="managerinfo">
@@ -27,7 +31,7 @@
         
       <div  class="navbar"> 
         
-          <a class="fas fa-user admin"><span> Alkalmazott</span></a>
+          <a href="usermenu" class="fas fa-user admin"><span> Alkalmazott</span></a>
           <a id="profiladatok">Profil adatok</a>
           <a class="darkmode-user">Sötét mód</a>
           <a href="#" class="passchange">Jelszó módosítás</a>
@@ -55,53 +59,7 @@
       <aside class="useraside">
         <div class="posts">
           <h1>Faliújság</h1>
-          <div class="post">
-            <h3>Post 1</h3>
-
-            <img
-              src="persons/christopher-campbell-rDEOVtE7vOs-unsplash.jpg"
-              alt="alkalmazott_kep2"
-            />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              iusto nam, sapiente exercitationem saepe, ea quidem molestiae
-              officiis, ipsa tenetur placeat aperiam ipsum maxime ab
-              voluptatibus delectus atque numquam dicta.
-            </p>
-          </div>
-          <div class="post">
-            <h3>Post 2</h3>
-
-            <img
-              src="persons/jonas-kakaroto-mjRwhvqEC0U-unsplash.jpg"
-              alt="alkalmazott_kep2"
-            />
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              iusto nam, sapiente exercitationem saepe, ea quidem molestiae
-              officiis, ipsa tenetur placeat aperiam ipsum maxime ab
-              voluptatibus delectus atque numquam dicta.
-            </p>
-          </div>
-          <div class="post">
-            <h3>Post 3</h3>
-
-            <img
-              src="persons/vicky-hladynets-C8Ta0gwPbQg-unsplash.jpg"
-              alt="alkalmazott_kep2"
-            />
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              iusto nam, sapiente exercitationem saepe, ea quidem molestiae
-              officiis, ipsa tenetur placeat aperiam ipsum maxime ab
-              voluptatibus delectus atque numquam dicta. Lorem ipsum dolor sit
-              amet, consectetur adipisicing elit. Accusantium iure repudiandae
-              aperiam nam esse similique, odit commodi sit et quasi earum, est
-              officiis voluptas doloribus suscipit eveniet tempore. At, ut.
-            </p>
-          </div>
+         
         </div>
       </aside>
       <article>
@@ -158,53 +116,7 @@
           <h3 id="fu">Faliújság</h3>
           <button id="newpost">Új bejegyzés</button>
           <div class="posts-container">
-            <div class="post-content">
-              <img src="persons/christopher-campbell-rDEOVtE7vOs-unsplash.jpg" alt="alkalmazott_kep2" />
-              <div >
-              <h3>Post 1</h3>              
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
-                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
-                voluptatibus delectus atque numquam dicta.
-              </p>
-            </div>
-            </div>
-            <div class="post-content">
-              <div class="post-image">
-                <img src="persons/jonas-kakaroto-mjRwhvqEC0U-unsplash.jpg" alt="alkalmazott_kep2"/>
-              </div>
-              <div>
-              <h3>Post 2</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
-                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
-                voluptatibus delectus atque numquam dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
-                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
-                voluptatibus delectus atque numquam dicta.
-              </p>
-            </div>
-            </div>
-            <div class="post-content">
-              <img
-                src="persons/vicky-hladynets-C8Ta0gwPbQg-unsplash.jpg"
-                alt="alkalmazott_kep2"
-              />
-              <div>
-              <h3>Post 3</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                iusto nam, sapiente exercitationem saepe, ea quidem molestiae
-                officiis, ipsa tenetur placeat aperiam ipsum maxime ab
-                voluptatibus delectus atque numquam dicta. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit. Accusantium iure repudiandae
-                aperiam nam esse similique, odit commodi sit et quasi earum, est
-                officiis voluptas doloribus suscipit eveniet tempore. At, ut.
-              </p>
-            </div>
-            </div>
+            
         </div>
 
         <div id="Beosztas" class="tabcontent">
@@ -235,18 +147,21 @@
         </div>
       </div>
       <div class="post-info">
+        
         <div class="post-img">
-          <img src="" alt="123123122" />
+          <img src="" alt="" />
         </div>
         <div class="post-info-user-data">
+          <div class="close--title">
           
-          <h3>123213231</h3>
-          <p class="info">123123123</p>
-          <section>Alkalmazott neve<br />Munkakör</section>
+          <h3></h3>
           <button class="closeinfo">&times;</button>
+          </div>
+          <p class="info"></p>
+          <section>Alkalmazott neve<br />Munkakör</section>
+         
         </div>
       </div>
-    </div>
     <footer class="label">Vizsgamunka © 2021</footer>
   </body>
 </html>

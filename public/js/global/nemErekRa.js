@@ -62,7 +62,7 @@ $(function () {
      
       $("#option option:selected").css("background-color", "rgb(24, 206, 167, 0.7)");
        openPage("#"+ertek);
-      
+      console.log(napok);
     
     });
    
