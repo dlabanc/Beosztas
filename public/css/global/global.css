@@ -124,8 +124,35 @@ article::-webkit-scrollbar-thumb{
   background-color: rgba(24, 206, 167, 0.493);
 }
 
+.darkmode--activated .password-window{
+background-color: rgba(10, 10, 10, 0.95 );
 
-
+}
+.darkmode--activated .password-window-bg{background-color:transparent}
+.darkmode--activated .password-window-bg h3{
+  color: #bec3c9 !important;
+  background-color: rgb(19, 18, 17);
+}
+.darkmode--activated input{
+  color: white!important;
+  background-color: black;
+  border: 1px solid palevioletred;
+}
+.darkmode--activated button{
+  background-color: rgb(19, 18, 18);
+  color:palevioletred;
+  border: none;
+  font-size: 1.1rem;
+}
+.darkmode--activated .password-window-bg::before{
+  background-color: transparent;
+ 
+}
+.darkmode--activated input:-webkit-autofill  {
+  -webkit-box-shadow: 0 0 0 30px  rgb(19, 19, 19) inset !important;
+  -webkit-text-fill-color: white;
+  
+}
 
 
 @media screen and (max-width:1000px) {
@@ -159,6 +186,11 @@ article::-webkit-scrollbar-thumb{
   #Nemerekra .dates{
     flex-direction: column;
   }
+  .munkakor-container{
+    grid-template-columns: auto auto;
+  }
+  
+
 }
 @media screen and (max-width: 700px) {
   .dropdown1 .dropbtn1{
@@ -205,5 +237,20 @@ article::-webkit-scrollbar-thumb{
   .post-info{
    display: none;
   }
+  .munkakor-container{
+    grid-template-columns: auto ;
+  }
   
+}
+@media screen and (max-width:600px){
+  .password-window{
+    width: 100%;
+    min-width: 300px;
+    position: fixed;
+    top:0;
+ 
+  }
+  .password-window input{
+    padding: 1rem;
+  }
 }

@@ -20,7 +20,7 @@ $(function(){
     ajax.ajaxGet(local+"faliujsag.json",faliujsagAdmin);
     ajax.ajaxGet(local+"munkakor.json",munkakorAdmin);
     ajax.ajaxGet(local+"bejelentkezesi_adatok.json",bejelenetkezesekAdmin);
-    ajax.ajaxGet(local+"muszaktipus.json",muszakTipusAdmin);
+    ajax.ajaxApiGet("http://localhost:8000/api/muszaktipusok",muszakTipusAdmin);
     ajax.ajaxGet(local+"napimunkaeroigeny.json",napiMunkaEroIgenyAdmin);
     ajax.ajaxGet(local+"napok.json",napokAdmin);
     ajax.ajaxGet(local+"napok.json",beosztasAdmin);
@@ -110,9 +110,10 @@ $(function(){
       }
       else if(detail instanceof Muszaktipus)
       {
-        console.log(detail.tipus);
-       // ajax.ajaxApiDelete(api,detail.adat.dolgozoi_azon);
+        let api = "http://localhost:8000/api/muszaktipus";
+        ajax.ajaxApiDelete(api,detail.adat.tipus);
       }
+      
     })
 
 });

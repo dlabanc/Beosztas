@@ -6,7 +6,7 @@ $(function () {
     function faliujsagBeallitas(muszakok) {
         const szuloElem = $(".faliujsag-container");
         muszakok.forEach((elem) => {
-            console.log(elem);
+            
             new Faliujsag(szuloElem, elem);
         });
         ajax.ajaxGet(

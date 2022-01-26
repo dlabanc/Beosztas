@@ -86,6 +86,8 @@ $(function () {
     }
 
     function statisztikaBeallitasok(title, szelesseg, magassag) {
+        let darkmode = $("body").hasClass("darkmode--activated");
+
         let options = {
             title: title,
             width: szelesseg,
@@ -94,6 +96,14 @@ $(function () {
             backgroundColor: "transparent",
             bar: { groupWidth: "20%" },
         };
+
+        if(darkmode){
+            options.hAxis = {textStyle:{color:"#FFFFFF",titleTextStyle: {color: '#FFFFFF'}}};
+            options.vAxis = {textStyle:{color:"#FFFFFF",titleTextStyle: {color: '#FFFFFF'}}};
+            options.legend = {textStyle:{color:"#FFFFFF",titleTextStyle: {color: '#FFFFFF'}}};
+            
+        };
+       
         return options;
     }
 

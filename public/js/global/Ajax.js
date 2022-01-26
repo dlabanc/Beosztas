@@ -46,7 +46,7 @@ class Ajax{
                    alert("siker");
                 },
                 error:function(data,textStatus,errorThrown){
-                    
+                    alert(data.responseJSON.message);
                         console.log(data);
                         console.log(textStatus);
                         console.log(errorThrown);
@@ -56,13 +56,13 @@ class Ajax{
         );
     }
 
-    deleteAjax(apivegpont, id){
+    ajaxdeleteAjax(apivegpont, id){
         $.ajax({
             headers: {'X-CSRF-TOKEN': this.token},
             url: apivegpont+"/"+id, 
             type: "DELETE",
             error: function (data, textStatus, errorThrown) {
-                console.log(data);
+              
         
             },
         });

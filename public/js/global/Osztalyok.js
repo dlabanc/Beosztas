@@ -166,19 +166,23 @@ class MuszakHozzaAdas {
     this.szulo = szulo;
     szulo.append(
       `<div class="muszaktipush-content">
+      <div class="muszaktipush-info">
       <h2>Műszak típusa</h2><p>Műszaktípus leírása</p>
+      </div>
+      <div>
       <button id="removemuszakh"><span class="fa fa-minus"></span></button>
       <button id="editmuszakh" ><span class="fas fa-pen"></span></button>
+      </div>
       </div>`
     );
     this.adat = adat;
     this.elem = $(".muszaktipush-content:last");
-    this.elem.children("h2").text(this.adat.típus);
-    this.elem.children("p").text(this.adat.leírás);
-    this.elem.children("#removemuszakh").on("click", () => {
+    this.elem.find(".muszaktipush-info h2").text(this.adat.típus);
+    this.elem.find(".muszaktipush-info p").text(this.adat.leírás);
+    this.elem.find("#removemuszakh").on("click", () => {
       this.kattintasTrigger("torolh");
     });
-    this.elem.children("#editmuszakh").on("click", () => {
+    this.elem.find("#editmuszakh").on("click", () => {
       this.kattintasTrigger("modosith");
     });
   }

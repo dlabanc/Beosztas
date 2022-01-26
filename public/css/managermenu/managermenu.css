@@ -559,7 +559,8 @@ article {
 
 .muszaktipush-content {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  
+  display: grid;
+  grid-template-columns: auto 20%;
   box-sizing: border-box;
   padding: 1.5rem;
   width: 100%;
@@ -627,17 +628,15 @@ article {
   color:var(--bs-red)!important;
 }
 #editmuszakh, #removemuszakh {
-  float: right;
-  position: relative;
-  right: 30px;
-  bottom: 100px;
-  display: grid;
+  
+ 
+ 
   align-items: center;
   font-weight: bolder;
   color: black;
   font-size: 20px;
   cursor: pointer;
-  
+  display: inline-block;
   margin-right: 15px;
   user-select: none;
   width: 50px;
@@ -664,9 +663,10 @@ article {
   margin: auto;
 }
 #Alkalmazottak > .ujAlkalmazott{
-  position: fixed;
+  
+  display: block;
   color:var(--fds-button-text);
-  font-size: 1.2em;
+  font-size: 1.5em;
   border-radius: 50%;
   background: var(--always-white);
   border-radius: 10px;
@@ -677,8 +677,8 @@ article {
   line-height: 20px;
   padding: 1.2rem;
   color: var(--fds-spectrum-teal-dark-2);
-  right:125px;
-  top:300px;
+  margin-left: auto;
+  width: fit-content;
 }
 
 #AlkalmazottakTabla {
@@ -1038,8 +1038,13 @@ h3 {
 .statmenu{
   margin: 1rem;
   display: grid;
-  grid-template-columns: 15% auto ;
+  grid-template-columns: auto ;
  
+}
+.statmenu-buttons{
+  display: flex;
+  justify-content: center;
+  gap:1rem;
 }
 
 .statmenu button{
@@ -1053,7 +1058,7 @@ h3 {
   border-radius: 10px;
   font-size: 1.2rem;
   text-align: center;
-  margin: auto;
+
   margin-top: 1rem;
 }
 .statmenu button:hover{
@@ -1112,9 +1117,7 @@ h3 {
   border-radius: 30px;
   color:var(--fds-spectrum-seafoam-tint-70);
 }
-.darkmode--activated #Man-statisztika-elem{
-  background-color: rgba(0, 0, 0, 0)!important;
-}
+
 .darkmode--activated #tables{
 color:white;
 }
@@ -1129,6 +1132,11 @@ color:white;
 .napiMin input {
 width:40px;
 }
+.napiMin {
+  overflow-x:auto;
+  
+}
+
 
 .napiMin td {
   margin: 0;
@@ -1138,6 +1146,7 @@ width:40px;
 
 .napiMin table {
   margin:auto;
+  min-height: 500px;
   }
 
 .tablaLatszik {
@@ -1170,6 +1179,7 @@ width:40px;
     var(--bs-teal)
   );
 }
+
 
 @media screen and (max-width:1820px) {
    footer{
@@ -1241,12 +1251,33 @@ width:40px;
     top:100px;
     padding: 0;
   }
-  .tabcontent{
-    display: flex;
-    justify-content: center;
+  .muszaktipusm-container{
+    display: grid;
+    grid-template-columns: auto;
+    width: 100%;
     margin: auto;
-    
-   
+  }
+ 
+  
+}
+@media screen and (max-width:1200px) {
+  .muszaktipusn-container{
+    grid-template-columns: auto auto;
+  }
+  #muszaktipusnapok-content{
+    grid-template-columns: auto auto;
+  }
+  
+}
+@media screen and (max-width:1000px) {
+  .post-content{
+    grid-template-columns: auto auto;
+    overflow-x: auto;
+  }
+}
+@media screen and (max-width:770px) {
+  #muszaktipusnapok-content{
+    grid-template-columns: auto ;
   }
 }
 @media screen  and (max-width:450px){
@@ -1266,5 +1297,31 @@ width:40px;
   #muszaktipusn-subcontainer{
     display: flex;
     flex-direction: column;
+  }
+  .muszaktipush-content{
+  
+   width: fit-content;
+   height: fit-content;
+  
+  }
+  #removemuszakh,#editmuszakh{
+    margin: 0;
+  }
+  article{
+    min-width: 100%;
+  }
+  #Muszaktipusm {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .post-content{
+    grid-template-columns: auto ;
+    overflow-x: auto;
+    gap:1rem;
+    font-weight: 500;
   }
 }

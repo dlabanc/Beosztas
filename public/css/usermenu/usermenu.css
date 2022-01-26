@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -177,9 +178,7 @@ header {
 
 body {
   margin-top: 2rem;
- 
   display: grid;
-  background-color: var(--fds-gray-05);
   border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
   padding: 2rem;
@@ -226,8 +225,8 @@ body {
 .fa-user-lock {
   color: var(--fds-green-55);
 }
-
 nav {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   padding: 1em;
   padding-left: 2em;
   padding-right: 2em;
@@ -239,12 +238,12 @@ nav {
   margin: auto;
   margin-bottom: 1rem;
   background-color: var(--always-white);
+
 }
 .navbar {
   display: flex;
-  
+ 
 }
-
 
 header nav a {
   text-decoration: none;
@@ -253,12 +252,13 @@ header nav a {
   cursor: pointer;
   display: flex;
   align-self: center;
-  padding-bottom: 0.5rem;
+  
   color: var(--fds-primary-text);
-  padding: 1rem;
+
   margin-left: 1rem;
   margin-right: 1rem;
 }
+
 
 .openbtn {
   display: flex;
@@ -337,12 +337,6 @@ header nav a {
   padding: 16px;
 }
 
-/*!-----------!*/
-/* Mindenki menu vége */
-
-/* Tartalom */
-
-
 article {
   background-color: var(--fds-gray-05)!important;
   user-select: none;
@@ -361,12 +355,15 @@ article {
   grid-template-columns: auto;
   gap: 3rem;
 }
-
+.darkmode--activated article{
+  background-color: var(--always-white)!important;
+}
 .container {
   display: grid;
   grid-template-columns: 1fr 5fr;
   gap:1rem;
 }
+
 .container aside .posts {
   position: relative;
   top: 1rem;
@@ -374,6 +371,20 @@ article {
   max-height: 68vh;
   border-radius: 15px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+ 
+}
+.post{
+  padding:0;
+  font-size: .9rem;
+  margin: 0;
+  text-align: justify;
+  padding-left: .2rem;
+  line-height: .5;
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
 }
 .posts h1{
   border-bottom: .1rem solid gainsboro;
@@ -384,6 +395,7 @@ article {
   text-align: center;
   font-size: 1.1rem;
   font-weight: lighter;
+  width: 100%;
 }
 .post-img{
   width: 300px;
@@ -456,17 +468,12 @@ margin: auto;
 /* Footer vége */
 
 .post {
-  display: list-item;
-  list-style-type: none;
-  padding-left: .5rem;
-  padding-right: .5rem;
-  margin: 0 .5rem  0 .5rem;
+ width: 100%;
 
   transition: 0.5s;
   user-select: none;
 }
 .post:hover {
-  text-indent: 20px;
   background-color: rgb(24, 206, 167);
   color: white;
   text-shadow: 1px 1px black;
@@ -530,11 +537,6 @@ margin: auto;
   font-size: 15px;
 }
 
-
-
-
-
-/*ALKALMAZOTTAK TÁBLÁZAT*/
 
 #AlkalmazottakTabla {
   max-width: 100%;
@@ -679,7 +681,7 @@ margin: auto;
 #Nemerekra #kovetkezoNap, #Nemerekra #elozoNap {
   background: rgba(255, 255, 255);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   padding: 1rem;
   text-align: center;
    
@@ -687,10 +689,10 @@ margin: auto;
 }
 
 .aktdatum, #datum{
-  
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   background: rgba(255, 255, 255);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
   padding: 1rem;
  text-align: center;
   
@@ -727,18 +729,16 @@ margin: auto;
 }
 
 .post-content {
-  /* padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px; */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
- 
+  
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 10% 90%;
   padding: 1.5rem;
   width: 100%;
   margin: 1rem;
-  background-color: rgba(255, 255, 255);
+  
+  
 } 
 
 .post-content  p {
@@ -797,21 +797,109 @@ margin: auto;
   background-color: var(--always-white);
   
 }
-.tabcontent > h3{
+.tabcontent > h3,h1{
   width: fit-content;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+ 
   padding: 1rem;
-  color:white;
-  background-color: rgb(24, 206, 167);
+  
+  
+}
+.darkmode--activated article{
+  box-shadow: none;
+  background-color: transparent;
+ 
+}
+.darkmode--activated .tabcontent{
+  box-shadow: none;
+  background-color: transparent;
+}
+.darkmode--activated .container{
+
+  background-color:transparent;
+  
 }
 
-.darkmode--activated .container{
-  background-color: rgb(240, 240, 240);
+.darkmode--activated aside{
+  background-color: white;
   color:white;
 }
-.darkmode--activated nav span{
-  color:rgb(8, 138, 110)!important;
-}
+
 .darkmode--activated nav {
-  background-color: transparent;
+  background-color: rgb(29, 28, 28);
+}
+
+.darkmode--activated .managerinfo,.darkmode--activated footer{
+  background-color: rgb(29, 28, 28);
+  color:var(--fds-gray-30);
+}
+.darkmode--activated .managerinfo {
+  border-bottom: 1px solid palevioletred;
+}
+
+.darkmode--activated nav a{
+  color:palevioletred;
+}
+.darkmode--activated nav span{
+  color:var(--fds-gray-30);
+}
+.darkmode--activated .logout{
+  background-color: rgb(19, 18, 18);
+}
+.darkmode--activated .openbtn{
+  background-color: rgb(19, 18, 18);
+  color:palevioletred;
+}
+.darkmode--activated .sidenav{
+  background-color: rgb(19, 18, 18);
+}
+.darkmode--activated .sidenav a,.darkmode--activated .sidenav button{
+  color:var(--fds-gray-20 );
+}
+.darkmode--activated .dropdown-content4,
+.darkmode--activated .dropdown-content2,
+.darkmode--activated .dropdown-content3{
+  background-color: var(--always-black);
+}
+.darkmode--activated .sidenav a:hover{
+  background-color: palevioletred;
+}
+.darkmode--activated .ujAlkalmazott,.darkmode--activated #newpost{
+  background-color: rgb(19, 18, 18)!important;
+  color: palevioletred !important;
+}
+.darkmode--activated .cimsor{
+  background-color: var(--fds-spectrum-teal-tint-90);
+  border-radius: 30px;
+  color:var(--fds-spectrum-seafoam-tint-70);
+}
+
+.darkmode--activated #tables{
+color:white;
+}
+.darkmode--activated #tables tr{
+  border-bottom: 1px solid palevioletred;
+}
+
+.darkmode--activated .tabcontent{
+  
+  background-color: rgba(0, 0, 0, 0.014);
+  border-radius: 15px;
+  color: black;
+}
+.darkmode--activated .post:hover{
+  background-color: palevioletred;
+}
+.darkmode--activated .post-content{
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+    background-color: rgb(236, 230, 230)!important;
+    color:var(--fds-spectrum-slate-tint-70);
+}
+
+.darkmode--activated .post-content > h3{
+  color: palevioletred !important;
+  
+  
+}
+.darkmode--activated .post-content h4{
+  color: rgb(61, 61, 61) !important;
 }
