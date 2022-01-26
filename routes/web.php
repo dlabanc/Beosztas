@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlkalmazottController;
 use App\Http\Controllers\MuszakEloszlasController;
+use App\Http\Controllers\MuszakTipusController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +47,10 @@ Route::get('/api/muszakeloszlas/{mtipus}/{mszam}', [MuszakEloszlasController::cl
 Route::put('/api/muszakeloszlas/{mtipus}/{mszam}', [MuszakEloszlasController::class, 'update']);
 Route::post('/api/muszakeloszlas', [MuszakEloszlasController::class, 'store']);
 Route::delete('/api/muszakeloszlas/{mtipus}/{mszam}', [MuszakEloszlasController::class, 'destroy']);
+
+##MUSZKTIPUS
+Route::get('/api/muszaktipusok', [MuszakTipusController::class, 'index']);
+Route::get('/api/muszaktipus/{id}', [MuszakTipusController::class, 'show']);
+Route::put('/api/muszaktipus/{id}', [MuszakTipusController::class, 'update']);
+Route::post('/api/muszaktipus', [MuszakTipusController::class, 'store']);
+Route::delete('/api/muszaktipus/{id}', [MuszakTipusController::class, 'destroy']);

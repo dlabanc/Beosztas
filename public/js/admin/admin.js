@@ -10,6 +10,7 @@ $(function(){
     const nemdolgoznanak = [];
     const szabadsagok = [];
     const token=$('meta[name="csrf-token"]').attr('content');
+    console.log(token);
     const ajax = new Ajax(token); 
     const local = "../json/";
     const apivegpont = 'http://localhost:8000/api/alkalmazottak';

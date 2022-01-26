@@ -55,4 +55,17 @@ class Ajax{
             }
         );
     }
+
+    deleteAjax(apivegpont, id){
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': this.token},
+            url: apivegpont+"/"+id, 
+            type: "DELETE",
+            error: function (data, textStatus, errorThrown) {
+                console.log(data);
+        
+            },
+        });
+    }
+
 }
