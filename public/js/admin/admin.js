@@ -10,6 +10,7 @@ $(function(){
     const nemdolgoznanak = [];
     const szabadsagok = [];
     const token=$('meta[name="csrf-token"]').attr('content');
+    console.log(token);
     const ajax = new Ajax(token); 
     const local = "../json/";
     const apivegpont = 'http://localhost:8000/api/alkalmazottak';
@@ -99,12 +100,12 @@ $(function(){
     }
 
     $(window).on("torles",({detail})=>{
-      
       let api = "http://localhost:8000/api/alkalmazott";
       if(detail instanceof Alkalmazott){
         
-        ajax.ajaxApiDelete(api,detail.adat.dolgozoi_azon);
+        //ajax.ajaxApiDelete(api,detail.adat.dolgozoi_azon);
+        ajax.deleteAjax(api,detail.adat.dolgozoi_azon);
       }
-    })
+    });
 
 });
