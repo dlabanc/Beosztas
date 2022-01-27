@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMunkakorsTable extends Migration
+class Muszaktipus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMunkakorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('munkakor', function (Blueprint $table) {
-            $table->string('megnevezes',50)->primary();
+        Schema::create('muszaktipus', function (Blueprint $table) {
+            $table->string('tipus',5)->primary();
             $table->string('leiras',255);
-            $table->unsignedMediumInteger('munkafonok');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateMunkakorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('munkakor');
+        Schema::dropIfExists('muszaktipus');
     }
 }
