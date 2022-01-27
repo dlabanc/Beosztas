@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MuszakTipus;
+use App\Models\Napok;
 use Illuminate\Http\Request;
 
-class MuszakTipusController extends Controller
+class NapokController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class MuszakTipusController extends Controller
      */
     public function index()
     {
-        $muszaktipusok = MuszakTipus::all();
-        return $muszaktipusok;
+        $napok = Napok::all();
+        return $napok;
     }
 
     /**
@@ -36,31 +36,32 @@ class MuszakTipusController extends Controller
      */
     public function store(Request $request)
     {
-        $muszaktipus = new MuszakTipus();
-        $muszaktipus->tipus = $request->tipus;
-        $muszaktipus->leiras = $request->leiras;
-        $muszaktipus->save();
+        $nap = new Napok();
+        $nap->nap = $request->nap;
+        $nap->muszaktipus = $request->muszaktipus;
+        $nap->allapot = $request->allapot;
+        $nap->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Napok  $napok
      * @return \Illuminate\Http\Response
      */
-    public function show($muszaktipusId)
+    public function show($napId)
     {
-        $muszaktipus = MuszakTipus::find($muszaktipusId);
-        return $muszaktipus;
+        $nap = Napok::find($napId);
+        return $nap;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Napok  $napok
      * @return \Illuminate\Http\Response
      */
-    public function edit(MuszakTipus $muszakTipus)
+    public function edit(Napok $napok)
     {
         //
     }
@@ -69,26 +70,27 @@ class MuszakTipusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Napok  $napok
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $muszaktipusId)
+    public function update(Request $request, $napId)
     {
-        $muszaktipus = MuszakTipus::find($muszaktipusId);
-        $muszaktipus->tipus = $request->tipus;
-        $muszaktipus->leiras = $request->leiras;
-        $muszaktipus->save();
+        $nap = Napok::find($napId);   
+        $nap->nap = $request->nap;
+        $nap->muszaktipus = $request->muszaktipus;
+        $nap->allapot = $request->allapot;
+        $nap->save();     
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Napok  $napok
      * @return \Illuminate\Http\Response
      */
-    public function destroy($muszaktipusId)
+    public function destroy($napId)
     {
-        $muszaktipus = Muszaktipus::find($muszaktipusId);
-        $muszaktipus->delete();
+        $nap = Napok::find($napId);
+        $nap->delete();
     }
 }

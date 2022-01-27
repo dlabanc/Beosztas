@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MuszakTipus;
+use App\Models\Munkakor;
 use Illuminate\Http\Request;
 
-class MuszakTipusController extends Controller
+class MunkakorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class MuszakTipusController extends Controller
      */
     public function index()
     {
-        $muszaktipusok = MuszakTipus::all();
-        return $muszaktipusok;
+        $munkakorok = Munkakor::all();
+        return $munkakorok;
     }
 
     /**
@@ -36,31 +36,31 @@ class MuszakTipusController extends Controller
      */
     public function store(Request $request)
     {
-        $muszaktipus = new MuszakTipus();
-        $muszaktipus->tipus = $request->tipus;
-        $muszaktipus->leiras = $request->leiras;
-        $muszaktipus->save();
+        $munkakor = new Munkakor;
+        $munkakor->megnevezes = $request->megnevezes;
+        $munkakor->leiras = $request->leiras;
+        $munkakor->munkafonok = $request->munkafonok;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Munkakor  $munkakor
      * @return \Illuminate\Http\Response
      */
-    public function show($muszaktipusId)
+    public function show($megnevezes)
     {
-        $muszaktipus = MuszakTipus::find($muszaktipusId);
-        return $muszaktipus;
+        $munkakor = Munkakor::find($megnevezes);
+        return $munkakor;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Munkakor  $munkakor
      * @return \Illuminate\Http\Response
      */
-    public function edit(MuszakTipus $muszakTipus)
+    public function edit(Munkakor $munkakor)
     {
         //
     }
@@ -69,26 +69,26 @@ class MuszakTipusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Munkakor  $munkakor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $muszaktipusId)
+    public function update(Request $request, $megnevezes)
     {
-        $muszaktipus = MuszakTipus::find($muszaktipusId);
-        $muszaktipus->tipus = $request->tipus;
-        $muszaktipus->leiras = $request->leiras;
-        $muszaktipus->save();
+        $munkakor = Munkakor::find($megnevezes);
+        $munkakor->megnevezes = $request->megnevezes;
+        $munkakor->leiras = $request->leiras;
+        $munkakor->munkafonok = $request->munkafonok;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MuszakTipus  $muszakTipus
+     * @param  \App\Models\Munkakor  $munkakor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($muszaktipusId)
+    public function destroy($megnevezes)
     {
-        $muszaktipus = Muszaktipus::find($muszaktipusId);
-        $muszaktipus->delete();
+        $munkakor = Munkakor::find($megnevezes);
+        $munkakor->delete();
     }
 }

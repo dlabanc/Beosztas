@@ -14,7 +14,7 @@ class AlkalmazottController extends Controller
      */
     public function index()
     {
-        $alkalmazottak=Alkalmazott::all();
+        $alkalmazottak = Alkalmazott::all();
         return $alkalmazottak;
     }
 
@@ -37,18 +37,18 @@ class AlkalmazottController extends Controller
     public function store(Request $request)
     {
         $alkalmazott=new Alkalmazott();
-        $alkalmazott->dolgozoi_azon=$request->dolgozoi_azon;
-        $alkalmazott->nev=$request->nev;
-        $alkalmazott->munkakor=$request->munkakor;
-        $alkalmazott->adoazonosito=$request->adoazonosito;
-        $alkalmazott->taj=$request->taj;
-        $alkalmazott->elerhetoseg=$request->elerhetoseg;
-        $alkalmazott->email=$request->email;
-        $alkalmazott->heti_oraszam=$request->heti_oraszam;
-        $alkalmazott->lakcim=$request->lakcim;
-        $alkalmazott->szuletesi_datum=$request->szuletesi_datum;
-        $alkalmazott->munkaviszony_kezdete=$request->munkaviszony_kezdete;
-        $alkalmazott->munkaviszony_vege=$request->munkaviszony_vege;
+        $alkalmazott->dolgozoi_azon = $request->dolgozoi_azon;
+        $alkalmazott->nev = $request->nev;
+        $alkalmazott->munkakor = $request->munkakor;
+        $alkalmazott->adoazonosito = $request->adoazonosito;
+        $alkalmazott->taj = $request->taj;
+        $alkalmazott->elerhetoseg = $request->elerhetoseg;
+        $alkalmazott->email = $request->email;
+        $alkalmazott->heti_oraszam = $request->heti_oraszam;
+        $alkalmazott->lakcim = $request->lakcim;
+        $alkalmazott->szuletesi_datum = $request->szuletesi_datum;
+        $alkalmazott->munkaviszony_kezdete = $request->munkaviszony_kezdete;
+        $alkalmazott->munkaviszony_vege = $request->munkaviszony_vege;
 
         $alkalmazott->save();
     }
@@ -61,7 +61,7 @@ class AlkalmazottController extends Controller
      */
     public function show($alkalmazottId)
     {
-        $alkalmazott=Alkalmazott::find($alkalmazottId);
+        $alkalmazott = Alkalmazott::find($alkalmazottId);
         return response()->json($alkalmazott);
     }
 
@@ -85,19 +85,19 @@ class AlkalmazottController extends Controller
      */
     public function update(Request $request, $alkalmazottId)
     {
-        $alkalmazott=Alkalmazott::find($alkalmazottId);
-        $alkalmazott->dolgozoi_azon=$request->dolgozoi_azon;
-        $alkalmazott->nev=$request->nev;
-        $alkalmazott->munkakor=$request->munkakor;
-        $alkalmazott->adoazonosito=$request->adoazonosito;
-        $alkalmazott->taj=$request->taj;
-        $alkalmazott->elerhetoseg=$request->elerhetoseg;
-        $alkalmazott->email=$request->email;
-        $alkalmazott->heti_oraszam=$request->heti_oraszam;
-        $alkalmazott->lakcim=$request->lakcim;
-        $alkalmazott->szuletesi_datum=$request->szuletesi_datum;
-        $alkalmazott->munkaviszony_kezdete=$request->munkaviszony_kezdete;
-        $alkalmazott->munkaviszony_vege=$request->munkaviszony_vege;
+        $alkalmazott = Alkalmazott::find($alkalmazottId);
+        $alkalmazott->dolgozoi_azon = $request->dolgozoi_azon;
+        $alkalmazott->nev = $request->nev;
+        $alkalmazott->munkakor = $request->munkakor;
+        $alkalmazott->adoazonosito = $request->adoazonosito;
+        $alkalmazott->taj = $request->taj;
+        $alkalmazott->elerhetoseg = $request->elerhetoseg;
+        $alkalmazott->email = $request->email;
+        $alkalmazott->heti_oraszam = $request->heti_oraszam;
+        $alkalmazott->lakcim = $request->lakcim;
+        $alkalmazott->szuletesi_datum = $request->szuletesi_datum;
+        $alkalmazott->munkaviszony_kezdete = $request->munkaviszony_kezdete;
+        $alkalmazott->munkaviszony_vege = $request->munkaviszony_vege;
         $alkalmazott->save();
     }
 
@@ -109,7 +109,7 @@ class AlkalmazottController extends Controller
      */
     public function destroy($alkalmazottId)
     {
-        $alkalmazott=Alkalmazott::find($alkalmazottId);
+        $alkalmazott = Alkalmazott::find($alkalmazottId);
         $alkalmazott->delete();
     }
 }
