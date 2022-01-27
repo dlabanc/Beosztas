@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css" />
     <link
       rel="stylesheet"
@@ -20,17 +21,9 @@
     <script src="/js/global/Oldalesemenyek.js"></script>
     <script src="/js/global/Osztalyok.js"></script>
     <script src="/js/global/Ajax.js"></script>
-    <script src="/js/managermenu/muszakNaphozRendeles.js"></script>
-    <script src="/js/global/profile.js"></script>
-    <script src="js/managermenu/munkakorok.js"></script>
-    <script src="js/managermenu//muszakok.js"></script>
-    <script src="js/managermenu/muszakEloszlas.js"></script>
-    <script src="js/managermenu/faliujsag.js"></script>
-    <script src="/js/global/alkalmazotttabla.js"></script>
-    <script src="/js/global/napiMin.js"></script>
-
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="/js/managermenu/managerstat.js"></script>
+    <script src="/js/managermenu/manager.js"></script>
     <title>Üzletvezető</title>
   </head>
   <div class="managerinfo">
@@ -190,7 +183,7 @@
       
             
         <div class="statmenu">
-          <div>
+          <div class="statmenu-buttons">
         
           <button class="fas fa-chart-bar" id="bar"><span> Munkakörök</span></button>
           <button class="fas fa-chart-pie" id="pie"><span> Heti óraszám</span></button>

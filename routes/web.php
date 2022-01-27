@@ -40,6 +40,9 @@ Route::get('/usermenu', function () {
     return view('usermenu/usermenu');
 });
 
+Route::get('/login', function () {
+    return view('login/login');
+});
 
 ##ALKALMAZOTT
 Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
