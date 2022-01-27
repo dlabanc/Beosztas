@@ -1,13 +1,14 @@
 $(function(){
     const ajax = new Ajax();
     const local = "../json/";
+    const apivegpont = 'http://localhost:8000/api';
     const faliujsagok = [];
-    ajax.ajaxGet(local+"faliujsag.json",faliujsagUser);
+    ajax.ajaxApiGet(apivegpont+"/faliujsagok",faliujsagUser);
     
 
     
     
-    //Faliujsag menu
+    //ajaxApiGet - Működik
     function faliujsagUser(adatok){
     //Faliujsag posztok//
         class Post{
