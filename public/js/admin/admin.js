@@ -78,10 +78,10 @@ $(function(){
     }
 
     function infoAblak(){
-      ajax.ajaxGet(local+"alkalmazott.json",(adatok)=>{$(".stat1value").html(`${adatok.length}`)});
-      ajax.ajaxGet(local+"alkalmazott.json",(adatok)=>{$(".stat2value").html(`${adatok[adatok.length-1].név}`)});
+      ajax.ajaxApiGet(apivegpont+"/alkalmazottak",(adatok)=>{$(".stat1value").html(`${adatok.length}`)});
+      ajax.ajaxApiGet(apivegpont+"/alkalmazottak",(adatok)=>{$(".stat2value").html(`${adatok[adatok.length-1].név}`)});
       ajax.ajaxGet(local+"bejelentkezesi_adatok.json",(adatok)=>{$(".stat4value").html(`${adatok.length}`)});
-      ajax.ajaxGet(local+"faliujsag.json",(adatok)=>{
+      ajax.ajaxApiGet(apivegpont+"/faliujsagok",(adatok)=>{
         let d = new Date();
         let db = 0;
         let nap =
