@@ -13,19 +13,18 @@ $(function(){
     console.log(token);
     const ajax = new Ajax(token); 
     const local = "../json/";
-    const apivegpont = 'http://localhost:8000/api/alkalmazottak';
+    const apivegpont = 'http://localhost:8000/api';
 
-    ajax.ajaxApiGet(apivegpont, alkalmazottAdmin);
-    //ajax.ajaxGet(local+"alkalmazott.json",alkalmazottAdmin);  
-    ajax.ajaxGet(local+"faliujsag.json",faliujsagAdmin);
-    ajax.ajaxGet(local+"munkakor.json",munkakorAdmin);
+    ajax.ajaxApiGet(apivegpont+"/alkalmazottak", alkalmazottAdmin);
+    ajax.ajaxApiGet(apivegpont+"/faliujsagok",faliujsagAdmin);
+    ajax.ajaxApiGet(apivegpont+"/munkakorok",munkakorAdmin);
     ajax.ajaxGet(local+"bejelentkezesi_adatok.json",bejelenetkezesekAdmin);
-    ajax.ajaxApiGet("http://localhost:8000/api/muszaktipusok",muszakTipusAdmin);
-    ajax.ajaxGet(local+"napimunkaeroigeny.json",napiMunkaEroIgenyAdmin);
-    ajax.ajaxGet(local+"napok.json",napokAdmin);
-    ajax.ajaxGet(local+"napok.json",beosztasAdmin);
-    ajax.ajaxGet(local+"napok.json",nemdolgoznaAdmin);
-    ajax.ajaxGet(local+"napok.json",szabadsagAdmin);
+    ajax.ajaxApiGet(apivegpont+"/muszaktipusok",muszakTipusAdmin);
+    ajax.ajaxApiGet(apivegpont+"/napimunkaeroigenyek",napiMunkaEroIgenyAdmin);
+    ajax.ajaxApiGet(apivegpont+"/napokossz",napokAdmin);
+    ajax.ajaxApiGet(apivegpont+"/beosztasok",beosztasAdmin);
+    ajax.ajaxApiGet(apivegpont+"/nemdolgoznaossz",nemdolgoznaAdmin);
+    ajax.ajaxApiGet(apivegpont+"/szabadsagok",szabadsagAdmin);
 
     infoAblak();
 
