@@ -36,6 +36,6 @@ class Alkalmazott extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alkalmazott');;
+        Schema::dropIfExists('alkalmazott');
     }
 }
