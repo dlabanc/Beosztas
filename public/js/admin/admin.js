@@ -100,7 +100,7 @@ $(function(){
         $(".stat3value").html(`${db}`)
       });
     }
-
+    //Admin események/
     $(window).on("torles",({detail})=>{
       
       
@@ -115,5 +115,7 @@ $(function(){
       }
       
     })
+
+
 
 });
