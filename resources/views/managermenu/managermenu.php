@@ -16,7 +16,7 @@
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="/node_modules/jquery-ui-1.13.0/jquery-ui.min.css">
     <script src="/node_modules/jquery-ui-1.13.0/jquery-ui.js"></script>
-    <script src="/node_modules/jquery-ui-1.13.0/jquery-ui.min.js"></script>
+ 
     <script src="/node_modules/darkmode-js/lib/darkmode-js.min.js"></script>
     <script src="/js/global/Oldalesemenyek.js"></script>
     <script src="/js/global/Osztalyok.js"></script>

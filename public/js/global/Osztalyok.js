@@ -4,12 +4,15 @@ class Adminelemek {
     this.node = szulo;
     szulo.append("<tr></tr>");
     this.elem = this.node.children("tr:last");
+    szulo.append(`<tr class="mod"></tr>`)
+    this.clone= this.node.children(".mod:last");
     this.adat = adat;
     this.adatMegjelenit();
 
     
-    this.elem.find(".admin-edit").on("click", () => {
+    this.elem.on("click", () => {
       this.modosit();
+      
     });
     this.elem.find(".admin-torol").on("click",(event)=>{
       this.torol();
@@ -25,28 +28,39 @@ class Adminelemek {
   modosit(){
     let esemeny = new CustomEvent("modosit", { detail: this });
     window.dispatchEvent(esemeny);
+    this.elem.hide();
+    this.clone.fadeIn(1000);
+    this.clone.find(".admin-mod-ok").on("click",()=>{
+      for (const key in this.adat) {
+        this.adat[key] = this.clone.find(`.${key}`).val();
+        
+       }
+       console.log(this);
+      this.clone.hide();
+      this.elem.fadeIn(1000);
+    });
+    this.clone.find(".admin-mod-megse").on("click",()=>{
+     
+   
+      this.clone.hide();
+      this.elem.fadeIn(1000);
+    });
+     
     
+
   }
 
   adatMegjelenit() {
     for (const key in this.adat) {
       this.elem.append(`<td>${this.adat[key]}</td>`);
+      this.clone.append(`<td><label>${key}</label><br><input type="text" value="${this.adat[key]}" class="${key}"></td>`);
     }
-    for (const key in this.adat) {
-      this.elem.append(`<tr class="admin-mod-sor">
-      <td>${key}</td>
-      <td><input type="text" id="${key}"></td>
-      
-      </tr>`);
-    }
-    this.elem.find(".admin-mod-sor").eq(0).append(`
-    <td>
-    <button class="fas fa-check admin-mod-elfogad"></button>
-    <button class="fas fa-times admin-mod-megse"></button>
-    </td>`);
+    this.clone.append(`<td><button class="fas fa-check admin-mod-ok"></button></td>`);
+    this.clone.append(`<td><button class="fas fa-times admin-mod-megse"></button></td>`);
     this.elem.append(`<td><button class="fas fa-ban admin-torol"></button></td>`);
-    this.elem.append(`<td><button class="fas fa-edit admin-edit"></button></td>`);
+   
     
+    this.clone.hide();
   }
 
 }

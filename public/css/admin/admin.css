@@ -320,15 +320,18 @@ table .fa-ban,table .fa-user-edit, table .fa-edit{
     border-radius: 15px;
     background-color: transparent;
 }
-table .fa-ban{
+table .fa-ban,table .fa-times{
     color:var(--bs-danger);
 }
 
-table .fa-user-edit{
+table .fa-user-edit,table .fa-check{
     color:var(--bs-blue);
 }
 table .Faliujsag .tartalom{
     text-align: left;
+}
+table {
+    border-collapse: collapse;
 }
 header{
 grid-area: header;
@@ -368,6 +371,31 @@ article{
     text-align: center;
     padding-bottom: 10px;
 }
+
+.mod td{
+ background-color: var(--bs-teal);
+ 
+}
+.mod input{
+    text-align: center;
+}
+
+
+
+.mod button{
+    background-color: var(--fds-spectrum-teal-tint-90)!important;
+    width: fit-content;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    padding: .5rem;
+    margin: .5rem;
+    
+}
+.admin-mod-gombok button:hover{
+    background: var(--bs-teal);
+}
+
+
 @media screen and (max-width:1360px) {
    body{
        
