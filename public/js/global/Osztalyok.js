@@ -32,9 +32,21 @@ class Adminelemek {
     for (const key in this.adat) {
       this.elem.append(`<td>${this.adat[key]}</td>`);
     }
-
+    for (const key in this.adat) {
+      this.elem.append(`<tr class="admin-mod-sor">
+      <td>${key}</td>
+      <td><input type="text" id="${key}"></td>
+      
+      </tr>`);
+    }
+    this.elem.find(".admin-mod-sor").eq(0).append(`
+    <td>
+    <button class="fas fa-check admin-mod-elfogad"></button>
+    <button class="fas fa-times admin-mod-megse"></button>
+    </td>`);
     this.elem.append(`<td><button class="fas fa-ban admin-torol"></button></td>`);
     this.elem.append(`<td><button class="fas fa-edit admin-edit"></button></td>`);
+    
   }
 
 }
@@ -341,7 +353,16 @@ class Alkalmazott extends Adminelemek {
 class FaliujsagPost extends Adminelemek {}
 class MunkakorA extends Adminelemek {}
 class Bejelentkezes extends Adminelemek {}
-class Muszaktipus extends Adminelemek {}
+class Muszaktipus extends Adminelemek {
+  constructor(szulo,adat){
+    super(szulo,adat);
+    
+    this.elem.find(".admin-edit").on("click", () => {
+      this.modosit();
+     
+    });
+  }
+}
 class Napimunkaeroigeny extends Adminelemek {}
 class Napok extends Adminelemek {}
 class Beosztas extends Adminelemek {}
