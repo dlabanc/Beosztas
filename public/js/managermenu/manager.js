@@ -3,7 +3,8 @@
 $(function () {
     const token=$('meta[name="csrf-token"]').attr('content');
     const ajax = new Ajax(token);
-    const {ajaxGet} = ajax ;
+    const {ajaxGet,ajaxApiGet} = ajax ;
+    const apivegpont = 'http://localhost:8000/api';
     muszakNaphozRendelese();
     munkakorok();
     muszakok();
@@ -14,11 +15,11 @@ $(function () {
     faliujsag();
     ProfilAdatok();
     
-
+    //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
         const napok = [];
-        let vegpont = "../json/muszaktipus.json";
-        ajaxGet(vegpont, muszakBeallitas);
+        
+        ajaxApiGet(apivegpont+"/muszaktipusok", muszakBeallitas);
         KovHetDatumBeallitas();
 
         function muszakBeallitas(objektum) {
@@ -85,11 +86,11 @@ $(function () {
             }
         });
     }
-
+    //ajaxApiGet - Rendben
     function munkakorok() {
-        let vegpont = "../json/munkakor.json";
+        
 
-       ajaxGet(vegpont, munkakorBeallitas);
+       ajaxApiGet(apivegpont+"/munkakorok", munkakorBeallitas);
 
         function munkakorBeallitas(munkakorok) {
             const szuloElem = $(".munkakor-container");
@@ -98,11 +99,11 @@ $(function () {
             });
         }
     }
-
+    //ajaxApiGet - Rendben
     function muszakok() {
-        let vegpont = "../json/muszaktipus.json";
+        
 
-        ajaxGet(vegpont, muszakBeallitas);
+        ajaxApiGet(apivegpont+"/muszaktipusok", muszakBeallitas);
 
         function muszakBeallitas(muszakok) {
             const szuloElem = $(".muszaktipush-container");
@@ -111,19 +112,19 @@ $(function () {
             });
 
             $(window).on("torolh", (event) => {
-                console.log(event.detail.típus);
+                console.log(event.detail.tipus);
             });
 
             $(window).on("modosith", (event) => {
-                console.log(event.detail.típus);
+                console.log(event.detail.tipus);
             });
         }
     }
-
+    //ajaxApiGet - Hibás
     function muszakEloszlas() {
-        let vegpont = "../json/muszakeloszlas.json";
+       
 
-        ajaxGet(vegpont, muszakeloszlasBeallitas);
+        ajaxApiGet(apivegpont+"/muszakeloszlasok", muszakeloszlasBeallitas);
 
         function muszakeloszlasBeallitas(muszakok) {
             const szuloElem = $(".muszaktipusm-container");
@@ -133,14 +134,14 @@ $(function () {
         }
 
         $(window).on("torolm", (event) => {
-            console.log(event.detail.típus);
+            console.log(event.detail.tipus);
         });
 
         $(window).on("modositm", (event) => {
-            console.log(event.detail.típus);
+            console.log(event.detail.tipus);
         });
     }
-
+    //ajaxApiGet - View kell
     function managerStatisztika() {
         const localhost = "/statisztikak/";
         const statisztikaElem = document.getElementById("Man-statisztika-elem");
@@ -282,10 +283,11 @@ $(function () {
         }
     }
 
+    //ajaxApiGet - Rendben
     function faliujsag() {
-        let vegpont = "../json/faliujsag.json";
+     
 
-       ajaxGet(vegpont, faliujsagBeallitas);
+       ajaxApiGet(apivegpont+"/faliujsagok", faliujsagBeallitas);
 
         function faliujsagBeallitas(muszakok) {
             const szuloElem = $(".faliujsag-container");
@@ -312,13 +314,13 @@ $(function () {
             });
         }
     }
-
+    //ajaxApiGet - Rendben
     function alkalmazottTabla() {
         let menu = "#Alkalmazottak .dropdown-content";
 
-        let vegpont = "../json/alkalmazott.json";
+       
 
-        ajaxGet(vegpont, alkalmazottTabla);
+        ajaxApiGet(apivegpont+"/alkalmazottak", alkalmazottTabla);
 
         function alkalmazottTabla(alkalmazottak) {
             const szuloElem = $("#AlkalmazottakTabla");
@@ -340,7 +342,7 @@ $(function () {
             $(menu).addClass("tablaDropdown");
         });
     }
-
+    //ajaxApiGet - Hibás
     function napiMin() {
         let vegpont = "../json/napiMin.json";
 
@@ -360,9 +362,10 @@ $(function () {
         }
     }
 
+    //ajaxApiGet - Rendben
     function ProfilAdatok() {
         
-        ajaxGet("../json/alkalmazott.json",(adatok)=>{
+        ajaxApiGet(apivegpont+"/alkalmazottak",(adatok)=>{
           
         let sor = 0;
       

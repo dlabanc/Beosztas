@@ -80,10 +80,10 @@ class AlkalmazottTabla {
 
     this.adat = adat;
     this.elem = $("tr:last");
-    this.elem.children("#nev").text(this.adat.név);
-    this.elem.children("#beosztas").text(this.adat.munkakör);
-    this.elem.children("#lakcim").text(this.adat.lakcím);
-    this.elem.children("#elerhetoseg").text(this.adat.Elérhetőség);
+    this.elem.children("#nev").text(this.adat.nev);
+    this.elem.children("#beosztas").text(this.adat.munkakor);
+    this.elem.children("#lakcim").text(this.adat.lakcim);
+    this.elem.children("#elerhetoseg").text(this.adat.Elerhetoseg);
     this.elem.children("#email").text(this.adat.Email);
     this.menu = "#Alkalmazottak .dropdown-content";
 
@@ -152,17 +152,17 @@ class MuszakEloszlas {
     );
     this.adat = adat;
     this.elem = $(".muszaktipusm-content:last");
-    this.elem.children("h3").text(this.adat.műszaktipus);
+    this.elem.children("h3").text(this.adat.muszaktipus);
     this.tabla = this.elem.children("table");
 
-    for (const key in this.adat.műszakok) {
+    for (const key in this.adat.muszakok) {
       this.tabla.append("<tr></tr>");
       this.tablaElem = this.tabla.children("tbody").children("tr:last");
       this.tablaElem.append(
-        "<td>" + this.adat.műszakok[key].műszakszám + "</td>"
+        "<td>" + this.adat.muszakok[key].muszakszam + "</td>"
       );
-      this.tablaElem.append("<td>" + this.adat.műszakok[key].órától + "</td>");
-      this.tablaElem.append("<td>" + this.adat.műszakok[key].óráig + "</td>");
+      this.tablaElem.append("<td>" + this.adat.muszakok[key].oratól + "</td>");
+      this.tablaElem.append("<td>" + this.adat.muszakok[key].oraig + "</td>");
       this.tablaElem.append(
         '<td><button class="editmuszakm" ><span class="fas fa-pen"></span></button></td>'
       );
@@ -203,8 +203,8 @@ class MuszakHozzaAdas {
     );
     this.adat = adat;
     this.elem = $(".muszaktipush-content:last");
-    this.elem.find(".muszaktipush-info h2").text(this.adat.típus);
-    this.elem.find(".muszaktipush-info p").text(this.adat.leírás);
+    this.elem.find(".muszaktipush-info h2").text(this.adat.tipus);
+    this.elem.find(".muszaktipush-info p").text(this.adat.leiras);
     this.elem.find("#removemuszakh").on("click", () => {
       this.kattintasTrigger("torolh");
     });
@@ -243,8 +243,8 @@ class Muszak {
     this.elem = this.node.children(".muszaktipusn-content:last");
     this.adat = adat;
     this.napok = [];
-    this.elem.children("div").children("p").text(this.adat.leírás);
-    this.elem.children("div").children("h2").text(this.adat.típus);
+    this.elem.children("div").children("p").text(this.adat.leiras);
+    this.elem.children("div").children("h2").text(this.adat.tipus);
     this.napokTarolo = this.elem
       .children(".mtc-inline-grid")
       .children(".aktualisnapok");

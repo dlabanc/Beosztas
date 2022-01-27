@@ -79,7 +79,9 @@ $(function(){
 
     function infoAblak(){
       ajax.ajaxApiGet(apivegpont+"/alkalmazottak",(adatok)=>{$(".stat1value").html(`${adatok.length}`)});
-      ajax.ajaxApiGet(apivegpont+"/alkalmazottak",(adatok)=>{$(".stat2value").html(`${adatok[adatok.length-1].név}`)});
+      ajax.ajaxApiGet(apivegpont+"/alkalmazottak",(adatok)=>{
+        console.log(adatok);
+        $(".stat2value").html(`${adatok[adatok.length-1].nev}`)});
       ajax.ajaxGet(local+"bejelentkezesi_adatok.json",(adatok)=>{$(".stat4value").html(`${adatok.length}`)});
       ajax.ajaxApiGet(apivegpont+"/faliujsagok",(adatok)=>{
         let d = new Date();

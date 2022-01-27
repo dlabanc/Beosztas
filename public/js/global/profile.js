@@ -2,7 +2,7 @@
 
 $(function () {
   const ajax = new Ajax();
-  ajax.ajaxGet("../json/alkalmazott.json",(adatok)=>{
+  ajax.ajaxApiGet("http://localhost:8000/api/alkalmazottak",(adatok)=>{
     
   sor = 0;
 
