@@ -52,7 +52,7 @@ class MuszakEloszlasController extends Controller
      */
     public function show($muszakTipus, $muszakSzam)
     {
-        $muszakeloszlas=MuszakEloszlas::where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)->first();
+        $muszakeloszlas = MuszakEloszlas::where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)->first();
         return $muszakeloszlas;
     }
 
@@ -81,6 +81,7 @@ class MuszakEloszlasController extends Controller
         $muszakeloszlas->muszakszam = $request->muszakszam;
         $muszakeloszlas->oratol = $request->oratol;
         $muszakeloszlas->oraig = $request->oraig;
+        $muszakeloszlas->save();
     }
 
     /**
