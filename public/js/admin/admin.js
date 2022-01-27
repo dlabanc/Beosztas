@@ -100,7 +100,7 @@ $(function(){
         $(".stat3value").html(`${db}`)
       });
     }
-    //Admin események/
+
     $(window).on("torles",({detail})=>{
       
       
@@ -110,12 +110,11 @@ $(function(){
       }
       else if(detail instanceof Muszaktipus)
       {
+        console.log(detail," ",detail.adat.tipus);
         let api = "http://localhost:8000/api/muszaktipus";
         ajax.ajaxApiDelete(api,detail.adat.tipus);
       }
       
     })
-
-
 
 });

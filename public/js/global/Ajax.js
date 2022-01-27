@@ -1,10 +1,11 @@
-export class Ajax{
-    constructor(){
-        this.token = $('meta[name="csrf-token"]').attr('content');
-        
+ class Ajax{
+
+    constructor(token){
+    this.token = token;
+   
     }
 
-  ajaxGet(vegpont,callback){
+    ajaxGet(vegpont,callback){
         $.ajax(
             {
                 dataType : 'json',
@@ -33,17 +34,17 @@ export class Ajax{
         );
     }
     
-   ajaxApiDelete(apivegpont,id){   
+   ajaxApiDelete(apivegpont,id){
+    
         $.ajax(
+            
             {
-                headers: {
-                    'X-CSRF-TOKEN': this.token  
-                },
+                headers: {'X-CSRF-TOKEN': this.token},
                 url: apivegpont+"/"+id, 
                 
                 type: "DELETE",
-                success: function(){
-                   alert("siker");
+                success:()=>{
+                    alert("VIIIIIIII")
                 },
                 error:function(data,textStatus,errorThrown){
                     alert(data.responseJSON.message);

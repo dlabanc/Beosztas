@@ -1,7 +1,9 @@
-import { Ajax } from "../global/Ajax.js";
+
 
 $(function () {
-    const {ajaxGet} = new Ajax();
+    const token=$('meta[name="csrf-token"]').attr('content');
+    const ajax = new Ajax(token);
+    const {ajaxGet} = ajax ;
     muszakNaphozRendelese();
     munkakorok();
     muszakok();

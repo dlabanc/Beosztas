@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css" />
     <link
       rel="stylesheet"
@@ -19,10 +20,10 @@
     <script src="/node_modules/darkmode-js/lib/darkmode-js.min.js"></script>
     <script src="/js/global/Oldalesemenyek.js"></script>
     <script src="/js/global/Osztalyok.js"></script>
-    <script type="module" src="/js/managermenu/manager.js"></script>
+    <script src="/js/global/Ajax.js"></script>
     
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   
+    <script src="/js/managermenu/manager.js"></script>
     <title>Üzletvezető</title>
   </head>
   <div class="managerinfo">
