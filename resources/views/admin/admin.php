@@ -59,6 +59,9 @@
       
     </header>
     <article>
+    <div class="loading">Loading...
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
         <div id="Alkalmazottak" class="tabcontent">
             <h3>Alkalmazottak</h3>
             
