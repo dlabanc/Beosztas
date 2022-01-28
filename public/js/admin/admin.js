@@ -51,8 +51,9 @@ $(function () {
     function beallitasok(eredmeny, szulo, osztaly) {
         
         const SZULO = $(szulo);
-        
-       SZULO.closest(".tabcontent").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
+       
+        SZULO.closest(".tabcontent").find(".search").remove();
+        SZULO.closest(".tabcontent").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
         
         let fej = "";
         let i = 0;
