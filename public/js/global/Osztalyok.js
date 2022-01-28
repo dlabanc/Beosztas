@@ -18,6 +18,13 @@ class Adminelemek {
     this.elem.find(".admin-torol").on("click",(event)=>{
       this.torol();
     }); 
+    this.clone.find(".admin-mod-ok").on("click", () => {
+      
+      this.mentes();
+      }
+      
+    );
+    
     
   }
 
@@ -43,14 +50,17 @@ class Adminelemek {
       this.elem.fadeIn(1000);
     });
      
-    
-
+  }
+  mentes(){
+    let esemeny = new CustomEvent("Mentes", { detail: this});
+    window.dispatchEvent(esemeny);
   }
 
   adatMegjelenit() {
     const TILOS = ["tipus","dolgozoi_azon","user_login","datum","muszakszam","munkakor","alkalmazott","muszaktipus","tol","ig","megnevezes","azonosito","nap","allapot","jelszo"]
     for (const key in this.adat) {
       this.elem.append(`<td>${this.adat[key]}</td>`);
+      
       if(TILOS.includes(key)){
         this.clone.append(`<td><label>${key}</label><br><input type="text" value="${this.adat[key]}" class="${key}" disabled></td>`);
       }
@@ -124,16 +134,16 @@ class Munkakor {
     this.elem = $(".circle:last");
     this.elem
       .children("h2")
-      .text(this.adat.megnevezés.substring(0, 1).toUpperCase());
+      .text(this.adat.megnevezes.substring(0, 1).toUpperCase());
     this.szulo
       .children(".munkakor-content:last")
       .children(".cimsor")
       .children("h3")
-      .text(this.adat.megnevezés);
+      .text(this.adat.megnevezes);
     this.szulo
       .children(".munkakor-content:last")
       .children("p")
-      .text(this.adat.leírás);
+      .text(this.adat.leiras);
   }
 }
 
@@ -369,10 +379,14 @@ class Alkalmazott extends Adminelemek {
     super(szulo,adat,ajax);
     this.api = "http://localhost:8000/api/alkalmazott";
     this.apivegpont="http://localhost:8000/api/alkalmazottak";
-    
+    console.log(this.adat);
   }
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.adat.dolgozoi_azon);
+  }
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.adat.dolgozoi_azon,this.adat);
   }
  
 }
@@ -386,7 +400,10 @@ class FaliujsagPost extends Adminelemek {
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.adat.azonosito);
   }
- 
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.adat.azonosito,this.adat);
+  }
 }
 class MunkakorA extends Adminelemek {
   constructor(szulo,adat,ajax){
@@ -398,6 +415,10 @@ class MunkakorA extends Adminelemek {
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.adat.megnevezes);
   }
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.adat.megnevezes,this.adat);
+  }
 }
 class Bejelentkezes extends Adminelemek {}
 class Muszaktipus extends Adminelemek {
@@ -406,17 +427,11 @@ class Muszaktipus extends Adminelemek {
     this.api = "http://localhost:8000/api/muszaktipus";
     this.apivegpont="http://localhost:8000/api/muszaktipusok";
 
-    this.clone.find(".admin-mod-ok").on("click", () => {
-      
-      this.MuszakModosit();
-      }
-      
-    );
-    
+   
   }
-  MuszakModosit(){
-    let esemeny = new CustomEvent("Muszakmodosit", { detail: this });
-    window.dispatchEvent(esemeny);
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.adat.tipus,this.adat);
   }
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.adat.tipus);
@@ -432,6 +447,11 @@ class Napimunkaeroigeny extends Adminelemek {
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.id);
   }
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.id,this.adat);
+  }
+  
 }
 class Napok extends Adminelemek {
   constructor(szulo,adat,ajax){
@@ -443,6 +463,7 @@ class Napok extends Adminelemek {
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.id);
   }
+  
 }
 class Beosztas extends Adminelemek {
   constructor(szulo,adat,ajax){
@@ -453,6 +474,10 @@ class Beosztas extends Adminelemek {
   }
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.id);
+  }
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.id,this.adat);
   }
 }
 class Szabadsag extends Adminelemek {
@@ -465,6 +490,10 @@ class Szabadsag extends Adminelemek {
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.id);
   }
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.id,this.adat);
+  }
 }
 class Nemdolgozna extends Adminelemek {
   constructor(szulo,adat,ajax){
@@ -475,5 +504,9 @@ class Nemdolgozna extends Adminelemek {
   }
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.id);
+  }
+  put(){
+    this.ajax.ajaxApiPut(
+      this.api,this.id,this.adat);
   }
 }

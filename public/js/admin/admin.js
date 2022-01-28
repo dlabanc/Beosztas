@@ -4,12 +4,12 @@ $(function () {
     const ajax = new Ajax(token);
     const local = "../json/";
     const apivegpont = "http://localhost:8000/api";
-    let objektumszam = 0;
+   
     ajaxHivasok();
 
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
-        console.log(objektumszam);
+        
     });
 
     infoAblak();
@@ -58,7 +58,7 @@ $(function () {
         $(`${szulo} .fejlec`).html(fej);
         eredmeny.forEach((e, index) => {
             let objektum = new osztaly(SZULO, e, ajax);
-            objektumszam++;
+      
         });
     }
 
@@ -93,19 +93,37 @@ $(function () {
     }
 
     //Modosit
-    $(window).on("Muszakmodosit", ({ detail }) => {
+    $(window).on("Mentes", ({ detail }) => {
         for (const key in detail.adat) {
             let ertek = detail.clone.find(`.${key}`).val();
+            if(ertek=="null"){ertek=""}
             detail.adat[key] = ertek;
+            
         }
-
-        ajax.ajaxApiPut(
-            "http://localhost:8000/api/muszaktipus",
-            detail.adat.tipus,
-            detail.adat
-        );
+        
+        detail.put();
         detail.node.find("tr").remove();
-        ajax.ajaxApiGet(apivegpont + "/muszaktipusok", muszakTipusAdmin);
+        
+        if (detail instanceof Alkalmazott) {
+          ajax.ajaxApiGet(detail.apivegpont, alkalmazottAdmin);
+      } else if (detail instanceof Muszaktipus) {
+          ajax.ajaxApiGet(detail.apivegpont, muszakTipusAdmin);
+      } else if (detail instanceof MunkakorA) {
+          ajax.ajaxApiGet(detail.apivegpont, munkakorAdmin);
+      } else if (detail instanceof Bejelentkezes) {
+      } else if (detail instanceof FaliujsagPost) {
+          ajax.ajaxApiGet(detail.apivegpont, faliujsagAdmin);
+      } else if (detail instanceof Napimunkaeroigeny) {
+          ajax.ajaxApiGet(detail.apivegpont, napiMunkaEroIgenyAdmin);
+      } else if (detail instanceof Napok) {
+          ajax.ajaxApiGet(detail.apivegpont, napokAdmin);
+      } else if (detail instanceof Beosztas) {
+          ajax.ajaxApiGet(detail.apivegpont, beosztasAdmin);
+      } else if (detail instanceof Nemdolgozna) {
+          ajax.ajaxApiGet(detail.apivegpont, nemdolgoznaAdmin);
+      } else if (detail instanceof Szabadsag) {
+          ajax.ajaxApiGet(detail.apivegpont, szabadsagAdmin);
+      }
     });
     //Torles
    
@@ -114,28 +132,28 @@ $(function () {
         detail.delete();
         detail.node.find("tr").remove();
         delete detail;
-        location.reload();
-        
-        // if (detail instanceof Alkalmazott) {
-        //     ajax.ajaxApiGet(detail.apivegpont, alkalmazottAdmin);
-        // } else if (detail instanceof Muszaktipus) {
-        //     ajax.ajaxApiGet(detail.apivegpont, muszakTipusAdmin);
-        // } else if (detail instanceof MunkakorA) {
-        //     ajax.ajaxApiGet(detail.apivegpont, munkakorAdmin);
-        // } else if (detail instanceof Bejelentkezes) {
-        // } else if (detail instanceof FaliujsagPost) {
-        //     ajax.ajaxApiGet(detail.apivegpont, faliujsagAdmin);
-        // } else if (detail instanceof Napimunkaeroigeny) {
-        //     ajax.ajaxApiGet(detail.apivegpont, napiMunkaEroIgenyAdmin);
-        // } else if (detail instanceof Napok) {
-        //     ajax.ajaxApiGet(detail.apivegpont, napokAdmin);
-        // } else if (detail instanceof Beosztas) {
-        //     ajax.ajaxApiGet(detail.apivegpont, beosztasAdmin);
-        // } else if (detail instanceof Nemdolgozna) {
-        //     ajax.ajaxApiGet(detail.apivegpont, nemdolgoznaAdmin);
-        // } else if (detail instanceof Szabadsag) {
-        //     ajax.ajaxApiGet(detail.apivegpont, szabadsagAdmin);
-        // }
+       
+
+        if (detail instanceof Alkalmazott) {
+            ajax.ajaxApiGet(detail.apivegpont, alkalmazottAdmin);
+        } else if (detail instanceof Muszaktipus) {
+            ajax.ajaxApiGet(detail.apivegpont, muszakTipusAdmin);
+        } else if (detail instanceof MunkakorA) {
+            ajax.ajaxApiGet(detail.apivegpont, munkakorAdmin);
+        } else if (detail instanceof Bejelentkezes) {
+        } else if (detail instanceof FaliujsagPost) {
+            ajax.ajaxApiGet(detail.apivegpont, faliujsagAdmin);
+        } else if (detail instanceof Napimunkaeroigeny) {
+            ajax.ajaxApiGet(detail.apivegpont, napiMunkaEroIgenyAdmin);
+        } else if (detail instanceof Napok) {
+            ajax.ajaxApiGet(detail.apivegpont, napokAdmin);
+        } else if (detail instanceof Beosztas) {
+            ajax.ajaxApiGet(detail.apivegpont, beosztasAdmin);
+        } else if (detail instanceof Nemdolgozna) {
+            ajax.ajaxApiGet(detail.apivegpont, nemdolgoznaAdmin);
+        } else if (detail instanceof Szabadsag) {
+            ajax.ajaxApiGet(detail.apivegpont, szabadsagAdmin);
+        }
         
     });
 

@@ -40,6 +40,7 @@ class MunkakorController extends Controller
         $munkakor->megnevezes = $request->megnevezes;
         $munkakor->leiras = $request->leiras;
         $munkakor->munkafonok = $request->munkafonok;
+        $munkakor->save();
     }
 
     /**
@@ -78,6 +79,7 @@ class MunkakorController extends Controller
         $munkakor->megnevezes = $request->megnevezes;
         $munkakor->leiras = $request->leiras;
         $munkakor->munkafonok = $request->munkafonok;
+        $munkakor->save();
     }
 
     /**
