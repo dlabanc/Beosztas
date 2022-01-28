@@ -31,11 +31,7 @@ class Adminelemek {
     this.elem.hide();
     this.clone.fadeIn(1000);
     this.clone.find(".admin-mod-ok").on("click",()=>{
-      for (const key in this.adat) {
-        this.adat[key] = this.clone.find(`.${key}`).val();
-        
-       }
-       console.log(this);
+      
       this.clone.hide();
       this.elem.fadeIn(1000);
     });
@@ -51,14 +47,21 @@ class Adminelemek {
   }
 
   adatMegjelenit() {
+    const TILOS = ["tipus","dolgozoi_azon","user_login","datum","muszakszam","munkakor","alkalmazott","muszaktipus","tol","ig","megnevezes","azonosito","nap","allapot","jelszo"]
     for (const key in this.adat) {
       this.elem.append(`<td>${this.adat[key]}</td>`);
-      this.clone.append(`<td><label>${key}</label><br><input type="text" value="${this.adat[key]}" class="${key}"></td>`);
+      if(TILOS.includes(key)){
+        this.clone.append(`<td><label>${key}</label><br><input type="text" value="${this.adat[key]}" class="${key}" disabled></td>`);
+      }
+      else{
+        this.clone.append(`<td><label>${key}</label><br><input type="text" value="${this.adat[key]}" class="${key}"></td>`);
+      }
+      
     }
     this.clone.append(`<td><button class="fas fa-check admin-mod-ok"></button></td>`);
     this.clone.append(`<td><button class="fas fa-times admin-mod-megse"></button></td>`);
     this.elem.append(`<td><button class="fas fa-ban admin-torol"></button></td>`);
-   
+    $(".Alkalmazottak").find(".munkakor").prop("disabled",false);
     
     this.clone.hide();
   }
@@ -371,10 +374,17 @@ class Muszaktipus extends Adminelemek {
   constructor(szulo,adat){
     super(szulo,adat);
     
-    this.elem.find(".admin-edit").on("click", () => {
-      this.modosit();
+    this.clone.find(".admin-mod-ok").on("click", () => {
+      
+      this.MuszakModosit();
      
+
+
     });
+  }
+  MuszakModosit(){
+    let esemeny = new CustomEvent("Muszakmodosit", { detail: this });
+    window.dispatchEvent(esemeny);
   }
 }
 class Napimunkaeroigeny extends Adminelemek {}

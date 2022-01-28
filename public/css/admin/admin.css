@@ -381,7 +381,7 @@ article{
     border: none;
     padding: .3rem;
     text-align: center;
-    background-color: var(--bs-teal);
+   
 }
 .mod input:focus{
     transition: .3s ease-in-out;

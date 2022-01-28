@@ -44,17 +44,31 @@
                 
                 type: "DELETE",
                 success:()=>{
-                    alert("VIIIIIIII")
+                    alert("Sikeres adattörlés");
                 },
                 error:function(data,textStatus,errorThrown){
                     alert(data.responseJSON.message);
-                        console.log(data);
-                        console.log(textStatus);
-                        console.log(errorThrown);
+                        
                 }
                 
             }
         );
+    }
+
+    ajaxApiPost(apivegpont,id,data){
+        $.ajax({
+            headers:{'X-CSRF-TOKEN':this.token},
+            type: "PUT",
+            url: apivegpont+"/"+id,
+            data: data,
+            success: ()=>{
+                alert("Sikeres adatmódosítás");
+            },
+            error:function(data,textStatus,errorThrown){
+                alert(data.responseJSON.message);
+                   
+            }
+        })
     }
 
  
