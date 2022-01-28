@@ -129,7 +129,7 @@ header{
 }
 .box{
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-    
+    border-radius: 15px;
 }
 
 aside nav{
@@ -142,7 +142,7 @@ aside nav{
     cursor: pointer;
     justify-self: center;
     height: 100%;
-    
+    border-radius: 15px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 .tabcontent {
@@ -372,14 +372,26 @@ article{
     padding-bottom: 10px;
 }
 
-.mod td{
- background-color: var(--bs-teal);
- 
-}
-.mod input{
-    text-align: center;
-}
+.mod{
+    background-color: var(--bs-teal);
 
+}
+.mod td input{
+    margin-top: 1rem;
+    border: none;
+    padding: .3rem;
+    text-align: center;
+    background-color: var(--bs-teal);
+}
+.mod input:focus{
+    transition: .3s ease-in-out;
+    background-color: var(--always-white);
+}
+.mod label{
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: .3rem;
+}
 
 
 .mod button{

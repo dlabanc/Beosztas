@@ -14,14 +14,15 @@ $(function () {
     const ajax = new Ajax(token);
     const local = "../json/";
     const apivegpont = "http://localhost:8000/api";
-
+    
     $(document).ajaxStop(function () {
 
       $(".loading").fadeOut(1000,()=>{
         $("#Alkalmazottak").fadeIn(1000);
         $("#Alkalmazottak").css("visibility","visible");
       });
-      
+
+     
     });
 
     ajax.ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottAdmin);

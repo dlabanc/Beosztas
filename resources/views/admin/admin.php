@@ -30,7 +30,7 @@
             <div class="desc"> Összes Alkalmazott</div>
             
         </div>
-            <div class="stat1value">50</div>
+            <div class="stat1value"></div>
         </div>
         <div class="stat2 box" >
             <div class="allusers"> 
@@ -38,7 +38,7 @@
             <div class="desc"> Legújabb Alkalmazott</div>
             
         </div>
-            <div class="stat2value">Labanc Dániel</div>
+            <div class="stat2value"></div>
         </div>
         <div class="stat3 box">
             <div class="allusers"> 
@@ -46,7 +46,7 @@
             <div class="desc"> Mai bejegyzések száma</div>
             
         </div>
-            <div class="stat3value">12</div>
+            <div class="stat3value"></div>
         </div>
         <div class="stat4 box">
             <div class="allusers"> 
@@ -54,7 +54,7 @@
             <div class="desc">Összes bejelentkezés</div>
             
         </div>
-            <div class="stat4value">32</div>
+            <div class="stat4value"></div>
         </div>
       
     </header>
