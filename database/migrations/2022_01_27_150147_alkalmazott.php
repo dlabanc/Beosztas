@@ -25,7 +25,7 @@ class Alkalmazott extends Migration
             $table->unsignedTinyInteger('heti_oraszam');
             $table->date('szuletesi_datum');
             $table->date('munkaviszony_kezdete');
-            $table->date('munkaviszony_vege');
+            $table->date('munkaviszony_vege')->nullable();
         });
     }
 
