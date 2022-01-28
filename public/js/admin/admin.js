@@ -1,85 +1,51 @@
 $(function () {
-    const alkalmazottak = [];
-    const faliujsagok = [];
-    const munkakorok = [];
-    const bejelenetkezesek = [];
-    const muszaktipusok = [];
-    const napimunkaeroigenyek = [];
-    const napok = [];
-    const beosztasok = [];
-    const nemdolgoznanak = [];
-    const szabadsagok = [];
     const token = $('meta[name="csrf-token"]').attr("content");
     console.log(token);
     const ajax = new Ajax(token);
     const local = "../json/";
     const apivegpont = "http://localhost:8000/api";
-    
-
+    let objektumszam = 0;
+    ajaxHivasok();
 
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
+        console.log(objektumszam);
     });
-
-    
-    ajax.ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottAdmin);
-    ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagAdmin);
-    ajax.ajaxApiGet(apivegpont + "/munkakorok", munkakorAdmin);
-    ajax.ajaxGet(local + "bejelentkezesi_adatok.json", bejelenetkezesekAdmin);
-    ajax.ajaxApiGet(apivegpont + "/muszaktipusok", muszakTipusAdmin);
-    ajax.ajaxApiGet(
-        apivegpont + "/napimunkaeroigenyek",
-        napiMunkaEroIgenyAdmin
-    );
-    ajax.ajaxApiGet(apivegpont + "/napokossz", napokAdmin);
-    ajax.ajaxApiGet(apivegpont + "/beosztasok", beosztasAdmin);
-    ajax.ajaxApiGet(apivegpont + "/nemdolgoznaossz", nemdolgoznaAdmin);
-    ajax.ajaxApiGet(apivegpont + "/szabadsagok", szabadsagAdmin);
 
     infoAblak();
 
     function alkalmazottAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Alkalmazottak", Alkalmazott, alkalmazottak);
+        beallitasok(eredmeny, ".Alkalmazottak", Alkalmazott);
     }
     function faliujsagAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Faliujsag", FaliujsagPost, faliujsagok);
+        beallitasok(eredmeny, ".Faliujsag", FaliujsagPost);
     }
     function munkakorAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Munkakorok", MunkakorA, munkakorok);
+        beallitasok(eredmeny, ".Munkakorok", MunkakorA);
     }
     function bejelenetkezesekAdmin(eredmeny) {
-        beallitasok(
-            eredmeny,
-            ".Bejelentkezési-adatok",
-            Bejelentkezes,
-            bejelenetkezesek
-        );
+        beallitasok(eredmeny, ".Bejelentkezési-adatok", Bejelentkezes);
     }
     function muszakTipusAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Muszaktipus", Muszaktipus, muszaktipusok);
+        beallitasok(eredmeny, ".Muszaktipus", Muszaktipus);
     }
     function napiMunkaEroIgenyAdmin(eredmeny) {
-        beallitasok(
-            eredmeny,
-            ".Napimunkaeroigeny",
-            Napimunkaeroigeny,
-            napimunkaeroigenyek
-        );
+        beallitasok(eredmeny, ".Napimunkaeroigeny", Napimunkaeroigeny);
     }
     function napokAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Napok", Napok, napok);
+        beallitasok(eredmeny, ".Napok", Napok);
     }
     function beosztasAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Beosztas", Beosztas, beosztasok);
+        beallitasok(eredmeny, ".Beosztas", Beosztas);
     }
     function nemdolgoznaAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Nemdolgozna", Nemdolgozna, nemdolgoznanak);
+        beallitasok(eredmeny, ".Nemdolgozna", Nemdolgozna);
     }
     function szabadsagAdmin(eredmeny) {
-        beallitasok(eredmeny, ".Szabadsag", Szabadsag, szabadsagok);
+        beallitasok(eredmeny, ".Szabadsag", Szabadsag);
     }
 
-    function beallitasok(eredmeny, szulo, osztaly, osztalyTomb) {
+    function beallitasok(eredmeny, szulo, osztaly) {
         const SZULO = $(szulo);
         let fej = "";
         let i = 0;
@@ -91,9 +57,8 @@ $(function () {
         fej += `<td></td><td></td>`;
         $(`${szulo} .fejlec`).html(fej);
         eredmeny.forEach((e, index) => {
-            let objektum = new osztaly(SZULO, e);
-
-            osztalyTomb.push(objektum);
+            let objektum = new osztaly(SZULO, e, ajax);
+            objektumszam++;
         });
     }
 
@@ -126,29 +91,70 @@ $(function () {
             $(".stat3value").html(`${db}`);
         });
     }
+
+    //Modosit
     $(window).on("Muszakmodosit", ({ detail }) => {
         for (const key in detail.adat) {
             let ertek = detail.clone.find(`.${key}`).val();
             detail.adat[key] = ertek;
         }
 
-        ajax.ajaxApiPost(
+        ajax.ajaxApiPut(
             "http://localhost:8000/api/muszaktipus",
             detail.adat.tipus,
             detail.adat
         );
-        detail.node.empty();
+        detail.node.find("tr").remove();
         ajax.ajaxApiGet(apivegpont + "/muszaktipusok", muszakTipusAdmin);
     });
-
+    //Torles
+   
     $(window).on("torles", ({ detail }) => {
-        if (detail instanceof Alkalmazott) {
-            let api = "http://localhost:8000/api/alkalmazott";
-            ajax.ajaxApiDelete(api, detail.adat.dolgozoi_azon);
-        } else if (detail instanceof Muszaktipus) {
-            console.log(detail, " ", detail.adat.tipus);
-            let api = "http://localhost:8000/api/muszaktipus";
-            ajax.ajaxApiDelete(api, detail.adat.tipus);
-        }
+        
+        detail.delete();
+        detail.node.find("tr").remove();
+        delete detail;
+        location.reload();
+        
+        // if (detail instanceof Alkalmazott) {
+        //     ajax.ajaxApiGet(detail.apivegpont, alkalmazottAdmin);
+        // } else if (detail instanceof Muszaktipus) {
+        //     ajax.ajaxApiGet(detail.apivegpont, muszakTipusAdmin);
+        // } else if (detail instanceof MunkakorA) {
+        //     ajax.ajaxApiGet(detail.apivegpont, munkakorAdmin);
+        // } else if (detail instanceof Bejelentkezes) {
+        // } else if (detail instanceof FaliujsagPost) {
+        //     ajax.ajaxApiGet(detail.apivegpont, faliujsagAdmin);
+        // } else if (detail instanceof Napimunkaeroigeny) {
+        //     ajax.ajaxApiGet(detail.apivegpont, napiMunkaEroIgenyAdmin);
+        // } else if (detail instanceof Napok) {
+        //     ajax.ajaxApiGet(detail.apivegpont, napokAdmin);
+        // } else if (detail instanceof Beosztas) {
+        //     ajax.ajaxApiGet(detail.apivegpont, beosztasAdmin);
+        // } else if (detail instanceof Nemdolgozna) {
+        //     ajax.ajaxApiGet(detail.apivegpont, nemdolgoznaAdmin);
+        // } else if (detail instanceof Szabadsag) {
+        //     ajax.ajaxApiGet(detail.apivegpont, szabadsagAdmin);
+        // }
+        
     });
+
+    function ajaxHivasok() {
+        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottAdmin);
+        ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagAdmin);
+        ajax.ajaxApiGet(apivegpont + "/munkakorok", munkakorAdmin);
+        ajax.ajaxGet(
+            local + "bejelentkezesi_adatok.json",
+            bejelenetkezesekAdmin
+        );
+        ajax.ajaxApiGet(apivegpont + "/muszaktipusok", muszakTipusAdmin);
+        ajax.ajaxApiGet(
+            apivegpont + "/napimunkaeroigenyek",
+            napiMunkaEroIgenyAdmin
+        );
+        ajax.ajaxApiGet(apivegpont + "/napokossz", napokAdmin);
+        ajax.ajaxApiGet(apivegpont + "/beosztasok", beosztasAdmin);
+        ajax.ajaxApiGet(apivegpont + "/nemdolgoznaossz", nemdolgoznaAdmin);
+        ajax.ajaxApiGet(apivegpont + "/szabadsagok", szabadsagAdmin);
+    }
 });

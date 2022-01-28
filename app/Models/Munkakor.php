@@ -9,7 +9,7 @@ class Munkakor extends Model
 {
     use HasFactory;
     protected $table = 'Munkakor';
-    protected $primaryKey = 'munkakor';
+    protected $primaryKey = 'megnevezes';
     public $incrementing = false;
     public $timestamps = false;
     

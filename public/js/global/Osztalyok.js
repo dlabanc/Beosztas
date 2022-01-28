@@ -1,7 +1,8 @@
 
 class Adminelemek {
-  constructor(szulo, adat) {
+  constructor(szulo, adat,ajax) {
     this.node = szulo;
+    this.ajax = ajax;
     szulo.append("<tr></tr>");
     this.elem = this.node.children("tr:last");
     szulo.append(`<tr class="mod"></tr>`)
@@ -364,31 +365,115 @@ class NapiMin{
 }
 
 class Alkalmazott extends Adminelemek {
-  
-  
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/alkalmazott";
+    this.apivegpont="http://localhost:8000/api/alkalmazottak";
+    
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.adat.dolgozoi_azon);
+  }
+ 
 }
-class FaliujsagPost extends Adminelemek {}
-class MunkakorA extends Adminelemek {}
+class FaliujsagPost extends Adminelemek {
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/faliujsag";
+    this.apivegpont="http://localhost:8000/api/faliujsagok";
+    
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.adat.azonosito);
+  }
+ 
+}
+class MunkakorA extends Adminelemek {
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/munkakor";
+    this.apivegpont="http://localhost:8000/api/munkakorok";
+    
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.adat.megnevezes);
+  }
+}
 class Bejelentkezes extends Adminelemek {}
 class Muszaktipus extends Adminelemek {
-  constructor(szulo,adat){
-    super(szulo,adat);
-    
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/muszaktipus";
+    this.apivegpont="http://localhost:8000/api/muszaktipusok";
+
     this.clone.find(".admin-mod-ok").on("click", () => {
       
       this.MuszakModosit();
-     
-
-
-    });
+      }
+      
+    );
+    
   }
   MuszakModosit(){
     let esemeny = new CustomEvent("Muszakmodosit", { detail: this });
     window.dispatchEvent(esemeny);
   }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.adat.tipus);
+  }
 }
-class Napimunkaeroigeny extends Adminelemek {}
-class Napok extends Adminelemek {}
-class Beosztas extends Adminelemek {}
-class Szabadsag extends Adminelemek {}
-class Nemdolgozna extends Adminelemek {}
+class Napimunkaeroigeny extends Adminelemek {
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/napimunkaeroigeny";
+    this.apivegpont="http://localhost:8000/api/napimunkaeroigenyek";
+    this.id = `${this.adat.datum}/${this.adat.muszaktipus}/${this.adat.muszakszam}/${this.adat.munkakor}`;
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.id);
+  }
+}
+class Napok extends Adminelemek {
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/napok";
+    this.apivegpont="http://localhost:8000/api/napokossz";
+    this.id =this.adat.nap;
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.id);
+  }
+}
+class Beosztas extends Adminelemek {
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/beosztas";
+    this.apivegpont="http://localhost:8000/api/beosztasok";
+    this.id = `${this.adat.datum}/${this.adat.muszaktipus}/${this.adat.muszakszam}/${this.adat.munkakor}/${this.adat.alkalmazott}`;
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.id);
+  }
+}
+class Szabadsag extends Adminelemek {
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/szabadsag";
+    this.apivegpont="http://localhost:8000/api/szabadsagok";
+    this. id = `${this.adat.alkalmazott}/${this.adat.tol}/${this.adat.ig}/`;
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.id);
+  }
+}
+class Nemdolgozna extends Adminelemek {
+  constructor(szulo,adat,ajax){
+    super(szulo,adat,ajax);
+    this.api = "http://localhost:8000/api/nemdolgozna";
+    this.apivegpont="http://localhost:8000/api/nemdolgoznaossz";
+    this.id = `${this.adat.alkalmazott}/${this.adat.datum}/${this.adat.muszaktipus}/${this.adat.muszakszam}/`;
+  }
+  delete(){
+    this.ajax.ajaxApiDelete(this.api, this.id);
+  }
+}

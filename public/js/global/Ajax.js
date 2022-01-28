@@ -55,7 +55,7 @@
         );
     }
 
-    ajaxApiPost(apivegpont,id,data){
+    ajaxApiPut(apivegpont,id,data){
         $.ajax({
             headers:{'X-CSRF-TOKEN':this.token},
             type: "PUT",
