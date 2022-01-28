@@ -63,6 +63,7 @@
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
         <div id="Alkalmazottak" class="tabcontent">
+        
             <h3>Alkalmazottak</h3>
             
             <table class="Alkalmazottak">

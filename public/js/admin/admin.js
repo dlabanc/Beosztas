@@ -9,6 +9,9 @@ $(function () {
 
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
+        $( ".search" ).keydown(function(e) {
+            console.log(e);
+          });
         
     });
 
@@ -46,7 +49,11 @@ $(function () {
     }
 
     function beallitasok(eredmeny, szulo, osztaly) {
+        
         const SZULO = $(szulo);
+        
+       SZULO.closest(".tabcontent").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
+        
         let fej = "";
         let i = 0;
         for (const key in eredmeny[0]) {
@@ -93,6 +100,7 @@ $(function () {
     }
 
     //Modosit
+  
     $(window).on("Mentes", ({ detail }) => {
         for (const key in detail.adat) {
             let ertek = detail.clone.find(`.${key}`).val();
