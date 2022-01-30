@@ -372,8 +372,10 @@ article{
     padding-bottom: 10px;
 }
 
-.mod{
+.mod {
+ 
     background-color: var(--bs-teal);
+    
 
 }
 .mod td input{
@@ -406,6 +408,7 @@ article{
 .admin-mod-gombok button:hover{
     background: var(--bs-teal);
 }
+
 .search{
     width: 20rem;
     height: 3rem;

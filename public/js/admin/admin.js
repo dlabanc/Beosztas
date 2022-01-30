@@ -57,6 +57,7 @@ $(function () {
     function beallitasok(eredmeny, szulo, osztaly) {
         
         const SZULO = $(szulo);
+        const fejlec = SZULO.find(".fejlec").clone();
         SZULO.empty(); 
         
         let fej = "";
@@ -67,6 +68,7 @@ $(function () {
             i++;
         }
         fej += `<td></td><td></td>`;
+        SZULO.prepend(fejlec);
         $(`${szulo} .fejlec`).html(fej);
         eredmeny.forEach((e, index) => {
             let objektum = new osztaly(SZULO, e, ajax);

@@ -36,18 +36,18 @@ class Adminelemek {
   modosit(){
     let esemeny = new CustomEvent("modosit", { detail: this });
     window.dispatchEvent(esemeny);
-    this.elem.hide();
+    
     this.clone.fadeIn(1000);
     this.clone.find(".admin-mod-ok").on("click",()=>{
       
-      this.clone.hide();
-      this.elem.fadeIn(1000);
+      
+    
     });
     this.clone.find(".admin-mod-megse").on("click",()=>{
      
    
-      this.clone.hide();
-      this.elem.fadeIn(1000);
+      this.clone.fadeOut(1000);
+      
     });
      
   }
@@ -73,8 +73,8 @@ class Adminelemek {
     this.clone.append(`<td><button class="fas fa-times admin-mod-megse"></button></td>`);
     this.elem.append(`<td><button class="fas fa-ban admin-torol"></button></td>`);
     $(".Alkalmazottak").find(".munkakor").prop("disabled",false);
-    
     this.clone.hide();
+   
   }
 
 }
