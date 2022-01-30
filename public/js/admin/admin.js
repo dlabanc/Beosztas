@@ -9,11 +9,16 @@ $(function () {
 
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
+        
+        
+    });
+  
+    
+    $(".Alkalmazottak").closest(".tabcontent").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
         $( ".search" ).keyup(function(e) {
             let ertek = $(this).val();
-            //ajax.ajaxApiGet(apivegpont + "/alkalmazott/search?q="+ertek, alkalmazottAdmin);
-          });
-        
+            console.log(ertek);        
+            ajax.ajaxApiGet(apivegpont + "/alkalmazott/search?q="+ertek, alkalmazottAdmin);
     });
 
     infoAblak();
@@ -52,9 +57,7 @@ $(function () {
     function beallitasok(eredmeny, szulo, osztaly) {
         
         const SZULO = $(szulo);
-       
-        SZULO.closest(".tabcontent").find(".search").remove();
-        SZULO.closest(".tabcontent").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
+        SZULO.empty(); 
         
         let fej = "";
         let i = 0;
@@ -69,6 +72,7 @@ $(function () {
             let objektum = new osztaly(SZULO, e, ajax);
       
         });
+        
     }
 
     function infoAblak() {
@@ -76,7 +80,7 @@ $(function () {
             $(".stat1value").html(`${adatok.length}`);
         });
         ajax.ajaxApiGet(apivegpont + "/alkalmazottak", (adatok) => {
-            console.log(adatok);
+           
             $(".stat2value").html(`${adatok[adatok.length - 1].nev}`);
         });
         ajax.ajaxGet(local + "bejelentkezesi_adatok.json", (adatok) => {
@@ -91,7 +95,7 @@ $(function () {
                 String(d.getMonth() + 1).padStart(2, "0") +
                 "-" +
                 String(d.getDate()).padStart(2, "0");
-            console.log(nap);
+         
             adatok.forEach((a) => {
                 if (a.mikor === nap) {
                     db++;

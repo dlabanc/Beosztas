@@ -379,7 +379,7 @@ class Alkalmazott extends Adminelemek {
     super(szulo,adat,ajax);
     this.api = "http://localhost:8000/api/alkalmazott";
     this.apivegpont="http://localhost:8000/api/alkalmazottak";
-    console.log(this.adat);
+    
   }
   delete(){
     this.ajax.ajaxApiDelete(this.api, this.adat.dolgozoi_azon);
