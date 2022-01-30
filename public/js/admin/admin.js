@@ -16,15 +16,23 @@ $(function () {
     
     $(".Alkalmazottak").closest(".tabcontent").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
         $( ".search" ).keyup(function(e) {
-            let ertek = $(this).val();
-            console.log(ertek);        
+            let ertek = $(this).val();            
             ajax.ajaxApiGet(apivegpont + "/alkalmazott/search?q="+ertek, alkalmazottAdmin);
+
+           
     });
 
     infoAblak();
 
     function alkalmazottAdmin(eredmeny) {
+        $(".Alkalmazottak").parent().find(".uj").remove();
+        $(".Alkalmazottak").parent().find(".ujmezo").remove();
+        
         beallitasok(eredmeny, ".Alkalmazottak", Alkalmazott);
+        if((eredmeny.length==0)){
+            $(".Alkalmazottak").parent().find(".uj").remove();
+            $(".Alkalmazottak").html("Sajnos nincs egyezés!");
+        }
     }
     function faliujsagAdmin(eredmeny) {
         beallitasok(eredmeny, ".Faliujsag", FaliujsagPost);
@@ -55,10 +63,13 @@ $(function () {
     }
 
     function beallitasok(eredmeny, szulo, osztaly) {
-        
+       
         const SZULO = $(szulo);
         const fejlec = SZULO.find(".fejlec").clone();
         SZULO.empty(); 
+        
+        SZULO.parent().find("h3").after(`<button class="fas fa-plus uj${osztaly.name} uj"></button>`);
+        SZULO.parent().find("h3").after("<div class='ujmezo'></div>");
         
         let fej = "";
         let i = 0;
@@ -70,11 +81,15 @@ $(function () {
         fej += `<td></td><td></td>`;
         SZULO.prepend(fejlec);
         $(`${szulo} .fejlec`).html(fej);
+        
+
         eredmeny.forEach((e, index) => {
             let objektum = new osztaly(SZULO, e, ajax);
-      
+            objektum.setUjGomb($(`.uj${osztaly.name}`));
+            
         });
-        
+      
+       
     }
 
     function infoAblak() {
@@ -108,6 +123,8 @@ $(function () {
     }
 
     //Modosit
+
+   
   
     $(window).on("Mentes", ({ detail }) => {
         for (const key in detail.adat) {

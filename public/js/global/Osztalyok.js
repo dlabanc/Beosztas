@@ -8,9 +8,10 @@ class Adminelemek {
     szulo.append(`<tr class="mod"></tr>`)
     this.clone= this.node.children(".mod:last");
     this.adat = adat;
-    this.adatMegjelenit();
-
     
+    this.adatMegjelenit();
+    
+   
     this.elem.on("click", () => {
       this.modosit();
       
@@ -24,7 +25,6 @@ class Adminelemek {
       }
       
     );
-    
     
   }
 
@@ -55,6 +55,45 @@ class Adminelemek {
     let esemeny = new CustomEvent("Mentes", { detail: this});
     window.dispatchEvent(esemeny);
   }
+  setUjGomb(gomb){
+    this.uj = gomb;
+    
+    this.uj.on("click",()=>{
+      this.node.parent().find("table").hide();
+      $(".search").hide();
+      this.node.parent().find(".ujmezo").html(`<fieldset><legend>Új Hozzáadása</legend></fieldset>`);
+      this.mezo = this.node.parent().find(".ujmezo fieldset");
+      for (const key in this.adat) {
+        this.mezo.append(`<input type="text" placeholder="${key}..."><br>`);
+      }
+      this.mezo.append('<div class="admin-new-buttons"></div>');
+      this.mezo.find(".admin-new-buttons").append(`<button class="fas fa-check admin-new-ok"></button>`);
+      this.mezo.find(".admin-new-buttons").append(`<button class="fas fa-times admin-new-megse"></button>`);
+      this.mezo.slideDown(1000);
+      this.uj.hide();
+      this.mezo.find(".admin-new-megse").on("click",()=>{
+        this.mezo.slideUp(1000);
+        this.mezo.empty();
+        this.uj.show();
+        this.node.parent().find("table").show();
+        $(".search").show();
+      });
+      this.mezo.find(".admin-new-ok").on("click",()=>{
+        
+        this.mezo.slideUp(1000);
+        this.mezo.empty();
+        this.uj.show();
+        this.node.parent().find("table").show();
+        $(".search").show();
+      });
+    });
+
+  
+    
+  }
+ 
+
+  
 
   adatMegjelenit() {
     const TILOS = ["tipus","dolgozoi_azon","user_login","datum","muszakszam","munkakor","alkalmazott","muszaktipus","tol","ig","megnevezes","azonosito","nap","allapot","jelszo"]
@@ -74,7 +113,7 @@ class Adminelemek {
     this.elem.append(`<td><button class="fas fa-ban admin-torol"></button></td>`);
     $(".Alkalmazottak").find(".munkakor").prop("disabled",false);
     this.clone.hide();
-   
+    
   }
 
 }
@@ -375,6 +414,7 @@ class NapiMin{
 }
 
 class Alkalmazott extends Adminelemek {
+ 
   constructor(szulo,adat,ajax){
     super(szulo,adat,ajax);
     this.api = "http://localhost:8000/api/alkalmazott";
