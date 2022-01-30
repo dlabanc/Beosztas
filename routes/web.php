@@ -45,6 +45,7 @@ Route::get('/login', function () {
 });
 
 ##ALKALMAZOTT
+Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
 Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
 Route::get('/api/alkalmazott/{id}', [AlkalmazottController::class, 'show']);
 Route::put('/api/alkalmazott/{id}', [AlkalmazottController::class, 'update']);

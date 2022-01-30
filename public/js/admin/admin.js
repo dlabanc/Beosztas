@@ -9,8 +9,9 @@ $(function () {
 
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
-        $( ".search" ).keydown(function(e) {
-            console.log(e);
+        $( ".search" ).keyup(function(e) {
+            let ertek = $(this).val();
+            //ajax.ajaxApiGet(apivegpont + "/alkalmazott/search?q="+ertek, alkalmazottAdmin);
           });
         
     });

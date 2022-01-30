@@ -112,4 +112,19 @@ class AlkalmazottController extends Controller
         $alkalmazott = Alkalmazott::find($alkalmazottId);
         $alkalmazott->delete();
     }
+
+    public function search(Request $request)
+    {
+        $queryString = $request->query('q');
+        $tasks=Alkalmazott::select('*');
+
+        $columns = \Schema::getColumnListing('alkalmazott');
+
+        foreach ($columns as $column) {
+            $tasks->orWhere(function ($tasks) use ($column, $queryString){
+                $tasks->orWhere($column,'like', '%' . $queryString . '%');
+            });
+        }
+        return $tasks->get();
+    }
 }
