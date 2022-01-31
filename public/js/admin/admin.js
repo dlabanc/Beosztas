@@ -81,7 +81,9 @@ $(function () {
             $(".stat1value").html(`${adatok.length}`);
         });
         ajax.ajaxApiGet(apivegpont + "/alkalmazottak", (adatok) => {
+            if(adatok.length>0){
             $(".stat2value").html(`${adatok[adatok.length - 1].nev}`);
+        }
         });
         ajax.ajaxGet(local + "bejelentkezesi_adatok.json", (adatok) => {
             $(".stat4value").html(`${adatok.length}`);
@@ -193,7 +195,7 @@ $(function () {
     function munkakorInput(mezo) {
         mezo.append(`<div class="label-input"><label>Megnevezés:</label><input type="text" placeholder="Megnevezés..." name="megnevezes"></div>`);
         mezo.append(`<div class="label-input"><label>Leírás:</label><input type="text" placeholder="Leírás" name="leiras"></div>`);
-        mezo.append(`<div class="label-input"><label>Munkafőnök:</label><input type="number" placeholder="Munkafőnök száma" name="munkafonok"></div>`);
+        mezo.append(`<div class="label-input"><label>Munkafőnök:</label><input type="text" placeholder="Munkafőnök száma" name="munkafonok"></div>`);
     }
     //Kész - nem működik (nincs route)
     function bejelentkezesekInput(mezo) {
