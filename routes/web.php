@@ -114,3 +114,10 @@ Route::get('/api/szabadsag/{alkalmazott}/{tol}/{ig}', [SzabadsagController::clas
 Route::put('/api/szabadsag/{alkalmazott}/{tol}/{ig}', [SzabadsagController::class, 'update']);
 Route::post('/api/szabadsag', [SzabadsagController::class, 'store']);
 Route::delete('/api/szabadsag/{alkalmazott}/{tol}/{ig}', [SzabadsagController::class, 'destroy']);
+
+##BEJELENTKEZESIADATOK
+Route::get('/api/bejelentkezesiadatok', [SzabadsagController::class, 'index']);
+Route::get('/api/bejelentkezesiadat/{id}', [SzabadsagController::class, 'show']);
+Route::put('/api/bejelentkezesiadat/{id}', [SzabadsagController::class, 'update']);
+Route::post('/api/bejelentkezesiadat', [SzabadsagController::class, 'store']);
+Route::delete('/api/bejelentkezesiadat/{id}', [SzabadsagController::class, 'destroy']);
