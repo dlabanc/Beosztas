@@ -137,6 +137,7 @@
                 </table>
             </div>
             <div id="Nemdolgozna" class="tabcontent">
+            
                 <h3>Nemdolgozna Admin</h3>
                 <table class="Nemdolgozna">
                     <thead class="fejlec">
