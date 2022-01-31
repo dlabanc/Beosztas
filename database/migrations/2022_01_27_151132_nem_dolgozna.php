@@ -20,8 +20,7 @@ class NemDolgozna extends Migration
             $table->unsignedTinyInteger('muszakszam');
             $table->primary(['alkalmazott','datum','muszaktipus','muszakszam']);
             $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('muszaktipus')->references('muszaktipus')->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('muszakszam')->references('muszakszam')->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign(['muszaktipus', 'muszakszam'])->references(['muszaktipus', 'muszakszam'])->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
         });
     }
 

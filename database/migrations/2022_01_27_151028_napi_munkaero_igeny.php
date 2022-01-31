@@ -20,9 +20,11 @@ class NapiMunkaeroIgeny extends Migration
             $table->string('munkakor',50);
             $table->unsignedTinyInteger('db');
             $table->primary(['datum', 'muszaktipus', 'muszakszam', 'munkakor']);
-            $table->foreign('muszaktipus')->references('muszaktipus')->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('muszakszam')->references('muszakszam')->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
+            $table->index(['muszaktipus', 'muszakszam', 'munkakor']);
+            $table->foreign('datum')->references('nap')->on('napok')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign(['muszaktipus', 'muszakszam'])->references(['muszaktipus', 'muszakszam'])->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('munkakor')->references('megnevezes')->on('munkakor')->onDelete('restrict')->onUpdate('restrict');
+            
         });
     }
 

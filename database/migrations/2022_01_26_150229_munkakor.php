@@ -16,7 +16,7 @@ class Munkakor extends Migration
         Schema::create('munkakor', function (Blueprint $table) {
             $table->string('megnevezes',50)->primary();
             $table->string('leiras',255);
-            $table->unsignedMediumInteger('munkafonok');
+            $table->unsignedMediumInteger('munkafonok')->nullable();
         });
     }
 

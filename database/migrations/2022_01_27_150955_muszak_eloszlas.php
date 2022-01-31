@@ -15,7 +15,7 @@ class MuszakEloszlas extends Migration
     {
         Schema::create('muszakeloszlas', function (Blueprint $table) {
             $table->string('muszaktipus',5);
-            $table->unsignedTinyInteger('muszakszam')->unique();
+            $table->unsignedTinyInteger('muszakszam');
             $table->unsignedTinyInteger('oratol');
             $table->unsignedTinyInteger('oraig');
             $table->primary(['muszaktipus', 'muszakszam']);

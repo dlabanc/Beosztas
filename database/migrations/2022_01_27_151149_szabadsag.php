@@ -15,8 +15,8 @@ class Szabadsag extends Migration
     {
         Schema::create('szabadsag', function (Blueprint $table) {
             $table->unsignedMediumInteger('alkalmazott');
-            $table->unsignedTinyInteger('tol');
-            $table->unsignedTinyInteger('ig');
+            $table->date('tol');
+            $table->date('ig');
             $table->string('szabadsagtipus',1);
             $table->primary(['alkalmazott','tol','ig']);
             $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');

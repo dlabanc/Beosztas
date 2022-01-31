@@ -21,9 +21,8 @@ class Beosztas extends Migration
             $table->unsignedMediumInteger('alkalmazott');
             $table->primary(['datum', 'muszaktipus', 'muszakszam', 'munkakor', 'alkalmazott'],'datum_muszaktipus_muszakszam_munkakor_alkalmazott_primary');
             $table->foreign('datum')->references('datum')->on('napimunkaeroigeny')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('muszaktipus')->references('muszaktipus')->on('napimunkaeroigeny')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('muszakszam')->references('muszakszam')->on('napimunkaeroigeny')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('munkakor')->references('munkakor')->on('napimunkaeroigeny')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign(['muszaktipus', 'muszakszam', 'munkakor'])->references(['muszaktipus', 'muszakszam', 'munkakor'])
+            ->on('napimunkaeroigeny')->onDelete('restrict')->onUpdate('restrict');
             $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
         });
     }

@@ -16,16 +16,17 @@ class Alkalmazott extends Migration
         Schema::create('alkalmazott', function (Blueprint $table) {
             $table->mediumIncrements('dolgozoi_azon')->from(30000);
             $table->string('nev',255);
-            $table->string('munkakor',50);
-            $table->foreign('munkakor')->references('megnevezes')->on('munkakor')->onDelete('restrict')->onUpdate('restrict');
+            $table->string('lakcim',255);
+            $table->date('szuletesi_datum');            
             $table->string('adoazonosito',10)->unique();
             $table->string('taj',9)->unique();
             $table->string('elerhetoseg',255)->unique();
             $table->string('email',255)->unique();
+            $table->string('munkakor',50);
             $table->unsignedTinyInteger('heti_oraszam');
-            $table->date('szuletesi_datum');
             $table->date('munkaviszony_kezdete');
             $table->date('munkaviszony_vege')->nullable();
+            $table->foreign('munkakor')->references('megnevezes')->on('munkakor')->onDelete('restrict')->onUpdate('restrict');
         });
     }
 
