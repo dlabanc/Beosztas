@@ -110,29 +110,29 @@ $(function () {
             .parent()
             .find("h3").after(`<button class="fas fa-plus uj"></button><div class="ujmezo"></div>`);
 
-        ujFelvetele(".Nemdolgozna",nemDolgoznaInput,"Új Nem dolgozna felvétele");
-        ujFelvetele(".Szabadsag",szabadsagInput,"Új Szabadság felvétele");
-        ujFelvetele(".Beosztas",beosztasInput,"Új Beosztás felvétele");
-        ujFelvetele(".Napok",napokInput,"Új Nap felvétele");
-        ujFelvetele(".Napimunkaeroigeny",napimunkaeroigenyInput,"Új Napi Munkaerőígény felvétele");
-        ujFelvetele(".Muszaktipus",muszaktipusInput,"Új Műszaktípus felvétele");
-        ujFelvetele(".Faliujsag",faliujsagInput,"Új Faliújság felvétele");
-        ujFelvetele(".Bejelentkezési-adatok",bejelentkezesekInput,"Új Bejelentkezés felvétele");
-        ujFelvetele(".Munkakorok",munkakorInput,"Új Munkakör felvétele");
-        ujFelvetele(".Alkalmazottak",alkalmazottInput,"Új Alkalmazott felvétele");
+        ujFelvetele(".Nemdolgozna",nemDolgoznaInput,"Új Nem dolgozna felvétele",Nemdolgozna);
+        ujFelvetele(".Szabadsag",szabadsagInput,"Új Szabadság felvétele",Szabadsag);
+        ujFelvetele(".Beosztas",beosztasInput,"Új Beosztás felvétele",Beosztas);
+        ujFelvetele(".Napok",napokInput,"Új Nap felvétele",Napok);
+        ujFelvetele(".Napimunkaeroigeny",napimunkaeroigenyInput,"Új Napi Munkaerőígény felvétele",Napimunkaeroigeny);
+        ujFelvetele(".Muszaktipus",muszaktipusInput,"Új Műszaktípus felvétele",Muszaktipus);
+        ujFelvetele(".Faliujsag",faliujsagInput,"Új Faliújság felvétele",FaliujsagPost);
+        ujFelvetele(".Bejelentkezési-adatok",bejelentkezesekInput,"Új Bejelentkezés felvétele",Bejelentkezes);
+        ujFelvetele(".Munkakorok",munkakorInput,"Új Munkakör felvétele",MunkakorA);
+        ujFelvetele(".Alkalmazottak",alkalmazottInput,"Új Alkalmazott felvétele",Alkalmazott);
     }
 
-    function ujFelvetele(elem,inputok,cim) {
+    function ujFelvetele(elem,inputok,cim,osztaly) {
         $(elem)
             .parent()
             .find(".uj")
             .on("click", () => {
                 tablazat = $(elem);
-                add(tablazat, inputok,cim );
+                add(tablazat, inputok,cim,osztaly );
             });
     }
 
-    function add(tablazat, input,cim) {
+    function add(tablazat, input,cim,osztaly) {
         tablazat.hide();
         tablazat
             .parent()
@@ -154,81 +154,108 @@ $(function () {
             tablazat.show();
         });
         mezo.find(".admin-new-ok").on("click", () => {
+            let adatok = {};
+            for (let index = 0; index < mezo.find(".label-input input").length; index++) {
+                let ertek = (mezo.find(".label-input input").eq(index).val());
+                let kulcs = (mezo.find(".label-input input").eq(index).attr("name"));
+                adatok[kulcs] = ertek;
+                
+            }
+            
+            osztaly = new osztaly(tablazat,adatok,ajax);
+            osztaly.post(adatok);
+            
             mezo.slideUp(1000);
             mezo.empty();
             tablazat.show();
+            
+           
+           
         });
     }
+    //Nincs kész
     function alkalmazottInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Dolgozói azonosító:</label><input type="text" placeholder="Dolgozói Azonosító..."></div>`);
-        mezo.append(`<div class="label-input"><label>Név:</label><input type="text" placeholder="Név..."></div>`);
-        mezo.append(`<div class="label-input"><label>Munkakör:</label><input type="text" placeholder="Munkakör..."></div>`);
-        mezo.append(`<div class="label-input"><label>Adóazonosító:</label><input type="number" placeholder="Adóazonosító"></div>`);
-        mezo.append(`<div class="label-input"><label>Taj:</label><input type="number" placeholder="Taj..."></div>`);
-        mezo.append(`<div class="label-input"><label>Elérhetőség:</label><input type="phone" placeholder="+20 111 11 11"></div>`);
-        mezo.append(`<div class="label-input"><label>Email:</label><input type="email" placeholder="pelda@chillout.hu..."></div>`);
-        mezo.append(`<div class="label-input"><label>Heti óraszám:</label><input type="number" placeholder="Heti óraszám"></div>`);
-        mezo.append(`<div class="label-input"><label>Lakcím:</label><input type="text" placeholder="Lakcím"></div>`);
-        mezo.append(`<div class="label-input"><label>Munkaviszony kezdete:</label><input type="date"></div>`);
-        mezo.append(`<div class="label-input"><label>Munkaviszony vége:</label><input type="date"></div>`);
+        mezo.append(`<div class="label-input"><label>Dolgozói azonosító:</label><input type="text" placeholder="Dolgozói Azonosító..." name="dolgozoi_azon"></div>`);
+        mezo.append(`<div class="label-input"><label>Név:</label><input type="text" placeholder="Név..." name="nev"></div>`);
+        mezo.append(`<div class="label-input"><label>Munkakör:</label><input type="text" placeholder="Munkakör..." name="munkakor"></div>`);
+        mezo.append(`<div class="label-input"><label>Adóazonosító:</label><input type="number" placeholder="Adóazonosító" name="adoazonosito"></div>`);
+        mezo.append(`<div class="label-input"><label>Taj:</label><input type="number" placeholder="Taj..." name="taj"></div>`);
+        mezo.append(`<div class="label-input"><label>Elérhetőség:</label><input type="phone" placeholder="+20 111 11 11" name="elerhetoseg"></div>`);
+        mezo.append(`<div class="label-input"><label>Email:</label><input type="email" placeholder="pelda@chillout.hu..." name="email"></div>`);
+        mezo.append(`<div class="label-input"><label>Heti óraszám:</label><input type="number" placeholder="Heti óraszám" name="heti_oraszam"></div>`);
+        mezo.append(`<div class="label-input"><label>Lakcím:</label><input type="text" placeholder="Lakcím" name="lakcim"></div>`);
+        mezo.append(`<div class="label-input"><label>Születési dátum:</label><input type="date" name="szuletesi_datum"></div>`);
+        mezo.append(`<div class="label-input"><label>Munkaviszony kezdete:</label><input type="date" name="munkaviszony_kezdete"></div>`);
+        mezo.append(`<div class="label-input"><label>Munkaviszony vége:</label><input type="date" name="munkaviszony_vege"></div>`);
     }
+
+    //Kész
     function munkakorInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Megnevezés:</label><input type="text" placeholder="Megnevezés..."></div>`);
-        mezo.append(`<div class="label-input"><label>Leírás:</label><input type="text" placeholder="Leírás"></div>`);
-        mezo.append(`<div class="label-input"><label>Munkafőnök:</label><input type="number" placeholder="Munkafőnök száma"></div>`);
+        mezo.append(`<div class="label-input"><label>Megnevezés:</label><input type="text" placeholder="Megnevezés..." name="megnevezes"></div>`);
+        mezo.append(`<div class="label-input"><label>Leírás:</label><input type="text" placeholder="Leírás" name="leiras"></div>`);
+        mezo.append(`<div class="label-input"><label>Munkafőnök:</label><input type="number" placeholder="Munkafőnök száma" name="munkafonok"></div>`);
     }
-
+    //Kész - nem működik (nincs route)
     function bejelentkezesekInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..."></div>`);
-        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="password"></div>`);
+        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..." name="user_login"></div>`);
+        mezo.append(`<div class="label-input"><label>Jelszó:</label><input type="password" name="jelszo"></div>`);
     }
-
+    //Kész
     function faliujsagInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Dolgozói azonosító:</label><input type="text" placeholder="Dolgozói Azonosító..."></div>`);
-        mezo.append(`<div class="label-input"><label>Tartalom:</label><input type="text" placeholder="Tartalom..."></div>`);
-        mezo.append(`<div class="label-input"><label>Cím:</label><input type="textarea" placeholder="Cím..."></div>`);
-        mezo.append(`<div class="label-input"><label>Mikor:</label><input type="date""></div>`);
+        mezo.append(`<div class="label-input"><label>Dolgozói azonosító:</label><input type="text" placeholder="Dolgozói Azonosító..." name="dolgozoi_azon"></div>`);
+        mezo.append(`<div class="label-input"><label>Mikor:</label><input type="date"" name="mikor"></div>`);
+        mezo.append(`<div class="label-input"><label>Cím:</label><input type="textarea" placeholder="Cím..." name="cim"></div>`);
+        mezo.append(`<div class="label-input"><label>Tartalom:</label><input type="text" placeholder="Tartalom..." name="tartalom" ></div>`);
+        
+        
     }
-
+    //Kész
     function muszaktipusInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..."></div>`);
-        mezo.append(`<div class="label-input"><label>Leírás:</label><input type="textarea" placeholder="Műszaktípus..."></div>`);
+        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="tipus"></div>`);
+        mezo.append(`<div class="label-input"><label>Leírás:</label><input type="textarea" placeholder="Leírás..." name="leiras"></div>`);
+       
+    }
+    //Kész
+    function napimunkaeroigenyInput(mezo) {
+        mezo.append(`<div class="label-input"><label>Dátum:</label><input type="date"" name="datum"></div>`);
+        mezo.append(`<div class="label-input"><label>Műszakszám:</label><input type="text" placeholder="Műszakszám..." name="muszakszam"></div>`);
+        mezo.append(`<div class="label-input"><label>Munkakör:</label><input type="text" placeholder="Munkakör..." name="munkakor"></div>`);
+        mezo.append(`<div class="label-input"><label>Darab:</label><input type="number" name="db"></div>`);
+        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="muszaktipus"></div>`);
        
     }
 
-    function napimunkaeroigenyInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Dátum:</label><input type="date""></div>`);
-        mezo.append(`<div class="label-input"><label>Műszakszám:</label><input type="text" placeholder="Műszakszám..."></div>`);
-        mezo.append(`<div class="label-input"><label>Munkakör:</label><input type="text" placeholder="Munkakör..."></div>`);
-        mezo.append(`<div class="label-input"><label>Darab:</label><input type="number" ></div>`);
-        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..."></div>`);
-       
-    }
+    //Kész
     function napokInput(mezo) {
         
-        mezo.append(`<div class="label-input"><label>Nap:</label><input type="date""></div>`);
-        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..."></div>`);
-        mezo.append(`<div class="label-input"><label>Állapot:</label><input type="text" placeholder="1 vagy 0..."></div>`);
+        mezo.append(`<div class="label-input"><label>Nap:</label><input type="date"" name="nap"></div>`);
+        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="muszaktipus"></div>`);
+        mezo.append(`<div class="label-input"><label>Állapot:</label><input type="text" placeholder="1 vagy 0..." name="allapot"></div>`);
     }
 
+    //Kész
     function nemDolgoznaInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..."></div>`);
-        mezo.append(`<div class="label-input"><label>Dátum:</label><input type="date""></div>`);
-        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..."></div>`);
-        mezo.append(`<div class="label-input"><label>Műszakszám:</label><input type="text" placeholder="Műszakszám..."></div>`);
+        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..." name="alkalmazott"></div>`);
+        mezo.append(`<div class="label-input"><label>Dátum:</label><input type="date"" name="datum"></div>`);
+        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="muszaktipus"></div>`);
+        mezo.append(`<div class="label-input"><label>Műszakszám:</label><input type="text" placeholder="Műszakszám..." name="muszakszam"></div>`);
     }
+
+    //Kész
     function szabadsagInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..."></div>`);
-        mezo.append(`<div class="label-input"><label>Tól:</label><input type="date""></div>`);
-        mezo.append(`<div class="label-input"><label>Ig:</label><input type="date""></div>`);
-        mezo.append(`<div class="label-input"><label>Szabadságtípus:</label><input type="text" placeholder="Szabaságtípus..."></div>`);
+        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..." name="alkalmazott"></div>`);
+        mezo.append(`<div class="label-input"><label>Tól:</label><input type="date"" name="tol"></div>`);
+        mezo.append(`<div class="label-input"><label>Ig:</label><input type="date"" name="ig"></div>`);
+        mezo.append(`<div class="label-input"><label>Szabadságtípus:</label><input type="text" placeholder="Szabaságtípus..." name="szabadsagtipus"></div>`);
     }
+
+    //Kész
     function beosztasInput(mezo) {
-        mezo.append(`<div class="label-input"><label>Dátum:</label><input type="date""></div>`);
-        mezo.append(`<div class="label-input"><label>Műszakszám:</label><input type="text" placeholder="Műszakszám..."></div>`);
-        mezo.append(`<div class="label-input"><label>Munkakör:</label><input type="text" placeholder="Munkakör..."></div>`);
-        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..."></div>`);
-        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..."></div>`);
+        mezo.append(`<div class="label-input"><label>Dátum:</label><input type="date" name="datum"></div>`);
+        mezo.append(`<div class="label-input"><label>Műszakszám:</label><input type="text" placeholder="Műszakszám..." name="muszakszam"></div>`);
+        mezo.append(`<div class="label-input"><label>Munkakör:</label><input type="text" placeholder="Munkakör..." name="munkakor"></div>`);
+        mezo.append(`<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..." name="alkalmazott"></div>`);
+        mezo.append(`<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="muszaktipus"></div>`);
         
     }
 

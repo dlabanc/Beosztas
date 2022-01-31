@@ -1,4 +1,5 @@
 class Adminelemek {
+    
     constructor(szulo, adat, ajax) {
         this.node = szulo;
         this.ajax = ajax;
@@ -8,7 +9,8 @@ class Adminelemek {
         this.clone = this.node.children(".mod:last");
         this.adat = adat;
         this.adatMegjelenit();
-       
+        
+        
         this.elem.on("click", () => {
             this.modosit();
         });
@@ -20,6 +22,7 @@ class Adminelemek {
         });
 
     }
+
 
     torol() {
         let esemeny = new CustomEvent("torles", { detail: this });
@@ -40,11 +43,10 @@ class Adminelemek {
         let esemeny = new CustomEvent("Mentes", { detail: this });
         window.dispatchEvent(esemeny);
     }
-
-    uj(){
-      let esemeny = new CustomEvent("UjAdat", { detail: this });
-      window.dispatchEvent(esemeny);
+    post(adat){
+        this.ajax.ajaxApiPost(this.api,adat);
     }
+
 
     adatMegjelenit() {
         const TILOS = [
@@ -416,6 +418,7 @@ class FaliujsagPost extends Adminelemek {
         super(szulo, adat, ajax);
         this.api = "http://localhost:8000/api/faliujsag";
         this.apivegpont = "http://localhost:8000/api/faliujsagok";
+  
     }
     delete() {
         this.ajax.ajaxApiDelete(this.api, this.adat.azonosito);
@@ -423,6 +426,7 @@ class FaliujsagPost extends Adminelemek {
     put() {
         this.ajax.ajaxApiPut(this.api, this.adat.azonosito, this.adat);
     }
+    
 }
 class MunkakorA extends Adminelemek {
     constructor(szulo, adat, ajax) {
@@ -491,6 +495,7 @@ class Beosztas extends Adminelemek {
     }
 }
 class Szabadsag extends Adminelemek {
+    
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
         this.api = "http://localhost:8000/api/szabadsag";

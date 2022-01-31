@@ -71,6 +71,22 @@
         })
     }
 
+    ajaxApiPost(apivegpont,data){
+        $.ajax({
+            headers:{'X-CSRF-TOKEN':this.token},
+            type: "POST",
+            url: apivegpont,
+            data: data,
+            success: ()=>{
+                alert("Sikeres adatmódosítás");
+            },
+            error:function(data,textStatus,errorThrown){
+                alert(data.responseJSON.message);
+                   
+            }
+        })
+    }
+
  
 
 }
