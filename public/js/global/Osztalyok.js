@@ -10,7 +10,6 @@ class Adminelemek {
         this.adat = adat;
         this.adatMegjelenit();
         
-        
         this.elem.on("click", () => {
             this.modosit();
         });
@@ -46,6 +45,8 @@ class Adminelemek {
     post(adat){
         this.ajax.ajaxApiPost(this.api,adat);
     }
+   
+
 
 
     adatMegjelenit() {
@@ -413,6 +414,7 @@ class Alkalmazott extends Adminelemek {
         this.ajax.ajaxApiPut(this.api, this.adat.dolgozoi_azon, this.adat);
     }
 }
+
 class FaliujsagPost extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
@@ -426,7 +428,7 @@ class FaliujsagPost extends Adminelemek {
     put() {
         this.ajax.ajaxApiPut(this.api, this.adat.azonosito, this.adat);
     }
-    
+   
 }
 class MunkakorA extends Adminelemek {
     constructor(szulo, adat, ajax) {

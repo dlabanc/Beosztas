@@ -43,9 +43,7 @@
                 url: apivegpont+"/"+id, 
                 
                 type: "DELETE",
-                success:()=>{
-                    alert("Sikeres adattörlés");
-                },
+                
                 error:function(data,textStatus,errorThrown){
                     alert(data.responseJSON.message);
                         
@@ -61,9 +59,7 @@
             type: "PUT",
             url: apivegpont+"/"+id,
             data: data,
-            success: ()=>{
-                alert("Sikeres adatmódosítás");
-            },
+           
             error:function(data,textStatus,errorThrown){
                 alert(data.responseJSON.message);
                    
@@ -77,9 +73,7 @@
             type: "POST",
             url: apivegpont,
             data: data,
-            success: ()=>{
-                alert("Sikeres adatmódosítás");
-            },
+            
             error:function(data,textStatus,errorThrown){
                 alert(data.responseJSON.message);
                    

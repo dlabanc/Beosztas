@@ -15,10 +15,11 @@ $(function(){
             constructor(szulo,adat,kep){
                 this.szulo = szulo;
                 this.kep = kep;
+                if(adat != undefined){
                 this.szulo.append(`<div class="post"><h3></h3></div>`);
                 this.adat = adat;
                 this.elem = szulo.find(".post:last");
-                this.elem.find("h3").text(this.adat.cím);
+                this.elem.find("h3").text(this.adat.cim);
     
                 this.elem.on("click",(e)=>{
                     this.postElem = $(".post-info");
@@ -31,10 +32,12 @@ $(function(){
                   this.postElem
                     .children(".post-info-user-data")
                     .find("h3")
-                    .html(adat.cím);
+                    .html(adat.cim);
                  this.postElem.find(".post-img img").attr("src",this.kep);
                  
                 });
+                }
+               
                
             }
         }

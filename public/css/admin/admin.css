@@ -96,6 +96,7 @@ html{
 
 body{
  background-color: var(--fds-gray-05);
+
  height: 100%;    
 
  border-radius: 16px;
@@ -195,6 +196,7 @@ article{
     display: block;
     padding-right: 5px;
     color: rgb(24, 206, 167);
+    
   }
 aside nav ul{
    
@@ -254,6 +256,7 @@ aside nav ul li:hover{
   }
   .fa-users, .fa-child,.fa-bullhorn,.fa-sign-in-alt{
       color: var(--bs-green);
+      
       font-size: 25px;
       padding: 1rem;
       background-color: none;
