@@ -319,7 +319,7 @@ $(function () {
             });
             
             mezo.append(
-                `<div class="label-input"><label>Jelszó:</label><input type="password" name="jelszo" value="Aa123456"></div>`
+                `<div class="label-input"><label>Jelszó:</label><input type="password" name="jelszo" value="$2a$10$bADXh6Zh1Mnks0JStERP6.M3HZ2Zp8.r5/q7.nb/kvHQdlv.hZnii" disabled></div>`
             );
             callback();
        

@@ -443,7 +443,19 @@ class MunkakorA extends Adminelemek {
         this.ajax.ajaxApiPut(this.api, this.adat.megnevezes, this.adat);
     }
 }
-class Bejelentkezes extends Adminelemek {}
+class Bejelentkezes extends Adminelemek {
+    constructor(szulo, adat, ajax) {
+        super(szulo, adat, ajax);
+        this.api = "http://localhost:8000/api/bejelentkezesiadat";
+        this.apivegpont = "http://localhost:8000/api/bejelentkezesiadatok";
+    }
+    put() {
+        this.ajax.ajaxApiPut(this.api, this.adat.tipus, this.adat);
+    }
+    delete() {
+        this.ajax.ajaxApiDelete(this.api, this.adat.tipus);
+    }
+}
 class Muszaktipus extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);

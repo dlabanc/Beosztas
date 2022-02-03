@@ -127,7 +127,7 @@
             <label for="cim">Cim:</label>
             <input type="text" name="cim" id="newpost-cim">
             </div>
-            <div class="posts-grid">
+            <div class="form-grid">
             <label for="tartalom">Tartalom:</label>
             <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10"></textarea>
             <div class="buttons">

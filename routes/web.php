@@ -11,6 +11,8 @@ use App\Http\Controllers\NapiMunkaeroIgenyController;
 use App\Http\Controllers\NapokController;
 use App\Http\Controllers\NemDolgoznaController;
 use App\Http\Controllers\SzabadsagController;
+use App\Http\Controllers\BejelentkezesiAdatokController;
+
 
 
 /*
@@ -116,8 +118,8 @@ Route::post('/api/szabadsag', [SzabadsagController::class, 'store']);
 Route::delete('/api/szabadsag/{alkalmazott}/{tol}/{ig}', [SzabadsagController::class, 'destroy']);
 
 ##BEJELENTKEZESIADATOK
-Route::get('/api/bejelentkezesiadatok', [SzabadsagController::class, 'index']);
-Route::get('/api/bejelentkezesiadat/{id}', [SzabadsagController::class, 'show']);
-Route::put('/api/bejelentkezesiadat/{id}', [SzabadsagController::class, 'update']);
-Route::post('/api/bejelentkezesiadat', [SzabadsagController::class, 'store']);
-Route::delete('/api/bejelentkezesiadat/{id}', [SzabadsagController::class, 'destroy']);
+Route::get('/api/bejelentkezesiadatok', [BejelentkezesiAdatokController::class, 'index']);
+Route::get('/api/bejelentkezesiadat/{id}', [BejelentkezesiAdatokController::class, 'show']);
+Route::put('/api/bejelentkezesiadat/{id}', [BejelentkezesiAdatokController::class, 'update']);
+Route::post('/api/bejelentkezesiadat', [BejelentkezesiAdatokController::class, 'store']);
+Route::delete('/api/bejelentkezesiadat/{id}', [BejelentkezesiAdatokController::class, 'destroy']);
