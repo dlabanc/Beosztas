@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="css/usermenu/usermenu.css" />
     <link rel="stylesheet" href="/css/global/global.css">
+    <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/jquery-ui-1.13.0/jquery-ui.min.js"></script>
     <script src="/js/global/Ajax.js"></script>
@@ -115,10 +116,28 @@
         <div id="Faliujsag" class="tabcontent">
           <h3 id="fu">Faliújság</h3>
           <button id="newpost">Új bejegyzés</button>
+          <div class="posts-grid">
           <div class="posts-container">
             
+          </div>
+          <fieldset>
+          <legend>Új bejegyzés</legend>
+          <div id="newpost-form">
+            
+            <label for="cim">Cim:</label>
+            <input type="text" name="cim" id="newpost-cim">
+            </div>
+            <div class="posts-grid">
+            <label for="tartalom">Tartalom:</label>
+            <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10"></textarea>
+            <div class="buttons">
+              <button class="fas fa-check"></button>
+              <button class="fas fa-times"></button>
+            </div>
+            </div>
+          </div>
+        </fieldset>
         </div>
-
         </div>
         <div id="Beosztas" class="tabcontent">
           <h3>Beosztás</h3>
