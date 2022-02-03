@@ -138,11 +138,12 @@
           </div>
         </fieldset>
         </div>
-        </div>
         <div id="Beosztas" class="tabcontent">
           <h3>Beosztás</h3>
           
         </div>
+        </div>
+        
       </article>
       <div class="password-window">
         <div class="password-window-bg">
