@@ -65,10 +65,10 @@ $(function () {
             kulcs = key.replace("_", " ");
             fej += `<td>${kulcs}</td>`;
         }
-        fej += `<td></td><td></td>`;
+        fej += `<td></td>`;
         SZULO.prepend(fejlec);
         SZULO.find(".fejlec").html(fej);
-        
+
         eredmeny.forEach((e) => {
             let obj = new osztaly(SZULO, e, ajax);
         });
@@ -83,7 +83,7 @@ $(function () {
                 $(".stat2value").html(`${adatok[adatok.length - 1].nev}`);
             }
         });
-        ajax.ajaxGet(local + "bejelentkezesi_adatok.json", (adatok) => {
+        ajax.ajaxGet(apivegpont + "/bejelentkezesiadatok", (adatok) => {
             $(".stat4value").html(`${adatok.length}`);
         });
         ajax.ajaxApiGet(apivegpont + "/faliujsagok", (adatok) => {
@@ -187,94 +187,108 @@ $(function () {
             .find(".ujmezo")
             .html(`<fieldset><legend>${cim}</legend></fieldset>`);
         let mezo = tablazat.parent().find(".ujmezo fieldset");
-        input(mezo);
-        mezo.append('<div class="admin-new-buttons"></div>');
-        mezo.find(".admin-new-buttons").append(
-            `<button class="fas fa-check admin-new-ok"></button>`
-        );
-        mezo.find(".admin-new-buttons").append(
-            `<button class="fas fa-times admin-new-megse"></button>`
-        );
-        mezo.slideDown(1000);
-        mezo.find(".admin-new-megse").on("click", () => {
-            mezo.slideUp(1000);
-            mezo.empty();
-            tablazat.show();
+        input(mezo,()=>{
+            mezo.append('<div class="admin-new-buttons"></div>');
+            mezo.find(".admin-new-buttons").append(
+                `<button class="fas fa-check admin-new-ok"></button>`
+            );
+            mezo.find(".admin-new-buttons").append(
+                `<button class="fas fa-times admin-new-megse"></button>`
+            );
+            mezo.slideDown(1000);
+            mezo.find(".admin-new-megse").on("click", () => {
+                mezo.slideUp(1000);
+                mezo.empty();
+                tablazat.show();
+            });
+            mezo.find(".admin-new-ok").on("click", () => {
+                let adatok = {};
+                for (
+                    let index = 0;
+                    index < mezo.find(".label-input input").length;
+                    index++
+                ) {
+                    let ertek = mezo.find(".label-input input").eq(index).val();
+                    let kulcs = mezo
+                        .find(".label-input input")
+                        .eq(index)
+                        .attr("name");
+                    adatok[kulcs] = ertek;
+                }
+    
+                let obj = new osztaly(tablazat, adatok, ajax);
+                obj.post(adatok);
+                console.log(obj);
+                mezo.slideUp(1000);
+                mezo.empty();
+    
+                ajax.ajaxApiGet(obj.apivegpont, ki);
+    
+                function ki(eredmeny) {
+                    beallitasok(eredmeny, tablazat, osztaly);
+                }
+    
+                tablazat.show();
+                infoAblak();
+            });
         });
-        mezo.find(".admin-new-ok").on("click", () => {
-            let adatok = {};
-            for (
-                let index = 0;
-                index < mezo.find(".label-input input").length;
-                index++
-            ) {
-                let ertek = mezo.find(".label-input input").eq(index).val();
-                let kulcs = mezo
-                    .find(".label-input input")
-                    .eq(index)
-                    .attr("name");
-                adatok[kulcs] = ertek;
-            }
-
-            let obj = new osztaly(tablazat, adatok, ajax);
-            obj.post(adatok);
-            console.log(obj);
-            mezo.slideUp(1000);
-            mezo.empty();
-
-            ajax.ajaxApiGet(obj.apivegpont, ki);
-
-            function ki(eredmeny) {
-                beallitasok(eredmeny,tablazat,osztaly);
-            }
-
-            tablazat.show();
-        });
-        infoAblak();
+        
+       
     }
 
     //Kész
-    function alkalmazottInput(mezo) {
-        mezo.append(
-            `<div class="label-input"><label>Dolgozói azonosító:</label><input type="text" placeholder="Dolgozói Azonosító..." name="dolgozoi_azon" disabled></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Név:</label><input type="text" placeholder="Név..." name="nev"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Munkakör:</label><input type="text" placeholder="Munkakör..." name="munkakor"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Adóazonosító:</label><input type="number" placeholder="Adóazonosító" name="adoazonosito"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Taj:</label><input type="number" placeholder="Taj..." name="taj"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Elérhetőség:</label><input type="phone" placeholder="+20 111 11 11" name="elerhetoseg"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Email:</label><input type="email" placeholder="pelda@chillout.hu..." name="email"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Heti óraszám:</label><input type="number" placeholder="Heti óraszám" name="heti_oraszam"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Lakcím:</label><input type="text" placeholder="Lakcím" name="lakcim"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Születési dátum:</label><input type="date" name="szuletesi_datum"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Munkaviszony kezdete:</label><input type="date" name="munkaviszony_kezdete"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Munkaviszony vége:</label><input type="date" name="munkaviszony_vege"></div>`
-        );
+    function alkalmazottInput(mezo, callback) {
+        ajax.ajaxApiGet(apivegpont + "/munkakorok", munkakorSelect);
+        function munkakorSelect(eredmeny) {
+            let select = '<select id="munkakors"><option>Válassz az munkakörök közül...</option>';
+            eredmeny.forEach((e) => {
+                select += `<option value="${e.megnevezes}">${e.megnevezes}</option>`;
+            });
+            select += "</select>";
+            
+            mezo.append(
+                `<div class="label-input"><label>Név:</label><input type="text" placeholder="Név..." name="nev"></div>`
+            );
+            mezo.append(
+                
+                `<div class="label-input label-span"><label>Munkakör:</label><span>${select}</span><input type="text" placeholder="Munkakör..." name="munkakor" id="munkakor-input"></div>`
+            );
+            $('#munkakors').change('change', function() {
+                $("#munkakor-input").attr("value",this.value);
+            });
+            mezo.append(
+                `<div class="label-input"><label>Adóazonosító:</label><input type="number" placeholder="Adóazonosító" name="adoazonosito"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Taj:</label><input type="number" placeholder="Taj..." name="taj"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Elérhetőség:</label><input type="phone" placeholder="+20 111 11 11" name="elerhetoseg"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Email:</label><input type="email" placeholder="pelda@chillout.hu..." name="email"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Heti óraszám:</label><input type="number" placeholder="Heti óraszám" name="heti_oraszam"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Lakcím:</label><input type="text" placeholder="Lakcím" name="lakcim"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Születési dátum:</label><input type="date" name="szuletesi_datum"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Munkaviszony kezdete:</label><input type="date" name="munkaviszony_kezdete"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Munkaviszony vége:</label><input type="date" name="munkaviszony_vege"></div>`
+            );
+            callback();
+        }
     }
 
     //Kész
-    function munkakorInput(mezo) {
+    function munkakorInput(mezo,callback) {
         mezo.append(
             `<div class="label-input"><label>Megnevezés:</label><input type="text" placeholder="Megnevezés..." name="megnevezes"></div>`
         );
@@ -284,42 +298,75 @@ $(function () {
         mezo.append(
             `<div class="label-input"><label>Munkafőnök:</label><input type="text" placeholder="Munkafőnök száma" name="munkafonok"></div>`
         );
+        callback();
     }
     //Kész
-    function bejelentkezesekInput(mezo) {
-        mezo.append(
-            `<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..." name="user_login"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Jelszó:</label><input type="password" name="jelszo"></div>`
-        );
+    function bejelentkezesekInput(mezo,callback) {
+        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", bejelentkezesekSelect);
+        function bejelentkezesekSelect(eredmeny) {
+            let select = '<select id="dolgozos2"><option>Válassz az alkalmazottak közül...</option>';
+            eredmeny.forEach((e) => {
+                select += `<option value="${e.dolgozoi_azon}">${e.nev}</option>`;
+            });
+            select += "</select>";
+        
+            mezo.append(
+                `<div class="label-input label-span"><label>Alkalmazott:</label><span>${select}</span><input type="text" placeholder="Alkalmazott..." name="user_login" id="dolgozoi-azon-input2"></div>`
+            );
+
+            $('#dolgozos2').change('change', function() {
+                $("#dolgozoi-azon-input2").attr("value",this.value);
+            });
+            
+            mezo.append(
+                `<div class="label-input"><label>Jelszó:</label><input type="password" name="jelszo" value="Aa123456"></div>`
+            );
+            callback();
+       
+    }
+}
+    //Kész
+    function faliujsagInput(mezo,callback) {
+        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", dolgozokSelect);
+        function dolgozokSelect(eredmeny) {
+            let select = '<select id="dolgozos"><option>Válassz az alkalmazottak közül...</option>';
+            eredmeny.forEach((e) => {
+                select += `<option value="${e.dolgozoi_azon}">${e.nev}</option>`;
+            });
+            select += "</select>";
+        
+            mezo.append(
+                `<div class="label-input label-span"><label>Dolgozói azonosító:</label><span>${select}</span><input type="text" placeholder="Dolgozói Azonosító..." name="dolgozoi_azon" id="dolgozoi-azon-input"></div>`
+            );
+            
+            $('#dolgozos').change('change', function() {
+                $("#dolgozoi-azon-input").attr("value",this.value);
+            });
+            mezo.append(
+                `<div class="label-input"><label>Mikor:</label><input type="date"" name="mikor"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Cím:</label><input type="textarea" placeholder="Cím..." name="cim"></div>`
+            );
+            mezo.append(
+                `<div class="label-input"><label>Tartalom:</label><input type="text" placeholder="Tartalom..." name="tartalom" ></div>`
+            );
+            callback();
+        }
+        
     }
     //Kész
-    function faliujsagInput(mezo) {
-        mezo.append(
-            `<div class="label-input"><label>Dolgozói azonosító:</label><input type="text" placeholder="Dolgozói Azonosító..." name="dolgozoi_azon"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Mikor:</label><input type="date"" name="mikor"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Cím:</label><input type="textarea" placeholder="Cím..." name="cim"></div>`
-        );
-        mezo.append(
-            `<div class="label-input"><label>Tartalom:</label><input type="text" placeholder="Tartalom..." name="tartalom" ></div>`
-        );
-    }
-    //Kész
-    function muszaktipusInput(mezo) {
+    function muszaktipusInput(mezo,callback) {
         mezo.append(
             `<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="tipus"></div>`
         );
         mezo.append(
             `<div class="label-input"><label>Leírás:</label><input type="textarea" placeholder="Leírás..." name="leiras"></div>`
         );
+        callback();
     }
     //Kész
-    function napimunkaeroigenyInput(mezo) {
+    function napimunkaeroigenyInput(mezo,callback) {
         mezo.append(
             `<div class="label-input"><label>Dátum:</label><input type="date"" name="datum"></div>`
         );
@@ -335,9 +382,10 @@ $(function () {
         mezo.append(
             `<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="muszaktipus"></div>`
         );
+        callback();
     }
     //Kész
-    function napokInput(mezo) {
+    function napokInput(mezo,callback) {
         mezo.append(
             `<div class="label-input"><label>Nap:</label><input type="date"" name="nap"></div>`
         );
@@ -347,10 +395,11 @@ $(function () {
         mezo.append(
             `<div class="label-input"><label>Állapot:</label><input type="text" placeholder="1 vagy 0..." name="allapot"></div>`
         );
+        callback();
     }
 
     //Kész
-    function nemDolgoznaInput(mezo) {
+    function nemDolgoznaInput(mezo,callback) {
         mezo.append(
             `<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..." name="alkalmazott"></div>`
         );
@@ -363,10 +412,11 @@ $(function () {
         mezo.append(
             `<div class="label-input"><label>Műszakszám:</label><input type="text" placeholder="Műszakszám..." name="muszakszam"></div>`
         );
+        callback();
     }
 
     //Kész
-    function szabadsagInput(mezo) {
+    function szabadsagInput(mezo,callback) {
         mezo.append(
             `<div class="label-input"><label>Alkalmazott:</label><input type="text" placeholder="Alkalmazott..." name="alkalmazott"></div>`
         );
@@ -379,10 +429,11 @@ $(function () {
         mezo.append(
             `<div class="label-input"><label>Szabadságtípus:</label><input type="text" placeholder="Szabaságtípus..." name="szabadsagtipus"></div>`
         );
+        callback();
     }
 
     //Kész
-    function beosztasInput(mezo) {
+    function beosztasInput(mezo,callback) {
         mezo.append(
             `<div class="label-input"><label>Dátum:</label><input type="date" name="datum"></div>`
         );
@@ -398,6 +449,7 @@ $(function () {
         mezo.append(
             `<div class="label-input"><label>Műszaktípus:</label><input type="text" placeholder="Műszaktípus..." name="muszaktipus"></div>`
         );
+        callback();
     }
 
     //Modosit
@@ -470,7 +522,7 @@ $(function () {
         ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagAdmin);
         ajax.ajaxApiGet(apivegpont + "/munkakorok", munkakorAdmin);
         ajax.ajaxGet(
-            local + "bejelentkezesi_adatok.json",
+            apivegpont + "/bejelentkezesiadatok",
             bejelenetkezesekAdmin
         );
         ajax.ajaxApiGet(apivegpont + "/muszaktipusok", muszakTipusAdmin);
@@ -483,4 +535,5 @@ $(function () {
         ajax.ajaxApiGet(apivegpont + "/nemdolgoznaossz", nemdolgoznaAdmin);
         ajax.ajaxApiGet(apivegpont + "/szabadsagok", szabadsagAdmin);
     }
+    infoAblak();
 });
