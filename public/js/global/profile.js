@@ -6,7 +6,7 @@ $(function () {
     
   sor = 0;
 
-  for (const [key, value] of Object.entries(adatok[25])) {
+  for (const [key, value] of Object.entries(adatok[0])) {
     kulcs = key.replace("_", " ");
     
     if (sor < 5) {

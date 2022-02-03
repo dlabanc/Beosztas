@@ -318,7 +318,7 @@ class Faliujsag {
                 "src",
                 "/pictures/christopher-campbell-rDEOVtE7vOs-unsplash.jpg"
             );
-        this.elem.children("h3").text(this.adat.cím);
+        this.elem.children("h3").text(this.adat.cim);
         this.elem.children("p").text(this.adat.tartalom);
         this.elem.children("h4").text(this.adat.mikor);
         this.elem.children("#removefaliujsagm").on("click", () => {
