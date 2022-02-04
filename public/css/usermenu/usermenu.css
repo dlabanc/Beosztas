@@ -96,7 +96,7 @@
   justify-content: center;
 }
 header {
-  position: relative;
+  
   display: grid;
   grid-template-columns: auto auto;
   top: 1rem;
@@ -104,7 +104,8 @@ header {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
- 
+  padding-left: 1rem;
+  
 }
 
 
@@ -188,39 +189,45 @@ body {
 
   display: grid;
   border-radius: 16px;
-  border: 1px solid var(--fds-gray-30);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   padding: 2rem;
   width: 95%;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 5rem;
   background-color: var(--fds-gray-20);
+  border: 1px solid white;
 }
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 .managerinfo {
-  
-  
+  font-family: 'Montserrat',sans-serif;
+  top:.5em;
+  left:2.5%;
+  position: absolute;
   z-index: 500;
   text-align: center;
-  
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  border: 1px solid var(--always-white);
+  width: 95%;
+  border-radius: 10px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  align-items: center;
+  gap:1rem;
   background-color: var(--always-white);
-  
-  border-bottom: 1px solid var(--fds-spectrum-teal);
-  padding-top: 1rem;
-  
-  margin: auto;
 }
-.managerinfo h4 {
-  padding: 0;
-  padding-bottom: 1rem;
-  text-transform: uppercase;
-  font-family: "Mochiy Pop P One", sans-serif;
-  letter-spacing: 1rem;
-  margin: auto;
-  width: 500px;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 500;
+
+.managerinfo img{
+  padding: .5rem;
+  width: 50px;
+  height: 100%;
+  border-radius: 50px;
 }
+.fa-home{
+  color:var(--bs-info);
+}
+
+
 .navbar span {
   color: black;
   font-weight: 450;
@@ -234,7 +241,7 @@ body {
 }
 
 .fa-user,
-.fa-moon,
+.fa-eye,
 .fa-user-lock {
   color: var(--fds-green-55);
 }
@@ -249,7 +256,8 @@ nav {
   padding-left: 3rem;
   padding-right: 3rem;
   margin: 3rem;
-  
+  color:white;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 .navbar {
   display: grid;
@@ -260,12 +268,12 @@ header nav a {
   
   text-decoration: none;
  
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-self: center;
   padding-bottom: 0.5rem;
-  color: var(--fds-primary-text);
+  color: var(--fds-button-text);
   padding: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -282,7 +290,7 @@ header nav a {
   margin: auto;
   padding: 1rem;
   text-align: center;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   color: black;
   font-size: 1.1rem;
   border-radius: 6px;
@@ -298,7 +306,7 @@ header nav a {
   display: grid;
   grid-template-rows: repeat(7,auto);
   visibility: hidden;
-  top: 4.5rem;
+  top: 10rem;
   height: 700px;
   width: 0;
   position: absolute;
@@ -312,7 +320,7 @@ header nav a {
   border-radius: 6px;
   border: none;
   background-color: var(--always-white);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   cursor: pointer;
@@ -359,7 +367,7 @@ article {
   padding: 1rem;
   background: rgba(255, 255, 255);
   border-radius: 16px;
-  border: 1px solid var(--fds-gray-20);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   overflow-y: scroll;
   overflow-x: scroll;
   width: 100%;
@@ -378,15 +386,22 @@ article {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-
+  
 }
-
+aside{
+ 
+}
 .container aside .posts {
   position: relative;
   top: 3rem;
   min-height: 500px;
-  border-radius: 15px;
-  
+ /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;*/
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  padding: 1rem;
+  background-color: var(--always-white);
+    
   display: flex;
   flex-direction: column;
   margin-right: 1rem;
@@ -412,7 +427,7 @@ article {
   
 }
 .posts h1{
-  border-bottom: .1rem solid  rgb(24, 206, 167);
+  
   padding: 1rem;
   text-transform: uppercase;
   font-family: 'Mochiy Pop P One', sans-serif;
@@ -903,9 +918,7 @@ margin: auto;
   color:white;
 }
 
-.darkmode--activated nav {
-  background-color: rgb(29, 28, 28);
-}
+
 
 .darkmode--activated .managerinfo,.darkmode--activated footer{
   background-color: rgb(29, 28, 28);
@@ -914,15 +927,18 @@ margin: auto;
 .darkmode--activated .managerinfo {
   border-bottom: 1px solid palevioletred;
 }
-
+.darkmode--activated aside .posts{
+  background-color: rgb(29, 28, 28);
+}
 .darkmode--activated nav a{
   color:palevioletred;
+  
 }
 .darkmode--activated nav span{
   color:var(--fds-gray-30);
 }
 .darkmode--activated .logout{
-  background-color: rgb(19, 18, 18);
+  color:white;
 }
 .darkmode--activated .openbtn{
   background-color: rgb(19, 18, 18);

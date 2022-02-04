@@ -14,7 +14,8 @@ $(function () {
     napiMin();
     faliujsag();
     ProfilAdatok();
-    
+   
+   
     //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
         const napok = [];
@@ -302,6 +303,9 @@ $(function () {
                             .eq(index)
                             .find("img")
                             .attr("src", ember.picture.large);
+                        $(".profilepic").attr("src",ember.picture.large); 
+                        $("#Profiladatok").find("img").attr("src",ember.picture.large);   
+                        
                     });
                 }
             );
@@ -369,9 +373,11 @@ $(function () {
           
         let sor = 0;
       
-        for (const [key, value] of Object.entries(adatok[25])) {
+        for (const [key, value] of Object.entries(adatok[0])) {
         let  kulcs = key.replace("_", " ");
-          
+        $("#Profiladatok").find("h2").text(adatok[0].nev);
+        $(".managerinfo-name").text(adatok[0].nev+", "+adatok[0].munkakor);
+           
           if (sor < 5) {
             $("#elso").append(
               "<tr id=" +
@@ -401,7 +407,10 @@ $(function () {
         function modosit() {
           $("tr span").eq(this.id).toggleClass("showButton");
         }
-        })
+        $(".tabcontent").eq(0).fadeIn(1000);
+        $(".tabcontent").eq(0).css("visibility","visible");
+        });
+
         
        
     }
