@@ -96,8 +96,8 @@ class Adminelemek {
 
 class AlkalmazottTabla {
     constructor(szulo, adat) {
-        this.szulo = szulo;
-        szulo.append(
+        this.node = szulo;
+        this.node.append(
             `<tr>
           <td id='nev'>Név</td>
           <td id='beosztas'>Beosztás</td>
@@ -108,7 +108,7 @@ class AlkalmazottTabla {
         );
 
         this.adat = adat;
-        this.elem = $("tr:last");
+        this.elem = this.node.find("tr:last");
         this.elem.children("#nev").text(this.adat.nev);
         this.elem.children("#beosztas").text(this.adat.munkakor);
         this.elem.children("#lakcim").text(this.adat.lakcim);

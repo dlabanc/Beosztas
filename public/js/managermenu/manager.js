@@ -14,7 +14,22 @@ $(function () {
     napiMin();
     faliujsag();
     ProfilAdatok();
-   
+
+    $("#Alkalmazottak").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
+    $(".search").keyup(function (e) {
+        let ertek = $(this).val();
+        
+        ajaxApiGet(apivegpont + "/alkalmazott/search?q=" + ertek, alkalmazottTabla);
+
+        function alkalmazottTabla(alkalmazottak) {
+            const szuloElem = $("#AlkalmazottakTabla");
+            szuloElem.empty();
+            alkalmazottak.forEach(a=>{
+              let b =  new AlkalmazottTabla(szuloElem,a);
+              
+            });
+        }
+    });
    
     //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
