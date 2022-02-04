@@ -40,7 +40,7 @@
           <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
           <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
           <a  class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
-          <a href="../login/login.html" class="logout"><div ></div>Kijelentkezés</a>
+          <a href="/login" class="logout"><div ></div>Kijelentkezés</a>
       </div>
     </nav>
    
@@ -50,7 +50,7 @@
       >
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn">&times;</a>
-        <a href="../usermenu/usermenu.html">Kezdőlap</a>
+        <a href="../usermenu">Kezdőlap</a>
         <a id="nemerekra">Nem érek rá</a>
         <a id="statisztika">Statisztika</a>
         <a id="faliujsag">Faliújság</a>
