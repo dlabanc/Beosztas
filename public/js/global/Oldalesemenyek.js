@@ -6,7 +6,27 @@ $(function(){
   compactMode();
   postAll();
   dropDownMenus();
-  darkMode();
+
+
+
+  const options = {
+    bottom: '64px', // default: '32px'
+    right: 'unset', // default: '32px'
+    left: '32px', // default: 'unset'
+    time: '0.5s', // default: '0.3s'
+    mixColor: '#fff', // default: '#fff'
+    backgroundColor: '#dadde1',  // default: '#fff'
+    buttonColorDark: '#100f2c',  // default: '#100f2c'
+    buttonColorLight: '#fff', // default: '#fff'
+    saveInCookies: false, // default: true,
+    label: '🌓', // default: ''
+    autoMatchOsTheme: true // default: true
+  }
+  
+  const darkmode = new Darkmode(options);
+  darkmode.showWidget();
+ 
+
   function sideNav(){
     let width = 0;
     $(".openbtn").on("click", function () {
@@ -109,28 +129,27 @@ $(function(){
   }
   
   function compactMode(){
-    $(".compactmode").on("click",function(){
+    $(".btn").on("click",function(){
       megjelenites();
       $("*").toggleClass("compact-mode");
-    
+      function megjelenites() {
+        $("html").hasClass("compact-mode") ? 
+        $(".btn").text("Kompakt mód") :  $(".btn").text("Normál mód");
+      }
     });
-    function megjelenites() {
-      $("html").hasClass("compact-mode") ? 
-      $(".compactmode").text("Kompakt mód") :  $(".compactmode").text("Normál mód");
-    }
+    
+    $(".darkmode-user").on("click",function(){
+      megjelenites();
+      $("*").toggleClass("compact-mode");
+      function megjelenites() {
+        $("html").hasClass("compact-mode") ? 
+        $(".darkmode-user span").text("Kompakt mód") :  $(".darkmode-user span").text("Normál mód");
+      }
+    });
+    
   }
   
-  function darkMode(){
-    const darkmode = new Darkmode();
-    $(".btn").on("click", ()=>{darkmode.toggle()});
-  
-    $(".darkmode-user").on("click", ()=>{darkmode.toggle()});
-  
-    function megjelenites() {
-      $("html").hasClass("darkmode--activated") ? 
-      $(".darkmode-user").text("Sötét mód") :  $(".darkmode-user").text("Világos mód");
-    }
-  }
+ 
   
   function postAll(){
     $(".closeinfo").on("click",  postClose);

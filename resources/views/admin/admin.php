@@ -175,7 +175,7 @@
                 <li id="beosztas">Beosztás</li>
                 <li id="nemdolgozna">Nem dolgozna</li>
                 <li id="szabadsag">Szabadság</li>
-                <li class="btn">Sötét mód</li>
+                <li class="btn">Kompakt mód</li>
                 <li class="logout"><a href="../login/login.html"><div class="fas fa-sign-out-alt">
                 </div><span> Kijelentkezés</span>
                 </a>

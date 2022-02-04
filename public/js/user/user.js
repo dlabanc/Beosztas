@@ -4,7 +4,10 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
     newPost();
-
+    
+   
+  
+      
     //ajaxApiGet - Működik
     function faliujsagUser(adatok) {
         
@@ -45,6 +48,7 @@ $(function () {
         }
         $(".posts-container").empty();
         $(".posts").empty();
+        $(".posts").append(`<div> <h1>Faliújság</h1></div>`);
         const postinfoTomb = [];
         adatok.forEach((adat) => {
             ajax.ajaxApiGet(

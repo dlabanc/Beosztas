@@ -34,7 +34,7 @@
         
           <a href="usermenu" ><span> Alkalmazott</span></a>
           <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
-          <a class="darkmode-user fas fa-moon"><span>Sötét mód</span></a>
+          <a class="darkmode-user fas fa-moon"><span>Kompakt mód</span></a>
           <a  class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
           <a href="../login/login.html" class="logout"><div ></div>Kijelentkezés</a>
       </div>
@@ -59,7 +59,7 @@
     <div class="container">
       <aside class="useraside">
         <div class="posts">
-         <div> <h1>Faliújság</h1></div>
+         
          
         </div>
       </aside>
@@ -182,8 +182,9 @@
           <section>Alkalmazott neve<br />Munkakör</section>
          
         </div>
+        
       </div>
       
-    <footer class="label">Vizsgamunka © 2021</footer>
+     
   </body>
 </html>

@@ -6,6 +6,16 @@
 html,body{
   min-width: 300px;
 }
+body{
+  display: grid;
+  border-radius: 16px;
+  border: 1px solid var(--fds-gray-30);
+  padding: 2rem;
+  width: 95%;
+  margin: auto;
+  margin-top: 2rem;
+  background-color: var(--fds-gray-20);
+}
 :root {
   --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
   --fds-black-alpha-10: rgba(0, 0, 0, 0.1);
@@ -97,9 +107,12 @@ html,body{
 header {
   position: relative;
   display: grid;
-  grid-template-columns: auto 5%;
+  grid-template-columns: auto auto;
   top: 1rem;
   margin-left: 10px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -184,27 +197,20 @@ header {
 /*!--------------------!*/
 /* Alkalmazott menu vége*/
 
-body {
-  margin-top: 2rem;
 
-  display: grid;
-  background-color: var(--fds-gray-05);
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
-  padding: 2rem;
-}
 @import url("https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap");
 .managerinfo {
-  position: fixed;
-  top: 0;
-  left: 0;
+  
+  
   z-index: 500;
   text-align: center;
-  margin: auto;
+  
   background-color: var(--always-white);
-  width: 100%;
+  
   border-bottom: 1px solid var(--fds-spectrum-teal);
   padding-top: 1rem;
+  
+  margin: auto;
 }
 .managerinfo h4 {
   padding: 0;
@@ -220,7 +226,7 @@ body {
 }
 .navbar span {
   color: black;
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.34;
   padding: 1rem;
   margin: auto;
@@ -236,39 +242,42 @@ body {
   color: var(--fds-green-55);
 }
 nav {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  padding: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
+  background-color: var(--always-white);
+  width: 100%;
   border-radius: 50px;
   width: calc(100%-1px);
   display: grid;
   align-self: center;
   justify-self: center;
-  margin: auto;
-  margin-bottom: 1rem;
-  background-color: var(--always-white);
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin: 3rem;
+  
 }
 .navbar {
-  display: flex;
-  
+  display: grid;
+  grid-template-columns: repeat(5,auto);
 }
 
 header nav a {
+  
   text-decoration: none;
-  font-weight: 500;
+ 
   font-size: 1.2rem;
   cursor: pointer;
   display: flex;
   align-self: center;
   padding-bottom: 0.5rem;
   color: var(--fds-primary-text);
-  padding: 1rem;
+  padding: 2rem;
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
+
 .openbtn {
+  position: relative;
+  left: 4rem;
   display: flex;
   justify-content: center;
   align-self: center;
@@ -282,6 +291,7 @@ header nav a {
   border: none;
   cursor: pointer;
   width: fit-content;
+  background-color: #ffffff;
 }
 .sidenav {
   user-select: none;
@@ -359,9 +369,12 @@ article {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   overflow-y: scroll;
   overflow-x: scroll;
-  width: 100%;
+  width: 90%;
   margin: auto;
-  margin-top: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -374,6 +387,7 @@ article {
 .label {
   background: var(--fds-highlight-cell-background);
   left:50px;
+  top:100px;
   font-weight: 500;
   position: fixed;
   transform: translateY(60%);
@@ -1070,6 +1084,7 @@ h3 {
   color:var(--fds-button-text);
 }
 
+
 .darkmode--activated .managerinfo,.darkmode--activated footer{
   background-color: rgb(29, 28, 28);
   color:var(--fds-gray-30);
@@ -1229,8 +1244,14 @@ width:40px;
     background-color: var(--fds-green-55);
   }
   .logout{
-    background: transparent;
-    color:var(--fds-black-alpha-80);
+    background-color: var(--bs-teal);
+    padding: 1rem;
+    border-radius:10px;
+    color: white;
+    font-weight: lighter;
+    text-align: center;
+    display: flex;
+    justify-content: center;
   }
   .fa-door-open{
     color:var(--fds-green-55);
@@ -1287,6 +1308,7 @@ width:40px;
   }
 
   body{
+    
     overflow-x: scroll;
   }
   #Muszaktipusn{

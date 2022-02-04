@@ -38,9 +38,9 @@
           
             <a class="admin"> Üzletvezető</a>
             <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
-            <a class="darkmode-user fas fa-moon"><span>Sötét mód</span></a>
+            <a class="darkmode-user fas fa-moon"><span>Kompakt mód</span></a>
             <a href="#" class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
-            <a href="../login/login.html" class="logout"><div class="fas fa-door-open"></div>Kijelentkezés</a>
+            <a href="../login/login.html" class="logout"><div ></div>Kijelentkezés</a>
            
         </div>
       </nav>
@@ -235,7 +235,7 @@
         </div>
       </div>
   </div>
-    <footer class="label"><div>Vizsgamunka © 2021</div></footer>
+    
     
   </body>
 </html>
