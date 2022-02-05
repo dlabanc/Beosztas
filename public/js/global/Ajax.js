@@ -53,6 +53,22 @@
         );
     }
 
+    ajaxApiPut(apivegpont,id,data,callback){
+        $.ajax({
+            headers:{'X-CSRF-TOKEN':this.token},
+            type: "PUT",
+            url: apivegpont+"/"+id,
+            data: data,
+           
+            error:function(data,textStatus,errorThrown){
+                alert(data.responseJSON.message);
+                   
+            },
+
+            success:callback()
+        })
+    }
+
     ajaxApiPut(apivegpont,id,data){
         $.ajax({
             headers:{'X-CSRF-TOKEN':this.token},
@@ -63,7 +79,7 @@
             error:function(data,textStatus,errorThrown){
                 alert(data.responseJSON.message);
                    
-            }
+            },
         })
     }
 
