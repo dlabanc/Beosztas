@@ -194,6 +194,7 @@ header {
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 .managerinfo {
+  display: none;
   font-family: 'Montserrat',sans-serif;
   top:.5em;
   left:2.5%;
@@ -206,7 +207,7 @@ header {
   min-width: 300px;
   border-radius: 10px;
   margin: auto;
-  display: grid;
+  
   grid-template-columns: repeat(3,auto);
   align-items: center;
   gap:1rem;
