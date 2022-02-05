@@ -136,7 +136,9 @@ class AlkalmazottTabla {
     }
 }
 class Munkakor {
-    constructor(szulo, adat) {
+    constructor(szulo, adat, ajax) {
+        this.api = "http://localhost:8000/api/munkakor";
+        this.ajax = ajax;
         this.szulo = szulo;
         szulo.append(
             `<div class="munkakor-content">
@@ -160,6 +162,14 @@ class Munkakor {
             .children(".munkakor-content:last")
             .children("p")
             .text(this.adat.leiras);
+        this.szulo.find(".munkakor-content:last").prepend('<button class="fas fa-times torles"></button>');   
+        this.szulo.find(".torles:last").on("click",()=>{
+                 this.munkakorTorles();
+        });
+    }
+    munkakorTorles(){
+        let esemeny = new CustomEvent("MunkakorTorles",{detail:this});
+        window.dispatchEvent(esemeny);
     }
 }
 

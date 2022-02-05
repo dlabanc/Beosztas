@@ -4,13 +4,11 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
     newPost();
-    
-   
+    ProfilAdatok();
   
-      
-    //ajaxApiGet - Működik
+
+  
     function faliujsagUser(adatok) {
-        
         class Post {
             constructor(szulo, adat, kep, alkalmazottAdatok) {
                 this.szulo = szulo;
@@ -68,6 +66,11 @@ $(function () {
                                     if (index < 5) {
                                         const element = adatok[index];
                                         let kep = ember.picture.large;
+                                        $(".profilepic").attr("src", kep);
+                                        $("#Profiladatok")
+                                            .find("img")
+                                            .attr("src", kep);
+
                                         let post = new Post(
                                             szulo,
                                             element,
@@ -97,40 +100,80 @@ $(function () {
         const newpostMegse = $("#Faliujsag").find("fieldset").find(".fa-times");
         const newpostOk = $("#Faliujsag").find("fieldset").find(".fa-check");
         newpostElem.on("click", () => {
-            
-
-            newpostForm.effect("slide","1500");
+            newpostForm.effect("slide", "1500");
         });
-        newpostMegse.on("click",()=>{
-
-            newpostForm.effect("clip","1500");
+        newpostMegse.on("click", () => {
+            newpostForm.effect("clip", "1500");
         });
-        newpostOk.on("click",()=>{
+        newpostOk.on("click", () => {
             let ma = formatDate(new Date());
             let obj = {
-                dolgozoi_azon:30005,
-                mikor:ma,
-                cim:$("#newpost-cim").val(),
-                tartalom:$("#newpost-tartalom").val()
+                dolgozoi_azon: 30005,
+                mikor: ma,
+                cim: $("#newpost-cim").val(),
+                tartalom: $("#newpost-tartalom").val(),
             };
-            
-            ajax.ajaxApiPost(apivegpont,obj);
-            newpostForm.effect("clip","1500");
-            ajax.ajaxApiGet("http://localhost:8000/api/faliujsagok", faliujsagUser);
+
+            ajax.ajaxApiPost(apivegpont, obj);
+            newpostForm.effect("clip", "1500");
+            ajax.ajaxApiGet(
+                "http://localhost:8000/api/faliujsagok",
+                faliujsagUser
+            );
         });
 
         function formatDate(date) {
             var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
+                month = "" + (d.getMonth() + 1),
+                day = "" + d.getDate(),
                 year = d.getFullYear();
-        
-            if (month.length < 2) 
-                month = '0' + month;
-            if (day.length < 2) 
-                day = '0' + day;
-        
-            return [year, month, day].join('-');
+
+            if (month.length < 2) month = "0" + month;
+            if (day.length < 2) day = "0" + day;
+
+            return [year, month, day].join("-");
         }
+    }
+
+    function ProfilAdatok() {
+        ajax.ajaxApiGet("http://localhost:8000/api/alkalmazottak", (adatok) => {
+            sor = 0;
+            $("#Profiladatok").find("h2").text(adatok[0].nev);
+            $(".managerinfo-name").text(adatok[0].nev+", "+adatok[0].munkakor);
+            for (const [key, value] of Object.entries(adatok[0])) {
+                kulcs = key.replace("_", " ");
+                
+                if (sor < 5) {
+                    $("#elso").append(
+                        "<tr id=" +
+                            sor +
+                            "><th>" +
+                            kulcs +
+                            "</th><td>" +
+                            value +
+                            "<span class='showButton fa fa-edit'></td></tr>"
+                    );
+                } else {
+                    $("#masodik").append(
+                        "<tr id=" +
+                            sor +
+                            "><th>" +
+                            kulcs +
+                            "</th><td>" +
+                            value +
+                            "<span class='showButton fa fa-edit'></td></tr>"
+                    );
+                }
+                sor++;
+            }
+
+            $("tr").hover(modosit);
+
+            function modosit() {
+                $("tr span").eq(this.id).toggleClass("showButton");
+            }
+            $(".tabcontent").eq(0).fadeIn(1000);
+            $(".tabcontent").eq(0).css("visibility","visible");
+        });
     }
 });

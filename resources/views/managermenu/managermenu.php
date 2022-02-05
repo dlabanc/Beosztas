@@ -27,7 +27,10 @@
     <title>Üzletvezető</title>
   </head>
   <div class="managerinfo">
-    <h4>Chill out Cafe</h4>
+  <div><span class="fas fa-home"></span> Chill out Cafe </div>
+  <div><img src="" alt="" class="profilepic"></div>
+  <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
+  
   </div>
   <header>
     
@@ -36,11 +39,11 @@
         
         <div  class="navbar"> 
           
-            <a class="admin"> Üzletvezető</a>
+           
             <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
-            <a class="darkmode-user fas fa-moon"><span>Kompakt mód</span></a>
+            <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
             <a href="#" class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
-            <a href="../login/login.html" class="logout"><div ></div>Kijelentkezés</a>
+            <a href="../login" class="logout"><div ></div>Kijelentkezés</a>
            
         </div>
       </nav>
@@ -50,7 +53,7 @@
       <div id="mySidenav" class="sidenav">
         
         <a href="javascript:void(0)" class="closebtn">&times;</a>
-        <a href="../admin/admin.html">Kezdőlap</a>
+        <a href="../managermenu">Kezdőlap</a>
         <a id="munkakorok">Munkakörök</a>
         <a id="alkalmazottak">Alkalmazottak</a>
         
