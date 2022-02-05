@@ -1,10 +1,8 @@
-
-
 $(function () {
-    const token=$('meta[name="csrf-token"]').attr('content');
+    const token = $('meta[name="csrf-token"]').attr("content");
     const ajax = new Ajax(token);
-    const {ajaxGet,ajaxApiGet} = ajax ;
-    const apivegpont = 'http://localhost:8000/api';
+    const { ajaxGet, ajaxApiGet, ajaxApiDelete } = ajax;
+    const apivegpont = "http://localhost:8000/api";
     muszakNaphozRendelese();
     munkakorok();
     muszakok();
@@ -15,27 +13,31 @@ $(function () {
     faliujsag();
     ProfilAdatok();
 
-    $("#Alkalmazottak").prepend(`<input type="text" placeholder="Keresés..." class="search">`);
+    $("#Alkalmazottak").prepend(
+        `<input type="text" placeholder="Keresés..." class="search">`
+    );
     $(".search").keyup(function (e) {
         let ertek = $(this).val();
-        
-        ajaxApiGet(apivegpont + "/alkalmazott/search?q=" + ertek, alkalmazottTabla);
+
+        ajaxApiGet(
+            apivegpont + "/alkalmazott/search?q=" + ertek,
+            alkalmazottTabla
+        );
 
         function alkalmazottTabla(alkalmazottak) {
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
-            alkalmazottak.forEach(a=>{
-              let b =  new AlkalmazottTabla(szuloElem,a);
-              
+            alkalmazottak.forEach((a) => {
+                let b = new AlkalmazottTabla(szuloElem, a);
             });
         }
     });
-   
+
     //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
         const napok = [];
-        
-        ajaxApiGet(apivegpont+"/muszaktipusok", muszakBeallitas);
+
+        ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
         KovHetDatumBeallitas();
 
         function muszakBeallitas(objektum) {
@@ -104,22 +106,73 @@ $(function () {
     }
     //ajaxApiGet - Rendben
     function munkakorok() {
-        
+        ajaxApiGet(apivegpont + "/munkakorok", munkakorBeallitas);
 
-       ajaxApiGet(apivegpont+"/munkakorok", munkakorBeallitas);
+        const munkakorApi = "http://localhost:8000/api/munkakor";
+        const szuloElem = $(".munkakor-container");
+
+        $(window).on("MunkakorTorles", ({ detail }) => {
+            detail.ajax.ajaxApiDelete(detail.api, detail.adat.megnevezes);
+            ajaxApiGet(apivegpont + "/munkakorok", munkakorBeallitas);
+        });
 
         function munkakorBeallitas(munkakorok) {
-            const szuloElem = $(".munkakor-container");
+            szuloElem.empty();
+            szuloElem.hide();
+            let sablon = `<div class="munkakor-content munkakor-content-sablon">
+            <div class="label-input">
+            <label>Megnevezés:</label>
+            <input type="text" name="megnevezes">
+            </div>
+            <div class="label-input">
+            <label>Leírás:</label>
+            <input type="text" name="leiras">
+            </div> 
+            <div class="manager-new-buttons">
+            <button class="fas fa-check manager-new-ok"></button>
+            <button class="fas fa-times manager-new-megse"></button>
+            </div>
+            </div>`;
+
+            szuloElem.append(sablon);
+            let sablonElem = szuloElem.find(".munkakor-content-sablon");
+            sablonElem.find(".manager-new-ok").on("click", () => {
+                let adatok = {};
+                for (
+                    let index = 0;
+                    index < sablonElem.find(".label-input input").length;
+                    index++
+                ) {
+                    let ertek = sablonElem
+                        .find(".label-input input")
+                        .eq(index)
+                        .val();
+                    let kulcs = sablonElem
+                        .find(".label-input input")
+                        .eq(index)
+                        .attr("name");
+                    adatok[kulcs] = ertek;
+                }
+                ajax.ajaxApiPost(munkakorApi, adatok);
+
+                ajaxApiGet(apivegpont + "/munkakorok", munkakorBeallitas);
+                sablonElem.fadeOut("1000");
+            });
+            sablonElem.find(".manager-new-megse").on("click", () => {
+                sablonElem.fadeOut("1000");
+            });
             munkakorok.forEach((elem) => {
-                new Munkakor(szuloElem, elem);
+                new Munkakor(szuloElem, elem, ajax);
+            });
+            szuloElem.slideDown(1000);
+            $("#newmunkakor").on("click", () => {
+                sablonElem.effect("slide", "1000");
             });
         }
     }
     //ajaxApiGet - Rendben
     function muszakok() {
-        
-
-        ajaxApiGet(apivegpont+"/muszaktipusok", muszakBeallitas);
+        ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
 
         function muszakBeallitas(muszakok) {
             const szuloElem = $(".muszaktipush-container");
@@ -138,9 +191,7 @@ $(function () {
     }
     //ajaxApiGet - Hibás
     function muszakEloszlas() {
-       
-
-        ajaxApiGet(apivegpont+"/muszakeloszlasok", muszakeloszlasBeallitas);
+        ajaxApiGet(apivegpont + "/muszakeloszlasok", muszakeloszlasBeallitas);
 
         function muszakeloszlasBeallitas(muszakok) {
             const szuloElem = $(".muszaktipusm-container");
@@ -214,7 +265,7 @@ $(function () {
         }
 
         function timeLine() {
-           ajaxGet(localhost + "szabadsagon.json", (adatok) => {
+            ajaxGet(localhost + "szabadsagon.json", (adatok) => {
                 googleChartsKonyvtar("timeline", drawChart);
 
                 function drawChart() {
@@ -301,9 +352,7 @@ $(function () {
 
     //ajaxApiGet - Rendben
     function faliujsag() {
-     
-
-       ajaxApiGet(apivegpont+"/faliujsagok", faliujsagBeallitas);
+        ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
 
         function faliujsagBeallitas(muszakok) {
             const szuloElem = $(".faliujsag-container");
@@ -318,9 +367,10 @@ $(function () {
                             .eq(index)
                             .find("img")
                             .attr("src", ember.picture.large);
-                        $(".profilepic").attr("src",ember.picture.large); 
-                        $("#Profiladatok").find("img").attr("src",ember.picture.large);   
-                        
+                        $(".profilepic").attr("src", ember.picture.large);
+                        $("#Profiladatok")
+                            .find("img")
+                            .attr("src", ember.picture.large);
                     });
                 }
             );
@@ -337,9 +387,7 @@ $(function () {
     function alkalmazottTabla() {
         let menu = "#Alkalmazottak .dropdown-content";
 
-       
-
-        ajaxApiGet(apivegpont+"/alkalmazottak", alkalmazottTabla);
+        ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
 
         function alkalmazottTabla(alkalmazottak) {
             const szuloElem = $("#AlkalmazottakTabla");
@@ -383,50 +431,47 @@ $(function () {
 
     //ajaxApiGet - Rendben
     function ProfilAdatok() {
-        
-        ajaxApiGet(apivegpont+"/alkalmazottak",(adatok)=>{
-          
-        let sor = 0;
-      
-        for (const [key, value] of Object.entries(adatok[0])) {
-        let  kulcs = key.replace("_", " ");
-        $("#Profiladatok").find("h2").text(adatok[0].nev);
-        $(".managerinfo-name").text(adatok[0].nev+", "+adatok[0].munkakor);
-           
-          if (sor < 5) {
-            $("#elso").append(
-              "<tr id=" +
-                sor +
-                "><th>" +
-                kulcs +
-                "</th><td>" +
-                value +
-                "<span class='showButton fa fa-edit'></td></tr>"
-            );
-          } else {
-            $("#masodik").append(
-              "<tr id=" +
-                sor +
-                "><th>" +
-                kulcs +
-                "</th><td>" +
-                value +
-                "<span class='showButton fa fa-edit'></td></tr>"
-            );
-          }
-          sor++;
-        }
-      
-        $("tr").hover(modosit);
-      
-        function modosit() {
-          $("tr span").eq(this.id).toggleClass("showButton");
-        }
-        $(".tabcontent").eq(0).fadeIn(1000);
-        $(".tabcontent").eq(0).css("visibility","visible");
-        });
+        ajaxApiGet(apivegpont + "/alkalmazottak", (adatok) => {
+            let sor = 0;
 
-        
-       
+            for (const [key, value] of Object.entries(adatok[0])) {
+                let kulcs = key.replace("_", " ");
+                $("#Profiladatok").find("h2").text(adatok[0].nev);
+                $(".managerinfo-name").text(
+                    adatok[0].nev + ", " + adatok[0].munkakor
+                );
+
+                if (sor < 5) {
+                    $("#elso").append(
+                        "<tr id=" +
+                            sor +
+                            "><th>" +
+                            kulcs +
+                            "</th><td>" +
+                            value +
+                            "<span class='showButton fa fa-edit'></td></tr>"
+                    );
+                } else {
+                    $("#masodik").append(
+                        "<tr id=" +
+                            sor +
+                            "><th>" +
+                            kulcs +
+                            "</th><td>" +
+                            value +
+                            "<span class='showButton fa fa-edit'></td></tr>"
+                    );
+                }
+                sor++;
+            }
+
+            $("tr").hover(modosit);
+
+            function modosit() {
+                $("tr span").eq(this.id).toggleClass("showButton");
+            }
+            $(".tabcontent").eq(0).fadeIn(1000);
+            $(".tabcontent").eq(0).css("visibility", "visible");
+        });
     }
 });

@@ -104,7 +104,7 @@ header {
 
   display: grid;
   grid-template-columns: auto auto;
-  width: 100%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -422,10 +422,9 @@ article {
 .munkakor-content {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   background-color: var(--bs-light);
-
   box-sizing: border-box;
   padding: 1.5rem;
-  width: 100%;
+  width: 22rem;
   margin: 1rem;
   border: 1px solid rgb(24, 206, 167);
 }
@@ -491,6 +490,44 @@ article {
 #newmunkakor:hover {
   color: white;
   background-color: rgb(24, 206, 167);
+}
+.label-input {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: .5rem;
+}
+.manager-new-buttons {
+  width: fit-content;
+  margin: auto;
+}
+.manager-new-buttons button
+ {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-color: var(--fds-spectrum-teal-tint-90) !important;
+  width: fit-content;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.manager-new-buttons .fa-check {
+  color: var(--fds-green-55);
+}
+.manager-new-buttons .fa-times {
+  color: var(--bs-red);
+}
+.munkakor-content-sablon{
+  display: none;
+}
+.munkakor-content .torles{
+  display: block;
+  color: var(--bs-red);
+  background-color: var(--fds-spectrum-teal-tint-90) !important;
+  width: fit-content;
+  margin-left: auto;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
 }
 /*#############MŰSZAKELOSZLÁS MÓDOSÍTÁSA#######*/
 .muszaktipusm-container{
