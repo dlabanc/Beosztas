@@ -101,12 +101,10 @@ body{
 }
 
 header {
-  position: relative;
+
   display: grid;
   grid-template-columns: auto auto;
-  top: 1rem;
-  margin-left: 10px;
-  width: 90%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -205,6 +203,7 @@ header {
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   border: 1px solid var(--always-white);
   width: 95%;
+  min-width: 300px;
   border-radius: 10px;
   margin: auto;
   display: grid;
@@ -1096,30 +1095,11 @@ h3 {
 }
 
 
-.darkmode--activated .managerinfo,.darkmode--activated footer{
-  background-color: rgb(29, 28, 28);
-  color:var(--fds-gray-30);
-}
-.darkmode--activated .managerinfo {
-  border-bottom: 1px solid palevioletred;
-}
-.darkmode--activated nav{
-  background-color: rgb(29, 28, 28);
-  
-}
-.darkmode--activated nav a{
-  color:palevioletred;
-}
-.darkmode--activated nav span{
-  color:var(--fds-gray-30);
-}
-.darkmode--activated .logout{
-  background-color: rgb(19, 18, 18);
-}
-.darkmode--activated .openbtn{
-  background-color: rgb(19, 18, 18);
-  color:palevioletred;
-}
+
+
+
+
+
 .darkmode--activated .sidenav{
   background-color: rgb(19, 18, 18);
 }
@@ -1205,12 +1185,10 @@ width:40px;
     var(--bs-teal)
   );
 }
-
+.darkmode--activated .managerinfo, .darkmode--activated .openbtn{background-color: black; color:white}
 
 @media screen and (max-width:1820px) {
-   footer{
-    display: none;
-   }
+   
    html{
      overflow: scroll;
    }
@@ -1221,11 +1199,13 @@ width:40px;
     position: static;
     display: block;
   }
-
   
 
 }
 @media screen and (max-width:1415px) {
+  .darkmode--activated .managerinfo, .darkmode--activated .openbtn{
+    background-color: white; color:black}
+
   .openbtn{
     position: static;
     width: 100%;
@@ -1238,31 +1218,10 @@ width:40px;
   article{
     margin-top: 2rem;
   }
-  header{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: transparent;
-    
-  }
-  nav{
-    background-color: transparent;
-    display: flex;
-    
-  }
-  .navbar{
-    
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    gap: 0;
-  };  
-  nav a{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
+ 
+ body{
+   margin-top: 1rem;
+ }
  nav a:focus{
     background-color: var(--fds-green-55);
   }
@@ -1272,13 +1231,33 @@ width:40px;
     padding-right: 1em;
     display: inline;
   }
+  .managerinfo{
+    width: 100%;
+    position: static;
+  }
   .managerinfo h4{
-    width: fit-content;
+      letter-spacing: normal;   
+  }
+  header{
+    display: flex;
+    flex-direction: column;
     
   }
-  .managerinfo{
-    display: block;
-    position: static;
+   header nav a{
+     padding: 0;
+     
+   }
+  nav{
+    
+    padding: 0;
+   
+  }
+  .navbar{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin: auto;
+    padding: 1rem;
   }
   .sidenav{
     position: fixed;
@@ -1309,6 +1288,50 @@ width:40px;
     grid-template-columns: auto auto;
     overflow-x: auto;
   }
+  body{
+    margin-top: 1rem;
+  }
+  .managerinfo{
+    width: 100%;
+    position: static;
+  }
+  .managerinfo h4{
+      letter-spacing: normal;   
+  }
+  header{
+    display: flex;
+    flex-direction: column;
+    
+  }
+   header nav a{
+     padding: 0;
+     
+   }
+  nav{
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+  }
+  .navbar{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .navbar a{
+    width: 100%;
+    font-size: 1rem;
+    background-color: var(--always-white);
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: .5rem;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .logout{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bs-teal)!important;
+  }
 }
 @media screen and (max-width:770px) {
   #muszaktipusnapok-content{
@@ -1316,11 +1339,7 @@ width:40px;
   }
 }
 @media screen  and (max-width:450px){
-
-  .managerinfo h4{
-      letter-spacing: normal;   
-  }
-
+ 
   body{
     
     overflow-x: scroll;

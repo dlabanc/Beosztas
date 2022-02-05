@@ -23,10 +23,7 @@
 </head>
 
 <body>
-    <nav>  <div class="managerinfo">
-  <div><span class="fas fa-home"></span> Chill out Cafe </div>
-  <div><img src="" alt="" class="profilepic"></div>
-  <div class="managerinfo-name"> Péter, Admin</div></nav>
+
     <header class="adminheader">
         <div class="stat1 box" >
             <div class="allusers"> 

@@ -39,7 +39,7 @@
         
         <div  class="navbar"> 
           
-            <a class="admin "> Üzletvezető</a>
+           
             <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
             <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
             <a href="#" class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>

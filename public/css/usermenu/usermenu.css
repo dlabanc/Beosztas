@@ -215,6 +215,8 @@ body {
   align-items: center;
   gap:1rem;
   background-color: var(--always-white);
+ 
+
 }
 
 .managerinfo img{
@@ -262,6 +264,7 @@ nav {
 .navbar {
   display: grid;
   grid-template-columns: repeat(5,auto);
+  padding: 1rem;
 }
 
 header nav a {
@@ -381,7 +384,7 @@ article {
 }
 .container {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1.5fr 5fr;
   gap:3rem;
   width: 90%;
   margin-left: auto;
@@ -893,7 +896,7 @@ margin: auto;
 }
 .tabcontent > h3,h1{
   width: fit-content;
- 
+margin: auto;
   padding: 1rem;
   
   
@@ -920,9 +923,9 @@ margin: auto;
 
 
 
-.darkmode--activated .managerinfo,.darkmode--activated footer{
-  background-color: rgb(29, 28, 28);
-  color:var(--fds-gray-30);
+.darkmode--activated .managerinfo{
+ background-color: black!important;
+ color: white;
 }
 .darkmode--activated .managerinfo {
   border-bottom: 1px solid palevioletred;
@@ -941,8 +944,7 @@ margin: auto;
   color:white;
 }
 .darkmode--activated .openbtn{
-  background-color: rgb(19, 18, 18);
-  color:palevioletred;
+ 
 }
 .darkmode--activated .sidenav{
   background-color: rgb(19, 18, 18);
@@ -997,4 +999,209 @@ color:white;
 }
 .darkmode--activated .post-content h4{
   color: rgb(61, 61, 61) !important;
+}
+@media screen and (max-width:1820px) {
+   
+  html{
+    overflow: scroll;
+  }
+  
+}
+@media screen and (max-width:1570px) {
+ body{
+   position: static;
+   display: block;
+ }
+ 
+
+}
+@media screen and (max-width:1415px) {
+  .darkmode--activated .managerinfo{
+    background-color: white!important;
+    color: black;
+   }
+ .openbtn{
+   position: static;
+   width: 100%;
+   right: 0;
+   top:100px;
+   padding: 1rem;
+   background-color: var(--always-white);
+   
+ }
+ .container{
+ grid-template-columns: auto;
+ }
+ .posts{
+  width: 100%;
+  margin-right: 0;
+}
+ article{
+   margin-top: 2rem;
+ }
+
+body{
+  margin-top: 1rem;
+}
+nav a:focus{
+   background-color: var(--fds-green-55);
+ }
+
+ .fa-door-open{
+   color:var(--fds-green-55);
+   padding-right: 1em;
+   display: inline;
+ }
+ .managerinfo{
+   width: 100%;
+   position: static;
+ }
+ .managerinfo h4{
+     letter-spacing: normal;   
+ }
+ header{
+   display: flex;
+   flex-direction: column;
+   
+ }
+  header nav a{
+    padding: 0;
+    
+  }
+ nav{
+   
+   padding: 0;
+  
+ }
+ .navbar{
+   display: flex;
+   flex-direction: row;
+   gap: 1rem;
+   margin: auto;
+   padding: 1rem;
+ }
+ .sidenav{
+   position: fixed;
+   right: 0;
+   top:100px;
+   padding: 0;
+ }
+ .muszaktipusm-container{
+   display: grid;
+   grid-template-columns: auto;
+   width: 100%;
+   margin: auto;
+ }
+
+ 
+}
+@media screen and (max-width:1200px) {
+ .muszaktipusn-container{
+   grid-template-columns: auto auto;
+ }
+ #muszaktipusnapok-content{
+   grid-template-columns: auto auto;
+ }
+ 
+}
+@media screen and (max-width:1000px) {
+ .post-content{
+   grid-template-columns: auto auto;
+   overflow-x: auto;
+   background-color: red;
+ }
+ aside{
+   display: none;
+ }
+ body{
+   margin-top: 1rem;
+ }
+ .managerinfo{
+   width: 100%;
+   position: static;
+ }
+ .managerinfo h4{
+     letter-spacing: normal;   
+ }
+ header{
+   display: flex;
+   flex-direction: column;
+   
+ }
+  header nav a{
+    padding: 0;
+    
+  }
+ nav{
+   background-color: transparent;
+   padding: 0;
+   box-shadow: none;
+ }
+ .navbar{
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ }
+ .navbar a{
+   width: 100%;
+   font-size: 1rem;
+   background-color: var(--always-white);
+   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+   padding: .5rem;
+   text-align: center;
+   border-radius: 10px;
+ }
+ .logout{
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   background-color: var(--bs-teal)!important;
+ }
+}
+@media screen and (max-width:770px) {
+ #muszaktipusnapok-content{
+   grid-template-columns: auto ;
+ }
+}
+@media screen  and (max-width:450px){
+ 
+ body{
+   
+   overflow-x: scroll;
+ }
+ #Muszaktipusn{
+   display: flex;
+   flex-direction: column;
+ 
+ }
+ #muszaktipusn-subcontainer{
+   display: flex;
+   flex-direction: column;
+ }
+ .muszaktipush-content{
+ 
+  width: fit-content;
+  height: fit-content;
+ 
+ }
+ #removemuszakh,#editmuszakh{
+   margin: 0;
+ }
+ article{
+   min-width: 100%;
+ }
+ #Muszaktipusm {
+   min-width: 100%;
+   display: grid;
+   grid-template-columns: auto;
+   align-items: center;
+   margin-left: auto;
+   margin-right: auto;
+ }
+ .post-content{
+   grid-template-columns: auto ;
+   overflow-x: auto;
+   gap:1rem;
+   font-weight: 500;
+ }
 }

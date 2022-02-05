@@ -36,7 +36,7 @@
      
       <div  class="navbar"> 
         
-          <a href="usermenu" ><span> Alkalmazott</span></a>
+          
           <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
           <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
           <a  class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
