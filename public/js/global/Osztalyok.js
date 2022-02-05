@@ -97,30 +97,31 @@ class Adminelemek {
 class AlkalmazottTabla {
     constructor(szulo, adat) {
         this.szulo = szulo;
-        szulo.append(
+        this.szulo.append(
             `<tr>
-          <td id='nev'>Név</td>
-          <td id='beosztas'>Beosztás</td>
-          <td id='lakcim'>Lakcím</td>
-          <td id='elerhetoseg'>Elérhetőség</td>
-          <td id='email'>E-mail</td>
+          <td class='nev'>Név</td>
+          <td class='beosztas'>Beosztás</td>
+          <td class='lakcim'>Lakcím</td>
+          <td class='elerhetoseg'>Elérhetőség</td>
+          <td class='email'>E-mail</td>
         </tr>`
         );
 
         this.adat = adat;
-        this.elem = $("tr:last");
-        this.elem.children("#nev").text(this.adat.nev);
-        this.elem.children("#beosztas").text(this.adat.munkakor);
-        this.elem.children("#lakcim").text(this.adat.lakcim);
-        this.elem.children("#elerhetoseg").text(this.adat.Elerhetoseg);
-        this.elem.children("#email").text(this.adat.Email);
+        
+        this.elem = $("#Alkalmazottak tr:last");
+        this.elem.find(".nev").text(this.adat.nev);
+        this.elem.find(".beosztas").text(this.adat.munkakor);
+        this.elem.find(".lakcim").text(this.adat.lakcim);
+        this.elem.find(".elerhetoseg").text(this.adat.elerhetoseg);
+        this.elem.find(".email").text(this.adat.email);
         this.menu = "#Alkalmazottak .dropdown-content";
 
-        this.elem.on("contextmenu", (e) => {
-            this.jobbklikkTrigger();
-            document.addEventListener("contextmenu", (event) =>
-                event.preventDefault()
-            );
+        this.elem.on("click", (e) => {
+            this.klikkTrigger();
+       //     document.addEventListener("contextmenu", (event) =>
+         //       event.preventDefault()
+           // );
             this.x = e.clientX;
             this.y = e.clientY;
             $(this.menu).css("left", this.x);
@@ -128,8 +129,8 @@ class AlkalmazottTabla {
         });
     }
 
-    jobbklikkTrigger() {
-        let esemeny = new CustomEvent("jobbklikk", { detail: this });
+    klikkTrigger() {
+        let esemeny = new CustomEvent("klikk", { detail: this });
 
         window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
     }
