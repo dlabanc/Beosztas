@@ -36,14 +36,48 @@ $(function () {
     //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
         const napok = [];
-
-        ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
+        const muszakok = [];
+        let napokApi = apivegpont + "/napok";
+        
         KovHetDatumBeallitas();
+        ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
 
         function muszakBeallitas(objektum) {
             const szuloElem = $("#muszaktipusn-subcontainer");
             objektum.forEach((obj) => {
-                new Muszak(szuloElem, obj);
+                let muszak = new Muszak(szuloElem, obj);
+                muszakok.push(muszak);
+            });
+            ajaxApiGet(apivegpont + "/napokossz", (adatok) => {
+                adatok.forEach((aktualisNap) => {
+                    let datum = aktualisNap.nap;
+                    let muszak = aktualisNap.muszaktipus;
+                    console.log(muszak);
+                    muszakok.forEach((m) => {
+                        if (muszak == m.adat.tipus) {
+                            napok.forEach((n) => {
+                                if (datum == n.datum) {
+                                    m.napokTarolo.append(n.elem);   
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            $("#muszaktipushsave").on("click", () => {
+                muszakok.forEach((m) => {
+                    if (m.napok.length > 0) {
+                        for (const nap in m.napok) {
+                            let uj = {
+                                nap: m.napok[nap].datum,
+                                muszaktipus: m.adat.tipus,
+                                allapot: 0,
+                            };
+                            ajax.ajaxApiPost(napokApi, uj);
+                        }
+                    }
+                });
             });
         }
 
@@ -62,9 +96,9 @@ $(function () {
                 let aktNap = $(".muszaktipusnap").eq(i).children("h3").text();
                 let datum =
                     String(d.getFullYear()) +
-                    "." +
+                    "-" +
                     String(d.getMonth() + 1).padStart(2, "0") +
-                    "." +
+                    "-" +
                     String(d.getDate() + diff + i).padStart(2, "0");
                 let nap = new Nap(
                     datum,
@@ -77,9 +111,17 @@ $(function () {
                     .text(nap.datum);
             }
         }
+
         const elemTarolo = $("#muszaktipusnapok-content");
         $(".selectable").selectable();
         $(window).on("Torles", ({ detail }) => {
+            let l = detail.elem.find(".aktualisnapok").children().length;
+            if(detail.napok.length<1){
+            for (let index = 0; index < l; index++) {
+                ajax.ajaxApiDelete(napokApi,(detail.elem.find(".aktualisnapok").children().eq(index).find("p").text()));
+                
+            }
+        }
             detail.napok.forEach((n) => {
                 n.elem.effect("fade", "slow", () => {
                     elemTarolo.append(n.elem);
@@ -87,7 +129,6 @@ $(function () {
                 });
             });
             detail.napok = [];
-            console.log(detail);
         });
         $(window).on("Hozzarendeles", ({ detail }) => {
             for (let index = 0; index < napok.length; index++) {

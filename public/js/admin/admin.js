@@ -218,7 +218,6 @@ $(function () {
     
                 let obj = new osztaly(tablazat, adatok, ajax);
                 obj.post(adatok);
-                console.log(obj);
                 mezo.slideUp(1000);
                 mezo.empty();
     
