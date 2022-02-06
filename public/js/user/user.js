@@ -166,12 +166,6 @@ $(function () {
                 }
                 sor++;
             }
-
-            $("tr").hover(modosit);
-
-            function modosit() {
-                $("tr span").eq(this.id).toggleClass("showButton");
-            }
             $(".tabcontent").eq(0).fadeIn(1000);
             $(".tabcontent").eq(0).css("visibility","visible");
         });

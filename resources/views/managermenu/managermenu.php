@@ -175,7 +175,7 @@
               </tr>
               <ul class="dropdown-content tablaDropdown">
                 <li><a class="tablaAl" href="#">Gyors módosítás</a></li>
-                  <li><a class="tablaAl" href="#">Profil megtekintése</a></li>
+                  <li><a id="AlkModosit" class="tablaAl" href="#">Profil megtekintése</a></li>
               </ul>
           </table>
           

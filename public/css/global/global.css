@@ -132,6 +132,10 @@
   display:none;
 }
 
+#Profiladatok .kesz {
+  cursor:pointer;
+}
+
 #Profiladatok .success {
   opacity: 0;
   font-size: 1rem;

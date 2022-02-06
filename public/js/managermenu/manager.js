@@ -11,27 +11,8 @@ $(function () {
     alkalmazottTabla();
     napiMin();
     faliujsag();
-    ProfilAdatok();
-
-    $("#Alkalmazottak").prepend(
-        `<input type="text" placeholder="Keresés..." class="search">`
-    );
-    $(".search").keyup(function (e) {
-        let ertek = $(this).val();
-
-        ajaxApiGet(
-            apivegpont + "/alkalmazott/search?q=" + ertek,
-            alkalmazottTabla
-        );
-
-        function alkalmazottTabla(alkalmazottak) {
-            const szuloElem = $("#AlkalmazottakTabla");
-            szuloElem.empty();
-            alkalmazottak.forEach((a) => {
-                let b = new AlkalmazottTabla(szuloElem, a);
-            });
-        }
-    });
+    ProfilAdatok(0);
+    ProfilGomb();
 
     //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
@@ -433,6 +414,7 @@ $(function () {
     }
     //ajaxApiGet - Rendben
     function alkalmazottTabla() {
+
         let menu = "#Alkalmazottak .dropdown-content";
         $("#Alkalmazottak").prepend(
             `<input type="text" placeholder="Keresés..." class="search">`
@@ -444,8 +426,8 @@ $(function () {
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
             new AlkalmazottTabla(szuloElem, () => {});
-            alkalmazottak.forEach((elem) => {
-                new AlkalmazottTabla(szuloElem, elem);
+            alkalmazottak.forEach((elem, index) => {
+                new AlkalmazottTabla(szuloElem, elem, index);
             });
         }
 
@@ -459,11 +441,10 @@ $(function () {
         });
 
         $(window).on("klikk", (event) => {
-            if (event.target.id != 0) {
-                console.log(event);
-
+            if (event.detail.id >= 0) {
                 $(menu).css("z-index", 1);
                 $(menu).toggleClass("tablaDropdown");
+                $(menu).attr("id",event.detail.id)
             }
         });
 
@@ -473,7 +454,21 @@ $(function () {
         $(menu).on("click", () => {
             $(menu).toggleClass("tablaDropdown");
         });
+
+        $(menu).find("#AlkModosit").on("click", () => {
+                $("#Alkalmazottak").css("display", "none");
+                $("#Profiladatok").fadeIn(1000);
+                $("#Profiladatok").css("visibility", "visible");
+                ProfilAdatok($(menu).attr("id"));
+            });
     }
+
+    function ProfilGomb() {
+        $("#profiladatok").on("click",()=>{
+            ProfilAdatok(0)
+        })
+    }
+    
     //ajaxApiGet - Hibás
     function napiMin() {
         let vegpont = "../json/napiMin.json";
@@ -495,21 +490,22 @@ $(function () {
     }
 
     //ajaxApiGet - Rendben
-    function ProfilAdatok() {
+    function ProfilAdatok(szemely) {
         profilAdatok = {};
-
+        $("#elso").empty();
+        $("#masodik").empty();
+        $("#Profiladatok .success").hide();
         $("#Profiladatok").prepend(
             "<p class='success'>Sikeres adatmódosítás</p>"
         );
 
         ajaxApiGet(apivegpont + "/alkalmazottak", (adatok) => {
+            console.log(adatok)
             let sor = 0;
-            let szemely = 0;
-
             for (const [key, value] of Object.entries(adatok[szemely])) {
-                $("#Profiladatok").find("h2").text(adatok[0].nev);
+                $("#Profiladatok").find("h2").text(adatok[szemely].nev);
                 $(".managerinfo-name").text(
-                    adatok[0].nev + ", " + adatok[0].munkakor
+                    adatok[szemely].nev + ", " + adatok[szemely].munkakor
                 );
                 let kulcs = key.replace("_", " ");
 
@@ -542,11 +538,9 @@ $(function () {
             $("#tables tr").hover(modosit);
             $(".tabcontent").eq(0).fadeIn(1000);
             $(".tabcontent").eq(0).css("visibility", "visible");
-            
-            $(".managerinfo").fadeIn(1000,()=>{
-               
-            });
-            $(".managerinfo").css("display","grid");
+
+            $(".managerinfo").fadeIn(1000, () => {});
+            $(".managerinfo").css("display", "grid");
             function modosit() {
                 $("#tables tr")
                     .eq(this.id)
@@ -615,7 +609,7 @@ $(function () {
             $(".manager-mod-megse").on("click", function () {
                 modositAblak($(this));
             });
-           
+
             function modositAblak(adat) {
                 adat.parent().parent().find(".kesz").toggleClass("szerkeszt");
                 adat.parent().toggleClass("szerkeszt");

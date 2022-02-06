@@ -95,7 +95,7 @@ class Adminelemek {
 }
 
 class AlkalmazottTabla {
-    constructor(szulo, adat) {
+    constructor(szulo, adat, index) {
         this.szulo = szulo;
         this.szulo.append(
             `<tr>
@@ -108,6 +108,7 @@ class AlkalmazottTabla {
         );
 
         this.adat = adat;
+        this.id = index; 
         
         this.elem = $("#Alkalmazottak tr:last");
         this.elem.find(".nev").text(this.adat.nev);
@@ -130,7 +131,7 @@ class AlkalmazottTabla {
     }
 
     klikkTrigger() {
-        let esemeny = new CustomEvent("klikk", { detail: this });
+        let esemeny = new CustomEvent("klikk", { detail: this});
 
         window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
     }
