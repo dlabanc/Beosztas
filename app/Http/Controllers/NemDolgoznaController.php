@@ -39,8 +39,7 @@ class NemDolgoznaController extends Controller
         $nemdolgozna = new NemDolgozna();
         $nemdolgozna->alkalmazott = $request->alkalmazott;
         $nemdolgozna->datum = $request->datum;
-        $nemdolgozna->muszaktipus = $request->muszaktipus;
-        $nemdolgozna->muszakszam = $request->muszakszam;
+        $nemdolgozna->muszakelo_azon = $request->muszakelo_azon;
         $nemdolgozna->save();
     }
 
@@ -50,10 +49,9 @@ class NemDolgoznaController extends Controller
      * @param  \App\Models\NemDolgozna  $nemDolgozna
      * @return \Illuminate\Http\Response
      */
-    public function show($alkalmazott, $datum, $muszaktipus, $muszakszam)
+    public function show($nemdolgozna_azon)
     {
-        $nemdolgozna = NemDolgozna::where('alkalmazott', '=', $alkalmazott)->where('datum', '=', $datum)
-        ->where('muszaktipus', '=', $muszaktipus)->where('muszakszam', '=', $muszakszam)->first();
+        $nemdolgozna = NemDolgozna::find($nemdolgozna_azon);
         return $nemdolgozna;
     }
 
@@ -75,14 +73,12 @@ class NemDolgoznaController extends Controller
      * @param  \App\Models\NemDolgozna  $nemDolgozna
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $alkalmazott, $datum, $muszaktipus, $muszakszam)
+    public function update(Request $request, $nemdolgozna_azon)
     {
-        $nemdolgozna = NemDolgozna::where('alkalmazott', '=', $alkalmazott)->where('datum', '=', $datum)
-        ->where('muszaktipus', '=', $muszaktipus)->where('muszakszam', '=', $muszakszam)->first();
+        $nemdolgozna = NemDolgozna::find($nemdolgozna_azon);
         $nemdolgozna->alkalmazott = $request->alkalmazott;
         $nemdolgozna->datum = $request->datum;
-        $nemdolgozna->muszaktipus = $request->muszaktipus;
-        $nemdolgozna->muszakszam = $request->muszakszam;
+        $nemdolgozna->muszakelo_azon = $request->muszakelo_azon;
         $nemdolgozna->save();
     }
 
@@ -92,10 +88,19 @@ class NemDolgoznaController extends Controller
      * @param  \App\Models\NemDolgozna  $nemDolgozna
      * @return \Illuminate\Http\Response
      */
-    public function destroy($alkalmazott, $datum, $muszaktipus, $muszakszam)
+    public function destroy($nemdolgozna_azon)
     {
-        $nemdolgozna = NemDolgozna::where('alkalmazott', '=', $alkalmazott)->where('datum', '=', $datum)
-        ->where('muszaktipus', '=', $muszaktipus)->where('muszakszam', '=', $muszakszam)->first();
+        $nemdolgozna = NemDolgozna::find($nemdolgozna_azon);
         $nemdolgozna->delete();
+    }
+
+    public function expandAll(){
+        $nemdolgozna = NemDolgozna::with('muszakeloszlas')->get();
+        return $nemdolgozna;
+    }
+
+    public function expandId($nemdolgozna_azon){
+        $nemdolgozna = NemDolgozna::with('muszakeloszlas')->find($nemdolgozna_azon);
+        return $nemdolgozna;
     }
 }

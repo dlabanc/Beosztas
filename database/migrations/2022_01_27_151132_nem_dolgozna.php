@@ -14,13 +14,12 @@ class NemDolgozna extends Migration
     public function up()
     {
         Schema::create('nem_dolgozna', function (Blueprint $table) {
+            $table->mediumIncrements('nemdolgozna_azon');
             $table->unsignedMediumInteger('alkalmazott');
             $table->date('datum');
-            $table->string('muszaktipus',5);
-            $table->unsignedTinyInteger('muszakszam');
-            $table->primary(['alkalmazott','datum','muszaktipus','muszakszam']);
-            $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign(['muszaktipus', 'muszakszam'])->references(['muszaktipus', 'muszakszam'])->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedtinyInteger('muszakelo_azon');
+            $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('muszakelo_azon')->references('muszakelo_azon')->on('muszakeloszlas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

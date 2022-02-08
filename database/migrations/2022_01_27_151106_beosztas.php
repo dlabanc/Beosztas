@@ -14,16 +14,11 @@ class Beosztas extends Migration
     public function up()
     {
         Schema::create('beosztas', function (Blueprint $table) {
-            $table->date('datum');
-            $table->string('muszaktipus',5);
-            $table->unsignedTinyInteger('muszakszam');
-            $table->string('munkakor',50);
+            $table->increments('beo_azonosito');
+            $table->unsignedInteger('napim_azonosito');
             $table->unsignedMediumInteger('alkalmazott');
-            $table->primary(['datum', 'muszaktipus', 'muszakszam', 'munkakor', 'alkalmazott'],'datum_muszaktipus_muszakszam_munkakor_alkalmazott_primary');
-            $table->foreign('datum')->references('datum')->on('napimunkaeroigeny')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign(['muszaktipus', 'muszakszam', 'munkakor'])->references(['muszaktipus', 'muszakszam', 'munkakor'])
-            ->on('napimunkaeroigeny')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('napim_azonosito')->references('napim_azonosito')->on('napimunkaeroigeny')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

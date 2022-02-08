@@ -17,7 +17,7 @@ class Napok extends Migration
             $table->date('nap')->primary();
             $table->string('muszaktipus',5);
             $table->boolean('allapot')->default(0);
-            $table->foreign('muszaktipus')->references('tipus')->on('muszaktipus');
+            $table->foreign('muszaktipus')->references('tipus')->on('muszaktipus')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

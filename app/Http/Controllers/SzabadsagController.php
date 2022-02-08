@@ -50,10 +50,9 @@ class SzabadsagController extends Controller
      * @param  \App\Models\Szabadsag  $szabadsag
      * @return \Illuminate\Http\Response
      */
-    public function show($alkalmazott, $tol, $ig)
+    public function show($szabadsag_azonosito)
     {
-        $szabadsag = Szabadsag::where('alkalmazott', '=', $alkalmazott)->where('tol', '=', $tol)
-        ->where('ig', '=', $ig)->first();
+        $szabadsag = Szabadsag::find($szabadsag_azonosito);
         return $szabadsag;
     }
 
@@ -75,10 +74,9 @@ class SzabadsagController extends Controller
      * @param  \App\Models\Szabadsag  $szabadsag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $alkalmazott, $tol, $ig)
+    public function update(Request $request, $szabadsag_azonosito)
     {
-        $szabadsag = Szabadsag::where('alkalmazott', '=', $alkalmazott)->where('tol', '=', $tol)
-        ->where('ig', '=', $ig)->first();
+        $szabadsag = Szabadsag::find($szabadsag_azonosito);
         $szabadsag->alkalmazott = $request->alkalmazott;
         $szabadsag->tol = $request->tol;
         $szabadsag->ig = $request->ig;
@@ -92,10 +90,14 @@ class SzabadsagController extends Controller
      * @param  \App\Models\Szabadsag  $szabadsag
      * @return \Illuminate\Http\Response
      */
-    public function destroy($alkalmazott, $tol, $ig)
+    public function destroy($szabadsag_azonosito)
     {
-        $szabadsag = Szabadsag::where('alkalmazott', '=', $alkalmazott)->where('tol', '=', $tol)
-        ->where('ig', '=', $ig)->first();
+        $szabadsag = Szabadsag::find($szabadsag_azonosito);
         $szabadsag->delete();
+    }
+
+    public function expandAll(){
+        $szabadsag = Szabadsag::with('alkalmazottAdat')->get();
+        return $szabadsag;
     }
 }

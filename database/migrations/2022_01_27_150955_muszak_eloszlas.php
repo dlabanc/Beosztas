@@ -14,12 +14,14 @@ class MuszakEloszlas extends Migration
     public function up()
     {
         Schema::create('muszakeloszlas', function (Blueprint $table) {
+            $table->tinyIncrements('muszakelo_azon');
             $table->string('muszaktipus',5);
             $table->unsignedTinyInteger('muszakszam');
             $table->unsignedTinyInteger('oratol');
             $table->unsignedTinyInteger('oraig');
-            $table->primary(['muszaktipus', 'muszakszam']);
-            $table->foreign('muszaktipus')->references('tipus')->on('muszaktipus')->onDelete('restrict')->onUpdate('restrict');
+            $table->unique(['muszaktipus', 'oratol']);
+            $table->index(['muszaktipus', 'oratol']);
+            $table->foreign('muszaktipus')->references('tipus')->on('muszaktipus')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
