@@ -1201,10 +1201,14 @@ h3 {
  background-color: black;
  color:rgb(223, 59, 113)!important;
 }
-.darkmode--activated .navbar a{
-
-    color:var(--bs-teal)!important;
+.darkmode--activated .managerinfo a{
+  color:rgb(223, 59, 113)!important;
 }
+.darkmode--activated .managerinfo span{
+
+    color:white!important;
+}
+
 
 .darkmode--activated .managerinfo,.darkmode--activated nav  {
   box-shadow: none;
