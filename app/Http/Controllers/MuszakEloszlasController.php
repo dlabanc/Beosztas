@@ -50,9 +50,9 @@ class MuszakEloszlasController extends Controller
      * @param  \App\Models\MuszakEloszlas  $muszakEloszlas
      * @return \Illuminate\Http\Response
      */
-    public function show($muszakTipus, $muszakSzam)
+    public function show($muszakelo_azon)
     {
-        $muszakeloszlas = MuszakEloszlas::where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)->first();
+        $muszakeloszlas = MuszakEloszlas::find($muszakelo_azon);
         return $muszakeloszlas;
     }
 
@@ -74,9 +74,9 @@ class MuszakEloszlasController extends Controller
      * @param  \App\Models\MuszakEloszlas  $muszakEloszlas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $muszakTipus, $muszakSzam)
+    public function update(Request $request, $muszakelo_azon)
     {
-        $muszakeloszlas=MuszakEloszlas::where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)->first();
+        $muszakeloszlas = MuszakEloszlas::find($muszakelo_azon);
         $muszakeloszlas->muszaktipus = $request->muszaktipus;
         $muszakeloszlas->muszakszam = $request->muszakszam;
         $muszakeloszlas->oratol = $request->oratol;
@@ -90,9 +90,9 @@ class MuszakEloszlasController extends Controller
      * @param  \App\Models\MuszakEloszlas  $muszakEloszlas
      * @return \Illuminate\Http\Response
      */
-    public function destroy($muszakTipus, $muszakSzam)
+    public function destroy($muszakelo_azon)
     {
-        $muszakeloszlas=MuszakEloszlas::where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)->first();
+        $muszakeloszlas = MuszakEloszlas::find($muszakelo_azon);
         $muszakeloszlas->delete();
     }
 }

@@ -14,12 +14,12 @@ class Szabadsag extends Migration
     public function up()
     {
         Schema::create('szabadsag', function (Blueprint $table) {
+            $table->smallIncrements('szabadsag_azonosito');
             $table->unsignedMediumInteger('alkalmazott');
             $table->date('tol');
             $table->date('ig');
             $table->string('szabadsagtipus',1);
-            $table->primary(['alkalmazott','tol','ig']);
-            $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

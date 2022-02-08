@@ -14,12 +14,12 @@ class Faliujsag extends Migration
     public function up()
     {
         Schema::create('faliujsag', function (Blueprint $table) {
-            $table->smallIncrements('azonosito');
+            $table->smallIncrements('faliu_azonosito');
             $table->unsignedMediumInteger('dolgozoi_azon');
             $table->date('mikor');
             $table->string('cim',255);
             $table->text('tartalom');
-            $table->foreign('dolgozoi_azon')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('dolgozoi_azon')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

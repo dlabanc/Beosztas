@@ -38,8 +38,7 @@ class NapiMunkaeroIgenyController extends Controller
     {
         $igeny = new NapiMunkaeroIgeny();
         $igeny->datum = $request->datum;
-        $igeny->muszaktipus = $request->muszaktipus;
-        $igeny->muszakszam = $request->muszakszam;
+        $igeny->muszakelo_azon = $request->muszakelo_azon;
         $igeny->munkakor = $request->munkakor;
         $igeny->db = $request->db;
         $igeny->save();
@@ -51,10 +50,9 @@ class NapiMunkaeroIgenyController extends Controller
      * @param  \App\Models\NapiMunkaeroIgeny  $napiMunkaeroIgeny
      * @return \Illuminate\Http\Response
      */
-    public function show($datum, $muszkaTipus, $muszakSzam, $munkakor)
+    public function show($napim_azonosito)
     {
-        $igeny = NapiMunkaeroIgeny::where('datum','=',$datum)->where('muszaktipus','=',$muszkaTipus)
-        ->where('muszakszam','=',$muszakSzam)->where('munkakor','=',$munkakor)->first();
+        $igeny = NapiMunkaeroIgeny::find($napim_azonosito);
         return $igeny;
     }
 
@@ -76,13 +74,11 @@ class NapiMunkaeroIgenyController extends Controller
      * @param  \App\Models\NapiMunkaeroIgeny  $napiMunkaeroIgeny
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $datum, $muszkaTipus, $muszakSzam, $munkakor)
+    public function update(Request $request, $napim_azonosito)
     {
-        $igeny = NapiMunkaeroIgeny::where('datum','=',$datum)->where('muszaktipus','=',$muszkaTipus)
-        ->where('muszakszam','=',$muszakSzam)->where('munkakor','=',$munkakor)->first();
+        $igeny = NapiMunkaeroIgeny::find($napim_azonosito);
         $igeny->datum = $request->datum;
-        $igeny->muszaktipus = $request->muszaktipus;
-        $igeny->muszakszam = $request->muszakszam;
+        $igeny->muszakelo_azon = $request->muszakelo_azon;
         $igeny->munkakor = $request->munkakor;
         $igeny->db = $request->db;
         $igeny->save();
@@ -94,10 +90,21 @@ class NapiMunkaeroIgenyController extends Controller
      * @param  \App\Models\NapiMunkaeroIgeny  $napiMunkaeroIgeny
      * @return \Illuminate\Http\Response
      */
-    public function destroy($datum, $muszkaTipus, $muszakSzam, $munkakor)
+    public function destroy($napim_azonosito)
     {
-        $igeny = NapiMunkaeroIgeny::where('datum','=',$datum)->where('muszaktipus','=',$muszkaTipus)
-        ->where('muszakszam','=',$muszakSzam)->where('munkakor','=',$munkakor)->first();
+        $igeny = NapiMunkaeroIgeny::find($napim_azonosito);
         $igeny->delete();
+    }
+
+    public function expandAll()
+    {
+        $igeny = NapiMunkaeroIgeny::with('muszakeloszlas')->get();
+        return $igeny;
+    }
+
+    public function expandId($napim_azonosito)
+    {
+        $igeny = NapiMunkaeroIgeny::with('muszakeloszlas')->find($napim_azonosito);
+        return $igeny;
     }
 }

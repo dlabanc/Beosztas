@@ -15,8 +15,8 @@ class Bejelentkezes extends Migration
     {
         Schema::create('bejelentkezesi_adatok', function (Blueprint $table) {
             $table->mediumIncrements('user_login');
-            $table->foreign('user_login')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
             $table->string('jelszo',60);
+            $table->foreign('user_login')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('restrict')->onUpdate('restrict');
         });
     }
 

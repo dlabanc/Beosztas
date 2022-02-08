@@ -37,10 +37,7 @@ class BeosztasController extends Controller
     public function store(Request $request)
     {
         $beosztas = new Beosztas();
-        $beosztas->datum = $request->datum;
-        $beosztas->muszaktipus = $request->muszaktipus;
-        $beosztas->muszakszam = $request->muszakszam;        
-        $beosztas->munkakor = $request->munkakor;
+        $beosztas->napim_azonosito = $request->napim_azonosito;
         $beosztas->alkalmazott = $request->alkalmazott;       
         $beosztas->save();
     }
@@ -51,10 +48,9 @@ class BeosztasController extends Controller
      * @param  \App\Models\Beosztas  $beosztas
      * @return \Illuminate\Http\Response
      */
-    public function show($datum, $muszakTipus, $muszakSzam, $munkakor, $alkalmazott)
+    public function show($beo_azonosito)
     {
-        $beosztas = Beosztas::where('datum','=',$datum)->where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)
-        ->where('munkakor','=',$munkakor)->where('alkalmazott','=',$alkalmazott)->first();
+        $beosztas = Beosztas::find($beo_azonosito);
         return $beosztas;
     }
 
@@ -76,15 +72,12 @@ class BeosztasController extends Controller
      * @param  \App\Models\Beosztas  $beosztas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $datum, $muszakTipus, $muszakSzam, $munkakor, $alkalmazott)
+    public function update(Request $request, $beo_azonosito)
     {
-        $beosztas = Beosztas::where('datum','=',$datum)->where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)
-        ->where('munkakor','=',$munkakor)->where('alkalmazott','=',$alkalmazott)->first();
-        $muszakeloszlas->muszaktipus = $request->muszaktipus;
-        $muszakeloszlas->muszakszam = $request->muszakszam;
-        $muszakeloszlas->oratol = $request->oratol;
-        $muszakeloszlas->oraig = $request->oraig;
-        $muszakeloszlas->save();
+        $beosztas = Beosztas::find($beo_azonosito);
+        $beosztas->napim_azonosito = $request->napim_azonosito;
+        $beosztas->alkalmazott = $request->alkalmazott;       
+        $beosztas->save();
     }
 
     /**
@@ -93,10 +86,19 @@ class BeosztasController extends Controller
      * @param  \App\Models\Beosztas  $beosztas
      * @return \Illuminate\Http\Response
      */
-    public function destroy($datum, $muszakTipus, $muszakSzam, $munkakor, $alkalmazott)
+    public function destroy($beo_azonosito)
     {
-        $beosztas=Beosztas::where('datum','=',$datum)->where('muszaktipus','=',$muszakTipus)->where('muszakszam','=',$muszakSzam)
-        ->where('munkakor','=',$munkakor)->where('alkalmazott','=',$alkalmazott)->first();
+        $beosztas = Beosztas::find($beo_azonosito);
         $beosztas->delete();
+    }
+
+    public function expandAll(){
+        $beosztas = Beosztas::with('alkalmazottAdat')->with('napimunkaeroigeny')->get();
+        return $beosztas;
+    }
+
+    public function expandId($beo_azonosito){
+        $beosztas = Beosztas::with('alkalmazottAdat')->with('napimunkaeroigeny')->find($beo_azonosito);
+        return $beosztas;
     }
 }

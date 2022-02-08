@@ -14,15 +14,14 @@ class NapiMunkaeroIgeny extends Migration
     public function up()
     {
         Schema::create('napimunkaeroigeny', function (Blueprint $table) {
+            $table->increments('napim_azonosito');
             $table->date('datum');
-            $table->string('muszaktipus',5);
-            $table->unsignedTinyInteger('muszakszam');
+            $table->unsignedtinyInteger('muszakelo_azon');
             $table->string('munkakor',50);
             $table->unsignedTinyInteger('db');
-            $table->primary(['datum', 'muszaktipus', 'muszakszam', 'munkakor']);
-            $table->index(['muszaktipus', 'muszakszam', 'munkakor']);
+            $table->unique(['datum', 'muszakelo_azon', 'munkakor']);
             $table->foreign('datum')->references('nap')->on('napok')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign(['muszaktipus', 'muszakszam'])->references(['muszaktipus', 'muszakszam'])->on('muszakeloszlas')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('muszakelo_azon')->references('muszakelo_azon')->on('muszakeloszlas')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('munkakor')->references('megnevezes')->on('munkakor')->onDelete('restrict')->onUpdate('restrict');
             
         });
