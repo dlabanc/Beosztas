@@ -249,9 +249,7 @@ background-color: rgba(10, 10, 10, 0.95 );
 }
 
 @media screen and (max-width:1000px) {
-  aside{
-    width: max-content;
-  }
+ 
   html{
     min-width: 400px;
   }
@@ -323,10 +321,7 @@ background-color: rgba(10, 10, 10, 0.95 );
   body{
     overflow-x: hidden;
   }
- .useraside
-  {
-    display: none;
-  }
+ 
   .post-info{
    display: none;
   }

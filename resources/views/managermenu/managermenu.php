@@ -28,32 +28,30 @@
   </head>
   <div class="managerinfo">
   <div class="managerinfo-leftgrid"><span class="fas fa-home"></span> Chill out Cafe </div>
-  
+  <div class="managerinfo-centergrid">
+  <div  class="navbar"> 
+        
+          
+        <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
+        <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
+        <a  class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
+       
+    </div>
+  </div>
   <div class="managerinfo-rightgrid">
  
   <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
   <div><img src="" alt="" class="profilepic"></div>
   <a href="/login" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
+  <span style="font-size: 20px; cursor: pointer" class="openbtn"
+        >&#9776;</span
+      >
   </div>
   </div>
   <header>
     
 
-      <nav>
-        
-        <div  class="navbar"> 
-          
-           
-            <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
-            <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
-            <a href="#" class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
-        
-           
-        </div>
-      </nav>
-      <span style="font-size: 20px; cursor: pointer" class="openbtn"
-        >&#9776;</span
-      >
+     
       <div id="mySidenav" class="sidenav">
         
         <a href="javascript:void(0)" class="closebtn">&times;</a>

@@ -31,10 +31,20 @@
   <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
   <div><img src="" alt="" class="profilepic"></div>
   <a href="/login" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
-  </div>
+  <span style="font-size: 20px; cursor: pointer" class="openbtn"
+        >&#9776;</span
+      >
+</div>
   </div>
  
-  <header>
+
+
+  <body>
+
+    <div class="container">
+      
+      <aside class="useraside">
+      <header>
     
     <nav>
      
@@ -49,9 +59,7 @@
     </nav>
    
    
-      <span style="font-size: 20px; cursor: pointer" class="openbtn"
-        >&#9776;</span
-      >
+     
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn">&times;</a>
         <a href="../usermenu">Kezdőlap</a>
@@ -62,16 +70,14 @@
       </div>
     
   </header>
-
-  <body>
-    <div class="container">
-      <aside class="useraside">
         <div class="posts">
          
          
         </div>
+
       </aside>
       <article>
+        
         <div id="Profiladatok" class="tabcontent">
           <h1>Profil adatok</h1>
           <h2>Labanc Dániel</h2>

@@ -85,7 +85,6 @@
 }
 
 .logout {
-   
     padding: 1rem;
     border-radius: 10px;
     font-weight: lighter;
@@ -94,14 +93,9 @@
     justify-content: center;
 }
 header {
+    margin-top: 3rem;
     display: grid;
-    grid-template-columns: auto auto;
-    top: 1rem;
-    margin-left: 10px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
+    grid-template-columns: auto;
 }
 
 .openbtn:hover {
@@ -176,7 +170,15 @@ header {
 }
 /*!--------------------!*/
 /* Alkalmazott menu vége*/
-
+header {
+    grid-area: "header";
+}
+article {
+    grid-area: "article";
+}
+.container {
+    grid-area: "c";
+}
 body {
     display: grid;
     border-radius: 16px;
@@ -215,21 +217,21 @@ body {
     border-radius: 50px;
     margin: auto;
 }
-.managerinfo-leftgrid{
-  display: flex; 
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 1rem;
-  gap:1rem;
+.managerinfo-leftgrid {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+    gap: 1rem;
 }
-.managerinfo-rightgrid{
-  padding-right: 1rem;
-  display: flex; 
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  gap:1rem;
+.managerinfo-rightgrid {
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
 }
 .fa-home {
     color: var(--bs-info);
@@ -237,10 +239,12 @@ body {
 
 .navbar span {
     color: black;
+    width: fit-content;
     font-weight: 450;
     line-height: 1.34;
-    padding: 1rem;
-    margin: auto;
+    width: 100%;
+    margin-left: 1.5rem;
+    
 }
 .admin {
     padding: 1rem;
@@ -253,27 +257,19 @@ body {
 }
 nav {
     background-color: var(--always-white);
-    width: 100%;
-    border-radius: 50px;
-    width: calc(100%-1px);
-    display: grid;
-    align-self: center;
-    justify-self: center;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    margin: 3rem;
+    border-radius: 10px;
+    width: 95%;
+    
     color: white;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 .navbar {
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    padding: 1rem;
 }
 
 header nav a {
     text-decoration: none;
-
+    margin: auto;
     font-size: 1.1rem;
     cursor: pointer;
     display: flex;
@@ -285,17 +281,18 @@ header nav a {
     margin-left: 1rem;
     margin-right: 1rem;
 }
+header nav a:hover{
+
+}
 
 .openbtn {
-    position: relative;
-    left: 4rem;
+    
     display: flex;
     justify-content: center;
     align-self: center;
-    margin: auto;
     padding: 1rem;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    
     color: black;
     font-size: 1.1rem;
     border-radius: 6px;
@@ -314,7 +311,7 @@ header nav a {
     top: 10rem;
     height: 700px;
     width: 0;
-    position: absolute;
+    position: fixed;
     right: 11px;
     transform: translateY(-10px);
     z-index: 1;
@@ -912,7 +909,7 @@ h1 {
 .darkmode--activated {
     box-shadow: none;
     border: none;
-    border:1px solid rgba(255, 255, 255, 0.699);
+    border: 1px solid rgba(255, 255, 255, 0.699);
 }
 .darkmode--activated .sidenav {
     background-color: rgb(19, 18, 18);
@@ -960,7 +957,7 @@ h1 {
     background-color: rgb(236, 230, 230) !important;
     color: var(--fds-spectrum-slate-tint-70);
 }
-.darkmode--activated .logout{
+.darkmode--activated .logout {
     color: rgb(223, 59, 113) !important;
 }
 .darkmode--activated .post-content > h3 {
@@ -969,8 +966,8 @@ h1 {
 .darkmode--activated .post-content h4 {
     color: rgb(61, 61, 61) !important;
 }
-darkmode--activated .logout .logout-text{
-  color: black!important;
+darkmode--activated .logout .logout-text {
+    color: black !important;
 }
 @media screen and (max-width: 1820px) {
     html {
@@ -990,7 +987,7 @@ darkmode--activated .logout .logout-text{
     }
     .openbtn {
         position: static;
-        width: 100%;
+        
         right: 0;
         top: 100px;
         padding: 1rem;
@@ -1028,27 +1025,28 @@ darkmode--activated .logout .logout-text{
     }
     header {
         display: flex;
+       
+       
+        
         flex-direction: column;
     }
     header nav a {
         padding: 0;
     }
     nav {
+        margin: auto;
+
         padding: 0;
     }
     .navbar {
         display: flex;
         flex-direction: row;
+        justify-content: center;
         gap: 1rem;
         margin: auto;
         padding: 1rem;
     }
-    .sidenav {
-        position: fixed;
-        right: 0;
-        top: 100px;
-        padding: 0;
-    }
+   
     .muszaktipusm-container {
         display: grid;
         grid-template-columns: auto;
@@ -1070,8 +1068,9 @@ darkmode--activated .logout .logout-text{
         overflow-x: auto;
         background-color: red;
     }
-    aside {
-        display: none;
+   
+    aside .posts{
+        display: block;
     }
     body {
         margin-top: 1rem;
@@ -1094,6 +1093,7 @@ darkmode--activated .logout .logout-text{
         background-color: transparent;
         padding: 0;
         box-shadow: none;
+        
     }
     .navbar {
         display: flex;
@@ -1114,33 +1114,47 @@ darkmode--activated .logout .logout-text{
         width: 100%;
         margin: 0;
         padding: 0;
-        
     }
 }
 @media screen and (max-width: 770px) {
     #muszaktipusnapok-content {
         grid-template-columns: auto;
     }
+ 
+   
+}
+@media screen and (max-width: 700px) {
+    .container aside .posts{
+        display: none;
+    }
 }
 @media screen and (max-width: 550px) {
-  .managerinfo{
-    grid-template-columns: auto;
-    padding-top: 1rem;
-  }
-  .managerinfo-rightgrid{
+    .managerinfo {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        
+        padding-top: 1rem;
+    }
+    .managerinfo-rightgrid {
+        display: block;
+        width: fit-content;
+        padding: 0;
+        margin: auto;
+    }
+    .managerinfo .managerinfo-leftgrid {
+        display: none;
+        
+    }
+    .managerinfo .logout {
+        margin-bottom: 1rem;
+    }
+    .openbtn{
+        margin: auto;
+    }
     
-    display: block;
-    margin: auto;
-  }
- .managerinfo .managerinfo-leftgrid{
-   display: none;
- }
- .managerinfo .logout{
-   margin-bottom: 1rem;
- }
 }
 @media screen and (max-width: 450px) {
-
     body {
         overflow-x: scroll;
     }
@@ -1177,4 +1191,5 @@ darkmode--activated .logout .logout-text{
         gap: 1rem;
         font-weight: 500;
     }
+    
 }
