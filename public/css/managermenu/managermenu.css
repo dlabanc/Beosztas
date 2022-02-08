@@ -194,31 +194,46 @@ header {
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 .managerinfo {
-  display: none;
-  font-family: 'Montserrat',sans-serif;
-  top:.5em;
-  left:2.5%;
+  font-family: "Montserrat", sans-serif;
+  top: 0.5em;
+  left: 2.5%;
   position: absolute;
   z-index: 500;
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   border: 1px solid var(--always-white);
   width: 95%;
-  min-width: 300px;
   border-radius: 10px;
   margin: auto;
-  
-  grid-template-columns: repeat(3,auto);
+  display: grid;
+  grid-template-columns: repeat(2, auto);
   align-items: center;
-  gap:1rem;
+  gap: 1rem;
   background-color: var(--always-white);
 }
 
-.managerinfo img{
-  padding: .5rem;
+.managerinfo img {
+  padding: 0.5rem;
   width: 50px;
   height: 100%;
   border-radius: 50px;
+  margin: auto;
+}
+.managerinfo-leftgrid{
+display: flex; 
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+padding-left: 1rem;
+gap:1rem;
+}
+.managerinfo-rightgrid{
+padding-right: 1rem;
+display: flex; 
+flex-direction: row;
+justify-content: flex-end;
+align-items: center;
+gap:1rem;
 }
 .fa-home{
   color:var(--bs-info);
@@ -259,7 +274,7 @@ nav {
 }
 .navbar {
   display: grid;
-  grid-template-columns: repeat(5,auto);
+  grid-template-columns: repeat(3,auto);
 }
 
 header nav a {
@@ -1071,10 +1086,10 @@ h3 {
   user-select: none;
 }
 .logout{
-  background-color: var(--bs-teal);
+  
   padding: 1rem;
   border-radius:10px;
-  color: white;
+ 
   font-weight: lighter;
   text-align: center;
   display: flex;
@@ -1138,6 +1153,76 @@ h3 {
 
 
 
+.darkmode--activated article{
+  box-shadow: none;
+  background-color: transparent;
+ 
+}
+.darkmode--activated .tabcontent{
+  box-shadow: none;
+  background-color: transparent;
+}
+.darkmode--activated .container{
+
+  background-color:transparent;
+  
+}
+
+.darkmode--activated aside{
+  
+  color:white;
+}
+
+.darkmode--activated .post{
+  background-color: rgb(155, 17, 63);
+}
+
+.darkmode--activated .managerinfo{
+ background-color: black!important;
+ color: white;
+}
+.darkmode--activated .managerinfo {
+  border-bottom: 1px solid palevioletred;
+}
+.darkmode--activated header span{
+  color: black!important;
+}
+.darkmode--activated aside .posts{
+  background-color: rgba(29, 28, 28, 0.505);
+}
+
+.darkmode--activated nav span{
+  color:var(--fds-gray-30);
+}
+
+.darkmode--activated .openbtn{
+ background-color: black;
+ color:rgb(223, 59, 113)!important;
+}
+.darkmode--activated .navbar a{
+
+    color:var(--bs-teal)!important;
+}
+
+.darkmode--activated .managerinfo,.darkmode--activated nav  {
+  box-shadow: none;
+  border: none;
+  
+}
+.darkmode--activated{
+  
+  box-shadow: none;
+  border: none;
+   
+  border:1px solid rgba(255, 255, 255, 0.699);
+}
+.darkmode--activated .logout{
+  color: rgb(223, 59, 113) !important;
+}
+.darkmode--activated article {
+  background-color: var(--always-white) !important;
+  
+}
 .darkmode--activated .sidenav{
   background-color: rgb(19, 18, 18);
 }
@@ -1168,10 +1253,35 @@ color:white;
 .darkmode--activated #tables tr{
   border-bottom: 1px solid palevioletred;
 }
-.darkmode--activated .post-content{
-  background-color: rgb(19, 18, 18)!important;
-  color:var(--fds-spectrum-slate-tint-70);
+
+.darkmode--activated .tabcontent{
+  
+  background-color: rgba(0, 0, 0, 0.014);
+  border-radius: 15px;
+  color: black;
 }
+.darkmode--activated .post:hover{
+  background-color: palevioletred;
+}
+.darkmode--activated .post-content{
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+    background-color: rgb(236, 230, 230)!important;
+    color:var(--fds-spectrum-slate-tint-70);
+}
+
+.darkmode--activated .post-content > h3{
+  color: palevioletred !important;
+  
+  
+}
+.darkmode--activated .post-content h4{
+  color: rgb(61, 61, 61) !important;
+}
+.darkmode--activated{
+  
+  border:1px solid rgba(255, 255, 255, 0.699);
+}
+
 
 .napiMin input {
 width:40px;
@@ -1368,13 +1478,30 @@ width:40px;
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: var(--bs-teal)!important;
+
   }
 }
 @media screen and (max-width:770px) {
   #muszaktipusnapok-content{
     grid-template-columns: auto ;
   }
+}
+@media screen and (max-width: 550px) {
+  .managerinfo{
+    grid-template-columns: auto;
+    padding-top: 1rem;
+  }
+  .managerinfo-rightgrid{
+    
+    display: block;
+    margin: auto;
+  }
+ .managerinfo .managerinfo-leftgrid{
+   display: none;
+ }
+ .managerinfo .logout{
+   margin-bottom: 1rem;
+ }
 }
 @media screen  and (max-width:450px){
  

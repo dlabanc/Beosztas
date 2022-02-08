@@ -3,6 +3,7 @@ $(function () {
     const ajax = new Ajax(token);
     const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
+   
     newPost();
     ProfilAdatok();
   
@@ -47,6 +48,7 @@ $(function () {
         $(".posts-container").empty();
         $(".posts").empty();
         $(".posts").append(`<div> <h1>Faliújság</h1></div>`);
+      
         const postinfoTomb = [];
         adatok.forEach((adat) => {
             ajax.ajaxApiGet(
@@ -67,6 +69,8 @@ $(function () {
                                         const element = adatok[index];
                                         let kep = ember.picture.large;
                                         $(".profilepic").attr("src", kep);
+                                        $(".profilepic").fadeIn(1000);
+
                                         $("#Profiladatok")
                                             .find("img")
                                             .attr("src", kep);
@@ -91,6 +95,7 @@ $(function () {
                 }
             );
         });
+        
     }
 
     function newPost() {
@@ -136,6 +141,7 @@ $(function () {
     }
 
     function ProfilAdatok() {
+        $(".profilepic").hide();
         ajax.ajaxApiGet("http://localhost:8000/api/alkalmazottak", (adatok) => {
             sor = 0;
             $("#Profiladatok").find("h2").text(adatok[0].nev);

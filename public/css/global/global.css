@@ -1,5 +1,5 @@
 .password-window{
-     visibility: hidden;
+     display: none;
      position: absolute;
      left: 50%;
      bottom: 50%;
@@ -9,7 +9,6 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     min-width: 60%;
     height: 500px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     user-select: none;
@@ -20,6 +19,7 @@
     background-color: white;
     border-radius: 6px;
     width: 100%;
+    margin: auto;
     padding: 5.rem;
     display: flex;
     flex-direction: column;
@@ -58,8 +58,7 @@
     padding: 1rem 2rem 1rem 2rem; 
   }
   .password-notification{
-    visibility: hidden;
-    display: flex;
+    display: none;
     justify-content: center;
     color: red; 
 
@@ -214,10 +213,10 @@ background-color: rgba(10, 10, 10, 0.95 );
   margin-right: auto; 
 }
 .lds-ring {
-  display: inline-block;
-  position: relative;
+  margin-top: 5rem;
   width: 80px;
   height: 80px;
+
 }
 .lds-ring div {
   box-sizing: border-box;
@@ -229,7 +228,7 @@ background-color: rgba(10, 10, 10, 0.95 );
   border: 8px solid #fff;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: rgb(12, 190, 190) transparent transparent transparent;
+  border-color:rgb(24, 206, 167) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;

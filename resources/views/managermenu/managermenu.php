@@ -27,10 +27,14 @@
     <title>Üzletvezető</title>
   </head>
   <div class="managerinfo">
-  <div><span class="fas fa-home"></span> Chill out Cafe </div>
-  <div><img src="" alt="" class="profilepic"></div>
-  <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
+  <div class="managerinfo-leftgrid"><span class="fas fa-home"></span> Chill out Cafe </div>
   
+  <div class="managerinfo-rightgrid">
+ 
+  <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
+  <div><img src="" alt="" class="profilepic"></div>
+  <a href="/login" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
+  </div>
   </div>
   <header>
     
@@ -43,7 +47,7 @@
             <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
             <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
             <a href="#" class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
-            <a href="../login" class="logout"><div ></div>Kijelentkezés</a>
+        
            
         </div>
       </nav>

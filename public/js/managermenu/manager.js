@@ -397,6 +397,7 @@ $(function () {
                             .find("img")
                             .attr("src", ember.picture.large);
                         $(".profilepic").attr("src", ember.picture.large);
+                        $(".profilepic").fadeIn(1000);
                         $("#Profiladatok")
                             .find("img")
                             .attr("src", ember.picture.large);
@@ -491,6 +492,7 @@ $(function () {
 
     //ajaxApiGet - Rendben
     function ProfilAdatok(szemely) {
+        $(".profilepic").hide();
         profilAdatok = {};
         $("#elso").empty();
         $("#masodik").empty();

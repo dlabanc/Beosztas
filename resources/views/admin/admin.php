@@ -51,6 +51,7 @@
         </div>
         <div class="stat4 box">
             <div class="allusers"> 
+                
                 <div class="fas fa-sign-in-alt"></div>
             <div class="desc">Összes bejelentkezés</div>
             
@@ -60,7 +61,8 @@
       
     </header>
     <article>
-    <div class="loading">Loading...
+        
+    <div class="loading">
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
         <div id="Alkalmazottak" class="tabcontent">

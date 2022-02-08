@@ -92,18 +92,19 @@ $(function(){
   function changePass(){
       
     $(".passchange").on("click", () => {
-      $(".password-window").css("visibility", "visible");
-      $(".container").css("visibility", "hidden");
+      $(".password-window").slideDown(1000);
+      
      
     });
     $(".passwordOk").on("click", function () {
-      $(".password-window").css("visibility", "hidden");
-      $(".container").css("visibility", "visible");
+     
+      $(".password-window").slideUp(1000);
+
     });
     $(".passwordNo").on("click", function () {
-      $(".password-window").css("visibility", "hidden");
-      $(".container").css("visibility", "visible");
-      $(".password-notification").css("visibility", "hidden");
+      $(".password-window").slideUp(1000);
+      
+      $(".password-notification").slideUp(1000);
       $("#pass-first").val("");
       $("#pass-second").val("");
       
@@ -119,9 +120,9 @@ $(function(){
       ) {
         btn.removeAttr("disabled");
   
-        $(".password-notification").css("visibility", "hidden");
+        $(".password-notification").slideUp(1000);
       } else {
-        $(".password-notification").css("visibility", "visible");
+        $(".password-notification").slideDown(1000);
   
         $(btn).attr("disabled", true);
       }
