@@ -462,24 +462,38 @@ article {
 }
 .ujmezo .label-input {
     display: grid;
-    grid-template-columns: 15% auto;
+    grid-template-columns: 300px 300px;
+    
+}
+.label-input2 input{
+    display: block;
+}
+.label-input2{
+    display: flex!important;
+}
+
+#dolgozos3{
+    display: none;
 }
 .ujmezo label {
     padding: 0.3rem;
     margin: 0.3rem;
 }
 .ujmezo fieldset input,
-.ujmezo fieldset select {
+.ujmezo fieldset select,
+#munkakors{
     padding: 0.3rem;
     margin: 0.3rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    width: 100%;
+    border-radius: 10px;
+    border: none;
+   
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+   
 }
-.ujmezo .label-span {
-    display: grid;
-    grid-template-columns: 15% auto auto;
-}
+
+
 .ujmezo fieldset legend {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     background-color: var(--fds-spectrum-teal-tint-90) !important;
@@ -489,6 +503,7 @@ article {
 .admin-new-buttons {
     width: fit-content;
     margin: auto;
+    margin-top: 1rem;
 }
 .admin-new-buttons button,
 .uj {
@@ -509,7 +524,66 @@ article {
 .admin-new-buttons .fa-times {
     color: var(--bs-red);
 }
+#napimunkaeroigeny-table {
+    width: 100%;
+    margin: auto;
+    padding: 2rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+#napimunkaeroigeny-table  tr{
+    display: none;
+    padding: 1rem;
+    margin: .5rem;
+    background-color: var(--always-white);
+}
+#napimunkaeroigeny-table td{
+    padding: 1.5rem;
 
+}
+#napimunkaeroigeny-table th{
+    padding: 1rem;
+    background-color: var(--bs-teal);
+    font-weight: 450;
+    
+}
+#napimunkaeroigeny-table  th:hover{
+    background-color: var(--bs-teal);
+    color:black;
+}
+#napimunkaeroigeny-table  tr:hover{
+    background-color: var(--bs-info);
+    color:var(--always-white);
+    cursor: pointer;
+
+}
+.label-input2{
+    margin-bottom: 1rem;
+}
+.label-input2 input,#munkakor-input,#dolgozoi-azon-input2,#dolgozoi-azon-input,#muszakeloszlasok-input,#dolgozoi-azon-input4{
+    display: none;
+}
+.napimunkaeroigeny-grid{
+    margin-top: 2rem;
+}
+
+.ujmezo .box{
+    height: fit-content;
+    width: fit-content;
+    background-color: var(--always-white);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: auto;
+    gap:1rem;
+}
+.ujmezo .box div{
+    display: none;
+    font-weight: 450;
+    padding: .5rem;
+}
+
+#muszakeloszlasok option{
+    text-align: justify;
+}
 @media screen and (max-width: 1360px) {
     body {
         grid-template-columns: 25% auto;

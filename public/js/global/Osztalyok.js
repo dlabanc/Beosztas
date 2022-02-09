@@ -426,7 +426,6 @@ class Alkalmazott extends Adminelemek {
         this.ajax.ajaxApiPut(this.api, this.adat.dolgozoi_azon, this.adat);
     }
 }
-
 class FaliujsagPost extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
@@ -435,10 +434,10 @@ class FaliujsagPost extends Adminelemek {
   
     }
     delete() {
-        this.ajax.ajaxApiDelete(this.api, this.adat.azonosito);
+        this.ajax.ajaxApiDelete(this.api, this.adat.faliu_azonosito);
     }
     put() {
-        this.ajax.ajaxApiPut(this.api, this.adat.azonosito, this.adat);
+        this.ajax.ajaxApiPut(this.api, this.adat.faliu_azonosito, this.adat);
     }
    
 }
@@ -465,7 +464,7 @@ class Bejelentkezes extends Adminelemek {
         this.ajax.ajaxApiPut(this.api, this.adat.tipus, this.adat);
     }
     delete() {
-        this.ajax.ajaxApiDelete(this.api, this.adat.tipus);
+        this.ajax.ajaxApiDelete(this.api, this.adat.user_login);
     }
 }
 class Muszaktipus extends Adminelemek {
@@ -482,11 +481,15 @@ class Muszaktipus extends Adminelemek {
     }
 }
 class Napimunkaeroigeny extends Adminelemek {
+    //Route::put('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'update']);
+    //Route::post('/api/napimunkaeroigeny', [NapiMunkaeroIgenyController::class, 'store']);
     constructor(szulo, adat, ajax) {
+       
         super(szulo, adat, ajax);
         this.api = "http://localhost:8000/api/napimunkaeroigeny";
         this.apivegpont = "http://localhost:8000/api/napimunkaeroigenyek";
-        this.id = `${this.adat.datum}/${this.adat.muszaktipus}/${this.adat.muszakszam}/${this.adat.munkakor}`;
+        this.id = `${this.adat.napim_azonosito}`;
+      
     }
     delete() {
         this.ajax.ajaxApiDelete(this.api, this.id);
@@ -511,7 +514,7 @@ class Beosztas extends Adminelemek {
         super(szulo, adat, ajax);
         this.api = "http://localhost:8000/api/beosztas";
         this.apivegpont = "http://localhost:8000/api/beosztasok";
-        this.id = `${this.adat.datum}/${this.adat.muszaktipus}/${this.adat.muszakszam}/${this.adat.munkakor}/${this.adat.alkalmazott}`;
+        this.id =this.adat.beo_azonosito;
     }
     delete() {
         this.ajax.ajaxApiDelete(this.api, this.id);
@@ -526,7 +529,7 @@ class Szabadsag extends Adminelemek {
         super(szulo, adat, ajax);
         this.api = "http://localhost:8000/api/szabadsag";
         this.apivegpont = "http://localhost:8000/api/szabadsagok";
-        this.id = `${this.adat.alkalmazott}/${this.adat.tol}/${this.adat.ig}/`;
+        this.id = `${this.adat.szabadsag_azonosito}/`;
     }
     delete() {
         this.ajax.ajaxApiDelete(this.api, this.id);
@@ -540,7 +543,7 @@ class Nemdolgozna extends Adminelemek {
         super(szulo, adat, ajax);
         this.api = "http://localhost:8000/api/nemdolgozna";
         this.apivegpont = "http://localhost:8000/api/nemdolgoznaossz";
-        this.id = `${this.adat.alkalmazott}/${this.adat.datum}/${this.adat.muszaktipus}/${this.adat.muszakszam}/`;
+        this.id = this.adat.nemdolgozna_azon;
         
     }
     

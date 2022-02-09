@@ -198,7 +198,7 @@ body {
     position: absolute;
     z-index: 500;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border: 1px solid var(--always-white);
     width: 95%;
     border-radius: 10px;
@@ -281,9 +281,7 @@ header nav a {
     margin-left: 1rem;
     margin-right: 1rem;
 }
-header nav a:hover{
 
-}
 
 .openbtn {
     
@@ -360,19 +358,25 @@ header nav a:hover{
     padding: 16px;
 }
 
+.tabcontent{
+    background-color: var(--always-white);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+}
+
 article {
     user-select: none;
     border-radius: 16px;
     padding: 1rem;
-    background: rgba(255, 255, 255);
+    
     border-radius: 16px;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    
     overflow-y: scroll;
     overflow-x: scroll;
     width: 100%;
     min-height: 500px;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom: 3rem;
 }
 .darkmode--activated article {
@@ -386,14 +390,12 @@ article {
     margin-left: auto;
     margin-right: auto;
 }
-aside {
-}
+
 .container aside .posts {
     position: relative;
     top: 3rem;
     min-height: 500px;
-    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;*/
+   
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     padding: 1rem;
@@ -404,48 +406,56 @@ aside {
     margin-right: 1rem;
 }
 .post {
-    padding: 0;
-    font-size: 0.9rem;
-    margin: 0;
-    margin-top: 1rem;
-    text-align: justify;
-    padding-left: 0.2rem;
-    text-align: center;
-    justify-content: center;
-    line-height: 0.5;
-    font-size: 1.2 1em;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: var(--bs-teal);
-    color: var(--always-white);
+
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--always-white);
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+    border-radius: 10px;
+    
 }
 .posts h1 {
-    padding: 1rem;
-    text-transform: uppercase;
-    font-family: "Mochiy Pop P One", sans-serif;
-    margin: auto;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: lighter;
-    width: 100%;
+    margin-bottom: 2rem;
+    background-color: var(--bs-teal);
+    border-radius: 10px;
+    color:var(--always-white);
 }
 .post-img {
-    width: 300px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width:auto;
+    
 }
 .post-img img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
+   width: 100px;
+   height: 100px;
+    border-radius: 50%;
 }
 .post-info {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: auto auto;
     gap: 1rem;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 16px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    z-index: 5;
+    user-select: none;
+    width: 50rem;
+    min-height: 20rem;
+    padding: 1rem;
 }
 .post-info h3 {
     padding-top: 3rem;
-    font-size: 1.4rem;
-    font-weight: lighter;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    font-weight: 500;
     text-transform: uppercase;
     border-bottom: 1px solid var(--bs-teal);
     width: 50%;
@@ -463,6 +473,10 @@ aside {
 .post-info-user-data p {
     text-align: justify;
     padding: 1rem;
+    font-size: 1.1rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--fds-spectrum-teal-tint-90);
+    border-radius: 10px;
 }
 .post-info-user-data section {
     position: relative;
@@ -472,7 +486,7 @@ aside {
     color: white;
     font-style: italic;
     width: 250px;
-    font-weight: lighter;
+    border-radius: 10px;
 }
 .container article .info div {
     text-align: justify;
@@ -496,15 +510,12 @@ aside {
 
 .post {
     width: 100%;
-
-    transition: 0.5s;
+    padding: 1rem;
     user-select: none;
+    background-color: var(--fds-comment-background);
+    color: var(--fds-primary-text);
 }
-.post:hover {
-    background-color: #ffffff;
-    color: black;
-    border-radius: 50px;
-}
+
 
 .post p {
     background-color: white;
@@ -514,10 +525,9 @@ aside {
     display: none;
 }
 .post h3 {
-    text-transform: uppercase;
-    font-weight: lighter;
-    letter-spacing: 1px;
-    padding: 10px;
+    font-weight: 475;
+  margin: auto;
+  width: fit-content;
 }
 
 .post img {
@@ -528,21 +538,7 @@ aside {
     margin: 1rem;
     margin: auto;
 }
-.post-info {
-    visibility: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
-    z-index: 5;
-    user-select: none;
-    width: 50rem;
-    min-height: 20rem;
-    padding: 1rem;
-}
+
 
 .closeinfo {
     display: block;
@@ -732,47 +728,56 @@ aside {
 #Faliujsag #fu {
     margin-left: 18px;
 }
-
+#Faliujsag {
+    background-color: transparent;
+    box-shadow: none;
+}
 .posts-container {
     padding-right: 30px;
 }
 
 .post-content {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
+    background-color: var(--always-white);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 10% auto;
     padding: 1.5rem;
     width: 100%;
-    margin: 1rem;
+    margin: 2rem;
 }
 
 .post-content p {
-    position: relative;
-    bottom: 30px;
-    font-weight: lighter;
     text-align: justify;
-    display: block;
-    max-width: fit-content;
+    padding: 1rem;
+    font-size: 1.1rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--fds-spectrum-teal-tint-90);
+    border-radius: 10px;
 }
 .post-content h3 {
-    position: relative;
-    bottom: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    padding: 10px;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: auto;
+  width: fit-content;
+  border-bottom: 1px solid var(--bs-teal);
+  margin-bottom: 1rem;
+}
+.post-content h4{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    width: fit-content;
+    padding: 1rem;
 }
 
 .post-content img {
     float: left;
-    margin-right: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    object-fit: cover;
-    user-select: none;
+    
 }
 
 #newpost {
@@ -780,12 +785,12 @@ aside {
     position: relative;
     bottom: 55px;
     display: inline;
-    font-weight: bolder;
+  
     color: black;
     font-size: 1.1rem;
     border-radius: 6px;
     border: none;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     cursor: pointer;
     padding: 10px;
     background: white;
@@ -802,9 +807,9 @@ aside {
     border: none;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     background-color: var(--fds-comment-background) !important;
-    width: 100%;
-    margin-bottom: 2rem;
-    margin: 0 auto;
+    width: fit-content;
+    
+    margin: auto;
     font-size: 1.2rem;
 }
 
@@ -839,10 +844,17 @@ aside {
 }
 .posts-grid {
     display: grid;
+    width: 100%;
+    margin: auto;
 }
 .form-grid {
-    display: grid;
-    grid-template-columns: 30% auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: .5rem;
+}
+.form-grid input{
+    margin: auto;
+    width: 100%;
 }
 .tabcontent {
     color: black;

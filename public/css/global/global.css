@@ -213,14 +213,14 @@ background-color: rgba(10, 10, 10, 0.95 );
   margin-right: auto; 
 }
 .lds-ring {
-  margin-top: 5rem;
+  position: fixed;
+  top:50%;
   width: 80px;
   height: 80px;
 
 }
 .lds-ring div {
   box-sizing: border-box;
-  display: block;
   position: absolute;
   width: 64px;
   height: 64px;

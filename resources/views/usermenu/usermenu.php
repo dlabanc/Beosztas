@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../node_modules/normalize.css/normalize.css" />
-    <link
-      rel="stylesheet"
-      href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
-    />
-    <link rel="stylesheet" href="css/usermenu/usermenu.css" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css"/>
     <link rel="stylesheet" href="/css/global/global.css">
+    <link rel="stylesheet" href="css/usermenu/usermenu.css" />
+    
     <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
+
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/jquery-ui-1.13.0/jquery-ui.min.js"></script>
     <script src="/js/global/Ajax.js"></script>
@@ -137,7 +136,7 @@
           <fieldset>
           <legend>Új bejegyzés</legend>
           <div id="newpost-form">
-            
+          <div class="form-grid">
             <label for="cim">Cim:</label>
             <input type="text" name="cim" id="newpost-cim">
             </div>
