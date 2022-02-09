@@ -384,16 +384,18 @@ article {
   user-select: none;
   border-radius: 16px;
   padding: 1rem;
-  background: rgba(255, 255, 255);
+  
   border-radius: 16px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  
   overflow-y: scroll;
   overflow-x: scroll;
   width: 100%;
   min-height: 500px;
   margin: auto;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
+
+  
 }
 
 
@@ -1019,9 +1021,16 @@ h3 {
   color: black;
   display: none;
   visibility: hidden;
- 
+  background-color: var(--always-white);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
 }
+#ManFaliujsag{
+  
+    background-color: transparent;
+    box-shadow: none;
 
+}
 /*#############FALIÚJSÁG###########*/
 #ManFaliujsag #mfu{
   margin-left: 18px;
@@ -1032,42 +1041,47 @@ h3 {
 }
 
 .post-content {
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  background-color: var(--always-white);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 10% auto;
   padding: 1.5rem;
-  width: 100%;
-  margin: 1rem;
-  background-color: rgba(255, 255, 255);
-} 
+  width: 90%;
+  margin: auto;
+}
 
-.post-content  p {
-  position: relative;
-  bottom: 30px;
-  font-weight: lighter;
+.post-content p {
   text-align: justify;
-  display: block;
+  padding: 1rem;
+  font-size: 1.1rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: var(--fds-spectrum-teal-tint-90);
+  border-radius: 10px;
 }
-.post-content  h3 {
-  position: relative;
-  bottom: 20px;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
-  padding: 10px;
+.post-content h3 {
+font-weight: 500;
+font-size: 1.3rem;
+margin: auto;
+width: fit-content;
+border-bottom: 1px solid var(--bs-teal);
+margin-bottom: 1rem;
+}
+.post-content h4{
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  width: fit-content;
+  padding: 1rem;
 }
 
-.post-content img{
+.post-content img {
   float: left;
-  margin-right: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  object-fit: cover;
-  user-select: none;
+  
 }
 
 #newpost{
@@ -1080,7 +1094,7 @@ h3 {
   font-size: 1.1rem;
   border-radius: 6px;
   border: none;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   cursor: pointer;
   padding: 10px;
   background: white;
@@ -1103,27 +1117,34 @@ h3 {
 
 /*#### STATISZTIKA ####*/
 
-
+#ManStatisztika{
+  background-color: transparent;
+  box-shadow: none;
+}
 #Man-statisztika-elem {
-  width: fit-content;
-  margin: auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  margin: auto;
-  margin-top: 2rem;
-  
-  
+width: fit-content;
+height: 500px;
+margin: auto;
+ 
+
 }
 
 .statmenu{
-  margin: 1rem;
-  display: grid;
-  grid-template-columns: auto ;
+  padding: 1rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--always-white);
+  align-items: center;
  
 }
 .statmenu-buttons{
   display: flex;
   justify-content: center;
   gap:1rem;
+  margin-bottom: 3rem;
 }
 
 .statmenu button{

@@ -6,7 +6,7 @@ $(function () {
    
     newPost();
     ProfilAdatok();
-  
+   
 
   
     function faliujsagUser(adatok) {

@@ -247,7 +247,7 @@ $(function () {
         statisztikaEsemenyek();
 
         function oszlop() {
-            ajaxGet(localhost + "munkakorDb.json", (adatok) => {
+            ajaxGet("http://localhost:8000/api/munkakorstat", (adatok) => {
                 googleChartsKonyvtar("corechart", drawChart);
 
                 function drawChart() {
@@ -260,7 +260,7 @@ $(function () {
                     data.addColumn("number", "db");
 
                     for (const iterator of adatok) {
-                        data.addRows([[iterator.munkakör, iterator.db]]);
+                        data.addRows([[iterator.munkakor, iterator.db]]);
                     }
                     options = statisztikaBeallitasok("Munkakörök", 1500, 500);
                     chart.draw(data, options);
@@ -269,23 +269,19 @@ $(function () {
         }
 
         function kor() {
-            ajaxGet(localhost + "hetioraszamDb.json", (adatok) => {
+            ajaxGet("http://localhost:8000/api/hetioraszamstat", (adatok) => {
                 googleChartsKonyvtar("corechart", drawChart);
 
                 function drawChart() {
                     data = new google.visualization.DataTable();
-                    chart = new google.visualization.PieChart(statisztikaElem);
+                    chart = new google.visualization.ColumnChart(statisztikaElem);
 
                     data.addColumn("string", "heti óraszám");
                     data.addColumn("number", "db");
 
                     for (const iterator of adatok) {
-                        data.addRows([
-                            [
-                                iterator.heti_óraszám.toString() + " óra",
-                                iterator.db,
-                            ],
-                        ]);
+                        console.log(iterator);
+                        data.addRows([[iterator.heti_oraszam+" óra", iterator.db]]);
                     }
                     options = statisztikaBeallitasok("Heti Óraszám", 1500, 500);
                     chart.draw(data, options);

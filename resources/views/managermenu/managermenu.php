@@ -26,6 +26,7 @@
     <script src="/js/managermenu/manager.js"></script>
     <title>Üzletvezető</title>
   </head>
+
   <div class="managerinfo">
   <div class="managerinfo-leftgrid"><span class="fas fa-home"></span> Chill out Cafe </div>
   <div class="managerinfo-centergrid">
@@ -48,6 +49,7 @@
       >
   </div>
   </div>
+  
   <header>
     
 
