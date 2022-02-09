@@ -22,7 +22,7 @@ class HitelesitesController extends Controller
         $credentials = $request->only('user_login', 'password');
         if(Auth::attempt($credentials))
         {          
-            return redirect('/');
+            return redirect('/usermenu');
         }
         return redirect('/login');
     }
