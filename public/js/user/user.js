@@ -3,10 +3,10 @@ $(function () {
     const ajax = new Ajax(token);
     const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
-   
-    newPost();
+    let logged ;
+    
     ProfilAdatok();
-   
+    newPost();
 
   
     function faliujsagUser(adatok) {
@@ -113,7 +113,7 @@ $(function () {
         newpostOk.on("click", () => {
             let ma = formatDate(new Date());
             let obj = {
-                dolgozoi_azon: 30005,
+                dolgozoi_azon: logged,
                 mikor: ma,
                 cim: $("#newpost-cim").val(),
                 tartalom: $("#newpost-tartalom").val(),
@@ -141,7 +141,7 @@ $(function () {
     }
 
     function ProfilAdatok() {
-        let logged ;
+        
         ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok)=>{
             logged = adatok;
             ajax.ajaxApiGet("http://localhost:8000/api/alkalmazott/"+logged, (adatok) => {
