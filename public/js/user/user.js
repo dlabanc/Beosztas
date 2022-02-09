@@ -141,6 +141,9 @@ $(function () {
     }
 
     function ProfilAdatok() {
+        ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok)=>{
+            console.log(adatok);
+        });
         $(".profilepic").hide();
         ajax.ajaxApiGet("http://localhost:8000/api/alkalmazottak", (adatok) => {
             sor = 0;
