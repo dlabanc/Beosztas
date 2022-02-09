@@ -31,19 +31,26 @@
  
   <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
   <div><img src="" alt="" class="profilepic"></div>
-  <a href="logout" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
-  <span style="font-size: 20px; cursor: pointer" class="openbtn"
-        >&#9776;</span
-      >
+  <a href="/login" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
+  <span style="font-size: 20px; cursor: pointer" class="openbtn">&#9776;</span>
 </div>
+
   </div>
  
 
 
   <body>
+  
 
+  <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+        <a href="../usermenu">Kezdőlap</a>
+        <a id="nemerekra">Nem érek rá</a>
+        <a id="statisztika">Statisztika</a>
+        <a id="faliujsag">Faliújság</a>
+        <a id="beosztas">Beosztás</a>
+      </div>
     <div class="container">
-      
       <aside class="useraside">
       <header>
     
@@ -61,16 +68,9 @@
    
    
      
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn">&times;</a>
-        <a href="../usermenu">Kezdőlap</a>
-        <a id="nemerekra">Nem érek rá</a>
-        <a id="statisztika">Statisztika</a>
-        <a id="faliujsag">Faliújság</a>
-        <a id="beosztas">Beosztás</a>
-      </div>
     
   </header>
+  
         <div class="posts">
          
          

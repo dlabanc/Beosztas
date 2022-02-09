@@ -141,42 +141,45 @@ $(function () {
     }
 
     function ProfilAdatok() {
+        let logged ;
         ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok)=>{
-            console.log(adatok);
+            logged = adatok;
+            ajax.ajaxApiGet("http://localhost:8000/api/alkalmazott/"+logged, (adatok) => {
+                console.log(adatok);
+                sor = 0;
+                $("#Profiladatok").find("h2").text(adatok.nev);
+                $(".managerinfo-name").text(adatok.nev+", "+adatok.munkakor);
+                for (const [key, value] of Object.entries(adatok)) {
+                    kulcs = key.replace("_", " ");
+                    
+                    if (sor < 5) {
+                        $("#elso").append(
+                            "<tr id=" +
+                                sor +
+                                "><th>" +
+                                kulcs +
+                                "</th><td>" +
+                                value +
+                                "<span class='showButton fa fa-edit'></td></tr>"
+                        );
+                    } else {
+                        $("#masodik").append(
+                            "<tr id=" +
+                                sor +
+                                "><th>" +
+                                kulcs +
+                                "</th><td>" +
+                                value +
+                                "<span class='showButton fa fa-edit'></td></tr>"
+                        );
+                    }
+                    sor++;
+                }
+                $(".tabcontent").eq(0).fadeIn(1000);
+                $(".tabcontent").eq(0).css("visibility","visible");
+            });
         });
         $(".profilepic").hide();
-        ajax.ajaxApiGet("http://localhost:8000/api/alkalmazottak", (adatok) => {
-            sor = 0;
-            $("#Profiladatok").find("h2").text(adatok[0].nev);
-            $(".managerinfo-name").text(adatok[0].nev+", "+adatok[0].munkakor);
-            for (const [key, value] of Object.entries(adatok[0])) {
-                kulcs = key.replace("_", " ");
-                
-                if (sor < 5) {
-                    $("#elso").append(
-                        "<tr id=" +
-                            sor +
-                            "><th>" +
-                            kulcs +
-                            "</th><td>" +
-                            value +
-                            "<span class='showButton fa fa-edit'></td></tr>"
-                    );
-                } else {
-                    $("#masodik").append(
-                        "<tr id=" +
-                            sor +
-                            "><th>" +
-                            kulcs +
-                            "</th><td>" +
-                            value +
-                            "<span class='showButton fa fa-edit'></td></tr>"
-                    );
-                }
-                sor++;
-            }
-            $(".tabcontent").eq(0).fadeIn(1000);
-            $(".tabcontent").eq(0).css("visibility","visible");
-        });
+       
     }
 });
