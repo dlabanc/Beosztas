@@ -31,8 +31,10 @@
  
   <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
   <div><img src="" alt="" class="profilepic"></div>
-  <a href="/login" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
-  <span style="font-size: 20px; cursor: pointer" class="openbtn">&#9776;</span>
+  <a href="logout" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
+  <span style="font-size: 20px; cursor: pointer" class="openbtn"
+        >&#9776;</span
+      >
 </div>
   </div>
  

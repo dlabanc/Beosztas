@@ -15,6 +15,7 @@ use App\Http\Controllers\BejelentkezesiAdatokController;
 use App\Http\Controllers\MunkakorStatController;
 use App\Http\Controllers\HetiOraszamController;
 use App\Http\Controllers\SzabadsagStatController;
+use App\Http\Controllers\HitelesitesController;
 
 
 
@@ -48,6 +49,11 @@ Route::get('/usermenu', function () {
 Route::get('/login', function () {
     return view('login/login');
 });
+
+Route::get('/login', [HitelesitesController::class, 'index'])->name('bejelentkezes');
+Route::post('/authenticate', [HitelesitesController::class, 'authenticate'])->name('hitelesites');
+Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentkezes');
+Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
 
 ##ALKALMAZOTT
 Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);

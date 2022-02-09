@@ -24,14 +24,15 @@
         <h3 class="label">Login</h3>
       </div>
       <div class="form">
-        <form>
+        <form method="POST" action=<?php $route=route('hitelesites'); echo $route?>>
+          <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
           <div class="inputs">
             <div class="field">
               <li class="icons fas fa-user"></li>
               <input
                 type="text"
-                id="username"
-                name="username"
+                id="user_login"
+                name="user_login"
                 placeholder="Felhasználónév..."
               />
             </div>
