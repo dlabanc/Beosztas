@@ -7,80 +7,9 @@ use Illuminate\Http\Request;
 
 class HetiOraszamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $hstat=HetiOraszamStat::all();
         return $hstat;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\HetiOraszamStat  $hetiOraszamStat
-     * @return \Illuminate\Http\Response
-     */
-    public function show(HetiOraszamStat $hetiOraszamStat)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\HetiOraszamStat  $hetiOraszamStat
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(HetiOraszamStat $hetiOraszamStat)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HetiOraszamStat  $hetiOraszamStat
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, HetiOraszamStat $hetiOraszamStat)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\HetiOraszamStat  $hetiOraszamStat
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(HetiOraszamStat $hetiOraszamStat)
-    {
-        //
     }
 }
