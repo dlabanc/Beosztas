@@ -51,21 +51,19 @@ $(function () {
       
         const postinfoTomb = [];
         adatok.forEach((adat) => {
-            ajax.ajaxApiGet(
-                apivegpont + "/alkalmazott/" + adat.dolgozoi_azon,
-                (a) => {
+            ajax.ajaxApiGet(apivegpont + "/alkalmazott/" + adat.dolgozoi_azon, (a) => 
+            {
                     postinfoTomb.push(a);
                     const szulo = $(".posts-container");
                     let faliujsagPost = new Faliujsag(szulo, adat);
                     faliujsagPost.elem.find("button").remove();
                     if (postinfoTomb.length == adatok.length) {
+                        console.log(adatok.length);
                         const szulo = $(".posts");
                         ajax.ajaxGet(
-                            "https://randomuser.me/api/?results=" +
-                                adatok.length,
-                            (kepek) => {
+                            "https://randomuser.me/api/?results=" + adatok.length, (kepek) => {
                                 kepek.results.map((ember, index) => {
-                                    if (index < 5) {
+                                    if (index >= adatok.length-5) {
                                         const element = adatok[index];
                                         let kep = ember.picture.large;
                                         $(".profilepic").attr("src", kep);
@@ -82,7 +80,7 @@ $(function () {
                                             postinfoTomb[index]
                                         );
 
-                                        console.log(post);
+                                      
                                     }
                                     $(".post-content")
                                         .eq(index)

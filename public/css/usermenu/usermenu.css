@@ -867,6 +867,132 @@ h1 {
     margin: auto;
     padding: 1rem;
 }
+#Nemerekra{
+    box-shadow: none;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+.timer-datettime{
+    padding-left: 1rem;
+    padding: 1rem;
+    font-weight: lighter;
+    border-bottom: 1px solid var(--fds-gray-20);
+    
+}
+.timer{
+    font-size: 2rem;
+}
+.datettime{
+    margin-top: .5rem;
+}
+
+.datettime-info{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--always-white);
+    color:var(--fds-button-text);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.dateinfo-massage-grid{
+    display: none;
+    padding: 1rem;
+    font-weight: lighter;
+    border-bottom: 1px solid var(--fds-gray-20);
+    padding-left: 1rem;
+}
+.dateinfo{
+    font-size: 1.5rem;
+   
+    font-weight: 350;
+    
+}
+.message{
+    margin-top: 1rem;
+    color:var(--bs-info);
+    font-style: italic;
+    
+}
+.leadva{
+    color:var(--bs-success);
+    
+}
+
+.tablediv{
+    display: grid;
+    grid-template-columns: repeat(7,auto);
+}
+.tablediv div{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 1rem;
+    margin: 1rem;
+}
+#selectable .ui-selected { background: var(--fds-gray-20); color:var(--always-black); }
+.ui-widget-content{
+    border: none!important;
+}
+.dateinfo-muszaktipus{
+   margin-top: 1rem;
+}
+.dateinfo-muszaktipus label{
+    font-weight: 450;
+}
+.dateinfo-muszaktipus .nap-inputs input{
+        padding: .5rem;
+        margin: .4rem;
+       
+}
+.dateinfo-muszaktipus div{
+    padding: .5rem;
+  
+}
+.naptar{
+    width: fit-content;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+    background-color: var(--always-white);
+    margin-right: 1rem;
+}
+.naptar .honap{
+    margin-top: 1rem    ;
+    padding: 1rem;
+}
+
+.naptar .honap tr td{
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 2rem;
+    margin: 1rem;
+}
+.naptar .honap tr td:hover{
+    cursor: pointer;
+    border: 1px solid var(--bs-teal);
+}
+.dateinfo-buttons {
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.user-send-ok,.user-send-cancel{
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: var(--always-white) !important;
+    width: fit-content;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+.dateinfo-buttons .fa-check {
+    color: var(--fds-green-55);
+}
+.dateinfo-buttons .fa-trash {
+    color: var(--fds-spectrum-cherry);
+}
 .darkmode--activated article {
     box-shadow: none;
     background-color: transparent;

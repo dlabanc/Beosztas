@@ -1,88 +1,380 @@
 $(function () {
-  const napok= [];
-  const muszakok = {
-    "1. Műszak": "6:00-8:00",
-    "2. Műszak": "8:00-10:00",
-    "3. Műszak": "10:00-12:00",
-    "4. Műszak": "12:00-14:00",
-    "5. Műszak": "14:00-16:00",
-    "6. Műszak": "16:00-18:00",
-    "7. Műszak": "18:00-20:00",
-    "8. Műszak": "20:00-22:00",
-  };
+    const SZULO = $("#Nemerekra");
 
-  
-  napEsemenyek();
-  napMuszakok();
-  DatumBeallitas();
-  maiNap();
- 
+    SZULO.append(
+        `<div class="naptar"><div class="timer-datettime"><div class="timer"></div><div class="datettime"></div></div></div>`
+    );
+    SZULO.append('<div class="datettime-info"></div>');
 
-  function DatumBeallitas() {
-    d = new Date();
-    let day = d.getDay();
-    let diff = d.getDate() - day + (day == 0 ? -6 : 1);
-    let zaroDate = String(d.getFullYear()).padStart(2, "0") + "." + String(d.getMonth() + 1).padStart(2, 0) + "." + String(diff + 6).padStart(2, "0");
-    let kezdoDate = String(d.getFullYear()).padStart(2, "0") +"." +String(d.getMonth() + 1).padStart(2, "0") +"." +String(diff).padStart(2, "0");
-    for (const nap of napok) {
-      nap.date = String(d.getFullYear()).padStart(2, "0") +"." +String(d.getMonth() + 1).padStart(2, "0") +"." +String(diff+nap.napId).padStart(2, "0");
-    }
-    console.log(napok);
-    $("#datum").append("Jelenlegi hét:<br>"+kezdoDate + "  -  " + zaroDate);
-    
-  }
-
-  function napMuszakok() {
-    for (let index = 0; index < napok.length; index++) {
-      for (const muszak in napok[index].muszakok) {
-        $(".lapoz").eq(index).append('<div class="muszakSzam">' + muszak + "<br/>" + muszakok[muszak] + "</div>");
-      }
-    }
-    $(".muszakSzam").on("click", ({currentTarget})=>{$(currentTarget).toggleClass("kijeloltNemErekRa")});
-    
-  }
-
-  function napEsemenyek() {
-   
-    for (let index = 0; index < $("#napok div").length; index++) {
-      napok.push({"napId":index,"név":$("#napok div").eq(index).attr("id"),"muszakok":muszakok});
-      let id1 = "#" + $("#napok div").eq(index).attr("id").toLowerCase();
-      let id2 = "#" + $("#napok div").eq(index).attr("id");
- 
-    }
-    
-    $("#option").on("change", function (e) {
-      
-      let ertek = $( "#option option:selected" ).val();
-      ertek = ertek.replace(ertek.charAt(0),ertek.charAt(0).toUpperCase());
-      let aktnap = napok.find(nap => nap.név == ertek);
-      $(".aktdatum").html("Kiválaszott nap:<br>"+aktnap.date);
-      console.log("a");
-      $("#option option").css("background-color", "transparent");
-     
-      $("#option option:selected").css("background-color", "rgb(24, 206, 167, 0.7)");
-       openPage("#"+ertek);
-      console.log(napok);
-    
+    $(".datettime-info").append(`
+    <div class="dateinfo-massage-grid">
+        <div class="dateinfo"></div>
+        <div class="message"></div>
+    </div>
+    <div class="dateinfo-muszaktipus" id="selectable"></div>
+    <div class="dateinfo-buttons"><button class="fas fa-check user-send-ok"></button><button class="fas fa-trash user-send-cancel"></button></div>`);
+    $(".dateinfo-buttons").hide();
+    $("#selectable").selectable({
+        selected: function (event) {
+            console.log();
+            for (
+                let index = 0;
+                index < event.target.childNodes.length;
+                index++
+            ) {
+                const element = $(event.target.childNodes[index]);
+                if (element.hasClass("ui-selected")) {
+                    element.find("input").attr("checked", true);
+                } else {
+                    element.find("input").removeAttr("checked");
+                }
+            }
+        },
     });
-   
 
-  }
-  
-  function maiNap(){
-    let d = new Date();
-    let napp = String(d.getFullYear()).padStart(2, "0") +"." +String(d.getMonth() + 1).padStart(2, "0") +"." +String(d.getDate()).padStart(2, "0");
-    let aktnap = napok.find(nap => nap.date == napp);
-    openPage("#"+aktnap.név);
-    $("#"+aktnap.név.toLowerCase()).css("background-color", "rgb(24, 206, 167, 0.7)");
-    $(".aktdatum").html("Kiválaszott nap: <br>"+aktnap.date);
-  } 
+    const token = $('meta[name="csrf-token"]').attr("content");
+    const ajax = new Ajax(token);
+    const naptar = SZULO.find(".naptar");
+    const timer = $(".timer");
+    const datettime = $(".datettime");
 
-  function openPage(pageName) {
-    for (let i = 0; i < $(".lapoz").length; i++) {
-      $(".lapoz").css("display", "none");
+    idoKiir();
+    const honapNaptar = SZULO.find(".honap");
+
+    const honapok = [
+        "",
+        "Január",
+        "Február",
+        "Március",
+        "Április",
+        "Május",
+        "Június",
+        "Július",
+        "Augusztus",
+        "Szeptember",
+        "Október",
+        "November",
+        "December",
+    ];
+    let napok = new Array();
+    napok[0] = "V";
+    napok[1] = "H";
+    napok[2] = "K";
+    napok[3] = "Sze";
+    napok[4] = "Cs";
+    napok[5] = "P";
+    napok[6] = "Szo";
+
+    let date = new Date();
+    let aktualisEv = date.getFullYear();
+    let aktualisHonap = date.getMonth()+1 ;
+    let honapElsoNapja = (new Date(date.getFullYear(), date.getMonth(), 1));
+    let honapOsszNapja = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
+
+    function ido() {
+        let today = new Date();
+        let hh = today.getHours();
+        let min = String(today.getMinutes()).padStart(2, "0");
+        let sec = String(today.getSeconds()).padStart(2, "0");
+        let dd = String(today.getDate()).padStart(2, "0");
+
+        today = aktualisEv + "." + honapok[aktualisHonap] + "." + dd + ".";
+        time = hh + ":" + min + ":" + sec;
+        datettime.html(`<div>${today}</div>`);
+        timer.html(`<div>${time}</div>`);
     }
-    $(pageName).css("display", "flex");
-  }
 
+    function idoAtvalt(ido) {
+        let time = ido;
+        let dd = String(time.getDate()).padStart(2, "0");
+        let mm = String(time.getMonth() + 1).padStart(2, "0");
+        return aktualisEv + "-" + mm + "-" + dd;
+    }
+
+    function idoKiir() {
+        setInterval(() => {
+            setTimeout(ido, 1000);
+        });
+    }
+
+    class Nap {
+        constructor(szulo, nap, napok, elem) {
+            this.api = "http://localhost:8000/api/napok/";
+            this.muszakEloszlasokApi =
+                "http://localhost:8000/api/muszakeloszlasok";
+            this.szulo = szulo;
+            this.nap = nap;
+            this.napok = napok;
+            this.napNev = idoAtvalt(
+                new Date(`${aktualisEv}/${aktualisHonap}/${this.nap}`)
+            );
+            this.nemKivantMuszakok = [];
+            this.infoElem = $(".datettime-info");
+            this.messageElem = $(".message");
+            this.dateInfoElem = $(".dateinfo");
+            this.muszakTipusElem = $(".dateinfo-muszaktipus");
+            this.elkuldElem = $(".user-send-ok").clone();
+            this.torolElem = $(".user-send-cancel").clone();
+
+            this.elem = elem.text(`${this.nap}`);
+            this.elem.on("click", () => {
+                $(".user-send-ok").remove();
+                $(".user-send-cancel").remove();
+                $(".dateinfo-buttons").append(this.elkuldElem);
+                $(".dateinfo-buttons").append(this.torolElem);
+                $(".dateinfo-massage-grid").hide();
+                $(".dateinfo-buttons").hide();
+
+                this.muszakTipusElem.hide();
+                this.szulo.find("td").css("border-color", "transparent");
+                this.elem.css("border-color", "#20c997");
+
+                this.infoElem.width = $(".naptar").width;
+                let today =
+                    aktualisEv +
+                    "." +
+                    honapok[aktualisHonap] +
+                    "." +
+                    this.nap +
+                    ".";
+                this.dateInfoElem.text(today);
+
+                ajax.ajaxApiGet(this.api + this.napNev, (nap) => {
+                    $(".dateinfo-massage-grid").slideDown(500);
+                    if (nap.length == 0) {
+                        this.messageElem.css("color", "#2cabe3");
+                        this.messageElem.text(
+                            "Ehhez a naphoz még nincs műszakeloszlás beállítva!"
+                        );
+                    } else {
+                        this.messageElem.css("color", "#20c997");
+                        this.messageElem.text(
+                            "Válaszd ki melyik műszakokban nem szeretnél jönni!"
+                        );
+                        this.muszaktipus = nap.muszaktipus;
+
+                        ajax.ajaxApiGet(this.muszakEloszlasokApi, (adatok) => {
+                            this.muszakTipusElem.empty();
+
+                            let szurt = adatok.filter((adat) => {
+                                return adat.muszaktipus == this.muszaktipus;
+                            });
+                            szurt.forEach((sor) => {
+                                this.muszakTipusElem.append(
+                                    `<div class="nap-inputs ui-widget-content"><input type="checkbox" id="${sor.muszakelo_azon}" disabled> <label>${sor.oratol}:00 - ${sor.oraig}:00</label></div>`
+                                );
+                            });
+                            ajax.ajaxApiGet(
+                                "http://localhost:8000/api/nemdolgoznaossz",
+                                (adatok) => {
+                                    console.log(adatok);
+                                    if (adatok.length > 0) {
+                                        let szurt = adatok.filter((adat) => {
+                                            return (
+                                                adat.alkalmazott == 30001 &&
+                                                adat.datum == this.napNev
+                                            );
+                                        });
+                                        szurt = szurt.map((adat) => {
+                                            return adat.muszakelo_azon;
+                                        });
+                                        szurt.forEach((id) => {
+                                            let kihuz =
+                                                this.muszakTipusElem.find(
+                                                    `#${id}`
+                                                );
+                                            kihuz
+                                                .parent()
+                                                .css(
+                                                    "text-decoration",
+                                                    "line-through"
+                                                );
+                                            kihuz
+                                                .parent()
+                                                .css(
+                                                    "text-decoration-color",
+                                                    "red"
+                                                );
+                                            kihuz
+                                                .parent()
+                                                .removeClass(
+                                                    "ui-widget-content"
+                                                );
+                                            kihuz.replaceWith(
+                                                '<div class="fas fa-check leadva"></div>'
+                                            );
+                                        });
+                                    }
+                                }
+                            );
+                            this.elkuldElem.on("click", () => {
+                                console.log(this.napNev);
+                                this.nemKivantMuszakok.splice(
+                                    0,
+                                    this.nemKivantMuszakok.length
+                                );
+                                let hossz = this.muszakTipusElem.find(
+                                    `input[type="checkbox"]:checked`
+                                ).length;
+                                let elem;
+                                console.log(hossz);
+                                for (let index = 0; index < hossz; index++) {
+                                    elem = this.muszakTipusElem
+                                        .find(`input[type="checkbox"]:checked`)
+                                        .eq(index);
+                                    this.nemKivantMuszakok.push({
+                                        id: elem.attr("id"),
+                                        nap: this.napNev,
+                                    });
+                                }
+
+                                console.log(this.nemKivantMuszakok);
+                                let nemDolgoznaApi =
+                                    "http://localhost:8000/api/nemdolgozna/";
+                                let logged;
+                                ajax.ajaxApiGet(
+                                    "http://localhost:8000/loggeduser",
+                                    (adatok) => {
+                                        logged = adatok;
+                                        let obj = {};
+                                        this.nemKivantMuszakok.forEach(
+                                            (muszak) => {
+                                                obj.alkalmazott = logged;
+                                                obj.datum = muszak.nap;
+                                                obj.muszakelo_azon = muszak.id;
+                                                console.log(obj);
+                                                ajax.ajaxApiPost(
+                                                    nemDolgoznaApi,
+                                                    obj
+                                                );
+                                            }
+                                        );
+
+                                        ajax.ajaxApiGet(
+                                            this.muszakEloszlasokApi,
+                                            (adatok) => {
+                                                this.muszakTipusElem.empty();
+
+                                                let szurt = adatok.filter(
+                                                    (adat) => {
+                                                        return (
+                                                            adat.muszaktipus ==
+                                                            this.muszaktipus
+                                                        );
+                                                    }
+                                                );
+                                                szurt.forEach((sor) => {
+                                                    this.muszakTipusElem.append(
+                                                        `<div class="nap-inputs ui-widget-content"><input type="checkbox" id="${sor.muszakelo_azon}" disabled> <label>${sor.oratol}:00 - ${sor.oraig}:00</label></div>`
+                                                    );
+                                                });
+
+                                                ajax.ajaxApiGet(
+                                                    "http://localhost:8000/api/nemdolgoznaossz",
+                                                    (adatok) => {
+                                                        console.log(adatok);
+                                                        let szurt =
+                                                            adatok.filter(
+                                                                (adat) => {
+                                                                    return (
+                                                                        adat.alkalmazott ==
+                                                                            30001 &&
+                                                                        adat.datum ==
+                                                                            this
+                                                                                .napNev
+                                                                    );
+                                                                }
+                                                            );
+                                                        szurt = szurt.map(
+                                                            (adat) => {
+                                                                return adat.muszakelo_azon;
+                                                            }
+                                                        );
+                                                        szurt.forEach((id) => {
+                                                            let kihuz =
+                                                                this.muszakTipusElem.find(
+                                                                    `#${id}`
+                                                                );
+                                                            kihuz
+                                                                .parent()
+                                                                .css(
+                                                                    "text-decoration",
+                                                                    "line-through"
+                                                                );
+                                                            kihuz
+                                                                .parent()
+                                                                .css(
+                                                                    "text-decoration-color",
+                                                                    "red"
+                                                                );
+                                                            kihuz
+                                                                .parent()
+                                                                .removeClass(
+                                                                    "ui-widget-content"
+                                                                );
+                                                            kihuz.replaceWith(
+                                                                '<div class="fas fa-check leadva"></div>'
+                                                            );
+                                                        });
+                                                    }
+                                                );
+                                            }
+                                        );
+                                    }
+                                );
+
+                            });
+                            this.torolElem.on("click",()=>{
+                                ajax.ajaxApiGet("http://localhost:8000/loggeduser",user=>{
+                                    console.log(user);
+                                    console.log(this.napNev);
+                                    
+                                });
+                            });
+                            this.muszakTipusElem.fadeIn(500);
+                            $(".dateinfo-buttons").fadeIn(500);
+                        });
+                    }
+                });
+            });
+        }
+    }
+
+    class Naptar {
+        constructor(szulo, napok, honapok) {
+            this.szulo = szulo;
+            this.napok = napok;
+            this.honapok = honapok;
+            this.elsoNap = new Date(date.getFullYear(), date.getMonth(), 1);
+            console.log(this.elsoNap);
+            
+            this.szulo.append(`<div class="tablediv"></div>`);
+            let aktualisTablazat = this.szulo.find("div:last");
+            
+            for (let index = 0; index < 7; index++) {
+               aktualisTablazat.append(`<div class="days">${napok[index]}</div>`);
+                
+            }
+           
+           
+            for (let index = 0; index < honapOsszNapja+10; index++) {
+                aktualisTablazat.append(`<div class="datedays"></div>`);
+            }
+            let i = 0;
+            console.log(honapElsoNapja);
+            console.log(honapOsszNapja);
+            aktualisTablazat.find(".datedays").eq(honapElsoNapja.getDay()).css("background","red");
+            while(i<honapOsszNapja){
+                
+                let nap = new Nap(aktualisTablazat,i+1,napok,aktualisTablazat.find(".datedays").eq(honapElsoNapja.getDay()+i));
+                aktualisTablazat.find(".datedays").eq(honapElsoNapja.getDay()+i).attr("id",nap.napNev);
+                i++;
+            }
+         
+           
+            
+        }
+    }
+
+    let ujNaptar = new Naptar(naptar, napok, honapok);
 });

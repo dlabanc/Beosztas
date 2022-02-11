@@ -91,36 +91,7 @@
         <div id="Nemerekra" class="tabcontent">
              
         
-          <div class="dates">
-            <div id="nemerekraMenu">
-              <select name="option" id="option">
-                <option disabled selected>Válassz a napok közül...</option>
-                <option id="hetfo" value="hetfo">Hétfő</option>
-                <option id="kedd" value="kedd">Kedd</option>
-                <option id="szerda" value="szerda">Szerda</option>
-                <option id="csutortok" value="csutortok">Csütörtök</option>
-                <option id="pentek" value="pentek">Péntek</option>
-                <option id="szombat" value="szombat">Szombat</option>
-                <option id="vasarnap" value="vasarnap">Vasárnap</option>
-              </select>
-             
-            </div>
-          <p id="datum"></p>   
-          <p class="aktdatum"></p>
-        </div>
-          <div id="napok">
-            <div id="Hetfo" class="lapoz"></div>
-            <div id="Kedd" class="lapoz"></div>
-            <div id="Szerda" class="lapoz"></div>
-            <div id="Csutortok" class="lapoz"></div>
-            <div id="Pentek" class="lapoz"></div>
-            <div id="Szombat" class="lapoz"></div>
-            <div id="Vasarnap" class="lapoz"></div>
-          </div>
-          <div class="gombok"> 
-            <div id="elozoNap">< Előző nap</div>
-            <div id="kovetkezoNap">Következő nap ></div>
-          </div>  
+         
         </div>
 
         <div id="Statisztika" class="tabcontent">
