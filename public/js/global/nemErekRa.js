@@ -32,6 +32,7 @@ $(function () {
         },
     });
 
+    const nemDolgoznaApi = "http://localhost:8000/api/nemdolgozna/";
     const token = $('meta[name="csrf-token"]').attr("content");
     const ajax = new Ajax(token);
     const naptar = SZULO.find(".naptar");
@@ -118,39 +119,23 @@ $(function () {
 
             this.elem = elem.text(`${this.nap}`);
             this.elem.on("click", () => {
-                $(".user-send-ok").remove();
-                $(".user-send-cancel").remove();
-                $(".dateinfo-buttons").append(this.elkuldElem);
-                $(".dateinfo-buttons").append(this.torolElem);
-                $(".dateinfo-massage-grid").hide();
-                $(".dateinfo-buttons").hide();
-
-                this.muszakTipusElem.hide();
-                this.szulo.find("td").css("border-color", "transparent");
-                this.elem.css("border-color", "#20c997");
-
-                this.infoElem.width = $(".naptar").width;
-                let today =
-                    aktualisEv +
-                    "." +
-                    honapok[aktualisHonap] +
-                    "." +
-                    this.nap +
-                    ".";
+                
+                this.elemekKezelese();
+                let logged;
+                ajax.ajaxApiGet("http://localhost:8000/loggeduser",(adatok) => {logged=adatok});
+                 
+                        
+                
+                let today = aktualisEv + "." + honapok[aktualisHonap] + "." + this.nap + ".";
                 this.dateInfoElem.text(today);
 
                 ajax.ajaxApiGet(this.api + this.napNev, (nap) => {
                     $(".dateinfo-massage-grid").slideDown(500);
                     if (nap.length == 0) {
-                        this.messageElem.css("color", "#2cabe3");
-                        this.messageElem.text(
-                            "Ehhez a naphoz még nincs műszakeloszlás beállítva!"
-                        );
-                    } else {
-                        this.messageElem.css("color", "#20c997");
-                        this.messageElem.text(
-                            "Válaszd ki melyik műszakokban nem szeretnél jönni!"
-                        );
+                        this.setMessageElemSzinSzoveg("#2cabe3", "Ehhez a naphoz még nincs műszakeloszlás beállítva!");
+                    } 
+                    else {
+                        this.setMessageElemSzinSzoveg("#20c997", "Válaszd ki melyik műszakokban nem szeretnél jönni!");
                         this.muszaktipus = nap.muszaktipus;
 
                         ajax.ajaxApiGet(this.muszakEloszlasokApi, (adatok) => {
@@ -164,180 +149,123 @@ $(function () {
                                     `<div class="nap-inputs ui-widget-content"><input type="checkbox" id="${sor.muszakelo_azon}" disabled> <label>${sor.oratol}:00 - ${sor.oraig}:00</label></div>`
                                 );
                             });
-                            ajax.ajaxApiGet(
-                                "http://localhost:8000/api/nemdolgoznaossz",
-                                (adatok) => {
-                                    console.log(adatok);
-                                    if (adatok.length > 0) {
-                                        let szurt = adatok.filter((adat) => {
-                                            return (
-                                                adat.alkalmazott == 30001 &&
-                                                adat.datum == this.napNev
-                                            );
-                                        });
-                                        szurt = szurt.map((adat) => {
-                                            return adat.muszakelo_azon;
-                                        });
-                                        szurt.forEach((id) => {
-                                            let kihuz =
-                                                this.muszakTipusElem.find(
-                                                    `#${id}`
-                                                );
-                                            kihuz
-                                                .parent()
-                                                .css(
-                                                    "text-decoration",
-                                                    "line-through"
-                                                );
-                                            kihuz
-                                                .parent()
-                                                .css(
-                                                    "text-decoration-color",
-                                                    "red"
-                                                );
-                                            kihuz
-                                                .parent()
-                                                .removeClass(
-                                                    "ui-widget-content"
-                                                );
-                                            kihuz.replaceWith(
-                                                '<div class="fas fa-check leadva"></div>'
-                                            );
-                                        });
-                                    }
-                                }
-                            );
-                            this.elkuldElem.on("click", () => {
-                                console.log(this.napNev);
-                                this.nemKivantMuszakok.splice(
-                                    0,
-                                    this.nemKivantMuszakok.length
-                                );
-                                let hossz = this.muszakTipusElem.find(
-                                    `input[type="checkbox"]:checked`
-                                ).length;
-                                let elem;
-                                console.log(hossz);
-                                for (let index = 0; index < hossz; index++) {
-                                    elem = this.muszakTipusElem
-                                        .find(`input[type="checkbox"]:checked`)
-                                        .eq(index);
-                                    this.nemKivantMuszakok.push({
-                                        id: elem.attr("id"),
-                                        nap: this.napNev,
-                                    });
-                                }
+                            this.muszakokKihuzasa();
+                            
 
-                                console.log(this.nemKivantMuszakok);
-                                let nemDolgoznaApi =
-                                    "http://localhost:8000/api/nemdolgozna/";
-                                let logged;
-                                ajax.ajaxApiGet(
-                                    "http://localhost:8000/loggeduser",
-                                    (adatok) => {
-                                        logged = adatok;
-                                        let obj = {};
-                                        this.nemKivantMuszakok.forEach(
-                                            (muszak) => {
-                                                obj.alkalmazott = logged;
-                                                obj.datum = muszak.nap;
-                                                obj.muszakelo_azon = muszak.id;
-                                                console.log(obj);
-                                                ajax.ajaxApiPost(
-                                                    nemDolgoznaApi,
-                                                    obj
-                                                );
-                                            }
-                                        );
+                            
 
-                                        ajax.ajaxApiGet(
-                                            this.muszakEloszlasokApi,
-                                            (adatok) => {
-                                                this.muszakTipusElem.empty();
-
-                                                let szurt = adatok.filter(
-                                                    (adat) => {
-                                                        return (
-                                                            adat.muszaktipus ==
-                                                            this.muszaktipus
-                                                        );
-                                                    }
-                                                );
-                                                szurt.forEach((sor) => {
-                                                    this.muszakTipusElem.append(
-                                                        `<div class="nap-inputs ui-widget-content"><input type="checkbox" id="${sor.muszakelo_azon}" disabled> <label>${sor.oratol}:00 - ${sor.oraig}:00</label></div>`
-                                                    );
-                                                });
-
-                                                ajax.ajaxApiGet(
-                                                    "http://localhost:8000/api/nemdolgoznaossz",
-                                                    (adatok) => {
-                                                        console.log(adatok);
-                                                        let szurt =
-                                                            adatok.filter(
-                                                                (adat) => {
-                                                                    return (
-                                                                        adat.alkalmazott ==
-                                                                            30001 &&
-                                                                        adat.datum ==
-                                                                            this
-                                                                                .napNev
-                                                                    );
-                                                                }
-                                                            );
-                                                        szurt = szurt.map(
-                                                            (adat) => {
-                                                                return adat.muszakelo_azon;
-                                                            }
-                                                        );
-                                                        szurt.forEach((id) => {
-                                                            let kihuz =
-                                                                this.muszakTipusElem.find(
-                                                                    `#${id}`
-                                                                );
-                                                            kihuz
-                                                                .parent()
-                                                                .css(
-                                                                    "text-decoration",
-                                                                    "line-through"
-                                                                );
-                                                            kihuz
-                                                                .parent()
-                                                                .css(
-                                                                    "text-decoration-color",
-                                                                    "red"
-                                                                );
-                                                            kihuz
-                                                                .parent()
-                                                                .removeClass(
-                                                                    "ui-widget-content"
-                                                                );
-                                                            kihuz.replaceWith(
-                                                                '<div class="fas fa-check leadva"></div>'
-                                                            );
-                                                        });
-                                                    }
-                                                );
-                                            }
-                                        );
-                                    }
-                                );
-
-                            });
-                            this.torolElem.on("click",()=>{
-                                ajax.ajaxApiGet("http://localhost:8000/loggeduser",user=>{
-                                    console.log(user);
-                                    console.log(this.napNev);
-                                    
-                                });
-                            });
                             this.muszakTipusElem.fadeIn(500);
                             $(".dateinfo-buttons").fadeIn(500);
                         });
                     }
+
+                    this.elkuldElem.on("click", () => {
+                                
+                        let elem;
+                        this.nemKivantMuszakok.splice(0,this.nemKivantMuszakok.length);
+                        let hossz = this.muszakTipusElem.find(`input[type="checkbox"]:checked`).length;
+                        
+                        for (let index = 0; index < hossz; index++) {
+                            elem = this.muszakTipusElem.find(`input[type="checkbox"]:checked`).eq(index);
+                            this.nemKivantMuszakok.push({id: elem.attr("id"),nap: this.napNev});
+                        }
+
+                                                
+                        let obj = {};
+                        this.nemKivantMuszakok.forEach((muszak) => {
+                            obj.alkalmazott = logged;
+                            obj.datum = muszak.nap;
+                            obj.muszakelo_azon = muszak.id;
+                            ajax.ajaxApiPost(nemDolgoznaApi,obj);
+                            this.muszakokFeltoltes();
+                            }
+                        );
+
+                    });
+
+                    this.torolElem.on("click",()=>{
+                                
+                        console.log(logged);
+                        console.log(this.napNev);
+                        ajax.ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz",(adatok) => {
+                            let loggedNemdolgozna = adatok.filter((nemdolgozna)=>{return nemdolgozna.alkalmazott == logged && nemdolgozna.datum == this.napNev});
+                            loggedNemdolgozna.forEach((adat)=>{ajax.ajaxApiDelete("http://localhost:8000/api/nemdolgozna",adat.nemdolgozna_azon)});
+                            this.muszakokFeltoltes();
+                        });
+                    
+                       
+                });
                 });
             });
         }
+
+        elemekKezelese(){
+            $(".user-send-ok").remove();
+                $(".user-send-cancel").remove();
+                $(".dateinfo-buttons").append(this.elkuldElem);
+                $(".dateinfo-buttons").append(this.torolElem);
+                $(".dateinfo-massage-grid").hide();
+                $(".dateinfo-buttons").hide();
+
+                this.muszakTipusElem.hide();
+                this.szulo.find("td").css("border-color", "transparent");
+                this.elem.css("border-color", "#20c997");
+        }
+
+        setMessageElemSzinSzoveg(szin,szöveg){
+            this.messageElem.css("color", szin);
+            this.messageElem.text(szöveg);
+        }
+
+        muszakokKihuzasa(){
+            this.muszakTipusElem.fadeOut(500);
+            ajax.ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz",(adatok) => {
+                    if (adatok.length > 0) {
+                        let szurt = adatok.filter((adat) => {return ( adat.alkalmazott == 30001 && adat.datum == this.napNev);});
+                        szurt = szurt.map((adat) => {
+                            return adat.muszakelo_azon;
+                        });
+                        szurt.forEach((id) => {
+                            let kihuz = this.muszakTipusElem.find(`#${id}`);
+                            kihuz.parent().css("text-decoration","line-through");
+                            kihuz.parent().css("text-decoration-color","red");
+                            kihuz.parent().removeClass("ui-widget-content");
+                            kihuz.replaceWith('<div class="fas fa-check leadva"></div>');
+                            
+                        });
+                    }
+                    this.muszakTipusElem.fadeIn(500);
+                }
+
+            )
+        }
+
+        muszakokFeltoltes(){
+            
+            ajax.ajaxApiGet(
+                this.muszakEloszlasokApi,
+                (adatok) => {
+                    this.muszakTipusElem.empty();
+                    this.muszakTipusElem.fadeOut();
+                    let szurt = adatok.filter(
+                        (adat) => {
+                            return (
+                                adat.muszaktipus ==
+                                this.muszaktipus
+                            );
+                        }
+                    );
+                    szurt.forEach((sor) => {
+                        this.muszakTipusElem.append(
+                            `<div class="nap-inputs ui-widget-content"><input type="checkbox" id="${sor.muszakelo_azon}" disabled> <label>${sor.oratol}:00 - ${sor.oraig}:00</label></div>`
+                        );
+                    });
+
+                    this.muszakokKihuzasa();
+                }
+            );
+        }
+        
     }
 
     class Naptar {
