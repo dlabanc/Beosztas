@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MunkakorStat;
+use App\Models\DolgozottNapokStat;
 use Illuminate\Http\Request;
 
-class MunkakorStatController extends Controller
+class DolgozottNapokStatController extends Controller
 {
     public function index()
     {
-        $stat=MunkakorStat::all();
+        $stat = DolgozottNapokStat::all();
         return $stat;
     }
+
 }

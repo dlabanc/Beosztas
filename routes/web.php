@@ -16,6 +16,7 @@ use App\Http\Controllers\MunkakorStatController;
 use App\Http\Controllers\HetiOraszamController;
 use App\Http\Controllers\SzabadsagStatController;
 use App\Http\Controllers\HitelesitesController;
+use App\Http\Controllers\DolgozottNapokStatController;
 
 
 
@@ -147,3 +148,6 @@ Route::get('/api/hetioraszamstat', [HetiOraszamController::class, 'index']);
 
 ##SZABADSAGSTAT
 Route::get('/api/szabadsagstat', [SzabadsagStatController::class, 'index']);
+
+##DOLGOZOTTNAPOKSTAT
+Route::get('/api/dolgozottnapokstat', [DolgozottNapokStatController::class, 'index']);

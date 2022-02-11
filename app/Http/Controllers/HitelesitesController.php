@@ -20,9 +20,19 @@ class HitelesitesController extends Controller
 
     public function authenticate(Request $request){
         $credentials = $request->only('user_login', 'password');
+
+        if (RateLimiter::tooManyAttempts('login', 3)) {
+            $seconds = RateLimiter::availableIn('login');
+            return  redirect()->back()->withErrors(['loginlimit'=>'Too many failed login attempts!'.$seconds.' s left to try again!']);
+        }
+
         if(Auth::attempt($credentials))
-        {          
-            return redirect('/usermenu');
+        {
+            RateLimiter::clear('login');          
+            return redirect('/usermenu');           
+        }
+        else{
+            RateLimiter::hit('login', $seconds = 60);
         }
         return redirect('/login');
     }

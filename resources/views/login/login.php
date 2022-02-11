@@ -24,6 +24,7 @@
         <h3 class="label">Login</h3>
       </div>
       <div class="form">
+      <?php if(session('errors')!==null) { $error=session('errors')->first('loginlimit'); if ($error!==''){echo $error; echo "<br>";}} ?>
         <form method="POST" action=<?php $route=route('hitelesites'); echo $route?>>
           <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
           <div class="inputs">
