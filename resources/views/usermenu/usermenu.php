@@ -25,31 +25,38 @@
   </head>
   
   <div class="managerinfo">
-  <div class="managerinfo-leftgrid"><span class="fas fa-home"></span> Chill out Cafe </div>
+  <div class="managerinfo-leftgrid">
+  <span class="profile-name "></span>
+    
+ 
+  </div>
   
   <div class="managerinfo-rightgrid">
+  
  
-  <div class="managerinfo-name"> Alkalmazott neve, munkakör</div>
-  <div><img src="" alt="" class="profilepic"></div>
-  <a href="/login" class="logout"><div class="logout-text" >Kijelentkezés</div></a>
-  <span style="font-size: 20px; cursor: pointer" class="openbtn">&#9776;</span>
-</div>
-
+  <div class="openbtn"><img src="" alt="" class="profilepic"><span class="arrow">&#9660;</span></div>
+  
   </div>
+  
+  </div>
+  <div class="sidenav-container">
+ <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+        <a href="../usermenu" class="home" ><div >Kezdőlap</div><span class="fas fa-home"></span></a>
+        <a id="nemerekra">Nem érek rá</a>
+        <a id="statisztika">Statisztika</a>
+        <a id="faliujsag">Faliújság</a>
+        <a id="beosztas">Beosztás</a>
+        <a href="/login" class="logout"><div class="logout-text" >Kijelentkezés</div><span class="fas fa-sign-out-alt"></span></a>
+    </div>
+ </div>
  
 
 
   <body>
   
 
-  <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn">&times;</a>
-        <a href="../usermenu">Kezdőlap</a>
-        <a id="nemerekra">Nem érek rá</a>
-        <a id="statisztika">Statisztika</a>
-        <a id="faliujsag">Faliújság</a>
-        <a id="beosztas">Beosztás</a>
-      </div>
+
     <div class="container">
       <aside class="useraside">
       <header>
@@ -58,10 +65,10 @@
      
       <div  class="navbar"> 
         
-          
-          <a id="profiladatok" class="fas fa-user"><span>Profil adatok</span></a>
-          <a class="darkmode-user fas fa-eye"><span>Kompakt mód</span></a>
-          <a  class="passchange fas fa-user-lock"><span>Jelszó módosítás</span></a>
+          <a  class="chilloutcafe"><div class="fas fa-home"></div><span>Chill Out Cafe</span></a>
+          <a id="profiladatok" class="profiladatok"><div class="fas fa-user"></div><span>Profil adatok</span></a>
+          <a class="darkmode-user"><div class="fas fa-eye"></div><span>Kompakt mód</span></a>
+          <a  class="passchange"><div class="fas fa-user-lock"></div><span>Jelszó módosítás</span></a>
          
       </div>
     </nav>
@@ -101,11 +108,8 @@
 
         <div id="Faliujsag" class="tabcontent">
           <h3 id="fu">Faliújság</h3>
-          <button id="newpost">Új bejegyzés</button>
-          <div class="posts-grid">
-          <div class="posts-container">
-            
-          </div>
+          <div>
+          <button id="newpost" class="fas fa-plus"></button>
           <fieldset>
           <legend>Új bejegyzés</legend>
           <div id="newpost-form">
@@ -123,6 +127,16 @@
             </div>
           </div>
         </fieldset>
+
+          </div>
+
+
+          
+          <div class="posts-grid">
+          <ul class="posts-container">
+            
+          </ul>
+          
         </div>
         <div id="Beosztas" class="tabcontent">
           <h3>Beosztás</h3>

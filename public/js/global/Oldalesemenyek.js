@@ -30,27 +30,19 @@ $(function(){
   function sideNav(){
     let width = 0;
     $(".openbtn").on("click", function () {
-    $("#mySidenav").css("width", width ? closeNav : openNav);
+
+    $("#mySidenav").slideDown();
+
     });
     $(".closebtn").on("click", closeNav);
     $("#mySidenav a").on("click", closeNav);
-    $(document).click(function (e) {
-      if (!$(e.target).is("a, ul, span, button")) {
-        closeNav();
-      }
-    });
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "300px";
-      document.getElementById("mySidenav").style.visibility = "visible";
-  
-    }
+    
+   
   
     function closeNav() {
-      if(document.getElementById("mySidenav")){
-      document.getElementById("mySidenav").style.width = "0px";
-      document.getElementById("mySidenav").style.visibility = "hidden";
-
-    }
+      
+      $("#mySidenav").slideUp();
+    
      
     }
   }
@@ -78,11 +70,7 @@ $(function(){
         }
         $(pageName).fadeIn(1000);
         $(pageName).css("visibility","visible");
-        $(".posts").fadeOut(500,function(){
-              $("aside").css("display","none");
-              $(".container").css("grid-template-columns","1fr");
-              
-        });
+       
   
         $(".container").css("opacity","1");
       
@@ -159,7 +147,7 @@ $(function(){
   
   
     function postClose() {
-      $(".post-info").css("visibility", "hidden");
+      $(".post-info").fadeOut();
       $("article").css("opacity", "1");
     }
     function postCloseIfVisible(){
