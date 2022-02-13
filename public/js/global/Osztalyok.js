@@ -355,7 +355,7 @@ class NapiMin {
         this.muszak = [];
         this.munkakor = [];
         this.datum = datum;
-        szulo.append(
+        this.szulo.append(
             `<div class='napiMin'>
       <h2>datum</h2>
       <table class='tablaLatszik'>
@@ -368,7 +368,14 @@ class NapiMin {
         this.tabla.children("h2").html(this.datum);
         this.tablaAdat = this.tabla.children("table").children("tbody");
 
-        for (const elem in adat) {
+        
+
+
+
+
+
+
+      /*  for (const elem in adat) {
             if (!this.munkakor.includes(adat[elem].munkakör)) {
                 this.munkakor.push(adat[elem].munkakör);
             }
@@ -410,7 +417,9 @@ class NapiMin {
         this.tabla.children("h2").on("click", () => {
             this.tabla.children("table").toggleClass("tablaLatszik");
         });
+        */
     }
+    
 }
 
 class Alkalmazott extends Adminelemek {
