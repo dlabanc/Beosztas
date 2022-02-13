@@ -310,7 +310,7 @@ class Faliujsag {
     constructor(szulo, adat) {
         this.szulo = szulo;
         szulo.append(
-            `<div class="post-content">
+        `<li class="post-content">
         <img src="" alt="" />
         <div>
           <h3></h3>              
@@ -319,7 +319,7 @@ class Faliujsag {
           <button id="removefaliujsagm"><span class="fa fa-minus"></span></button>
           <button id="editfaliujsagm" ><span class="fas fa-pen"></span></button>
         </div>
-      </div>`
+      </li>`
         );
         this.adat = adat;
         this.elem = $(".post-content:last div");
