@@ -11,7 +11,7 @@ $(function () {
     alkalmazottTabla();
     napiMin();
     faliujsag();
-    ProfilAdatok(0);
+    ProfilAdatok();
     ProfilGomb();
 
     //ajaxApiGet - Rendben
@@ -274,14 +274,18 @@ $(function () {
 
                 function drawChart() {
                     data = new google.visualization.DataTable();
-                    chart = new google.visualization.ColumnChart(statisztikaElem);
+                    chart = new google.visualization.ColumnChart(
+                        statisztikaElem
+                    );
 
                     data.addColumn("string", "heti óraszám");
                     data.addColumn("number", "db");
 
                     for (const iterator of adatok) {
                         console.log(iterator);
-                        data.addRows([[iterator.heti_oraszam+" óra", iterator.db]]);
+                        data.addRows([
+                            [iterator.heti_oraszam + " óra", iterator.db],
+                        ]);
                     }
                     options = statisztikaBeallitasok("Heti Óraszám", 1500, 500);
                     chart.draw(data, options);
@@ -411,7 +415,6 @@ $(function () {
     }
     //ajaxApiGet - Rendben
     function alkalmazottTabla() {
-
         let menu = "#Alkalmazottak .dropdown-content";
         $("#Alkalmazottak").prepend(
             `<input type="text" placeholder="Keresés..." class="search">`
@@ -441,7 +444,7 @@ $(function () {
             if (event.detail.id >= 0) {
                 $(menu).css("z-index", 1);
                 $(menu).toggleClass("tablaDropdown");
-                $(menu).attr("id",event.detail.id)
+                $(menu).attr("id", event.detail.id);
             }
         });
 
@@ -452,7 +455,9 @@ $(function () {
             $(menu).toggleClass("tablaDropdown");
         });
 
-        $(menu).find("#AlkModosit").on("click", () => {
+        $(menu)
+            .find("#AlkModosit")
+            .on("click", () => {
                 $("#Alkalmazottak").css("display", "none");
                 $("#Profiladatok").fadeIn(1000);
                 $("#Profiladatok").css("visibility", "visible");
@@ -461,11 +466,11 @@ $(function () {
     }
 
     function ProfilGomb() {
-        $("#profiladatok").on("click",()=>{
-            ProfilAdatok(0)
-        })
+        $("#profiladatok").on("click", () => {
+            ProfilAdatok(0);
+        });
     }
-    
+
     //ajaxApiGet - Hibás
     function napiMin() {
         let vegpont = "../json/napiMin.json";
@@ -487,7 +492,7 @@ $(function () {
     }
 
     //ajaxApiGet - Rendben
-    function ProfilAdatok(szemely) {
+    function ProfilAdatok() {
         $(".profilepic").hide();
         profilAdatok = {};
         $("#elso").empty();
@@ -496,126 +501,156 @@ $(function () {
         $("#Profiladatok").prepend(
             "<p class='success'>Sikeres adatmódosítás</p>"
         );
+        ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok) => {
+            logged = adatok;
+            ajaxApiGet(apivegpont + "/alkalmazott/"+logged, (adatok) => {
+                $(".profile-name").text("Üdvözöllek, "+adatok.nev);
+                
+                $(".profile-nev").text(adatok.nev);
+                $(".profile-munkakor").text(adatok.munkakor);
+                $(".location-address").text(adatok.lakcim);
+                $(".location-phone").text(adatok.elerhetoseg);
+                $(".location-email").text(adatok.email);
+                let sor = 0;
 
-        ajaxApiGet(apivegpont + "/alkalmazottak", (adatok) => {
-            console.log(adatok)
-            let sor = 0;
-            for (const [key, value] of Object.entries(adatok[szemely])) {
-                $("#Profiladatok").find("h2").text(adatok[szemely].nev);
-                $(".managerinfo-name").text(
-                    adatok[szemely].nev + ", " + adatok[szemely].munkakor
-                );
-                let kulcs = key.replace("_", " ");
+                
 
-                let adatmutat =
-                    "<tr id=" +
-                    sor +
-                    "><th class=fejlec>" +
-                    kulcs +
-                    "</th>" +
-                    "<td class='kesz'>" +
-                    value +
-                    "<span class='modosit showButton fa fa-edit'></td>";
+                for (const [key, value] of Object.entries(adatok)) {
+                    $("#Profiladatok").find("h2").text(adatok.nev);
 
-                let adatszerkeszt =
-                    "<td class='adatok szerkeszt'>" +
-                    "<input type='text'>" +
-                    "<button class='fas fa-check manager-mod-ok'>" +
-                    "<button class='fas fa-times manager-mod-megse'>" +
-                    "</td>" +
-                    "</tr>";
+                    $(".managerinfo-name").text(
+                        adatok.nev + ", " + adatok.munkakor
+                    );
+                    let kulcs = key.replace("_", " ");
 
-                if (sor < 6) {
+                    let adatmutat =
+                        "<tr id=" +
+                        sor +" " +"class="+"profile-rows"+ "><th class=fejlec>" +
+                        kulcs +
+                        "</th>" +
+                        "<td class='kesz'>" +
+                        value +
+                        "<span class='modosit showButton fa fa-edit'></td>";
+
+                    let adatszerkeszt =
+                        "<td class='adatok szerkeszt'>" +
+                        "<input type='text'>" +
+                        "<button class='fas fa-check manager-mod-ok'>" +
+                        "<button class='fas fa-times manager-mod-megse'>" +
+                        "</td>" +
+                        "</tr>";
                     $("#elso").append(adatmutat + adatszerkeszt);
-                } else {
-                    $("#masodik").append(adatmutat + adatszerkeszt);
+                  
+                  
+                    sor++;
                 }
-                sor++;
-            }
+                
+                let kulcsok = ["","Név","Lakcím","Születési Dátum","Adóazonosító","TAJ","Elérhetőség","E-mail","Munkakör","Heti óraszám","Munkaviszony kezdete","Munkaviszony Vége"];
+                $(".profile-rows .fejlec").eq(0).hide();
+                for (let index = 1; index < $(".profile-rows .fejlec").length; index++) {
+                    const element =$(".profile-rows .fejlec").eq(index);
+                    element.hide();
+                    element.parent().prepend(`<th>${kulcsok[index]}</th>`);
+                  
+                }
 
-            $("#tables tr").hover(modosit);
-            $(".tabcontent").eq(0).fadeIn(1000);
-            $(".tabcontent").eq(0).css("visibility", "visible");
+                $("#tables tr").hover(modosit);
+                $(".tabcontent").eq(0).fadeIn(1000);
+                $(".tabcontent").eq(0).css("visibility", "visible");
 
-            $(".managerinfo").fadeIn(1000, () => {});
-            $(".managerinfo").css("display", "grid");
-            function modosit() {
-                $("#tables tr")
-                    .eq(this.id)
-                    .find(".modosit")
-                    .toggleClass("showButton");
-            }
+                $(".managerinfo").fadeIn(1000, () => {});
+                $(".managerinfo").css("display", "grid");
+                function modosit() {
+                    $("#tables tr")
+                        .eq(this.id)
+                        .find(".modosit")
+                        .toggleClass("showButton");
+                }
 
-            $("#tables .kesz").on("click", function () {
-                if (
-                    !$("#tables td")
-                        .parent()
-                        .find($(".kesz"))
-                        .hasClass("szerkeszt")
-                ) {
-                    $(".success").removeClass("visszaigazolas");
-                    $(this)
-                        .parent()
-                        .find("input")
-                        .css("width", $(this).width() + 10);
-                    if ($(this).parent().find("th").text() != "dolgozoi azon") {
-                        $(this).parent().find("input").val($(this).text());
-                        $(this).toggleClass("szerkeszt");
+                $("#tables .kesz").on("click", function () {
+                    if (
+                        !$("#tables td")
+                            .parent()
+                            .find($(".kesz"))
+                            .hasClass("szerkeszt")
+                    ) {
+                        $(".success").removeClass("visszaigazolas");
                         $(this)
                             .parent()
-                            .find(".adatok")
-                            .toggleClass("szerkeszt");
+                            .find("input")
+                            .css("width", $(this).width() + 10);
+                        if (
+                            $(this).parent().find("th").text() !=
+                            "dolgozoi azon"
+                        ) {
+                            $(this).parent().find("input").val($(this).text());
+                            $(this).toggleClass("szerkeszt");
+                            $(this)
+                                .parent()
+                                .find(".adatok")
+                                .toggleClass("szerkeszt");
+                        } else {
+                            alert("Nem módosítható!");
+                        }
                     } else {
-                        alert("Nem módosítható!");
+                        alert(
+                            "Előbb mentse el, vagy zárja be a korábbi szerkesztést!"
+                        );
                     }
-                } else {
-                    alert(
-                        "Előbb mentse el, vagy zárja be a korábbi szerkesztést!"
+                });
+
+                $(".manager-mod-ok").on("click", function () {
+                    $(this)
+                        .parent()
+                        .parent()
+                        .find(".kesz")
+                        .html(
+                            $(this).parent().find("input").val() +
+                                "<span class='modosit fa fa-edit'>"
+                        );
+
+                    modositAblak($(this));
+
+                    for (
+                        let index = 0;
+                        index < $("#tables tr").length;
+                        index++
+                    ) {
+                        let kulcs = $(".fejlec")
+                            .eq(index)
+                            .text()
+                            .replace(" ", "_");
+                        let ertek = $(".kesz").eq(index).text();
+                        if (ertek == "null") {
+                            ertek = "";
+                        }
+                        profilAdatok[kulcs] = ertek;
+                    }
+
+                    ajax.ajaxApiPut(
+                        apivegpont + "/alkalmazott",
+                        profilAdatok.dolgozoi_azon,
+                        profilAdatok,
+                        visszaigazolas()
                     );
+                });
+
+                $(".manager-mod-megse").on("click", function () {
+                    modositAblak($(this));
+                });
+
+                function modositAblak(adat) {
+                    adat.parent()
+                        .parent()
+                        .find(".kesz")
+                        .toggleClass("szerkeszt");
+                    adat.parent().toggleClass("szerkeszt");
+                }
+
+                function visszaigazolas() {
+                    $(".success").addClass("visszaigazolas");
                 }
             });
-
-            $(".manager-mod-ok").on("click", function () {
-                $(this)
-                    .parent()
-                    .parent()
-                    .find(".kesz")
-                    .html(
-                        $(this).parent().find("input").val() +
-                            "<span class='modosit fa fa-edit'>"
-                    );
-
-                modositAblak($(this));
-
-                for (let index = 0; index < $("#tables tr").length; index++) {
-                    let kulcs = $(".fejlec").eq(index).text().replace(" ", "_");
-                    let ertek = $(".kesz").eq(index).text();
-                    if (ertek == "null") {
-                        ertek = "";
-                    }
-                    profilAdatok[kulcs] = ertek;
-                }
-
-                ajax.ajaxApiPut(
-                    apivegpont + "/alkalmazott",
-                    profilAdatok.dolgozoi_azon,
-                    profilAdatok,
-                    visszaigazolas()
-                );
-            });
-
-            $(".manager-mod-megse").on("click", function () {
-                modositAblak($(this));
-            });
-
-            function modositAblak(adat) {
-                adat.parent().parent().find(".kesz").toggleClass("szerkeszt");
-                adat.parent().toggleClass("szerkeszt");
-            }
-
-            function visszaigazolas() {
-                $(".success").addClass("visszaigazolas");
-            }
         });
     }
 });

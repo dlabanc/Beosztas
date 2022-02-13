@@ -1,450 +1,496 @@
 * {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  user-select: none;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    user-select: none;
 }
 
 :root {
-  --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
-  --fds-black-alpha-10: rgba(0, 0, 0, 0.1);
-  --fds-black-alpha-15: rgba(0, 0, 0, 0.15);
-  --fds-black-alpha-20: rgba(0, 0, 0, 0.2);
-  --fds-black-alpha-30: rgba(0, 0, 0, 0.3);
-  --fds-black-alpha-40: rgba(0, 0, 0, 0.4);
-  --fds-black-alpha-50: rgba(0, 0, 0, 0.5);
-  --fds-black-alpha-60: rgba(0, 0, 0, 0.6);
-  --fds-black-alpha-80: rgba(0, 0, 0, 0.8);
-  --fds-blue-05: #ecf3ff;
-  --fds-blue-30: #aac9ff;
-  --fds-blue-40: #77a7ff;
-  --fds-blue-60: #1877f2;
-  --fds-blue-70: #2851a3;
-  --fds-blue-80: #1d3c78;
-  --fds-button-text: #444950;
-  --fds-comment-background: #f2f3f5;
-  --fds-gray-00: #f5f6f7;
-  --fds-gray-05: #f2f3f5;
-  --fds-gray-10: #ebedf0;
-  --fds-gray-20: #dadde1;
-  --fds-gray-25: #ccd0d5;
-  --fds-gray-30: #bec3c9;
-  --fds-gray-45: #8d949e;
-  --fds-gray-70: #606770;
-  --fds-gray-80: #444950;
-  --fds-gray-90: #303338;
-  --fds-gray-100: #1c1e21;
-  --fds-green-55: #00a400;
-  --fds-highlight-cell-background: #ecf3ff;
-  --fds-primary-icon: #1c1e21;
-  --fds-primary-text: #1c1e21;
-  --fds-red-55: #fa383e;
-  --fds-soft: cubic-bezier(0.08, 0.52, 0.52, 1);
-  --fds-spectrum-aluminum-tint-70: #e4f0f6;
-  --fds-spectrum-blue-gray-tint-70: #cfd1d5;
-  --fds-spectrum-cherry: #f35369;
-  --fds-spectrum-lime: #a3ce71;
-  --fds-spectrum-seafoam-tint-70: #caeef9;
-  --fds-spectrum-slate-dark-2: #89a1ac;
-  --fds-spectrum-slate-tint-70: #eaeff2;
-  --fds-spectrum-teal: #6bcebb;
-  --fds-spectrum-teal-dark-1: #4dbba6;
-  --fds-spectrum-teal-dark-2: #31a38d;
-  --fds-spectrum-teal-tint-70: #d2f0ea;
-  --fds-spectrum-teal-tint-90: #f0faf8;
-  --fds-spectrum-tomato: #fb724b;
-  --fds-spectrum-tomato-tint-30: #f38e7b;
-  --fds-spectrum-tomato-tint-90: #fdefed;
-  --always-white: #ffffff;
-  --always-black: black;
-  --bs-blue: #0d6efd;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
-  --bs-red: #f33155;
-  --bs-orange: #fd7e14;
-  --bs-yellow: #ffc107;
-  --bs-green: #7ace4c;
-  --bs-teal: #20c997;
-  --bs-cyan: #4fc3f7;
-  --bs-white: #fff;
-  --bs-gray: #8898aa;
-  --bs-gray-dark: #313131;
-  --bs-primary: #707cd2;
-  --bs-secondary: #8898aa;
-  --bs-success: #7ace4c;
-  --bs-info: #2cabe3;
-  --bs-warning: #ffc36d;
-  --bs-danger: #f33155;
-  --bs-light: #f7fafc;
-  --bs-dark: #313131;
-  --bs-cyan: #4fc3f7;
-  --bs-orange: #ffc36d;
-  --bs-purple: #707cd2;
-  --bs-inverse: #4c5667;
+    --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
+    --fds-black-alpha-10: rgba(0, 0, 0, 0.1);
+    --fds-black-alpha-15: rgba(0, 0, 0, 0.15);
+    --fds-black-alpha-20: rgba(0, 0, 0, 0.2);
+    --fds-black-alpha-30: rgba(0, 0, 0, 0.3);
+    --fds-black-alpha-40: rgba(0, 0, 0, 0.4);
+    --fds-black-alpha-50: rgba(0, 0, 0, 0.5);
+    --fds-black-alpha-60: rgba(0, 0, 0, 0.6);
+    --fds-black-alpha-80: rgba(0, 0, 0, 0.8);
+    --fds-blue-05: #ecf3ff;
+    --fds-blue-30: #aac9ff;
+    --fds-blue-40: #77a7ff;
+    --fds-blue-60: #1877f2;
+    --fds-blue-70: #2851a3;
+    --fds-blue-80: #1d3c78;
+    --fds-button-text: #444950;
+    --fds-comment-background: #f2f3f5;
+    --fds-gray-00: #f5f6f7;
+    --fds-gray-05: #f2f3f5;
+    --fds-gray-10: #ebedf0;
+    --fds-gray-20: #dadde1;
+    --fds-gray-25: #ccd0d5;
+    --fds-gray-30: #bec3c9;
+    --fds-gray-45: #8d949e;
+    --fds-gray-70: #606770;
+    --fds-gray-80: #444950;
+    --fds-gray-90: #303338;
+    --fds-gray-100: #1c1e21;
+    --fds-green-55: #00a400;
+    --fds-highlight-cell-background: #ecf3ff;
+    --fds-primary-icon: #1c1e21;
+    --fds-primary-text: #1c1e21;
+    --fds-red-55: #fa383e;
+    --fds-soft: cubic-bezier(0.08, 0.52, 0.52, 1);
+    --fds-spectrum-aluminum-tint-70: #e4f0f6;
+    --fds-spectrum-blue-gray-tint-70: #cfd1d5;
+    --fds-spectrum-cherry: #f35369;
+    --fds-spectrum-lime: #a3ce71;
+    --fds-spectrum-seafoam-tint-70: #caeef9;
+    --fds-spectrum-slate-dark-2: #89a1ac;
+    --fds-spectrum-slate-tint-70: #eaeff2;
+    --fds-spectrum-teal: #6bcebb;
+    --fds-spectrum-teal-dark-1: #4dbba6;
+    --fds-spectrum-teal-dark-2: #31a38d;
+    --fds-spectrum-teal-tint-70: #d2f0ea;
+    --fds-spectrum-teal-tint-90: #f0faf8;
+    --fds-spectrum-tomato: #fb724b;
+    --fds-spectrum-tomato-tint-30: #f38e7b;
+    --fds-spectrum-tomato-tint-90: #fdefed;
+    --always-white: #ffffff;
+    --always-black: black;
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #f33155;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #7ace4c;
+    --bs-teal: #20c997;
+    --bs-cyan: #4fc3f7;
+    --bs-white: #fff;
+    --bs-gray: #8898aa;
+    --bs-gray-dark: #313131;
+    --bs-primary: #707cd2;
+    --bs-secondary: #8898aa;
+    --bs-success: #7ace4c;
+    --bs-info: #2cabe3;
+    --bs-warning: #ffc36d;
+    --bs-danger: #f33155;
+    --bs-light: #f7fafc;
+    --bs-dark: #313131;
+    --bs-cyan: #4fc3f7;
+    --bs-orange: #ffc36d;
+    --bs-purple: #707cd2;
+    --bs-inverse: #4c5667;
 }
 
-.password-window{
-     display: none;
-     position: absolute;
-     left: 50%;
-     bottom: 50%;
-     transform: translate(-50%,50%);
+.password-window {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
     background: rgba(255, 255, 255);
     border-radius: 10px;
     padding: 5rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     width: max-content;
- 
-  }
-  .password-window-bg{
+}
+.password-window-bg {
     background-color: white;
     border-radius: 6px;
     width: 100%;
     margin: auto;
     max-width: 500px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
+}
 
-  }
-
-
-  .password-buttons{
+.password-buttons {
     display: flex;
     width: 95%;
     align-self: center;
     justify-content: space-between;
     margin-top: 1rem;
     gap: 2rem;
-
-  }
-  .password-window-bg input{
-    padding: .5rem;
+}
+.password-window-bg input {
+    padding: 0.5rem;
     margin: auto;
     border-radius: 5px;
-    border: none; 
+    border: none;
     border: 1px solid var(--fds-gray-20);
     width: 450px;
-    
-
-  }
-  .password-window-bg h3{
+}
+.password-window-bg h3 {
     margin-bottom: 2.5rem;
     border-bottom: 1px solid var(--fds-gray-20);
-    color:var(--bs-blue);
+    color: var(--bs-blue);
     line-height: 1.5;
-  
+
     width: 100%;
     padding-bottom: 1rem;
     text-align: center;
-
-  }
-  .passwordOk, .passwordNo{
+}
+.passwordOk,
+.passwordNo {
     margin-top: 1rem;
-    border: none; 
+    border: none;
     border-radius: 10px;
-    padding: 1rem 2rem 1rem 2rem; 
+    padding: 1rem 2rem 1rem 2rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     cursor: pointer;
-  }
-  .passwordOk{
+}
+.passwordOk {
     background-color: var(--fds-green-55);
-    color:var(--always-white)
-  }
-  .passwordNo{
+    color: var(--always-white);
+}
+.passwordNo {
     background-color: var(--fds-red-55);
-    color:var(--always-white);
-  }
-  .password-notification{
+    color: var(--always-white);
+}
+.password-notification {
     display: none;
     justify-content: center;
-    color: red; 
-
-  }
-
-  
-
-.compact-mode{
-  font-size:15px;
+    color: red;
 }
 
+.compact-mode {
+    font-size: 15px;
+}
 
 /* PROFIL ADATOK */
-#Profiladatok {
-  user-select: none;
-  overflow-y: visible!important;
-  height: inherit!important;
-  text-align: center;
+.profile-head{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2.5rem;
+  padding-left: 3rem;
+  border-bottom: 1px solid var(--fds-gray-20);
+  width: 100%;
+  padding-bottom: 1rem;
+  
+}
+.profile-munkakor {
+    font-style: italic;
+    color: var(--bs-info);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    text-align: left;
+}
+.profile-infos img {
+  
+  border-radius: 10px;
+  margin-top: 2rem;
+ 
+}
+.fa-map-marker {
+    color: var(--fds-gray-20);
 }
 
-#elso,
-#masodik {
-  margin: 0 auto;
+.profile-head ul{
+  padding-top: 2rem;
+}
+.profile-head ul li{
+  padding: .5rem;
+  list-style-type: none;
+  text-align: left;
+  
+}
+.profile-head ul li span {
+    padding-left: 0.3rem;
+    color: var(--fds-gray-45);
+}
+.profile-head {
+  display: flex;
+  
+}
+#Profiladatok {
+    user-select: none;
+    overflow-y: visible !important;
+    height: inherit !important;
+    text-align: center;
+}
+.r1 {
+    font-weight: 650;
+    font-size: 1.05rem;
 }
 
 #tables {
-  display: flex;
-  flex-wrap: wrap;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+#elso {
+    margin: 1rem;
+}
+#elso .profile-rows {
+    text-align: left;
+}
+#elso td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.05rem;
 }
 
-#Profiladatok tr {
-  display:flex;
-  border-bottom: 2px ridge rgb(24, 206, 167);
-  justify-content: space-between;
-  margin-bottom:50px;
-  position:relative;
-}
-
-#Profiladatok th,td {
-  padding:15px;
-}
-
-#Profiladatok tr .fa-edit:before {
-  margin-left: 10px;
-  position:absolute;
-  top:16px;
-}
-
-#Profiladatok .showButton {
-  display:none;
-}
-
-#Profiladatok img {
-  width:200px;
-  border-radius: 500px;
-  margin: auto;
+.profile-title {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    color: var(--fds-gray-45);
+    width: fit-content;
   
 }
-
-#Profiladatok .fa-check{
-  margin-left: 0.2rem;
-  color:var(--fds-green-55);
+.profile-title h3{
+  font-weight: 450;
 }
-#Profiladatok .fa-times{
-  margin-left: 0.2rem;
-  color:var(--bs-red);
+
+.profile-title .fa-user {
+    color: var(--bs-blue);
+    padding-left: 1rem;
+}
+.profile-nev  {
+  font-size: 1.5rem;
+    font-weight: 700;
+}
+.open1,.open2,.open3{
+    display: none;
+}
+#Profiladatok .showButton {
+    display: none;
+}
+.location-grid {
+    text-align: left;
+    margin-bottom: 1rem;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 2rem;
+}
+
+#Profiladatok .fa-check {
+    margin-left: 0.2rem;
+    color: var(--fds-green-55);
+   
+}
+#Profiladatok .fa-times {
+    margin-left: 0.2rem;
+    color: var(--bs-red);
 }
 
 #Profiladatok .szerkeszt {
-  display:none;
+    display: none;
 }
 
 #Profiladatok .kesz {
-  cursor:pointer;
+    cursor: pointer;
 }
 
 #Profiladatok .success {
-  opacity: 0;
-  font-size: 1rem;
-  color:white;
-  background-color: rgb(24, 206, 167);
-  width: max-content;
-  margin:auto;
-  padding:0.5rem;
+    opacity: 0;
+    font-size: 1rem;
+    color: white;
+    background-color: rgb(24, 206, 167);
+    width: max-content;
+    margin: auto;
+    padding: 0.5rem;
 }
 
 #Profiladatok .visszaigazolas {
-  animation: opacityOn 5s normal forwards;
-  border-radius: 2rem;
-  box-shadow: 0.1rem 0.1rem   #bec3c9;
+    animation: opacityOn 5s normal forwards;
+    border-radius: 2rem;
+    box-shadow: 0.1rem 0.1rem #bec3c9;
 }
 
 @keyframes opacityOn {
-  0% {
-      opacity: 0;
-  }
-  10% {
-      opacity: 1;
-  }
-  40% {
-      opacity: 0;
-  }
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
 
-  70% {
-      opacity: 1;
-  }
+    70% {
+        opacity: 1;
+    }
 
-  100% {
-      opacity: 0;
-  }
-}
-
-article::-webkit-scrollbar-thumb{
- 
-  border-radius: 25px;
-  background-color: rgba(24, 206, 167, 0.493);
+    100% {
+        opacity: 0;
+    }
 }
 
-.darkmode--activated .password-window{
-background-color: rgba(10, 10, 10, 0.95 );
+article::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: rgba(24, 206, 167, 0.493);
+}
 
+.darkmode--activated .password-window {
+    background-color: rgba(10, 10, 10, 0.95);
 }
-.darkmode--activated .password-window-bg{background-color:transparent}
-.darkmode--activated .password-window-bg h3{
-  color: #bec3c9 !important;
-  background-color: rgb(19, 18, 17);
+.darkmode--activated .password-window-bg {
+    background-color: transparent;
 }
-.darkmode--activated input{
-  color: white!important;
-  background-color: black;
-  border: 1px solid palevioletred;
+.darkmode--activated .password-window-bg h3 {
+    color: #bec3c9 !important;
+    background-color: rgb(19, 18, 17);
 }
-.darkmode--activated button{
-  background-color: rgb(19, 18, 18);
-  color:palevioletred;
-  border: none;
-  font-size: 1.1rem;
+.darkmode--activated input {
+    color: white !important;
+    background-color: black;
+    border: 1px solid palevioletred;
 }
-.darkmode--activated .password-window-bg::before{
-  background-color: transparent;
- 
+.darkmode--activated button {
+    background-color: rgb(19, 18, 18);
+    color: palevioletred;
+    border: none;
+    font-size: 1.1rem;
 }
-.darkmode--activated input:-webkit-autofill  {
-  -webkit-box-shadow: 0 0 0 30px  rgb(19, 19, 19) inset !important;
-  -webkit-text-fill-color: white;
-  
+.darkmode--activated .password-window-bg::before {
+    background-color: transparent;
 }
-.loading{
-  width: 100px;
-  
-  margin-left: auto; 
-  margin-right: auto; 
+.darkmode--activated input:-webkit-autofill {
+    box-shadow: 0 0 0 30px rgb(19, 19, 19) inset !important;
+    -webkit-text-fill-color: white;
+}
+.loading {
+    width: 100px;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 .lds-ring {
-  position: fixed;
-  top:50%;
-  width: 80px;
-  height: 80px;
-
+    position: fixed;
+    top: 50%;
+    width: 80px;
+    height: 80px;
 }
 .lds-ring div {
-  box-sizing: border-box;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color:rgb(24, 206, 167) transparent transparent transparent;
+    box-sizing: border-box;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: rgb(24, 206, 167) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
+    animation-delay: -0.45s;
 }
 .lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
+    animation-delay: -0.3s;
 }
 .lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
+    animation-delay: -0.15s;
 }
 @keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-@media screen and (max-width:1000px) {
- 
-  html{
-    min-width: 400px;
-  }
-  
-  #Nemerekra .lapoz {
-    
-    flex-direction: column;
-   
-  }
-  #Nemerekra #nemerekraMenu{
-    display: grid;
-    text-align: center;
-    width: 100%;
-    grid-template-columns: 1fr;
-    
-  }
-  #Nemerekra .lapoz .muszakSzam{
-    width: 90%;
-    height: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
-  }
-  #Nemerekra .dates{
-    flex-direction: column;
-  }
-  .munkakor-container{
-    grid-template-columns: auto auto;
-  }
-  
+@media screen and (max-width: 1000px) {
+    html {
+        min-width: 400px;
+    }
 
+    #Nemerekra .lapoz {
+        flex-direction: column;
+    }
+    #Nemerekra #nemerekraMenu {
+        display: grid;
+        text-align: center;
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+    #Nemerekra .lapoz .muszakSzam {
+        width: 90%;
+        height: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+    }
+    #Nemerekra .dates {
+        flex-direction: column;
+    }
+    .munkakor-container {
+        grid-template-columns: auto auto;
+    }
 }
 @media screen and (max-width: 700px) {
-  .dropdown1 .dropbtn1{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .dropdown-content1{
-   position: sticky;
-   position: absolute;
-   
-  }
-  .sidenav{
-    right: 0;
-  }
- 
-  #tables{
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  #Profiladatok th,td {
-    margin: 1rem;
-    padding:0px;
-  }
-  #Profiladatok tr{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: stretch;
-    align-self: center;
-  }
-  .container{
-    display: flex;
-    flex-direction: column;
+    .dropdown1 .dropbtn1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .dropdown-content1 {
+        position: sticky;
+        position: absolute;
+    }
+    .sidenav {
+        right: 0;
+    }
 
-  }
-  body{
-    overflow-x: hidden;
-  }
- 
-  .post-info{
-   display: none;
-  }
-  .munkakor-container{
-    grid-template-columns: auto ;
-  }
-  
+    #tables {
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #Profiladatok th,
+    td {
+        margin: 1rem;
+        padding: 0px;
+    }
+    #Profiladatok tr {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: stretch;
+        align-self: center;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    body {
+        overflow-x: hidden;
+    }
+
+    .post-info {
+        display: none;
+    }
+    .munkakor-container {
+        grid-template-columns: auto;
+    }
 }
 
-@media screen and (max-width:600px){
-  html{
-    overflow: auto;
-  }
-  .password-window{
-  
-    position: fixed;
-  }
-  .password-window input{
-    width: 100%;
-  }
-  
+@media screen and (max-width: 600px) {
+    html {
+        overflow: auto;
+    }
+    .password-window {
+        position: fixed;
+    }
+    .password-window input {
+        width: 100%;
+    }
 }

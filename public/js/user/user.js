@@ -162,34 +162,33 @@ $(function () {
             ajax.ajaxApiGet("http://localhost:8000/api/alkalmazott/"+logged, (adatok) => {
                 console.log(adatok);
                 sor = 0;
-                $("#Profiladatok").find("h2").text(adatok.nev);
                 $(".profile-name").text("Üdvözöllek, "+adatok.nev);
-                for (const [key, value] of Object.entries(adatok)) {
-                    kulcs = key.replace("_", " ");
+                
+                $(".profile-nev").text(adatok.nev);
+                $(".profile-munkakor").text(adatok.munkakor);
+                $(".location-address").text(adatok.lakcim);
+                $(".location-phone").text(adatok.elerhetoseg);
+                $(".location-email").text(adatok.email);
+
+                let kulcsok = ["Név","Lakcím","Születési Dátum","Adóazonosító","TAJ","Elérhetőség","E-mail","Munkakör","Heti óraszám","Munkaviszony kezdete","Munkaviszony Vége"];
+                let i = 0;
+                Object.keys(adatok).forEach((kulcs)=>{
                     
-                    if (sor < 5) {
-                        $("#elso").append(
-                            "<tr id=" +
-                                sor +
-                                "><th>" +
-                                kulcs +
-                                "</th><td>" +
-                                value +
-                                "<span class='showButton fa fa-edit'></td></tr>"
-                        );
-                    } else {
-                        $("#masodik").append(
-                            "<tr id=" +
-                                sor +
-                                "><th>" +
-                                kulcs +
-                                "</th><td>" +
-                                value +
-                                "<span class='showButton fa fa-edit'></td></tr>"
-                        );
+                    if((kulcs!="dolgozoi_azon"))
+                    {
+                       sorFeltolt(kulcsok[i],adatok[kulcs]);
+                       i++;
                     }
-                    sor++;
+            
+                });
+
+                function sorFeltolt(kulcs,ertek){
+                    $("#elso").append(
+                        "<tr id=" +sor + " class="+"profile-rows"+"><td class="+"r1"+">" +kulcs +":</td><td>" +ertek +
+                            "</td><span class='showButton fa fa-edit'></span></tr>"
+                    );
                 }
+
                 $(".tabcontent").eq(0).fadeIn(1000);
                 $(".tabcontent").eq(0).css("visibility","visible");
             });
