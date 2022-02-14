@@ -4,7 +4,7 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
     let logged ;
-    
+    $(".post-info").hide();
     ProfilAdatok();
     newPost();
 
@@ -15,15 +15,20 @@ $(function () {
                 this.szulo = szulo;
                 this.kep = kep;
                 if (adat != undefined) {
-                    this.szulo.append(`<div class="post"><h3></h3></div>`);
+                    this.szulo.append(`<div class="post"><img src="${kep}"><h3></h3></div>`);
                     this.adat = adat;
                     this.elem = szulo.find(".post:last");
                     this.alkalmazottAdatok = alkalmazottAdatok;
                     this.elem.find("h3").text(this.adat.cim);
-
+                    this.postElem = $(".post-info");
+                    
                     this.elem.on("click", (e) => {
-                        this.postElem = $(".post-info");
-                        this.postElem.css("visibility", "visible");
+                        
+                        this.postElem.hide(0,()=>{
+                            this.postElem.fadeIn(500);
+                        });
+                        
+                        
                         this.postElem
                             .children(".post-info-user-data")
                             .children("p")
@@ -45,14 +50,17 @@ $(function () {
                 }
             }
         }
+       
         $(".posts-container").empty();
+        
         $(".posts").empty();
         $(".posts").append(`<div> <h1>Faliújság</h1></div>`);
-      
+       
         const postinfoTomb = [];
         adatok.forEach((adat) => {
             ajax.ajaxApiGet(apivegpont + "/alkalmazott/" + adat.dolgozoi_azon, (a) => 
             {
+                
                     postinfoTomb.push(a);
                     const szulo = $(".posts-container");
                     let faliujsagPost = new Faliujsag(szulo, adat);
@@ -90,10 +98,13 @@ $(function () {
                             }
                         );
                     }
+                   
                 }
+                
             );
+           
         });
-        
+       
     }
 
     function newPost() {
@@ -109,6 +120,7 @@ $(function () {
             newpostForm.effect("clip", "1500");
         });
         newpostOk.on("click", () => {
+          
             let ma = formatDate(new Date());
             let obj = {
                 dolgozoi_azon: logged,
@@ -119,10 +131,15 @@ $(function () {
 
             ajax.ajaxApiPost(apivegpont, obj);
             newpostForm.effect("clip", "1500");
+            
             ajax.ajaxApiGet(
+
                 "http://localhost:8000/api/faliujsagok",
+               
                 faliujsagUser
+                
             );
+      
         });
 
         function formatDate(date) {
@@ -145,34 +162,33 @@ $(function () {
             ajax.ajaxApiGet("http://localhost:8000/api/alkalmazott/"+logged, (adatok) => {
                 console.log(adatok);
                 sor = 0;
-                $("#Profiladatok").find("h2").text(adatok.nev);
-                $(".managerinfo-name").text(adatok.nev+", "+adatok.munkakor);
-                for (const [key, value] of Object.entries(adatok)) {
-                    kulcs = key.replace("_", " ");
+                $(".profile-name").text("Üdvözöllek, "+adatok.nev);
+                
+                $(".profile-nev").text(adatok.nev);
+                $(".profile-munkakor").text(adatok.munkakor);
+                $(".location-address").text(adatok.lakcim);
+                $(".location-phone").text(adatok.elerhetoseg);
+                $(".location-email").text(adatok.email);
+
+                let kulcsok = ["Név","Lakcím","Születési Dátum","Adóazonosító","TAJ","Elérhetőség","E-mail","Munkakör","Heti óraszám","Munkaviszony kezdete","Munkaviszony Vége"];
+                let i = 0;
+                Object.keys(adatok).forEach((kulcs)=>{
                     
-                    if (sor < 5) {
-                        $("#elso").append(
-                            "<tr id=" +
-                                sor +
-                                "><th>" +
-                                kulcs +
-                                "</th><td>" +
-                                value +
-                                "<span class='showButton fa fa-edit'></td></tr>"
-                        );
-                    } else {
-                        $("#masodik").append(
-                            "<tr id=" +
-                                sor +
-                                "><th>" +
-                                kulcs +
-                                "</th><td>" +
-                                value +
-                                "<span class='showButton fa fa-edit'></td></tr>"
-                        );
+                    if((kulcs!="dolgozoi_azon"))
+                    {
+                       sorFeltolt(kulcsok[i],adatok[kulcs]);
+                       i++;
                     }
-                    sor++;
+            
+                });
+
+                function sorFeltolt(kulcs,ertek){
+                    $("#elso").append(
+                        "<tr id=" +sor + " class="+"profile-rows"+"><td class="+"r1"+">" +kulcs +":</td><td>" +ertek +
+                            "</td><span class='showButton fa fa-edit'></span></tr>"
+                    );
                 }
+
                 $(".tabcontent").eq(0).fadeIn(1000);
                 $(".tabcontent").eq(0).css("visibility","visible");
             });
