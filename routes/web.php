@@ -17,6 +17,7 @@ use App\Http\Controllers\HetiOraszamController;
 use App\Http\Controllers\SzabadsagStatController;
 use App\Http\Controllers\HitelesitesController;
 use App\Http\Controllers\DolgozottNapokStatController;
+use App\Http\Middleware\IsAuthenticated;
 
 
 
@@ -57,6 +58,16 @@ Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentk
 Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
 
 ##ALKALMAZOTT
+/*az összes route belekerül majd middleware-k közé így autentikáció nélkül nem lesznek elérhetők*/
+// Route::middleware(['auth', IsAuthenticated::class])->group(function () {
+//     Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
+//     Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
+//     Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
+//     Route::put('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'update']);
+//     Route::post('/api/alkalmazott', [AlkalmazottController::class, 'store']);
+//     Route::delete('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'destroy']);
+// });
+
 Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
 Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
 Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
