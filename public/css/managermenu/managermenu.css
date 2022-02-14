@@ -889,201 +889,6 @@ article {
 
 /*---------------------*/
 
-/*#############MŰSZAKTÍPUS NAPHOZ RENDELÉS###########*/
-#Muszaktipusn {
-  display: grid;
-  width: 100%;
-}
-.muszaktipush-header {
-  display: grid;
-  grid-template-columns: auto 50%;
-  justify-items: center;
-}
-.muszaktipusn-container {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns:  auto auto;
-  grid-template-rows: auto auto ;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-  margin-right: 25px;
-}
-
-#muszaktipusnapok-content {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(1, auto);
-  gap: 1em;
-  align-content: center;
-}
-#muszaktipusnapok-content > * {
-  text-align: center;
-  margin: 0;
-  width: 150px;
-}
-.muszaktipusn-text {
-  text-align: center;
-  color: var(--bs-light);
-}
-.muszaktipusn-text h2 {
-  font-size: 2em;
-  font-weight: 450;
-}
-.muszaktipusn-text p {
-  text-align: start;
-  padding-left: 1rem;
-  font-size: 17.5px;
-}
-.muszaktipusn-content {
-  padding: 1em;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.39);
-  background-image: linear-gradient(
-    45deg,
-    var(--fds-spectrum-teal-dark-1),
-    var(--fds-spectrum-teal-dark-2),
-    var(--bs-teal)
-  );
-  border-radius: 10px;
-  box-sizing: border-box;
-  width: 90%;
-  margin: 1rem;
-  display: grid;
-  grid-template-columns: 40% auto;
-  grid-template-rows: auto;
-}
-
-.muszaktipusn-title {
-  margin: auto;
-  font-family: monospace;
-  font-family: "Mochiy Pop P One", sans-serif;
-  font-weight: 500;
-  width: fit-content;
-}
-.muszaktipusnap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
- 
-  box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-.mtc-inline-grid {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 70% auto;
-}
-.mtc-inline-grid button {
-  height: fit-content;
-  width: fit-content;
-  background: var(--bs-light);
-  padding: 0.8em;
-  border: none;
-  cursor: pointer;
-  
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  
-  
-}
-.mtc-inline-grid .fa-trash {
-  color: var(--bs-red);
-  margin-right: 5rem;
-}
-.mtc-inline-grid .fa-plus {
-  margin-bottom: 1rem;
-  color: var(--bs-blue);
-}
-.mtc-inline-grid button:hover {
-  background: transparent;
-}
-.aktualisnapok > * {
-  display: grid;
-  grid-template-columns: auto auto;
-  place-self: center;
-  text-align: center;
-  gap: 1em;
-  width: 100%;
-  margin: auto;
-}
-.aktualisnapok p,
-h3 {
-  width: max-content;
-  padding: 1rem;
-  margin: auto;
-}
-.aktualisnapok h3 {
-  font-weight: 400;
-}
-.aktualisnapok {
-  display: grid;
-  grid-gap: 0.2em;
-  grid-template-columns: auto;
-  justify-items: center;
-  border-radius: 10px;
-}
-
-.aktualisnapok .muszaktipusnap {
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  
-  box-sizing: border-box;
-  width: 70%;
-  margin: 0px;
-  height: 50px;
-  bottom: 30px;
-}
-
-.selectable .ui-selecting {
-  background: #feca40;
-}
-.selectable .ui-selected {
-  background: #f39814;
-  color: white;
-}
-
-.aktualisnapok .muszaktipusnap {
-  height: fit-content;
-  margin: 0;
-  padding: 2px;
-  text-align: justify;
-  background-color: transparent;
-  border: none;
-  width: fit-content;
-  height: fit-content;
-}
-#muszaktipusn-subcontainer{
-  display: grid;
-}
-
-#muszaktipushsave {
-
-  color:var(--fds-button-text);
-  font-size: 1.2em;
-  text-shadow: 1px 1px   black;
-  border-radius: 50%;
-  background-image: linear-gradient(
-    45deg,
-    var(--fds-blue-05),var(--fds-spectrum-aluminum-tint-70),var(--always-white)
-  );
- 
-  border-radius: 10px;
-  border: 1px solid rgba(12, 0, 0, 0.18);
-  cursor: pointer;
-  padding: 10px;
-  user-select: none;
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  line-height: 20px;
-  padding-bottom: 10px;
-}
-
-#muszaktipushsave:hover {
-
-  background: var(--bs-teal);
-}
 .tabcontent {
   color: black;
   display: none;
@@ -1096,6 +901,187 @@ h3 {
   
     background-color: transparent;
     box-shadow: none;
+
+}
+#Muszaktipusn {
+  box-shadow: none;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: auto 45%;
+}
+.timer-datettime {
+  padding-left: 1rem;
+  padding: 1rem;
+  font-weight: lighter;
+  border-bottom: 1px solid var(--fds-gray-20);
+  background-color: var(--bs-blue);
+  color:var(--always-white);
+}
+.timer {
+  font-size: 2rem;
+}
+.datettime {
+  margin-top: 0.5rem;
+}
+
+.datettime-info {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: var(--always-white);
+  color: var(--fds-button-text);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.dateinfo-massage-grid {
+  display: none;
+  padding: 1rem;
+  font-weight: lighter;
+  border-bottom: 1px solid var(--fds-gray-20);
+  padding-left: 1rem;
+}
+.dateinfo-massage-grid .links2{
+  box-shadow: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.dateinfo {
+  font-size: 1.5rem;
+
+  font-weight: 350;
+}
+.message {
+  margin-top: 1rem;
+   margin-left: 1rem;
+  margin-right: 1rem;
+  
+  color: var(--bs-info);
+  font-style: italic;
+}
+.leadva {
+  color: var(--bs-success);
+}
+
+.tablediv {
+  margin: auto;
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(7, auto);
+  
+}
+.tablediv div {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  
+}
+#selectable .ui-selected {
+  background: var(--fds-gray-20);
+  color: var(--always-black);
+}
+.ui-widget-content {
+  border: none !important;
+}
+.dateinfo-muszaktipus {
+ 
+  padding-right: 2rem;
+}
+.dateinfo-muszaktipus label {
+  font-weight: 450;
+}
+
+.addshadow {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
+  background: var(--bs-teal);
+  color: white;
+}
+.naptar {
+  width: fit-content;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
+  background-color: var(--always-white);
+  margin-right: 1rem;
+}
+.naptar .honap {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.naptar .datedays {
+  display: table-cell;
+
+  cursor: pointer;
+  padding: 1rem;
+}
+.naptar .datedays:hover {
+  cursor: pointer;
+}
+.dateinfo-buttons {
+  width: 100%;
+  border-top: 1px solid var(--fds-gray-20);
+  display: flex;
+  justify-content: center;
+}
+.days {
+  margin: 0!important;
+  padding: 0;
+
+  padding-bottom: 1rem;
+  width: 100%;
+}
+.user-send-ok,
+.user-send-cancel {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: fit-content;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  color: var(--always-white);
+}
+.user-send-ok {
+  background-color: var(--fds-green-55);
+}
+.user-send-cancel {
+  background-color: var(--fds-red-55);
+}
+.user-send-ok:hover {
+  cursor: pointer;
+}
+.user-send-cancel:hover {
+  cursor: pointer;
+}
+.muszakok-lista{
+  display: grid;
+  gap:1rem;
+}
+
+.muszaktipusok-info{
+ 
+  display:flex;
+  justify-content: stretch;
+  gap: 1rem;
+  
+ 
+}
+.muszaktipusok-input{
+  
+  padding: 1rem;
+
+
+}
+.muszakok-leiras{
+  padding: 1rem;
+
+  
 
 }
 /*#############FALIÚJSÁG###########*/

@@ -117,16 +117,15 @@ class AlkalmazottTabla {
         this.elem.find(".elerhetoseg").text(this.adat.elerhetoseg);
         this.elem.find(".email").text(this.adat.email);
         this.menu = "#Alkalmazottak .dropdown-content";
-
+          
         this.elem.on("click", (e) => {
             this.klikkTrigger();
-       //     document.addEventListener("contextmenu", (event) =>
-         //       event.preventDefault()
-           // );
+            $(this.menu).attr("id",this.adat.dolgozoi_azon);
             this.x = e.clientX;
             this.y = e.clientY;
             $(this.menu).css("left", this.x);
             $(this.menu).css("top", this.y);
+            
         });
     }
 

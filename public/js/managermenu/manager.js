@@ -16,123 +16,363 @@ $(function () {
 
     //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
-        const napok = [];
-        const muszakok = [];
-        let napokApi = apivegpont + "/napok";
+        const SZULO = $("#Muszaktipusn");
+        muszakTipusNaphozSeged();
 
-        KovHetDatumBeallitas();
-        ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
+        const token = $('meta[name="csrf-token"]').attr("content");
+        const naptar = SZULO.find(".naptar");
+        const timer = $(".timer");
+        const datettime = $(".datettime");
 
-        function muszakBeallitas(objektum) {
-            const szuloElem = $("#muszaktipusn-subcontainer");
-            objektum.forEach((obj) => {
-                let muszak = new Muszak(szuloElem, obj);
-                muszakok.push(muszak);
-            });
-            ajaxApiGet(apivegpont + "/napokossz", (adatok) => {
-                adatok.forEach((aktualisNap) => {
-                    let datum = aktualisNap.nap;
-                    let muszak = aktualisNap.muszaktipus;
-                    console.log(muszak);
-                    muszakok.forEach((m) => {
-                        if (muszak == m.adat.tipus) {
-                            napok.forEach((n) => {
-                                if (datum == n.datum) {
-                                    m.napokTarolo.append(n.elem);
-                                }
-                            });
-                        }
-                    });
-                });
-            });
+        function muszakTipusNaphozSeged() {
+            SZULO.append(
+                `<div class="naptar"><div class="timer-datettime"><div class="timer"></div><div class="datettime"></div></div></div>`
+            );
+            SZULO.append('<div class="datettime-info"></div>');
 
-            $("#muszaktipushsave").on("click", () => {
-                muszakok.forEach((m) => {
-                    if (m.napok.length > 0) {
-                        for (const nap in m.napok) {
-                            let uj = {
-                                nap: m.napok[nap].datum,
-                                muszaktipus: m.adat.tipus,
-                                allapot: 0,
-                            };
-                            ajax.ajaxApiPost(napokApi, uj);
-                        }
-                    }
-                });
+            $(".datettime-info").append(`
+            <div class="dateinfo-massage-grid">
+                <div class="dateinfo"></div>
+                <div class="message"></div>
+            </div>
+            <div class="dateinfo-muszaktipus" id="selectable"></div>
+            <div class="dateinfo-buttons"><button class="fas fa-check user-send-ok"></button><button class="fas fa-trash user-send-cancel"></button></div>`);
+            $(".datettime-info").hide();
+            $(".dateinfo-buttons").hide();
+        }
+
+        idoKiir();
+
+        const honapok = [
+            "",
+            "Január",
+            "Február",
+            "Március",
+            "Április",
+            "Május",
+            "Június",
+            "Július",
+            "Augusztus",
+            "Szeptember",
+            "Október",
+            "November",
+            "December",
+        ];
+        let napok = new Array();
+        napok[0] = "V";
+        napok[1] = "H";
+        napok[2] = "K";
+        napok[3] = "Sze";
+        napok[4] = "Cs";
+        napok[5] = "P";
+        napok[6] = "Szo";
+
+        let date = new Date();
+        let aktualisEv = date.getFullYear();
+        let aktualisHonap = date.getMonth() + 1;
+        let honapElsoNapja = new Date(date.getFullYear(), date.getMonth(), 1);
+        let honapOsszNapja = new Date(
+            date.getFullYear(),
+            date.getMonth() + 1,
+            0
+        ).getDate();
+
+        function ido() {
+            let today = new Date();
+            let hh = today.getHours();
+            let min = String(today.getMinutes()).padStart(2, "0");
+            let sec = String(today.getSeconds()).padStart(2, "0");
+            let dd = String(today.getDate()).padStart(2, "0");
+
+            today = aktualisEv + "." + honapok[aktualisHonap] + "." + dd + ".";
+            time = hh + ":" + min + ":" + sec;
+            datettime.html(`<div>${today}</div>`);
+            timer.html(`<div>${time}</div>`);
+        }
+
+        function idoAtvalt(ido) {
+            let time = ido;
+            let dd = String(time.getDate()).padStart(2, "0");
+            let mm = String(time.getMonth() + 1).padStart(2, "0");
+            return aktualisEv + "-" + mm + "-" + dd;
+        }
+
+        function idoKiir() {
+            setInterval(() => {
+                setTimeout(ido, 1000);
             });
         }
 
-        function KovHetDatumBeallitas() {
-            class Nap {
-                constructor(datum, nev, elem) {
-                    this.datum = datum;
-                    this.nev = nev;
-                    this.elem = elem;
+        class Muszak {
+            constructor(szulo, adat, nap) {
+                this.adat = adat;
+                this.nap = nap;
+                this.aktiv = false;
+                this.szulo = szulo;
+                this.html = `<li class="muszaktipusok-info"><div class="muszaktipusok-input">
+                <input type="checkbox"> 
+                ${this.adat.tipus}</div><span class="muszakok-leiras">${this.adat.leiras}</span></li>`;
+                this.szulo.append(this.html);
+                this.elem = $(szulo).find(".muszaktipusok-info:last");
+            }
+        }
+        class Nap {
+            constructor(szulo, nap, napok, elem) {
+                this.muszakok = [];
+                this.szulo = szulo;
+                this.nap = nap;
+                this.napok = napok;
+                this.napNev = idoAtvalt(
+                    new Date(`${aktualisEv}/${aktualisHonap}/${this.nap}`)
+                );
+                this.elkuldElem = $(".user-send-ok").clone();
+                this.torolElem = $(".user-send-cancel").clone();
+                this.messageElem = $(".message");
+                this.dateInfoElem = $(".dateinfo");
+                this.infoElem = $(".datettime-info");
+                this.elem = elem.text(`${this.nap}`);
+                this.muszakTipusElem = $(".dateinfo-muszaktipus");
+
+                this.elem.on("click", () => {
+                    this.infoElem.hide();
+                    this.infoElem.show(500);
+                    $(".dateinfo-massage-grid").hide();
+                    $(".dateinfo-buttons").hide();
+
+                    this.muszakTipusElem.hide();
+                    this.elemekKezelese();
+
+                    ajax.ajaxApiGet(
+                        "http://localhost:8000/api/napok/" + this.napNev,
+                        (nap) => {
+                            if (!nap) {
+                                this.setMuszakok();
+                            } else {
+                                this.muszakTipusElem.empty();
+                                this.dateInfoElem.html(
+                                    `<div class="links links2" id=""><div>Műszakok - ${this.napNev}</div><span class="fas fa-users"></span></div>`
+                                );
+                                this.setMessageElemSzinSzoveg(
+                                    "red",
+                                    "A naphoz már rendeltél műszakokat!"
+                                );
+                                this.muszakTipusElem.append(
+                                    '<ul class="muszakok-lista"></ul>'
+                                );
+                                this.muszakLista =
+                                    this.muszakTipusElem.children(
+                                        ".muszakok-lista"
+                                    );
+                                ajax.ajaxApiGet(
+                                    "http://localhost:8000/api/muszaktipus/" +
+                                        nap.muszaktipus,
+                                    (muszak) => {
+                                        this.muszakok.push(
+                                            new Muszak(
+                                                this.muszakLista,
+                                                {
+                                                    tipus: nap.muszaktipus,
+                                                    leiras: muszak.leiras,
+                                                },
+                                                this.napNev
+                                            )
+                                        );
+                                        this.muszakok.forEach((muszak) => {
+                                            this.muszakokSzinez(muszak);
+                                        });
+                                    }
+                                );
+
+                                this.torolElem.on("click", () => {
+                                    this.elkuldElem.show();
+                                    let napok = apivegpont + "/napok";
+                                    ajax.ajaxApiDelete(napok, this.napNev);
+                                    ujNaptar.naptarSzinez();
+                                    this.setMuszakok();
+                                });
+
+                                $(".dateinfo-massage-grid").slideDown(500);
+                                this.elkuldElem.hide();
+                                this.muszakTipusElem.fadeIn(500);
+                                $(".dateinfo-buttons").fadeIn(500);
+                            }
+                        }
+                    );
+                });
+            }
+
+            muszakokSzinez(muszak) {
+                for (
+                    let i = 0;
+                    i <
+                    $(this.muszakLista).find(".muszaktipusok-info input")
+                        .length;
+                    i++
+                ) {
+                    let element = $(this.muszakLista)
+                        .find(".muszaktipusok-info input")
+                        .eq(i);
+                    element.prop("checked", false);
+                    element
+                        .closest(".muszaktipusok-info")
+                        .css("background-color", "white");
+                    element.aktiv = false;
+                    muszak.elem.find("input").prop("checked", true);
+                    muszak.elem.css("background-color", " #FECA40");
+                    muszak.aktiv = true;
                 }
             }
-            let d = new Date();
-            let day = d.getDay();
-            let diff = 7 - day + 1;
-            for (let i = 0; i < 7; i++) {
-                let aktNap = $(".muszaktipusnap").eq(i).children("h3").text();
-                let datum =
-                    String(d.getFullYear()) +
-                    "-" +
-                    String(d.getMonth() + 1).padStart(2, "0") +
-                    "-" +
-                    String(d.getDate() + diff + i).padStart(2, "0");
-                let nap = new Nap(
-                    datum,
-                    aktNap,
-                    $("#muszaktipusnapok-content #mnap" + (i + 1))
+
+            setMuszakok() {
+                ajax.ajaxApiGet(
+                    "http://localhost:8000/api/muszaktipusok",
+                    (adatok) => {
+                        let today =
+                            aktualisEv +
+                            "." +
+                            honapok[aktualisHonap] +
+                            "." +
+                            this.nap +
+                            ".";
+                        this.dateInfoElem.html(
+                            `<div class="links links2" id=""><div>Műszakok - ${this.napNev}</div><span class="fas fa-users"></span></div>`
+                        );
+                        this.setMessageElemSzinSzoveg(
+                            "#2cabe3",
+                            "Kérlek válaszd ki a naphoz - a műszakokat!"
+                        );
+                        $(".dateinfo-massage-grid").slideDown(500);
+
+                        this.muszakTipusElem.empty();
+                        this.muszakTipusElem.append(
+                            '<ul class="muszakok-lista"></ul>'
+                        );
+                        this.muszakLista =
+                            this.muszakTipusElem.children(".muszakok-lista");
+
+                        adatok.forEach((adat) => {
+                            this.muszakok.push(
+                                new Muszak(this.muszakLista, adat, this.napNev)
+                            );
+                        });
+
+                        this.muszakok.forEach((muszak) => {
+                            muszak.elem.on("click", () => {
+                                this.muszakok.forEach((m) => {
+                                    m.aktiv = false;
+                                });
+                                this.muszakokSzinez(muszak);
+                            });
+                        });
+
+                        $(".dateinfo-massage-grid").slideDown(500);
+                        this.muszakTipusElem.fadeIn(500);
+                        $(".dateinfo-buttons").fadeIn(500);
+                        this.elkuldElem.on("click", () => {
+                            let napok = apivegpont + "/napok";
+                            let szurt = this.muszakok.filter((muszak) => {
+                                return muszak.aktiv;
+                            });
+                            console.log(szurt);
+                            if (szurt.length > 0) {
+                                let muszaktipusa = szurt[0].adat.tipus;
+                                ajax.ajaxApiPost(napok, {
+                                    nap: this.napNev,
+                                    muszaktipus: muszaktipusa,
+                                    allapot: 0,
+                                });
+                                ujNaptar.naptarSzinez();
+                            }
+                        });
+
+                        this.torolElem.on("click", () => {
+                            let napok = apivegpont + "/napok";
+                            ajax.ajaxApiDelete(napok, this.napNev);
+                            ujNaptar.naptarSzinez();
+                        });
+                    }
                 );
-                napok.push(nap);
-                $("#muszaktipusnapok-content #mnap" + (i + 1))
-                    .children("p")
-                    .text(nap.datum);
+            }
+
+            setMessageElemSzinSzoveg(szin, szöveg) {
+                this.messageElem.css("color", szin);
+                this.messageElem.text(szöveg);
+            }
+            elemekKezelese() {
+                $(".user-send-ok").remove();
+                $(".user-send-cancel").remove();
+                $(".dateinfo-buttons").append(this.elkuldElem);
+                $(".dateinfo-buttons").append(this.torolElem);
             }
         }
 
-        const elemTarolo = $("#muszaktipusnapok-content");
-        $(".selectable").selectable();
-        $(window).on("Torles", ({ detail }) => {
-            let l = detail.elem.find(".aktualisnapok").children().length;
-            if (detail.napok.length < 1) {
-                for (let index = 0; index < l; index++) {
-                    ajax.ajaxApiDelete(
-                        napokApi,
-                        detail.elem
-                            .find(".aktualisnapok")
-                            .children()
-                            .eq(index)
-                            .find("p")
-                            .text()
+        class Naptar {
+            constructor(szulo, napok, honapok) {
+                this.szulo = szulo;
+                this.napok = napok;
+                this.honapok = honapok;
+                this.elsoNap = new Date(date.getFullYear(), date.getMonth(), 1);
+
+                this.szulo.append(`<div class="tablediv"></div>`);
+                let aktualisTablazat = this.szulo.find("div:last");
+
+                for (let index = 0; index < 7; index++) {
+                    aktualisTablazat.append(
+                        `<div class="days">${napok[index]}</div>`
                     );
                 }
-            }
-            detail.napok.forEach((n) => {
-                n.elem.effect("fade", "slow", () => {
-                    elemTarolo.append(n.elem);
-                    n.elem.show();
-                });
-            });
-            detail.napok = [];
-        });
-        $(window).on("Hozzarendeles", ({ detail }) => {
-            for (let index = 0; index < napok.length; index++) {
-                const element = napok[index];
-                if (element.elem.hasClass("ui-selected")) {
-                    detail.napok.push(element);
-                    $(element.elem).effect("drop", "slow", () => {
-                        detail.napokTarolo.append(element.elem);
-                        element.elem.show();
-                    });
 
-                    element.elem.removeClass("ui-selected");
+                for (let index = 0; index < honapOsszNapja + 10; index++) {
+                    aktualisTablazat.append(`<div class="datedays"></div>`);
                 }
+                let i = 0;
+
+                while (i < honapOsszNapja) {
+                    let nap = new Nap(
+                        aktualisTablazat,
+                        i + 1,
+                        napok,
+                        aktualisTablazat
+                            .find(".datedays")
+                            .eq(honapElsoNapja.getDay() + i)
+                    );
+
+                    aktualisTablazat
+                        .find(".datedays")
+                        .eq(honapElsoNapja.getDay() + i)
+                        .attr("id", nap.napNev);
+                    $(`#${nap.napNev}`).css(
+                        "border",
+                        "0.5px solid var(--fds-gray-20)"
+                    );
+                    $(`#${nap.napNev}`).css("margin", ".5rem");
+                    $(`#${nap.napNev}`).css("text-align", "center");
+                    i++;
+                }
+                this.naptarSzinez();
             }
-        });
+            naptarSzinez() {
+                $(".datedays").removeClass("addshadow");
+                $(".datedays")
+                    .css({
+                        opacity: "0",
+                    })
+                    .show()
+                    .animate({ opacity: 1 });
+
+                ajax.ajaxApiGet(
+                    "http://localhost:8000/api/napokossz",
+                    (adatok) => {
+                        adatok.forEach((adat) => {
+                            $(`#${adat.nap}`).addClass("addshadow");
+                        });
+                    }
+                );
+            }
+        }
+        let ujNaptar = new Naptar(naptar, napok, honapok);
     }
+
     //ajaxApiGet - Rendben
     function munkakorok() {
         ajaxApiGet(apivegpont + "/munkakorok", munkakorBeallitas);
@@ -461,13 +701,14 @@ $(function () {
                 $("#Alkalmazottak").css("display", "none");
                 $("#Profiladatok").fadeIn(1000);
                 $("#Profiladatok").css("visibility", "visible");
+
                 ProfilAdatok($(menu).attr("id"));
             });
     }
 
     function ProfilGomb() {
         $("#profiladatok").on("click", () => {
-            ProfilAdatok(0);
+            ProfilAdatok();
         });
     }
 
@@ -492,8 +733,7 @@ $(function () {
     }
 
     //ajaxApiGet - Rendben
-    function ProfilAdatok() {
-        $(".profilepic").hide();
+    function ProfilAdatok(id) {
         profilAdatok = {};
         $("#elso").empty();
         $("#masodik").empty();
@@ -503,17 +743,19 @@ $(function () {
         );
         ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok) => {
             logged = adatok;
-            ajaxApiGet(apivegpont + "/alkalmazott/"+logged, (adatok) => {
-                $(".profile-name").text("Üdvözöllek, "+adatok.nev);
-                
+            if (id != undefined) {
+                logged = id;
+                console.log(logged);
+            }
+            ajaxApiGet(apivegpont + "/alkalmazott/" + logged, (adatok) => {
+                $(".profile-name").text("Üdvözöllek, " + adatok.nev);
+
                 $(".profile-nev").text(adatok.nev);
                 $(".profile-munkakor").text(adatok.munkakor);
                 $(".location-address").text(adatok.lakcim);
                 $(".location-phone").text(adatok.elerhetoseg);
                 $(".location-email").text(adatok.email);
                 let sor = 0;
-
-                
 
                 for (const [key, value] of Object.entries(adatok)) {
                     $("#Profiladatok").find("h2").text(adatok.nev);
@@ -525,7 +767,11 @@ $(function () {
 
                     let adatmutat =
                         "<tr id=" +
-                        sor +" " +"class="+"profile-rows"+ "><th class=fejlec>" +
+                        sor +
+                        " " +
+                        "class=" +
+                        "profile-rows" +
+                        "><th class=fejlec>" +
                         kulcs +
                         "</th>" +
                         "<td class='kesz'>" +
@@ -540,18 +786,34 @@ $(function () {
                         "</td>" +
                         "</tr>";
                     $("#elso").append(adatmutat + adatszerkeszt);
-                  
-                  
+
                     sor++;
                 }
-                
-                let kulcsok = ["","Név","Lakcím","Születési Dátum","Adóazonosító","TAJ","Elérhetőség","E-mail","Munkakör","Heti óraszám","Munkaviszony kezdete","Munkaviszony Vége"];
+
+                let kulcsok = [
+                    "",
+                    "Név",
+                    "Lakcím",
+                    "Születési Dátum",
+                    "Adóazonosító",
+                    "TAJ",
+                    "Elérhetőség",
+                    "E-mail",
+                    "Munkakör",
+                    "Heti óraszám",
+                    "Munkaviszony kezdete",
+                    "Munkaviszony Vége",
+                ];
                 $(".profile-rows .fejlec").eq(0).hide();
-                for (let index = 1; index < $(".profile-rows .fejlec").length; index++) {
-                    const element =$(".profile-rows .fejlec").eq(index);
+                $(".profile-rows .kesz").eq(0).hide();
+                for (
+                    let index = 1;
+                    index < $(".profile-rows .fejlec").length;
+                    index++
+                ) {
+                    const element = $(".profile-rows .fejlec").eq(index);
                     element.hide();
                     element.parent().prepend(`<th>${kulcsok[index]}</th>`);
-                  
                 }
 
                 $("#tables tr").hover(modosit);

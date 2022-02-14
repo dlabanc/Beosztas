@@ -164,44 +164,7 @@
 
             <div id="Muszaktipusn" class="tabcontent">
 
-                <button id="muszaktipushsave" class="fas fa-save"></button>
-                <h3 class="muszaktipusn-title">Műszak típus naphoz rendelése </h3>
 
-                <div class="muszaktipusn-container">
-                    <div id="muszaktipusn-subcontainer">
-
-                    </div>
-                    <div id="muszaktipusnapok-content" class="selectable">
-                        <div id="mnap1" class="muszaktipusnap ui-widget-content">
-                            <h3>Hétfő</h3>
-                            <p></p>
-                        </div>
-                        <div id="mnap2" class="muszaktipusnap ui-widget-content">
-                            <h3>Kedd</h3>
-                            <p></p>
-                        </div>
-                        <div id="mnap3" class="muszaktipusnap ui-widget-content">
-                            <h3>Szerda</h3>
-                            <p></p>
-                        </div>
-                        <div id="mnap4" class="muszaktipusnap ui-widget-content">
-                            <h3>Csütörtök</h3>
-                            <p></p>
-                        </div>
-                        <div id="mnap5" class="muszaktipusnap ui-widget-content">
-                            <h3>Péntek</h3>
-                            <p></p>
-                        </div>
-                        <div id="mnap6" class="muszaktipusnap ui-widget-content">
-                            <h3>Szombat</h3>
-                            <p></p>
-                        </div>
-                        <div id="mnap7" class="muszaktipusnap ui-widget-content">
-                            <h3>Vasárnap</h3>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div id="Muszaktipusm" class="tabcontent">
