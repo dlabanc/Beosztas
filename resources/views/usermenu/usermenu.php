@@ -51,7 +51,7 @@
         <a id="statisztika">Statisztika</a>
         <a id="faliujsag">Faliújság</a>
         <a id="beosztas">Beosztás</a>
-        <a href="/login" class="logout">
+        <a href="logout" class="logout">
             <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
         </a>
     </div>

@@ -18,7 +18,7 @@ class NapiMunkaeroIgeny extends Migration
             $table->date('datum');
             $table->unsignedtinyInteger('muszakelo_azon');
             $table->string('munkakor',50);
-            $table->unsignedTinyInteger('db');
+            $table->unsignedTinyInteger('db')->default(0);
             $table->unique(['datum', 'muszakelo_azon', 'munkakor']);
             $table->foreign('datum')->references('nap')->on('napok')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('muszakelo_azon')->references('muszakelo_azon')->on('muszakeloszlas')->onDelete('cascade')->onUpdate('cascade');

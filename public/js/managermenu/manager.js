@@ -714,6 +714,11 @@ $(function () {
 
     //ajaxApiGet - Hibás
     function napiMin() {
+
+        ajaxApiGet(apivegpont+"/napi")
+
+
+        /*
         let vegpont = "../json/napiMin.json";
 
         ajaxGet("../json/napok.json", ujHivas);
@@ -730,6 +735,9 @@ $(function () {
                 new NapiMin(szuloElem, napiMin, napokTomb[0][index].nap);
             }
         }
+        */
+
+
     }
 
     //ajaxApiGet - Rendben
