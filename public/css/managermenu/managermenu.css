@@ -1413,6 +1413,85 @@ width:40px;
     var(--bs-teal)
   );
 }
+#Muszaktipush h3{
+  text-align: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--fds-gray-20);
+  font-weight: 400;
+}
+.reszletek-lista{
+  display: grid;
+  grid-template-columns: auto;
+  gap:1rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+.reszletek-lista li{
+  list-style-type: none;
+  margin: .5rem;
+  
+}
+.reszletek-lista li span{
+  margin-right: 2rem;
+}
+.showmuszak{
+  color:#2c7be3;
+  font-weight: 450;
+ 
+}
+.removemuszak,.nosavemuszak{
+  color:var(--fds-red-55);
+}
+.savemuszak{
+  color:var(--fds-green-55);
+}
+.editmuszak{
+  color:var(--bs-blue);
+}
+.muszakok-table button{
+  border: none;
+  background: transparent;
+}
+.newmuszak{
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+  background-color: none;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.muszakok-table
+{
+
+    width: 100%;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    border-collapse: collapse;
+    
+}
+.muszakok-table tr{
+    border:none;
+    border-bottom: 1px solid var(--fds-gray-20);
+    
+}
+.muszakok-table th{
+  background-color: var(--fds-highlight-cell-background);
+}
+.muszakok-table td,th{
+    text-align: center;
+    padding: 1rem;
+   
+}
 .darkmode--activated .managerinfo, .darkmode--activated .openbtn{background-color: black; color:white}
 
 @media screen and (max-width:1820px) {

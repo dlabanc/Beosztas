@@ -156,7 +156,7 @@
 
             <div id="Muszaktipush" class="tabcontent">
                 <h3>Műszak típus hozzáadása</h3>
-                <button id="newmuszak"><span class="fa fa-plus"></span></button>
+                
                 <div class="muszaktipush-container">
 
                 </div>

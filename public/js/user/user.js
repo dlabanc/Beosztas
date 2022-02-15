@@ -334,7 +334,7 @@ $(function () {
                                         `<div class="nap-inputs"><input type="checkbox" id="${sor.muszakelo_azon}" > <label>${sor.oratol}:00 - ${sor.oraig}:00</label></div>`
                                     );
                                 });
-                                this.muszakokKihuzasa();
+                                this.muszakokKihuzasa(logged);
                                 
     
                                 
@@ -429,14 +429,16 @@ $(function () {
                 this.messageElem.text(szöveg);
             }
     
-            muszakokKihuzasa(){
+            muszakokKihuzasa(logged){
                 
                 ajax.ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz",(adatok) => {
                         if (adatok.length > 0) {
-                            let szurt = adatok.filter((adat) => {return ( adat.alkalmazott == 30001 && adat.datum == this.napNev);});
+                            
+                            let szurt = adatok.filter((adat) => {return ( adat.alkalmazott == logged && adat.datum == this.napNev);});
                             szurt = szurt.map((adat) => {
                                 return adat.muszakelo_azon;
                             });
+                            console.log(szurt);
                             szurt.forEach((id) => {
                                 let kihuz = this.muszakTipusElem.find(`#${id}`);
                                 kihuz.parent().css("text-decoration","line-through");
@@ -475,7 +477,7 @@ $(function () {
                            
                         });
                         
-                        this.muszakokKihuzasa();
+                        this.muszakokKihuzasa(logged);
                         
                     }
                 );

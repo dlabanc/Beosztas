@@ -445,19 +445,30 @@ $(function () {
 
         function muszakBeallitas(muszakok) {
             const szuloElem = $(".muszaktipush-container");
+            szuloElem.empty();
+            szuloElem.append(`<table class="muszakok-table"><tr><th>Típus</th><th>Leírás</th><th></th><th></th><th></th></tr></table>`);
+            const tabla = szuloElem.find(".muszakok-table");
             muszakok.forEach((elem) => {
-                new MuszakHozzaAdas(szuloElem, elem);
+                new MuszakHozzaAdas(tabla, elem,ajax);
             });
-
-            $(window).on("torolh", (event) => {
-                console.log(event.detail.tipus);
-            });
-
-            $(window).on("modosith", (event) => {
-                console.log(event.detail.tipus);
+            MuszakHozzaAdas.hozzaAd(tabla,ajax,()=>{
+                ajaxApiGet(apivegpont + "/muszaktipusok",muszakBeallitas);
             });
         }
+
+
     }
+
+    $(window).on("torolh", (event) => {
+        event.detail.torles();
+        muszakok();
+    });
+
+    $(window).on("MuszakModosit", (event) => {
+        event.detail.modosit(muszakok);
+        
+    });
+
     //ajaxApiGet - Hibás
     function muszakEloszlas() {
         ajaxApiGet(apivegpont + "/muszakeloszlasok", muszakeloszlasBeallitas);
@@ -715,7 +726,7 @@ $(function () {
     //ajaxApiGet - Hibás
     function napiMin() {
 
-        ajaxApiGet(apivegpont+"/napi")
+   
 
 
         /*

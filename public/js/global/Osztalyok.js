@@ -232,34 +232,158 @@ class MuszakEloszlas {
 }
 
 class MuszakHozzaAdas {
-    constructor(szulo, adat) {
+    constructor(szulo, adat, ajax) {
+        this.click = 1;
+        this.api = "http://localhost:8000/api/muszaktipus";
+        this.ajax = ajax;
         this.szulo = szulo;
-        szulo.append(
-            `<div class="muszaktipush-content">
-      <div class="muszaktipush-info">
-      <h2>Műszak típusa</h2><p>Műszaktípus leírása</p>
-      </div>
-      <div>
-      <button id="removemuszakh"><span class="fa fa-minus"></span></button>
-      <button id="editmuszakh" ><span class="fas fa-pen"></span></button>
-      </div>
-      </div>`
-        );
+        this.szulo.append(`<tr class="muszak-sorok"></tr>`);
+        this.torlesEsemeny = this.torles;
         this.adat = adat;
-        this.elem = $(".muszaktipush-content:last");
-        this.elem.find(".muszaktipush-info h2").text(this.adat.tipus);
-        this.elem.find(".muszaktipush-info p").text(this.adat.leiras);
-        this.elem.find("#removemuszakh").on("click", () => {
+        this.elem = $(".muszak-sorok:last");
+        this.elem.append(`<td>${adat.tipus}</td><td>${adat.leiras}</td>`);
+        this.elem.append('<td><button  class="fas fa-trash removemuszak"></button></td>');
+        this.elem.append('<td><button  class="fas fa-edit editmuszak"></button></td>');
+        this.elem.append('<td class="showmuszak">Részletek</td>');
+        this.torolElem = this.elem.find(".removemuszak");
+        this.szerkesztElem = this.elem.find(".editmuszak") ;
+        this.reszletekElem = this.elem.find(".showmuszak");
+        this.szulo.append(`<tr class="details"></tr>`);
+        this.reszletek = this.szulo.find('.details:last');
+
+        this.szerkesztElem.on("click",()=>{
+            this.kattintasTrigger("MuszakModosit");
+        });
+
+        this.torolElem.on("click",()=>{
             this.kattintasTrigger("torolh");
         });
-        this.elem.find("#editmuszakh").on("click", () => {
-            this.kattintasTrigger("modosith");
+        
+        
+        this.reszletekMutat();
+        
+    }
+
+    reszletekMutat(){
+        
+        this.reszletekElem.on('click',()=>{
+            if(this.click==1) {
+                this.click = 0;
+                this.details();
+                
+              }
+            else {
+                this.click = 1;
+                this.reszletek.children("ul").slideUp(500);
+            }
+        });
+    }
+
+    static hozzaAd(szulo,ajax,callback){
+        
+        szulo.parent().prepend(`<button class="newmuszak">Új</button>`);
+        $(".newmuszak").on("click",()=>{
+            $(".sablon").remove();
+            let ujMuszak = new MuszakHozzaAdas(szulo,{tipus:"",leiras:""},ajax);
+            ujMuszak.elem.hide();
+            ujMuszak.elem.children("td").eq(0).html('<input type="text" name="tipus" id="tipus" placeholder="Tipus..."/>');
+            ujMuszak.elem.children("td").eq(1).html('<input type="text" name="leiras" id="leiras" placeholder="Leírás..."/>');
+            ujMuszak.torolElem.parent().remove();
+            ujMuszak.szerkesztElem.parent().remove();
+            
+            ujMuszak.reszletekElem.before(`<td><button  class="fas fa-times nosavemuszak"></button></td>`);
+            ujMuszak.reszletekElem.before(`<td><button  class="fas fa-check savemuszak"></button></td>`);
+            ujMuszak.mentesElem = ujMuszak.elem.find(".savemuszak");
+            ujMuszak.megseElem = ujMuszak.elem.find(".nosavemuszak");
+            ujMuszak.elem.addClass("sablon");
+            ujMuszak.elem.fadeIn(500);
+            ujMuszak.mentesElem.on("click",()=>{
+                let muszaktipus = ujMuszak.elem.find("#tipus").val();
+                let leiras = ujMuszak.elem.find("#leiras").val();
+                ujMuszak.adat.tipus = muszaktipus;
+                ujMuszak.adat.leiras = leiras;
+                ajax.ajaxApiPost("http://localhost:8000/api/muszaktipus",ujMuszak.adat);
+                callback();
+            });
+            ujMuszak.megseElem.on("click",()=>{
+                ujMuszak.elem.remove();
+                Object.keys(ujMuszak).forEach(kulcs=>{
+                    delete ujMuszak[kulcs];
+                });
+                
+                callback();
+            });
+        });
+
+    }
+    modosit(callback){
+        this.elem.hide();
+        this.torolElem.parent().remove();
+        this.szerkesztElem.parent().remove();
+        this.elem.children("td").eq(0).html(`<input type="text" name="tipus" id="tipus" placeholder="Tipus..." value="${this.adat.tipus}" disabled/>`);
+        this.elem.children("td").eq(1).html(`<input type="text" name="leiras" id="leiras" placeholder="Leírás..." value="${this.adat.leiras}"/>`);
+        
+        this.reszletekElem.before(`<td><button  class="fas fa-times nosavemuszak"></button></td>`);
+        this.reszletekElem.before(`<td><button  class="fas fa-check savemuszak"></button></td>`);
+        this.mentesElem = this.elem.find(".savemuszak");
+        this.megseElem = this.elem.find(".nosavemuszak");
+        this.elem.fadeIn(500);
+        this.mentesElem.on("click",()=>{
+                let muszaktipus = this.elem.find("#tipus").val();
+                let leiras = this.elem.find("#leiras").val();
+                this.adat.tipus = muszaktipus;
+                this.adat.leiras = leiras;
+                this.ajax.ajaxApiPut("http://localhost:8000/api/muszaktipus",muszaktipus,this.adat);
+                this.reszletekElem.show();
+                this.reszletek.show();
+                callback();
+        });
+        this.megseElem.on("click",()=>{
+            
+            callback();
+        })
+
+    }
+
+    torles(){
+        this.ajax.ajaxApiDelete(this.api,this.adat.tipus);
+    }
+
+    details(){
+        
+        this.reszletek.empty();
+        this.reszletek.append('<ul class="reszletek-lista"></ul>');
+        this.reszletek.children("ul").hide();
+        this.ajax.ajaxApiGet("http://localhost:8000/api/muszakeloszlasok",(adatok)=>{
+            console.log(adatok);
+                let szurt = adatok.filter(eloszlas=>{
+                    return eloszlas.muszaktipus==this.adat.tipus;
+                })
+                if(szurt.length==0){
+                    this.reszletek.children("ul").append(`<li>Még nincsenek meghatározva műszakok ehhez a típushoz!</li>`);
+                }
+                szurt.forEach(adat => {
+                    let reszlet = "";
+                    let tipus = adat.muszaktipus;
+                    let muszakszam = adat.muszakszam;
+                    let oratol = adat.oratol;
+                    let oraig = adat.oraig;
+                    Object.keys(adat).forEach( kulcs => {
+                        reszlet += adat[kulcs]+" ";
+                    });
+                    
+                    this.reszletek.children("ul").append(`<li><span>${muszakszam}. műszak:</span> ${oratol}:00 ${oraig}:00</li>`);
+                    
+                   
+                });            
+            
+            this.reszletek.children("ul").slideDown(500);
         });
     }
 
     kattintasTrigger(gomb) {
         let esemeny = new CustomEvent(gomb, {
-            detail: this.adat,
+            detail: this,
         });
         window.dispatchEvent(esemeny);
     }
@@ -367,56 +491,7 @@ class NapiMin {
         this.tabla.children("h2").html(this.datum);
         this.tablaAdat = this.tabla.children("table").children("tbody");
 
-        
-
-
-
-
-
-
-      /*  for (const elem in adat) {
-            if (!this.munkakor.includes(adat[elem].munkakör)) {
-                this.munkakor.push(adat[elem].munkakör);
-            }
-            for (const tombElem in adat[elem]) {
-                if (tombElem == "MUSZAKELOSZLAS") {
-                    for (const kisAdat in adat[elem][tombElem]) {
-                        const tolIg =
-                            adat[elem][tombElem][kisAdat].órától +
-                            " - " +
-                            adat[elem][tombElem][kisAdat].óráig;
-                        if (!this.muszak.includes(tolIg))
-                            this.muszak.push(tolIg);
-                    }
-                }
-            }
-        }
-
-        this.tablaAdat.children("tr:last").append("<td></td>");
-
-        this.muszak.forEach((elem) => {
-            this.tablaAdat.children("tr:last").append("<td>" + elem + "</td>");
-        });
-
-        this.munkakor.forEach((elem) => {
-            this.tablaAdat.append(
-                "<tr class='" + elem + "'><td>" + elem + "</td></tr>"
-            );
-            for (let index = 0; index < this.muszak.length; index++) {
-                this.tablaAdat
-                    .children("tr:last")
-                    .append(
-                        "<td class='" +
-                            this.muszak[index] +
-                            "'><input type='number' min='0'></td>"
-                    );
-            }
-        });
-
-        this.tabla.children("h2").on("click", () => {
-            this.tabla.children("table").toggleClass("tablaLatszik");
-        });
-        */
+    
     }
     
 }

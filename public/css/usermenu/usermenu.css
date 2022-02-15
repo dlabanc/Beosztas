@@ -1139,6 +1139,9 @@ h1 {
 .user-send-cancel:hover {
     cursor: pointer;
 }
+
+
+
 .darkmode--activated article {
     box-shadow: none;
     background-color: transparent;
