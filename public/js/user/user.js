@@ -491,7 +491,7 @@ $(function () {
                 this.napok = napok;
                 this.honapok = honapok;
                 this.elsoNap = new Date(date.getFullYear(), date.getMonth(), 1);
-                console.log(this.elsoNap);
+                
                 
                 this.szulo.append(`<div class="tablediv"></div>`);
                 let aktualisTablazat = this.szulo.find("div:last");
