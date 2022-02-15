@@ -666,6 +666,7 @@ $(function () {
     }
     //ajaxApiGet - Rendben
     function alkalmazottTabla() {
+
         let menu = "#Alkalmazottak .dropdown-content";
         $(menu).hide();
         $("#Alkalmazottak").prepend(
@@ -673,8 +674,10 @@ $(function () {
         );
 
         ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
-
+        
         function alkalmazottTabla(alkalmazottak) {
+           
+            $("#navigacio").empty();
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
             new AlkalmazottTabla(szuloElem, () => {});
@@ -682,7 +685,8 @@ $(function () {
                 for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex+=10) {
                     let darabolt = alkalmazottak.slice(oldalIndex,oldalIndex+10)
                     darabolt.forEach((elem, index) => {
-                        let tablaElem = new AlkalmazottTabla(szuloElem, elem, index, oldalIndex);
+                        let tablaElem = new AlkalmazottTabla(szuloElem, elem, index);
+                        console.log(tablaElem.adat.nev);
                         if (oldalIndex>1){
                         tablaElem.elem.hide();
                         }
@@ -695,9 +699,13 @@ $(function () {
                     
                     let oldalszam = $(this).text()+"";
                     let szam = parseInt(oldalszam);
-                    $("#AlkalmazottakTabla tr").hide();
+                    
+                    for (let index = 1; index <  $("#AlkalmazottakTabla tr").length; index++) {
+                        $("#AlkalmazottakTabla tr").eq(index).hide();
+                        
+                    }
                             for (let index = (szam-1)*10; index < ((szam-1)*10)+10; index++) {
-                            $("#AlkalmazottakTabla tr").eq(index).show();
+                            $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
 
                     }
                 })
@@ -714,7 +722,21 @@ $(function () {
         });
 
         $(window).on("klikk", (event) => {
-           
+            ajaxApiGet(apivegpont+"/munkakorok",(adatok)=>{
+                let select = '<select id="munkakor-alkalmazott">';
+                        adatok.forEach(a=>{
+                            select+='<option>'+a.megnevezes+'</option>';
+                        });
+                        select+='</select>';
+                        
+                        event.detail.clone.find("td").eq(1).html(select);
+                        event.detail.clone.find("select").eq(1).addClass("munkakor");
+                        $("#munkakor-alkalmazott").change("change", function () {
+                            let ertek = this.value;
+                            event.detail.clone.find("td").eq(1).html(`<input type="text" value="${ertek}"disabled> `);
+                            event.detail.clone.find("input").eq(1).addClass("munkakor");
+                        });
+            });
             $(menu).find(".tablaAl").on("click",()=>{
                 $(event.detail.menu).slideUp();
                 event.detail.clone.fadeIn(500);
@@ -728,7 +750,10 @@ $(function () {
                         
                     }
                        ajax.ajaxApiPut("http://localhost:8000/api/alkalmazott",event.detail.adat.dolgozoi_azon,event.detail.adat);
-                       ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
+                       event.detail.clone.fadeOut(500,()=>{
+                        ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
+                       });
+                       
                 });
                 event.detail.clone.find(".cancel-alkalmazott").on("click",()=>{
                     event.detail.clone.fadeOut(500);
