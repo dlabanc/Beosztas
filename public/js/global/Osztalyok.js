@@ -80,6 +80,9 @@ class Adminelemek {
                 );
             }
         }
+        
+        this.elem.slideDown(500,()=>{});
+        this.elem.slideUp(500,()=>{});
         this.clone.append(
             `<td><button class="fas fa-check admin-mod-ok"></button></td>`
         );
@@ -117,8 +120,20 @@ class AlkalmazottTabla {
         this.elem.find(".elerhetoseg").text(this.adat.elerhetoseg);
         this.elem.find(".email").text(this.adat.email);
         this.menu = "#Alkalmazottak .dropdown-content";
-          
+        
+
         this.elem.on("click", (e) => {
+            
+            $(".alkalmazott-sablon").remove();
+            
+            this.elem.after(`<tr class="alkalmazott-sablon">Ez itt egy próba sor</tr>`);
+            this.clone = szulo.find(".alkalmazott-sablon:last");
+            this.clone.hide();
+            for (let index = 0; index < this.elem.children("td").length; index++) {
+                this.clone.append(`<td><input type="text" value="${this.elem.children("td").eq(index).text()}" name="" class="">
+                </td>`);   
+            }
+            this.clone.append(`<button class="fas fa-check"></button><button class="fas fa-times"></button>`);
             this.klikkTrigger();
             $(this.menu).attr("id",this.adat.dolgozoi_azon);
             this.x = e.clientX;
@@ -126,13 +141,14 @@ class AlkalmazottTabla {
             $(this.menu).css("left", this.x);
             $(this.menu).css("top", this.y);
             
+            
         });
     }
 
     klikkTrigger() {
         let esemeny = new CustomEvent("klikk", { detail: this});
 
-        window.dispatchEvent(esemeny); //azért kell, hogy a script.js-ben lássuk
+        window.dispatchEvent(esemeny);
     }
 }
 class Munkakor {

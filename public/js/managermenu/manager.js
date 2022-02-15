@@ -692,16 +692,24 @@ $(function () {
         });
 
         $(window).on("klikk", (event) => {
+            
+            $(menu).find(".tablaAl").on("click",()=>{
+
+                event.detail.clone.fadeIn(500);
+                
+            });
+            
+                
             if (event.detail.id >= 0) {
                 $(menu).css("z-index", 1);
                 $(menu).toggleClass("tablaDropdown");
                 $(menu).attr("id", event.detail.id);
+               
             }
         });
 
-        // $(window).click(function () {
-        //   $(menu).addClass("tablaDropdown");
-        //});
+
+        
         $(menu).on("click", () => {
             $(menu).toggleClass("tablaDropdown");
         });
@@ -714,7 +722,10 @@ $(function () {
                 $("#Profiladatok").css("visibility", "visible");
 
                 ProfilAdatok($(menu).attr("id"));
-            });
+                $(menu).attr("id","");
+        });
+
+     
     }
 
     function ProfilGomb() {

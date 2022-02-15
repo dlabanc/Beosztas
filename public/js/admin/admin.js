@@ -618,7 +618,7 @@ $(function () {
         }
     }
 
-    //Modosit
+    
 
     $(window).on("Mentes", ({ detail }) => {
         for (const key in detail.adat) {
