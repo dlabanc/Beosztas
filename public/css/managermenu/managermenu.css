@@ -1452,6 +1452,9 @@ width:40px;
   border: none;
   background: transparent;
 }
+.muszakok-table input{
+  width: 100%;
+}
 .newmuszak{
   width: fit-content;
   display: flex;
