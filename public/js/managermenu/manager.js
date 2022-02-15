@@ -677,9 +677,34 @@ $(function () {
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
             new AlkalmazottTabla(szuloElem, () => {});
-            alkalmazottak.forEach((elem, index) => {
-                new AlkalmazottTabla(szuloElem, elem, index);
-            });
+            
+                for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex+=10) {
+                    let darabolt = alkalmazottak.slice(oldalIndex,oldalIndex+10)
+                    darabolt.forEach((elem, index) => {
+                        let tablaElem = new AlkalmazottTabla(szuloElem, elem, index, oldalIndex);
+                        if (oldalIndex>1){
+                        tablaElem.elem.hide();
+                        }
+                    });
+
+                    $("#Alkalmazottak").find("#navigacio").append("<button>"+(oldalIndex/10+1)+"</button>")
+                }
+
+                $("#Alkalmazottak #navigacio button").on("click",function(){
+                    
+                    let oldalszam = $(this).text()+"";
+                    let szam = parseInt(oldalszam);
+                    $("#AlkalmazottakTabla tr").hide();
+                            for (let index = (szam-1)*10; index < ((szam-1)*10)+10; index++) {
+                            $("#AlkalmazottakTabla tr").eq(index).show();
+
+                    }
+                })
+            
+
+            
+
+
         }
 
         $(".search").keyup(function (e) {

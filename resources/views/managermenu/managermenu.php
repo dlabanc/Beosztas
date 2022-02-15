@@ -196,7 +196,7 @@
                     </ul>
                 </table>
 
-                <span class="ujAlkalmazott fa fa-plus"></span>
+                <div id="navigacio"></div>
             </div>
             <div id="ManStatisztika" class="tabcontent">
 
