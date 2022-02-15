@@ -107,6 +107,8 @@ class AlkalmazottTabla {
           <td class='lakcim'>Lakcím</td>
           <td class='elerhetoseg'>Elérhetőség</td>
           <td class='email'>E-mail</td>
+          <td ></td>
+          <td ></td>
         </tr>`
         );
 
@@ -120,21 +122,27 @@ class AlkalmazottTabla {
         this.elem.find(".elerhetoseg").text(this.adat.elerhetoseg);
         this.elem.find(".email").text(this.adat.email);
         this.menu = "#Alkalmazottak .dropdown-content";
-        
+         
 
         this.elem.on("click", (e) => {
             
             $(".alkalmazott-sablon").remove();
-            
+            $(this.menu).hide();
             this.elem.after(`<tr class="alkalmazott-sablon">Ez itt egy próba sor</tr>`);
             this.clone = szulo.find(".alkalmazott-sablon:last");
             this.clone.hide();
-            for (let index = 0; index < this.elem.children("td").length; index++) {
-                this.clone.append(`<td><input type="text" value="${this.elem.children("td").eq(index).text()}" name="" class="">
+            for (let index = 0; index < this.elem.children("td").length-2; index++) {
+                this.clone.append(`<td><input type="text" value="${this.elem.children("td").eq(index).text()}" name=""">
                 </td>`);   
             }
-            this.clone.append(`<button class="fas fa-check"></button><button class="fas fa-times"></button>`);
+            this.clone.find("input").eq(0).addClass("nev");
+            this.clone.find("input").eq(1).addClass("munkakor");
+            this.clone.find("input").eq(2).addClass("lakcim");
+            this.clone.find("input").eq(3).addClass("elerhetoseg");
+            this.clone.find("input").eq(4).addClass("email");
+            this.clone.append(`<td><button class="fas fa-check save-alkalmazott"></td></button><td><button class="fas fa-times cancel-alkalmazott"></button></td>`);
             this.klikkTrigger();
+            $(this.menu).slideDown(500);
             $(this.menu).attr("id",this.adat.dolgozoi_azon);
             this.x = e.clientX;
             this.y = e.clientY;

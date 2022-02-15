@@ -313,9 +313,9 @@ header nav a {
 }
 .container{
   display: grid;
-    grid-template-columns: 1.5fr 5fr;
-    gap: 3rem;
-    width: 90%;
+    grid-template-columns: 1fr 5fr;
+    gap: 1rem;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -798,98 +798,137 @@ article {
 
 /*ALKALMAZOTTAK TÁBLÁZAT*/
 #Alkalmazottak{
-  width: fit-content;
-  margin: auto;
-}
-#Alkalmazottak > .ujAlkalmazott{
   
-  display: block;
-  color:var(--fds-button-text);
-  font-size: 1.5em;
-  border-radius: 50%;
-  background: var(--always-white);
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+#AlkalmazottakTabla
+{
+
+    margin: 3rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    border-collapse: collapse;
+   
+    
+}
+#AlkalmazottakTabla tr{
+    border:none;
+    border-bottom: 1px solid var(--fds-gray-20);
+    
+    
+}
+#AlkalmazottakTabla input{
+  width: 100%;
+ height: fit-content;
+ 
+}
+
+#AlkalmazottakTabla td,th{
+    text-align: center;
+    padding: 1rem;
+    
+   
+}
+#AlkalmazottakTabla button{
+  background-color: transparent;
+  border: none;
+}
+#AlkalmazottakTabla .save-alkalmazott{
+    color:var(--fds-green-55);
+}
+#AlkalmazottakTabla .cancel-alkalmazott{
+    color:var(--fds-red-55);
+}
+#Alkalmazottak .search{
+  padding: 1rem;
   border-radius: 10px;
-  border: 1px solid rgba(12, 0, 0, 0.18);
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  line-height: 20px;
-  padding: 1.2rem;
-  color: var(--fds-spectrum-teal-dark-2);
-  margin-left: auto;
-  width: fit-content;
-}
-
-#AlkalmazottakTabla {
-  max-width: 100%;
-  width: 1200px;
-  margin: auto;
-  border-collapse: collapse;
-  text-align: center;
-  margin-bottom: 20px;
-  font-weight: lighter;
-}
-
-#AlkalmazottakTabla tr:nth-child(even) {
-  background-color: rgb(24, 206, 167, 0.1);
-}
-
-.foTabla {
-  background-color: transparent !important;
-}
-
-.hoveredTabla {
-  background-color: rgb(24, 206, 167, 0.6) !important;
+  border: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  width: 300px;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 #AlkalmazottakTabla tr:nth-child(1) {
-  background-color: transparent;
+  background-color: var(--fds-highlight-cell-background);
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-bottom: 1px solid var(--fds-gray-20);
 }
 
-#AlkalmazottakTabla th {
-  border-collapse: 10px;
-  padding: 10px;
-}
+
 
 #AlkalmazottakTabla tr:hover {
-  background-color:rgb(24, 206, 167, 0.4);
+  background-color: #ecf3ffd5;
 }
 
 
 #Alkalmazottak .dropdown-content {
+ 
+  width: 300px;
+  justify-content: center;
+  flex-direction: column;
   box-shadow: black;
   position: fixed;
   color: black;
-  padding: 5px;
+  padding: 1rem;
   font-size: 1.1rem;
-  background: rgba(255, 255, 255, 1);
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  background: var(--always-white);
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
   list-style-type: none;
 }
 
 #Alkalmazottak .dropdown-content a {
   text-decoration: none;
   color: black;
+  padding: .5rem;
 }
-
-#Alkalmazottak .dropdown-content a:hover {
-  color: rgb(24, 206, 167);
+#Alkalmazottak .dropdown-content a:hover{
+  background-color: var(--fds-highlight-cell-background);
+  border-radius: 10px;
 }
-
+#Alkalmazottak .dropdown-content .alkalmazott-nev{
+  text-align: center;
+  padding-bottom: .5rem;
+  width: 100%;
+  border-bottom: .5px solid var(--fds-gray-20);
+}
+#Alkalmazottak .dropdown-content .fa-user{
+  color:var(--bs-blue);
+}
+#Alkalmazottak .dropdown-content  span{
+  color: black!important;
+  font-weight: 400;
+  padding-left: .5rem;
+}
+#Alkalmazottak .dropdown-content .fa-eye{
+  color:var(--bs-teal);
+}
+#Alkalmazottak .dropdown-content .fa-pen{
+  color:var(--bs-orange);
+}
+#Alkalmazottak .dropdown-content .fa-times{
+  color:var(--fds-red-55);
+  float: right;
+}
 #Alkalmazottak .dropdown-content li {
-  padding: 5px;
+  padding: .5rem;
 }
 
-.tablaDropdown {
-  display: none;
-}
+
 
 /*---------------------*/
 
 .tabcontent {
+  width: 100%;
+  padding: 1rem;
   color: black;
   display: none;
   visibility: hidden;

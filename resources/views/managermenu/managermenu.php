@@ -191,8 +191,10 @@
                         <th>E-mail</th>
                     </tr>
                     <ul class="dropdown-content tablaDropdown">
-                        <li><a class="tablaAl" href="#">Gyors módosítás</a></li>
-                        <li><a id="AlkModosit" class="tablaAl" href="#">Profil megtekintése</a></li>
+
+                        <li><div href="" class="fas fa-user alkalmazott-nev"><span>Név</span><div class="fas fa-times"></div></div></li>
+                        <li><a class=" tablaAl" href="#"><span>Gyors módosítás</span></a></li>
+                        <li><a id="AlkModosit" class=" tablaAl" href="#"><span>Profil megtekintése</span></a></li>
                     </ul>
                 </table>
 

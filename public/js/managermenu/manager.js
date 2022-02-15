@@ -667,8 +667,9 @@ $(function () {
     //ajaxApiGet - Rendben
     function alkalmazottTabla() {
         let menu = "#Alkalmazottak .dropdown-content";
+        $(menu).hide();
         $("#Alkalmazottak").prepend(
-            `<input type="text" placeholder="Keresés..." class="search">`
+            `<input type="text" placeholder="&#x1F50E Keresés..." class="search">`
         );
 
         ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
@@ -700,10 +701,6 @@ $(function () {
 
                     }
                 })
-            
-
-            
-
 
         }
 
@@ -717,18 +714,34 @@ $(function () {
         });
 
         $(window).on("klikk", (event) => {
-            
+           
             $(menu).find(".tablaAl").on("click",()=>{
-
+                $(event.detail.menu).slideUp();
                 event.detail.clone.fadeIn(500);
+                event.detail.clone.find(".save-alkalmazott").on("click",()=>{
+                    
+                    let hossz = event.detail.clone.find("input").length;
+                    for (let index = 0; index < hossz; index++) {
+                        let kulcs =  event.detail.clone.find("input").eq(index).attr("class");
+                        let ertek = event.detail.clone.find("input").eq(index).val();
+                        event.detail.adat[kulcs] = ertek;
+                        
+                    }
+                       ajax.ajaxApiPut("http://localhost:8000/api/alkalmazott",event.detail.adat.dolgozoi_azon,event.detail.adat);
+                       ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
+                });
+                event.detail.clone.find(".cancel-alkalmazott").on("click",()=>{
+                    event.detail.clone.fadeOut(500);
+                });
                 
             });
             
                 
             if (event.detail.id >= 0) {
                 $(menu).css("z-index", 1);
-                $(menu).toggleClass("tablaDropdown");
+               
                 $(menu).attr("id", event.detail.id);
+                $(menu).find(".alkalmazott-nev span").text(event.detail.adat.nev);
                
             }
         });
@@ -736,7 +749,7 @@ $(function () {
 
         
         $(menu).on("click", () => {
-            $(menu).toggleClass("tablaDropdown");
+          
         });
 
         $(menu)
@@ -745,9 +758,12 @@ $(function () {
                 $("#Alkalmazottak").css("display", "none");
                 $("#Profiladatok").fadeIn(1000);
                 $("#Profiladatok").css("visibility", "visible");
-
                 ProfilAdatok($(menu).attr("id"));
                 $(menu).attr("id","");
+        });
+
+        $(menu).find(".fa-times").on("click",()=>{
+            $(menu).slideUp(500);
         });
 
      
