@@ -291,15 +291,15 @@ header {
 nav {
   background-color: var(--always-white);
   border-radius: 10px;
-  width: 95%;
-
+  width: 100%;
+  
   color: white;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 .navbar {
-  display: flex;
-  flex-direction: column;
-  
+ display: grid;
+ grid-template-columns: auto;
+
 }
 
 header nav a {
@@ -313,8 +313,8 @@ header nav a {
 }
 .container{
   display: grid;
-    grid-template-columns: 1fr 5fr;
-    gap: 1rem;
+    grid-template-columns: auto auto;
+    
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -451,9 +451,6 @@ article {
   user-select: none;
   border-radius: 16px;
   padding: 1rem;
-  
-  border-radius: 16px;
-  
   overflow-y: scroll;
   overflow-x: scroll;
   width: 100%;
@@ -964,8 +961,9 @@ article {
 #Muszaktipusn {
   box-shadow: none;
   background-color: transparent;
-  display: grid;
-  grid-template-columns: auto 45%;
+  display: inline-grid;
+  grid-template-columns: 2fr 2fr;
+  
 }
 .timer-datettime {
   padding-left: 1rem;
@@ -990,6 +988,7 @@ article {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 .dateinfo-massage-grid {
   display: none;

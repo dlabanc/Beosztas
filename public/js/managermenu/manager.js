@@ -680,7 +680,14 @@ $(function () {
             $("#navigacio").empty();
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
-           
+            szuloElem.append(`<tr><td>Név</td><td>Beosztás</td><td>Lakcím</td><td>Elérhetőség</td><td>E-mail</td></tr>`);
+            /*
+                <td class='nev'>Név</td>
+          <td class='beosztas'>Beosztás</td>
+          <td class='lakcim'>Lakcím</td>
+          <td class='elerhetoseg'>Elérhetőség</td>
+          <td class='email'>E-mail</td>
+            */
             
                 for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex+=10) {
                     let darabolt = alkalmazottak.slice(oldalIndex,oldalIndex+10)

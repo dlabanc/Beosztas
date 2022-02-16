@@ -101,7 +101,7 @@ class AlkalmazottTabla {
     constructor(szulo, adat, index) {
         this.szulo = szulo;
         this.szulo.append(
-            `<tr>
+        `<tr>
           <td class='nev'>Név</td>
           <td class='beosztas'>Beosztás</td>
           <td class='lakcim'>Lakcím</td>
