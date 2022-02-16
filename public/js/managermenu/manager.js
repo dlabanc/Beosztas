@@ -680,7 +680,7 @@ $(function () {
             $("#navigacio").empty();
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
-            new AlkalmazottTabla(szuloElem, () => {});
+           
             
                 for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex+=10) {
                     let darabolt = alkalmazottak.slice(oldalIndex,oldalIndex+10)
@@ -696,7 +696,7 @@ $(function () {
                 }
 
                 $("#Alkalmazottak #navigacio button").on("click",function(){
-                    
+                    $(".alkalmazott-sablon").remove();
                     let oldalszam = $(this).text()+"";
                     let szam = parseInt(oldalszam);
                     
