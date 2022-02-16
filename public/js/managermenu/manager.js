@@ -13,7 +13,7 @@ $(function () {
     faliujsag();
     ProfilAdatok();
     ProfilGomb();
-
+    $(document).ajaxStop();
     //ajaxApiGet - Rendben
     function muszakNaphozRendelese() {
         const SZULO = $("#Muszaktipusn");
@@ -680,14 +680,9 @@ $(function () {
             $("#navigacio").empty();
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
-            szuloElem.append(`<tr><td>Név</td><td>Beosztás</td><td>Lakcím</td><td>Elérhetőség</td><td>E-mail</td></tr>`);
-            /*
-                <td class='nev'>Név</td>
-          <td class='beosztas'>Beosztás</td>
-          <td class='lakcim'>Lakcím</td>
-          <td class='elerhetoseg'>Elérhetőség</td>
-          <td class='email'>E-mail</td>
-            */
+            szuloElem.append(`<tr><td>Név</td><td>Beosztás</td><td>Lakcím</td><td>Elérhetőség</td><td>E-mail</td><td ></td>
+            <td ></td></tr>`);
+ 
             
                 for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex+=10) {
                     let darabolt = alkalmazottak.slice(oldalIndex,oldalIndex+10)
@@ -810,9 +805,6 @@ $(function () {
     //ajaxApiGet - Hibás
     function napiMin() {
 
-   
-
-
         /*
         let vegpont = "../json/napiMin.json";
 
@@ -831,7 +823,6 @@ $(function () {
             }
         }
         */
-
 
     }
 

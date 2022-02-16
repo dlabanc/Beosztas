@@ -7,7 +7,7 @@ $(function () {
     ajaxHivasok();
 
     $(document).ajaxStop(function () {
-        $(".loading").fadeOut(1000, () => {});
+        $(".loading").hide();
     });
 
     $(".Alkalmazottak")

@@ -6,6 +6,7 @@ $(function () {
     postAll();
     let cc = 0;
     dropDownMenus();
+    
 
     const options = {
         bottom: "64px", // default: '32px'

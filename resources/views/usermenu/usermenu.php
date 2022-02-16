@@ -57,12 +57,9 @@
     </div>
 </div>
 
-
-
 <body>
 
-
-
+    
     <div class="container">
         <aside class="useraside">
             <header>
@@ -98,12 +95,13 @@
             </div>
 
         </aside>
+        
         <article>
-
+            
             <div id="Profiladatok" class="tabcontent">
               <div class="profile-head">
                 <div class="profile-infos">
-                    <img src="../pictures/doctor.jpg" alt="kép" />
+                    <img src="" alt="kép" />
                 </div>
                 <div class="name-location">
                     <div class="profile-nev">Labanc Dániel</div>
