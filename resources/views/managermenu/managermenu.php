@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
+    <meta name="csrf-token" content=<?php $token = csrf_token();
+                                    echo $token; ?>>
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css" />
     <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.css" />
 
@@ -99,8 +100,13 @@
         <div>Egyéb</div><span class="fas fa-cogs"><span class="arrow">&#9660;</span></span>
     </button>
     <div class="open3">
+<<<<<<< HEAD
         <a id="statisztika">Statisztika</a>
         <a id="faliujsag">Faliújság</a>
+=======
+        <a>Statisztika</a>
+        <a>Faliújság</a>
+>>>>>>> 11a08ee4f20eb280611eeaf6a82efc471f8b2a69
     </div>
     <a href="/login" class="logout">
         <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
@@ -207,8 +213,6 @@
                         <li><a id="AlkModosit" class=" tablaAl" href="#"><span>Profil megtekintése</span></a></li>
                     </ul>
                 </table>
-
-                <div id="navigacio"></div>
             </div>
 
             <div id="ManFaliujsag" class="tabcontent">

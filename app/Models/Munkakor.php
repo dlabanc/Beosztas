@@ -12,6 +12,9 @@ class Munkakor extends Model
     protected $primaryKey = 'megnevezes';
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = [
+      'megnevezes', 'leiras', 'munkafonok'  
+    ];
     
     public function alkalmazott(){
         return $this->hasMany(Alkalmazott::class, 'munkakor', 'munkakor');

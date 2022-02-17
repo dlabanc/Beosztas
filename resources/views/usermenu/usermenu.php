@@ -57,12 +57,9 @@
     </div>
 </div>
 
-
-
 <body>
 
-
-
+    
     <div class="container">
         <aside class="useraside">
             <header>
@@ -98,8 +95,9 @@
             </div>
 
         </aside>
+        
         <article>
-
+            
             <div id="Profiladatok" class="tabcontent">
               <div class="profile-head">
                 <div class="profile-infos">

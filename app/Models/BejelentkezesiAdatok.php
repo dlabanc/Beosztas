@@ -13,6 +13,9 @@ class BejelentkezesiAdatok extends Authenticatable
     protected $primaryKey = 'user_login';
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = [
+        'user_login', 'password'
+    ];
 
     public function alkalmazott(){
         return $this->hasOne(Alkalmazott::class, 'dolgozoi_azon', 'user_login');

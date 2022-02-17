@@ -11,4 +11,7 @@ class Faliujsag extends Model
     protected $table = 'Faliujsag';
     protected $primaryKey = 'faliu_azonosito';
     public $timestamps = false;
+    protected $fillable = [
+        'faliu_azonosito', 'dolgozoi_azon', 'mikor', 'cim', 'tartalom'
+    ];
 }

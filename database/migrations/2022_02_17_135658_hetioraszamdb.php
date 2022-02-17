@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Munkakor extends Migration
+class Hetioraszamdb extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class Munkakor extends Migration
      */
     public function up()
     {
-        Schema::create('munkakor', function (Blueprint $table) {
-            $table->string('megnevezes',50)->primary();
-            $table->string('leiras',255);
-            $table->unsignedMediumInteger('munkafonok')->nullable();
-        });
+        DB::unprepared('CREATE VIEW `hetioraszamdb`  
+        AS 
+        SELECT `alkalmazott`.`heti_oraszam` AS `heti_oraszam`, count(`alkalmazott`.`heti_oraszam`) AS `db` 
+        FROM `alkalmazott` 
+        GROUP BY `alkalmazott`.`heti_oraszam` ;');
     }
 
     /**
@@ -27,6 +27,6 @@ class Munkakor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('munkakor');
+        DB::unprepared('DROP VIEW IF EXISTS `hetioraszamdb`');
     }
 }

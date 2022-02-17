@@ -11,6 +11,9 @@ class Szabadsag extends Model
     protected $table = 'Szabadsag';
     protected $primaryKey = 'szabadsag_azonosito';
     public $timestamps = false;
+    protected $fillable = [
+        'szabadsag_azonosito', 'alkalmazott', 'tol', 'ig', 'szabadsagtipus'
+    ];
 
     public function alkalmazottAdat(){
         return $this->hasMany(Alkalmazott::class, 'dolgozoi_azon', 'alkalmazott');

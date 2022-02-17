@@ -8,7 +8,11 @@ $(function () {
     ProfilAdatok();
     newPost();
     nemErekRaUser();
-  
+    
+    $(document).ajaxStop(function () {
+        $(".loading").fadeOut(1000, () => {});
+    });
+
     function faliujsagUser(adatok) {
         class Post {
             constructor(szulo, adat, kep, alkalmazottAdatok) {
