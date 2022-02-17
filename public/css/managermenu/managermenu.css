@@ -923,20 +923,36 @@ article {
 #Alkalmazottak .dropdown-content li {
   padding: .5rem;
 }
-#navigacio{
+/*#navigacio{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: right;
   gap: .5rem;
   width: 100%;
-  margin: auto;
   border-radius: 5px;
-}
+}*/
 #navigacio button{
   border: none;
   background-color: var(--bs-blue);
   padding: 1rem;
   color:var(--always-white);
+}
+
+#Alkalmazottak .tablaAdatok {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#Alkalmazottak .tablaAdatok input {
+  height: 20px;
+  width: 50%;
+}
+
+#Alkalmazottak .tablaAdatok label {
+  margin-right: 10px;
+  width: 200px;
 }
 
 

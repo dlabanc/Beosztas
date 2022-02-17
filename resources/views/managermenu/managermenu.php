@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
+    <meta name="csrf-token" content=<?php $token = csrf_token();
+                                    echo $token; ?>>
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css" />
     <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.css" />
 
@@ -58,25 +59,25 @@
         <div>Műszakok</div><span class="fas fa-users"><span class="arrow">&#9660;</span></span>
     </button>
     <div class="open1">
-    <a id="muszaktipush">Műszak típus hozzáadása</a>
-    <a id="muszaktipusn">Műszak típus naphoz rendelése</a>
-    <a id="muszaktipusm">Műszak eloszlás módosítása</a>
+        <a id="muszaktipush">Műszak típus hozzáadása</a>
+        <a id="muszaktipusn">Műszak típus naphoz rendelése</a>
+        <a id="muszaktipusm">Műszak eloszlás módosítása</a>
     </div>
     <button class="links links2" id="beosztasmenu">
         <div>Beosztás</div><span class="fas fa-calendar"><span class="arrow">&#9660;</span></span>
     </button>
     <div class="open2">
-    <a id="napimunka">Napi munkaerőigény</a>
-    <a id="ujbeosztas">Új Beosztás készítése</a>
-    <a id="beosztasmod">Beosztás módosítása</a>
-    <a id="beosztasmeg">Beosztás megtekintése</a>
+        <a id="napimunka">Napi munkaerőigény</a>
+        <a id="ujbeosztas">Új Beosztás készítése</a>
+        <a id="beosztasmod">Beosztás módosítása</a>
+        <a id="beosztasmeg">Beosztás megtekintése</a>
     </div>
     <button class="links links2" id="egyebmenu">
         <div>Egyéb</div><span class="fas fa-cogs"><span class="arrow">&#9660;</span></span>
     </button>
     <div class="open3">
-    <a>Statisztika</a>
-    <a>Faliújság</a>
+        <a>Statisztika</a>
+        <a>Faliújság</a>
     </div>
     <a href="/login" class="logout">
         <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
@@ -156,7 +157,7 @@
 
             <div id="Muszaktipush" class="tabcontent">
                 <h3>Műszak típus hozzáadása</h3>
-                
+
                 <div class="muszaktipush-container">
 
                 </div>
@@ -192,13 +193,15 @@
                     </tr>
                     <ul class="dropdown-content tablaDropdown">
 
-                        <li><div href="" class="fas fa-user alkalmazott-nev"><span>Név</span><div class="fas fa-times"></div></div></li>
+                        <li>
+                            <div href="" class="fas fa-user alkalmazott-nev"><span>Név</span>
+                                <div class="fas fa-times"></div>
+                            </div>
+                        </li>
                         <li><a class=" tablaAl" href="#"><span>Gyors módosítás</span></a></li>
                         <li><a id="AlkModosit" class=" tablaAl" href="#"><span>Profil megtekintése</span></a></li>
                     </ul>
                 </table>
-
-                <div id="navigacio"></div>
             </div>
             <div id="ManStatisztika" class="tabcontent">
 

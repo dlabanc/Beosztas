@@ -81,8 +81,6 @@ class Adminelemek {
             }
         }
         
-        this.elem.slideDown(500,()=>{});
-        this.elem.slideUp(500,()=>{});
         this.clone.append(
             `<td><button class="fas fa-check admin-mod-ok"></button></td>`
         );
