@@ -3,7 +3,7 @@ class Adminelemek {
     constructor(szulo, adat, ajax) {
         this.node = szulo;
         this.ajax = ajax;
-        szulo.append("<tr></tr>");
+        szulo.append("<tr class="+"mutat"+"></tr>");
         this.elem = this.node.children("tr:last");
         szulo.append(`<tr class="mod"></tr>`);
         this.clone = this.node.children(".mod:last");
@@ -81,8 +81,6 @@ class Adminelemek {
             }
         }
         
-        this.elem.slideDown(500,()=>{});
-        this.elem.slideUp(500,()=>{});
         this.clone.append(
             `<td><button class="fas fa-check admin-mod-ok"></button></td>`
         );

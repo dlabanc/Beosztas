@@ -24,75 +24,26 @@
     <script src="/js/managermenu/manager.js"></script>
     <title>Üzletvezető</title>
 </head>
+<div>
+    <div class="managerinfo">
+        <div class="managerinfo-leftgrid">
+            <span class="profile-name "></span>
 
-<div class="managerinfo">
-    <div class="managerinfo-leftgrid">
-        <span class="profile-name "></span>
+
+        </div>
+
+        <div class="managerinfo-rightgrid">
 
 
+            <div class="openbtn"><img src="" alt="" class="profilepic"><span class="arrow">&#9660;</span></div>
+
+        </div>
+        
     </div>
-
-    <div class="managerinfo-rightgrid">
-
-
-        <div class="openbtn"><img src="" alt="" class="profilepic"><span class="arrow">&#9660;</span></div>
-
-    </div>
-
+    
 </div>
-
-</div>
-
-
-
-<div id="mySidenav" class="sidenav">
-
-    <a href="javascript:void(0)" class="closebtn">&times;</a>
-    <a href="../managermenu" class="links links2">
-        <div>Kezdőlap</div><span class="fas fa-home"></span>
-    </a>
-    <a href="../managermenu">Kezdőlap</a>
-    <a id="munkakorok">Munkakörök</a>
-    <a id="alkalmazottak">Alkalmazottak</a>
-    <button class="links links2" id="muszakmenu">
-        <div>Műszakok</div><span class="fas fa-users"><span class="arrow">&#9660;</span></span>
-    </button>
-    <div class="open1">
-    <a id="muszaktipush">Műszak típus hozzáadása</a>
-    <a id="muszaktipusn">Műszak típus naphoz rendelése</a>
-    <a id="muszaktipusm">Műszak eloszlás módosítása</a>
-    </div>
-    <button class="links links2" id="beosztasmenu">
-        <div>Beosztás</div><span class="fas fa-calendar"><span class="arrow">&#9660;</span></span>
-    </button>
-    <div class="open2">
-    <a id="napimunka">Napi munkaerőigény</a>
-    <a id="ujbeosztas">Új Beosztás készítése</a>
-    <a id="beosztasmod">Beosztás módosítása</a>
-    <a id="beosztasmeg">Beosztás megtekintése</a>
-    </div>
-    <button class="links links2" id="egyebmenu">
-        <div>Egyéb</div><span class="fas fa-cogs"><span class="arrow">&#9660;</span></span>
-    </button>
-    <div class="open3">
-    <a>Statisztika</a>
-    <a>Faliújság</a>
-    </div>
-    <a href="/login" class="logout">
-        <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
-    </a>
-</div>
-
-
-</div>
-</div>
-
-
-<body>
-    <div class="container">
-        <aside class="useraside">
+<aside class="useraside">
             <header>
-
                 <nav>
 
                     <div class="navbar">
@@ -112,21 +63,65 @@
 
                     </div>
                 </nav>
-
-
-
-
             </header>
 
+</aside>
 
 
-        </aside>
+
+<div id="mySidenav" class="sidenav">
+
+    <a href="javascript:void(0)" class="closebtn">&times;</a>
+    <a href="../managermenu" class="links links2">
+        <div>Kezdőlap</div><span class="fas fa-home"></span>
+    </a>
+    <a href="../managermenu">Kezdőlap</a>
+    <a id="munkakorok">Munkakörök</a>
+    <a id="alkalmazottak">Alkalmazottak</a>
+    <button class="links links2" id="muszakmenu">
+        <div>Műszakok</div><span class="fas fa-users"><span class="arrow">&#9660;</span></span>
+    </button>
+    <div class="open1">
+        <a id="muszaktipush">Műszak típus hozzáadása</a>
+        <a id="muszaktipusn">Műszak típus naphoz rendelése</a>
+        <a id="muszaktipusm">Műszak eloszlás módosítása</a>
+    </div>
+    <button class="links links2" id="beosztasmenu">
+        <div>Beosztás</div><span class="fas fa-calendar"><span class="arrow">&#9660;</span></span>
+    </button>
+    <div class="open2">
+        <a id="napimunka">Napi munkaerőigény</a>
+        <a id="ujbeosztas">Új Beosztás készítése</a>
+        <a id="beosztasmod">Beosztás módosítása</a>
+        <a id="beosztasmeg">Beosztás megtekintése</a>
+    </div>
+    <button class="links links2" id="egyebmenu">
+        <div>Egyéb</div><span class="fas fa-cogs"><span class="arrow">&#9660;</span></span>
+    </button>
+    <div class="open3">
+        <a id="statisztika">Statisztika</a>
+        <a id="faliujsag">Faliújság</a>
+    </div>
+    <a href="/login" class="logout">
+        <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
+    </a>
+</div>
+
+
+</div>
+</div>
+
+
+<body>
+
+    <div class="container">
+
 
         <article>
             <div id="Profiladatok" class="tabcontent">
                 <div class="profile-head">
                     <div class="profile-infos">
-                        <img src="../pictures/doctor.jpg" alt="kép" />
+                        <img src="" alt="kép" />
                     </div>
                     <div class="name-location">
                         <div class="profile-nev">Labanc Dániel</div>
@@ -156,7 +151,7 @@
 
             <div id="Muszaktipush" class="tabcontent">
                 <h3>Műszak típus hozzáadása</h3>
-                
+
                 <div class="muszaktipush-container">
 
                 </div>
@@ -181,7 +176,18 @@
 
                 </div>
             </div>
-            <div id="Alkalmazottak" class="tabcontent">
+            <div id="Statisztika">
+
+
+
+
+                <div id="Man-statisztika-elem">
+
+
+
+                </div>
+            </div>
+            <div id="Alkalmazottak" class="alkalmazottak">
                 <table id="AlkalmazottakTabla">
                     <tr>
                         <th>Név</th>
@@ -192,7 +198,11 @@
                     </tr>
                     <ul class="dropdown-content tablaDropdown">
 
-                        <li><div href="" class="fas fa-user alkalmazott-nev"><span>Név</span><div class="fas fa-times"></div></div></li>
+                        <li>
+                            <div href="" class="fas fa-user alkalmazott-nev"><span>Név</span>
+                                <div class="fas fa-times"></div>
+                            </div>
+                        </li>
                         <li><a class=" tablaAl" href="#"><span>Gyors módosítás</span></a></li>
                         <li><a id="AlkModosit" class=" tablaAl" href="#"><span>Profil megtekintése</span></a></li>
                     </ul>
@@ -200,24 +210,7 @@
 
                 <div id="navigacio"></div>
             </div>
-            <div id="ManStatisztika" class="tabcontent">
 
-
-
-                <div class="statmenu">
-                    <div class="statmenu-buttons">
-
-                        <button class="fas fa-chart-bar" id="bar"><span> Munkakörök</span></button>
-                        <button class="fas fa-chart-pie" id="pie"><span> Heti óraszám</span></button>
-                        <button class="fas fa-stream" id="stream"><span> Szabadságon</span></button>
-
-                    </div>
-                    <div id="Man-statisztika-elem">
-
-                    </div>
-
-                </div>
-            </div>
             <div id="ManFaliujsag" class="tabcontent">
                 <h3 id="mfu">Faliújság</h3>
                 <button id="newpost">Új bejegyzés</button>
@@ -226,6 +219,7 @@
                 </div>
             </div>
             <div id="Napimunka" class="tabcontent">
+                <h3>Napimunka</h3>
             </div>
             <div id="Ujbeosztas" class="tabcontent">
                 <h3>Új beosztás készítése</h3>

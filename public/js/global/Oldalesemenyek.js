@@ -4,8 +4,8 @@ $(function () {
     changePass();
     compactMode();
     postAll();
-    let cc = 0;
     dropDownMenus();
+    
 
     const options = {
         bottom: "64px", // default: '32px'
@@ -146,6 +146,9 @@ $(function () {
         });
         $("#egyebmenu").on("click",()=>{
           $(".open3").toggle(500);
+        });
+        $(".managerinfo-leftgrid").on("click",()=>{
+            $(".useraside").toggle(500);
         });
     }
 });

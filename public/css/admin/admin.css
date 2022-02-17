@@ -584,6 +584,7 @@ article {
 #muszakeloszlasok option{
     text-align: justify;
 }
+
 @media screen and (max-width: 1360px) {
     body {
         grid-template-columns: 25% auto;

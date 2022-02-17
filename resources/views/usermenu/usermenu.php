@@ -20,7 +20,7 @@
     <script src="/js/global/Oldalesemenyek.js"></script>
     <script src="/js/global/Osztalyok.js"></script>
 
-    <script src="/js/global/nemErekRa.js"></script>
+
     <script src="/js/user/user.js"></script>
     <title>Alkalmazott</title>
 </head>
@@ -103,11 +103,11 @@
             <div id="Profiladatok" class="tabcontent">
               <div class="profile-head">
                 <div class="profile-infos">
-                    <img src="../pictures/doctor.jpg" alt="kép" />
+                    <img src="" alt="kép" />
                 </div>
                 <div class="name-location">
-                    <div class="profile-nev">Labanc Dániel</div>
-                    <div class="profile-munkakor">Munkakör</div>
+                    <div class="profile-nev"></div>
+                    <div class="profile-munkakor"></div>
                 </div>
                 <div>
                     <ul>
