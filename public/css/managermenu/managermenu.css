@@ -210,7 +210,7 @@ nav {
   width: 100%;
   
   color: white;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  
 }
 .navbar {
  display: grid;
@@ -229,7 +229,7 @@ header nav a {
 }
 .container{
   display: grid;
-    grid-template-columns: auto auto;
+    
     
     width: 100%;
     margin-left: auto;
@@ -550,16 +550,6 @@ header nav a {
 
 /*---------------------*/
 
-.tabcontent {
-  width: 100%;
-  padding: 1rem;
-  color: black;
-  display: none;
-  visibility: hidden;
-  background-color: var(--always-white);
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  border-radius: 10px;
-}
 #ManFaliujsag{
   
     background-color: transparent;
@@ -900,7 +890,7 @@ header nav a {
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     background-color: var(--always-white);
     border-radius: 10px;
-  
+    margin: auto;
     
   }
   

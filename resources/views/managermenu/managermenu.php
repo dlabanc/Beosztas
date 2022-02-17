@@ -100,13 +100,8 @@
         <div>Egyéb</div><span class="fas fa-cogs"><span class="arrow">&#9660;</span></span>
     </button>
     <div class="open3">
-<<<<<<< HEAD
         <a id="statisztika">Statisztika</a>
         <a id="faliujsag">Faliújság</a>
-=======
-        <a>Statisztika</a>
-        <a>Faliújság</a>
->>>>>>> 11a08ee4f20eb280611eeaf6a82efc471f8b2a69
     </div>
     <a href="/login" class="logout">
         <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
@@ -124,7 +119,7 @@
 
 
         <article>
-            <div id="Profiladatok" class="tabcontent">
+            <div id="Profiladatok" >
                 <div class="profile-head">
                     <div class="profile-infos">
                         <img src="" alt="kép" />
@@ -155,7 +150,7 @@
                 </div>
             </div>
 
-            <div id="Muszaktipush" class="tabcontent">
+            <div id="Muszaktipush" >
                 <h3>Műszak típus hozzáadása</h3>
 
                 <div class="muszaktipush-container">
@@ -163,19 +158,19 @@
                 </div>
             </div>
 
-            <div id="Muszaktipusn" class="tabcontent">
+            <div id="Muszaktipusn" >
 
 
             </div>
 
-            <div id="Muszaktipusm" class="tabcontent">
+            <div id="Muszaktipusm" >
                 <h3>Műszak eloszlás módosítása</h3>
                 <div class="muszaktipusm-container">
 
                 </div>
             </div>
 
-            <div id="Munkakorok" class="tabcontent">
+            <div id="Munkakorok" >
                 <h3>Munkakörök</h3>
                 <button id="newmunkakor"><span class="fa fa-plus"></span></button>
                 <div class="munkakor-container">
@@ -215,25 +210,25 @@
                 </table>
             </div>
 
-            <div id="ManFaliujsag" class="tabcontent">
+            <div id="ManFaliujsag" >
                 <h3 id="mfu">Faliújság</h3>
                 <button id="newpost">Új bejegyzés</button>
                 <div class="faliujsag-container">
 
                 </div>
             </div>
-            <div id="Napimunka" class="tabcontent">
+            <div id="Napimunka" >
                 <h3>Napimunka</h3>
             </div>
-            <div id="Ujbeosztas" class="tabcontent">
+            <div id="Ujbeosztas" >
                 <h3>Új beosztás készítése</h3>
                 <p></p>
             </div>
-            <div id="Beosztasmod" class="tabcontent">
+            <div id="Beosztasmod" >
                 <h3>Beosztás módosítása</h3>
                 <p></p>
             </div>
-            <div id="Beosztasmeg" class="tabcontent">
+            <div id="Beosztasmeg" >
                 <h3>Beosztás megtekintése</h3>
                 <p></p>
             </div>
