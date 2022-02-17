@@ -9,13 +9,15 @@
   body{
     display: grid;
     border-radius: 16px;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    
     padding: 2rem;
     width: 95%;
     margin: auto;
     margin-top: 5rem;
-    background-color: var(--fds-gray-20);
-    border: 1px solid white;
+    
+    
+    background-color: var(--always-white)!important;
+    
   }
   :root {
     --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
