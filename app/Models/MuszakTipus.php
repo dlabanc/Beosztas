@@ -12,4 +12,7 @@ class MuszakTipus extends Model
     protected $primaryKey = 'tipus';
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = [
+      'tipus', 'leiras'  
+    ];
 }

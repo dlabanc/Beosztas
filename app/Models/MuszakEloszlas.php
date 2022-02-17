@@ -11,4 +11,7 @@ class MuszakEloszlas extends Model
     protected $table = 'Muszakeloszlas';
     protected $primaryKey = 'muszakelo_azon';
     public $timestamps = false;
+    protected $fillable = [
+      'muszakelo_azon', 'muszaktipus', 'muszakszam', 'oratol', 'oraig'  
+    ];
 }

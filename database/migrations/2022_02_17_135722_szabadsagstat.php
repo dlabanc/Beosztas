@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Muszaktipus extends Migration
+class Szabadsagstat extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class Muszaktipus extends Migration
      */
     public function up()
     {
-        Schema::create('muszaktipus', function (Blueprint $table) {
-            $table->string('tipus',5)->primary();
-            $table->string('leiras',255);
-        });
+        DB::unprepared('CREATE VIEW `szabadsagstat`  
+        AS 
+        SELECT `a`.`nev` AS `nev`, `sz`.`tol` AS `tol`, `sz`.`ig` AS `ig` 
+        FROM (`szabadsag` `sz` join `alkalmazott` `a` on(`sz`.`alkalmazott` = `a`.`dolgozoi_azon`)) ;');
     }
 
     /**
@@ -26,6 +26,6 @@ class Muszaktipus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('muszaktipus');
+        DB::unprepared('DROP VIEW IF EXISTS szabadsagstat');
     }
 }

@@ -17,6 +17,7 @@ use App\Http\Controllers\HetiOraszamController;
 use App\Http\Controllers\SzabadsagStatController;
 use App\Http\Controllers\HitelesitesController;
 use App\Http\Controllers\DolgozottNapokStatController;
+use App\Http\Controllers\StatisztikaController;
 use App\Http\Middleware\IsAuthenticated;
 
 
@@ -151,14 +152,21 @@ Route::put('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokControll
 Route::post('/api/bejelentkezesiadat', [BejelentkezesiAdatokController::class, 'store']);
 Route::delete('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokController::class, 'destroy']);
 
+##VIEWOK
 ##MUNKAKORSTAT
-Route::get('/api/munkakorstat', [MunkakorStatController::class, 'index']);
+Route::get('/api/munkakorstat', [StatisztikaController::class, 'munkakor']);
 
 ##HETIORASZAMSTAT
-Route::get('/api/hetioraszamstat', [HetiOraszamController::class, 'index']);
+Route::get('/api/hetioraszamstat', [StatisztikaController::class, 'hetioraszam']);
 
 ##SZABADSAGSTAT
-Route::get('/api/szabadsagstat', [SzabadsagStatController::class, 'index']);
+Route::get('/api/szabadsagstat', [StatisztikaController::class, 'szabadsagstat']);
 
 ##DOLGOZOTTNAPOKSTAT
-Route::get('/api/dolgozottnapokstat', [DolgozottNapokStatController::class, 'index']);
+Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
+
+##AKTUALIS(NAPI) POSZT
+Route::get('/api/napiposzt', [StatisztikaController::class, 'napiposzt']);
+
+##SZABADSAG KEROK
+Route::get('/api/szabadsagkerok', [StatisztikaController::class, 'szabadsag_kerok']);

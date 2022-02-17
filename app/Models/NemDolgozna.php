@@ -11,6 +11,9 @@ class NemDolgozna extends Model
     protected $table = 'Nem_Dolgozna';
     protected $primaryKey = 'nemdolgozna_azon';
     public $timestamps = false;
+    protected $fillable = [
+      'nemdolgozna_azon', 'alkalmazott', 'datum', 'muszakelo_azon'  
+    ];
 
     public function muszakeloszlas(){
         return $this->hasMany(MuszakEloszlas::class, 'muszakelo_azon', 'muszakelo_azon');

@@ -12,6 +12,9 @@ class Beosztas extends Model
     protected $primaryKey = 'beo_azonosito';
     protected $keyType = 'int';
     public $timestamps = false;
+    protected $fillable = [
+        'beo_azonosito', 'napim_azonosito', 'alkalmazott'
+    ];
 
     public function napimunkaeroigeny(){
         return $this->hasMany(NapiMunkaeroIgeny::class, 'napim_azonosito', 'napim_azonosito');

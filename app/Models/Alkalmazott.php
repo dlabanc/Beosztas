@@ -12,6 +12,21 @@ class Alkalmazott extends Model
     protected $primaryKey = 'dolgozoi_azon';
     protected $keyType = 'int';
     public $timestamps = false;
+    protected $fillable = [
+        'dolgozoi_azon',
+        'nev',
+        'lakcim',
+        'szuletesi_datum',
+        'adoazonosito',
+        'taj',
+        'elerhetoseg',
+        'email',
+        'munkakor',
+        'heti_oraszam',
+        'munkaviszony_kezdete',
+        'munkaviszony_vege'
+    ];
+
 
     public function faliujsag(){
         return $this->hasMany(Faliujsag::class, 'dolgozoi_azon', 'dolgozoi_azon');

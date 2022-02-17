@@ -12,4 +12,7 @@ class Napok extends Model
     protected $primaryKey = 'nap';
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = [
+        'nap', 'muszaktipus', 'allapot'
+    ];
 }
