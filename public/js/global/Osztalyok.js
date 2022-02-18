@@ -452,39 +452,62 @@ class Muszak {
 }
 
 class Faliujsag {
-    constructor(szulo, adat) {
+    constructor(szulo, adat, ajax) {
         this.szulo = szulo;
-        szulo.append(
-        `<li class="post-content">
-        <img src="" alt="" />
-        <div>
-          <h3></h3>              
-          <p></p>
-          <h4></h4>
-          <button id="removefaliujsagm"><span class="fa fa-minus"></span></button>
-          <button id="editfaliujsagm" ><span class="fas fa-pen"></span></button>
-        </div>
-      </li>`
+        this.clickcounter = 0;
+        this.api = "http://localhost:8000/"+"api/faliujsag";
+        szulo.append(`
+          <tr class="post-title"><td><img src="" alt="" /></td><td><h3></h3></   td><td class="details">Részletek</td></tr>    
+          <tr class="post-content">
+          <td><p class="post-content-text"></p>     
+          <h4></h4></td>     
+          <td><button class="removefaliujsagm"><span class="fa fa-minus"></span></button></td>     
+          <td><button class="editfaliujsagm" ><span class="fas fa-pen"></span></button></td>     
+        
+      </tr>`
         );
+       
         this.adat = adat;
-        this.elem = $(".post-content:last div");
-        this.szulo
-            .children("div")
-            .children("img")
-            .attr(
-                "src",
-                "/pictures/christopher-campbell-rDEOVtE7vOs-unsplash.jpg"
-            );
-        this.elem.children("h3").text(this.adat.cim);
-        this.elem.children("p").text(this.adat.tartalom);
-        this.elem.children("h4").text(this.adat.mikor);
-        this.elem.children("#removefaliujsagm").on("click", () => {
+        this.elem = $(".post-content:last");
+        this.titleElem = $(".post-title:last");
+        this.detailElem = $(".details:last");
+        this.titleElem.find("h3").text(this.adat.cim);
+        this.elem.find("p").text(this.adat.tartalom);
+        this.elem.find("h4").text(this.adat.mikor);
+        this.elem.find(".removefaliujsagm").on("click", () => {
+            
+            ajax.ajaxApiDelete(this.api,this.adat.faliu_azonosito);
             this.kattintasTrigger("torolf");
         });
 
-        this.elem.children("#editfaliujsagm").on("click", () => {
-            this.kattintasTrigger("modositf");
+        this.elem.find(".editfaliujsagm").on("click", () => {
+            getMeretek(this.elem.find("p"));
+            this.elem.find("p").html(`<textarea class="post-content-text-input">${this.adat.tartalom}</textarea>`);
+            
+            function getMeretek(fieldId){
+                
+                let szel= $(fieldId).width();
+                let hossz = $(fieldId).height();
+                console.log(szel," ",hossz);
+            }
         });
+
+        this.elem.hide();
+
+        this.detailElem.on("click",()=>{
+            this.elemKattintas();
+        });
+    }
+
+    elemKattintas(){
+        if(this.clickcounter==0){
+            this.elem.slideDown(500);
+            this.clickcounter=1;
+        }
+        else{
+            this.elem.slideUp(500);
+            this.clickcounter=0;
+        }
     }
 
     kattintasTrigger(gomb) {

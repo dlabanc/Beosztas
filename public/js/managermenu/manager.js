@@ -743,14 +743,15 @@ $(function () {
 
         function faliujsagBeallitas(muszakok) {
             const szuloElem = $(".faliujsag-container");
+            szuloElem.empty();
             muszakok.forEach((elem) => {
-                new Faliujsag(szuloElem, elem);
+                new Faliujsag(szuloElem, elem, ajax);
             });
             ajaxGet(
                 "https://randomuser.me/api/?results=" + muszakok.length,
                 (kepek, i) => {
                     kepek.results.map((ember, index) => {
-                        $(".post-content")
+                        $(".post-title")
                             .eq(index)
                             .find("img")
                             .attr("src", ember.picture.large);
@@ -762,14 +763,15 @@ $(function () {
                     });
                 }
             );
-            $(window).on("modositf", (event) => {
-                console.log(event.detail.azonosito);
-            });
-
-            $(window).on("torolf", (event) => {
-                console.log(event.detail.azonosito);
-            });
+            
         }
+        $(window).on("modositf", (event) => {
+            event.detail.elem.htlm()
+        });
+
+        $(window).on("torolf", (event) => {
+            ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
+        });
     }
     //ajaxApiGet - Rendben
     function alkalmazottTabla() {

@@ -213,9 +213,9 @@
             <div id="ManFaliujsag" >
                 <h3 id="mfu">Faliújság</h3>
                 <button id="newpost">Új bejegyzés</button>
-                <div class="faliujsag-container">
+                <table class="faliujsag-container">
 
-                </div>
+            </table>
             </div>
             <div id="Napimunka" >
                 <h3>Napimunka</h3>
