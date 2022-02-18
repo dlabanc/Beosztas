@@ -598,20 +598,23 @@ $(function () {
        
         const localhost = "/statisztikak/";
         const statisztikaElem = document.getElementById("Man-statisztika-elem");
-        for (let index = 0; index < 3; index++) {
+        for (let index = 0; index < 4; index++) {
             $(statisztikaElem).append(`<div id="Man-statisztika-elem${index}"></div>`);
             
         }
         const statisztikaElem1 = document.getElementById("Man-statisztika-elem0");
         const statisztikaElem2 = document.getElementById("Man-statisztika-elem1");
         const statisztikaElem3 = document.getElementById("Man-statisztika-elem2");
+        const statisztikaElem4 = document.getElementById("Man-statisztika-elem3");
        
         let data, chart, options;
 
         oszlop();
         kor();
         timeLine();
-
+        table();
+        //Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
+        //-következő
         function oszlop() {
             ajaxGet("http://localhost:8000/api/munkakorstat", (adatok) => {
               
@@ -627,9 +630,15 @@ $(function () {
                     for (const iterator of adatok) {
                         data.addRows([[iterator.munkakor, iterator.db]]);
                     }
-                    
-                    chart.draw(data);
-                    $(statisztikaElem1).prepend("<div>Munkakörök</div>");
+                    let options = {
+                        height:500,
+                        legend:{position:"labeled"},
+                        
+                        
+              
+                    }
+                    chart.draw(data,options);
+                    $(statisztikaElem1).prepend("<div class="+"stat-title"+">Munkakörök</div>");
                 }
             });
         }
@@ -653,9 +662,13 @@ $(function () {
                             [iterator.heti_oraszam + " óra", iterator.db],
                         ]);
                     }
-               
-                    chart.draw(data);
-                    $(statisztikaElem2).prepend("<div>Heti óraszám</div>");
+                    let options = {
+                        height:500,
+                        bar: { groupWidth: "20%" },
+                     
+                    }
+                    chart.draw(data,options);
+                    $(statisztikaElem2).prepend("<div class="+"stat-title"+">Heti óraszám</div>");
                 }
             });
         }
@@ -698,12 +711,20 @@ $(function () {
                             ],
                         ]);
                     }
-                    options = {height:180,  tooltip: { isHtml: true }};
+                    options = { tooltip: { isHtml: true }};
                     chart.draw(dataTable,options);
+                    $(statisztikaElem3).prepend("<div class="+"stat-title"+">Szabadság </div>");
                 }
             });
 
    
+        }
+
+        function table(){
+            ajaxGet("http://localhost:8000/api/dolgozottnapok",(adatok)=>{
+            
+            });
+            
         }
 
         function googleChartsKonyvtar(csomag, metodus) {
@@ -711,42 +732,7 @@ $(function () {
             google.charts.setOnLoadCallback(metodus);
         }
 
-        function statisztikaBeallitasok(szelesseg, magassag) {
-            let darkmode = $("body").hasClass("darkmode--activated");
-
-            let options = {
-                
-                width: szelesseg,
-                height: magassag,
-                pieSliceText:"none",
-                legend:{position:"labeled"},
-                backgroundColor: "transparent",
-                bar: { groupWidth: "20%" },
-            };
-
-            if (darkmode) {
-                options.hAxis = {
-                    textStyle: {
-                        color: "#FFFFFF",
-                        titleTextStyle: { color: "#FFFFFF" },
-                    },
-                };
-                options.vAxis = {
-                    textStyle: {
-                        color: "#FFFFFF",
-                        titleTextStyle: { color: "#FFFFFF" },
-                    },
-                };
-                options.legend = {
-                    textStyle: {
-                        color: "#FFFFFF",
-                        titleTextStyle: { color: "#FFFFFF" },
-                    },
-                };
-            }
-
-            return options;
-        }
+     
 
      
     }

@@ -549,6 +549,10 @@ header nav a {
 
 
 /*---------------------*/
+.stat-title{
+ 
+  
+}
 
 #ManFaliujsag{
   
@@ -1649,7 +1653,20 @@ header nav a {
   }
   
   /*#### STATISZTIKA ####*/
+  #Statisztika{
+    display: grid;
+    grid-template-columns: auto;
+    gap:2rem;
+    padding: 2rem;
+  }
   
+  #Man-statisztika-elem1,#Man-statisztika-elem2,#Man-statisztika-elem3{
+   
+ 
+  }
+  #Man-statisztika-elem2{
+    height: 25%;
+  }
   .tabcontent tr{
       display: table-row!important;
   }
@@ -1713,7 +1730,7 @@ header nav a {
   }
   .navigacio-grid{
  
-
+    margin: auto;
   }
   .navigacio-input label{
     display: flex;
