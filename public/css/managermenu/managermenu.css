@@ -530,24 +530,22 @@ header nav a {
   background-color: var(--bs-blue);
   padding: 1rem;
   color:var(--always-white);
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
-
+#navigacio button:hover{
+  background-color: var(--always-white);
+  color:var(--fds-button-text);
+}
 #Alkalmazottak .tablaAdatok {
   display:flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-#Alkalmazottak .tablaAdatok input {
-  height: 20px;
-  width: 50%;
-}
 
-#Alkalmazottak .tablaAdatok label {
-  margin-right: 10px;
-  width: 200px;
-}
+
 
 
 /*---------------------*/
@@ -1696,9 +1694,62 @@ header nav a {
     color:var(--fds-button-text);
   }
   
+
+  .navigacio-input input{
+    border:none;
+    border:1px solid var(--fds-gray-20);
+    padding:.5rem;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    width: 100%;
+    outline: none !important;
+  }
   
+  .navigacio-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .navigacio-grid{
+ 
+
+  }
+  .navigacio-input label{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    align-items: center;
+  }
+  #oldalSzamok{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   
+    padding: 1rem;
+    border-radius: 10px;
   
+  }
+  .elso-utolso-szam{
+    font-size: 1.1rem;
+    color:var(--bs-info);
+    font-style: italic;
+    padding: .5rem;
+  }
+  .max-szam{
+    font-size: 1.1rem;
+    color:var(--bs-indigo);
+    padding: .5rem;
+  }
+  #navigacio{
+
+  }
+  #oldalUgras{
+    
+    margin: auto;
+    margin-top: .5rem;
+  }
   
   
   

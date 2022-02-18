@@ -788,13 +788,14 @@ $(function () {
     //ajaxApiGet - Rendben
     function alkalmazottTabla() {
         $(".search").remove();
-
+        $(".tablaAdatok").remove();
         $("#Alkalmazottak").append("<div class='tablaAdatok'>"+
-        "<div><label for='oldalUgras'>Ugorj erre az oldalra:</label>"+
-        "<input type='number' name='oldalUgras' id='oldalUgras'></div>"+
+        `<div class="navigacio-grid"> `+
+        "<div class="+"navigacio-input"+">"+
+        "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'"+"></div>"+
         "<p id='oldalSzamok'></p>"+
         "<div id='navigacio'></div>"+
-        "</div>")
+        "</div></div>");
 
         let menu = "#Alkalmazottak .dropdown-content";
         $(menu).hide();
@@ -969,7 +970,7 @@ $(function () {
             while ($("#AlkalmazottakTabla tr").eq(elsoElem).css("display")=="none"){
                 elsoElem++;
             }
-        $("#oldalSzamok").html(elsoElem+" - "+utolsoElem +" elem ennyiből: "+ ($("#AlkalmazottakTabla tr").length-1))
+        $("#oldalSzamok").html(`<span class="elso-utolso-szam">`+elsoElem+" - "+utolsoElem +`</span>`+" elem ennyiből: <span class="+"max-szam"+">"+ ($("#AlkalmazottakTabla tr").length-1)+"</span>")
     }
 
             
