@@ -746,6 +746,7 @@ $(function () {
             szuloElem.empty();
             muszakok.forEach((elem) => {
                 new Faliujsag(szuloElem, elem, ajax);
+               
             });
             ajaxGet(
                 "https://randomuser.me/api/?results=" + muszakok.length,
@@ -766,10 +767,12 @@ $(function () {
             
         }
         $(window).on("modositf", (event) => {
-            event.detail.elem.htlm()
+            
+            event.detail.put();
+            ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
         });
 
-        $(window).on("torolf", (event) => {
+        $(window).on("torolf", () => {
             ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
         });
     }

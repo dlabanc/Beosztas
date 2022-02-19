@@ -454,6 +454,7 @@ class Muszak {
 class Faliujsag {
     constructor(szulo, adat, ajax) {
         this.szulo = szulo;
+        this.ajax = ajax;
         this.clickcounter = 0;
         this.api = "http://localhost:8000/"+"api/faliujsag";
         szulo.append(`
@@ -471,33 +472,79 @@ class Faliujsag {
         this.elem = $(".post-content:last");
         this.titleElem = $(".post-title:last");
         this.detailElem = $(".details:last");
-        this.titleElem.find("h3").text(this.adat.cim);
+        this.titleElem.find("h3").text(this.adat.cim); 
         this.elem.find("p").text(this.adat.tartalom);
         this.elem.find("h4").text(this.adat.mikor);
+        this.options = this.getMeretek(this.elem.find("p"));
+        console.log(this.options)
+
         this.elem.find(".removefaliujsagm").on("click", () => {
             
             ajax.ajaxApiDelete(this.api,this.adat.faliu_azonosito);
             this.kattintasTrigger("torolf");
         });
-
+        
         this.elem.find(".editfaliujsagm").on("click", () => {
-            getMeretek(this.elem.find("p"));
-            this.elem.find("p").html(`<textarea class="post-content-text-input">${this.adat.tartalom}</textarea>`);
+         
+            this.elem.find("p").html(`
+            <textarea class="post-content-text-input">${this.adat.tartalom}</textarea>
+            <div class="post-content-buttons">
+            <button class="edit-faliujsagm fas fa-check"></button>
+            <button class="cancel-faliujsagm fas fa-times"></button>
+            </div>`);
+
+            this.cancelFaliujsagMod = this.elem.find(".cancel-faliujsagm");
+            this.editFaliujsagMod = this.elem.find(".edit-faliujsagm");
+            this.elem.find(".removefaliujsagm").parent().hide();
+            this.elem.find(".editfaliujsagm").parent().hide()
+            this.titleElem.find("h3").html(`<input type="text" class="post-content-text-input2" value="${this.adat.cim}" >`); 
+
+            let ujinput = this.elem.find(".post-content-text-input");
             
-            function getMeretek(fieldId){
-                
-                let szel= $(fieldId).width();
-                let hossz = $(fieldId).height();
-                console.log(szel," ",hossz);
-            }
+            ujinput.css("width",this.options.width);
+            ujinput.css("height",this.options.height);  
+            ujinput.closest(".post-content").addClass("post-content-nobuttons");
+           
+            this.cancelFaliujsagMod.on("click",()=>{
+                this.elem.removeClass("post-content-nobuttons");
+                this.elem.find(".removefaliujsagm").parent().show();
+                this.elem.find(".editfaliujsagm").parent().show();
+                this.elem.find("p").text(this.adat.tartalom);
+                this.titleElem.find("h3").text(this.adat.cim); 
+            });
+
+            this.editFaliujsagMod.on("click",()=>{
+                let text = this.elem.find(".post-content-text-input").val();
+                let title = this.titleElem.find(".post-content-text-input2").val();
+                this.adat.tartalom = text;
+                this.adat.cim = title;
+                this.kattintasTrigger("modositf");
+            });
+             
+            
         });
 
+        
         this.elem.hide();
 
         this.detailElem.on("click",()=>{
             this.elemKattintas();
         });
     }
+
+    put(){
+        this.ajax.ajaxApiPut(this.api, this.adat.faliu_azonosito, this.adat);
+    }
+  
+
+    getMeretek(fieldId){
+        let meretek = {width:0,height:0}; 
+        let szel= $(fieldId).width();
+        let hossz = $(fieldId).height();
+        meretek.width = szel;
+        meretek.height = hossz 
+        return meretek;
+    }   
 
     elemKattintas(){
         if(this.clickcounter==0){
@@ -511,7 +558,7 @@ class Faliujsag {
     }
 
     kattintasTrigger(gomb) {
-        let esemeny = new CustomEvent(gomb, { detail: this.adat });
+        let esemeny = new CustomEvent(gomb, { detail: this });
         window.dispatchEvent(esemeny);
     }
 }
