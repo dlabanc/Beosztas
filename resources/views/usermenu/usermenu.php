@@ -26,7 +26,7 @@
 </head>
 
 <div class="managerinfo">
-    <div class="managerinfo-leftgrid">
+    <div class="umanagerinfo-leftgrid">
         <span class="profile-name "></span>
 
 
@@ -143,7 +143,7 @@
             <div id="Faliujsag" class="tabcontent">
                 <h3 id="fu">Faliújság</h3>
                 <div>
-                    <button id="newpost" class="fas fa-plus"></button>
+                <button id="newpost">Új bejegyzés</button>
                     <fieldset>
                         <legend>Új bejegyzés</legend>
                         <div id="newpost-form">
@@ -167,9 +167,11 @@
 
 
                 <div class="posts-grid">
-                    <ul class="posts-container">
+                
+             
+                <table class="faliujsag-container">
 
-                    </ul>
+                </table>
 
                 </div>
                 <div id="Beosztas" class="tabcontent">

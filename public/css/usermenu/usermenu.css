@@ -214,7 +214,7 @@ body {
     border-radius: 50px;
     margin: auto;
 }
-.managerinfo-leftgrid {
+.umanagerinfo-leftgrid {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -816,98 +816,179 @@ article {
 
 /*###########FALIUJSAG#########*/
 #Faliujsag #fu {
-    margin: auto;
     text-align: center;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    background-color: var(--always-white);
-    border-radius: 10px;
-    width: 95%;
-    margin-bottom: 1rem;    
+    padding: 1rem;
+    border-bottom: 1px solid var(--fds-gray-20);
+    width: 100%;  
 }
 #Faliujsag {
     background-color: transparent;
     box-shadow: none;
 }
-.posts-container {
-    position: relative;
-    right: 1rem;
-    margin-top: 1rem;
-    margin: auto;
+.post-title{
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-
- 
-}
-.post-content div{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-.post-content {
-    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 10px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    align-items: center;
+    width: fit-content;
+    border-end-end-radius: 10px;
     margin-top: 1rem;
-    width: 42.5%;
-    list-style-type: none;
+    color:var(--fds-primary-text);
+    font-weight: 400;
+    width:35rem;
     background-color: var(--always-white);
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    border-radius: 10px;
-    box-sizing: border-box;
+
+  }
+  .post-title h3{
+    font-weight: 400;
+    font-size: 1rem;
     display: flex;
-    flex-direction: column;
-}
-
-.post-content p {
-    margin: auto;
+    justify-content: center;
+  }
+.faliujsag-container
+  {
+  
+      width: 100%;
+      margin-left: .5rem;
+      margin-right: .5rem;
+      border-collapse: collapse;
+  }
+  .faliujsag-container th{
+    background-color: var(--fds-highlight-cell-background);
+  }
+  .faliujsag-container td{
+    text-align: left;
     padding: 1rem;
-    font-size: 1.1rem;
+     
+  }
+  .faliujsag-container img{
+    width: 70px;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .faliujsag-container td{
+    text-align: left;
+    padding: 1rem;
+     
+  }
+  .faliujsag-container img{
+    width: 70px;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .details{
+    margin-left: auto;
+    
+  }
+ 
+  .showmuszak,.details{
+    color:#2c7be3;
+    font-weight: 450;
+   
+  }
+.post-content {
+    display: none;
+    margin-left: 2rem;
+    display: flex;
+    margin-left: 2rem;
+    align-items: center;
+    width: fit-content;
+    border-end-end-radius: 10px;
+    margin-top: 1rem;
+    color: var(--fds-primary-text);
+    font-weight: 400;
+    width: 35rem;    
+  }
+  .post-content-text-input{
+    width: fit-content;
+    height: 25rem;
+    padding: 1rem;
+    text-align: justify;
+    line-height: 1.5;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border-radius: 10px;
-}
-.post-content h3 {
-    text-align: center;
-    border-bottom: 1px solid var(--fds-gray-20);
-    width: 100%;
-    padding-bottom: 1rem;
-}
-.post-content h4 {
-    border-top: 1px solid var(--fds-gray-20);
-    background-color: var(--bs-blue);
-    color:var(--always-white);
-    width: 100%;
-    
+  }
+  .edit-faliujsagm{
+    background-color: #77a7ff;
+    color:white;
+  }
+  .cancel-faliujsagm{
 
+  }
+  .post-content-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
+  }
+  .post-content-buttons button{
+    
     padding: 1rem;
-    text-align: center;
-    margin-top: auto;
-}
-
-.post-content img {
-    max-width: 100%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    background-color: transparent;
     
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
 
+  }
+  .post-content-nobuttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+  }
+  .post-content-buttons .post-content-text h4{
+    text-align: center;
+  }
+  
+  .post-content .post-content-text {
+    text-align: justify;
+    line-height: 1.5;
+    background-color: var(--always-white);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--fds-gray-20);
+  }
+  .post-content h3 {
+    padding: 1rem;
+
+  }
+  .post-content .fa-times{
+    color:var(--fds-red-55);
+  }
+  .post-content .fa-check{
+    color:var(--fds-green-55);
+  }
+  .post-content h4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 #newpost {
   
-   
-    display: block;
-    background-color: var(--fds-green-55);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border:none!important;
+    margin: auto;
+    background-color: var(--fds-blue-60);
     color:var(--always-white);
-    float: right;
-    font-size: 1.1rem;
-    border-radius: 6px;
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    cursor: pointer;
-    padding: 10px;
+    border-radius: 10px;
+    margin-top: 1.5rem;
     margin-bottom: 1rem;
-    margin-right: 1rem;
-    user-select: none;
 }
 
 
@@ -917,7 +998,7 @@ article {
     font-weight: 500;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
-    width: fit-content;
+    width: 100%;
     border-radius: 10px;
     margin: auto;
     margin-bottom: 2rem;
@@ -959,11 +1040,7 @@ article {
     border: none;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-.posts-grid {
-    display: grid;
-    width: 90%;
-    margin: auto;
-}
+
 .form-grid {
     display: flex;
     flex-direction: column;

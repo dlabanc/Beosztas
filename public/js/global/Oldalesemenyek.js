@@ -149,6 +149,8 @@ $(function () {
         });
         $(".managerinfo-leftgrid").on("click",()=>{
             $(".useraside").toggle(500);
+            
         });
+      
     }
 });

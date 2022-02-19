@@ -1654,6 +1654,8 @@ header nav a {
   .removefaliujsagm span{
     color:var(--fds-red-55);
   }
+
+  
   .post-content .post-content-text {
     text-align: justify;
     line-height: 1.5;
@@ -2028,6 +2030,7 @@ header nav a {
   .reszletek-lista li span{
     margin-right: 2rem;
   }
+  
   .showmuszak,.details{
     color:#2c7be3;
     font-weight: 450;
@@ -2116,6 +2119,16 @@ header nav a {
     
   }
  
+  .faliujsag-container td{
+    text-align: left;
+    padding: 1rem;
+     
+  }
+  .faliujsag-container img{
+    width: 70px;
+    height: 100%;
+    border-radius: 50%;
+  }
   .faliujsag-container td{
     text-align: left;
     padding: 1rem;
