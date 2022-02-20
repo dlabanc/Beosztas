@@ -20,13 +20,13 @@
     <script src="/js/global/Oldalesemenyek.js"></script>
     <script src="/js/global/Osztalyok.js"></script>
 
-    <script src="/js/global/nemErekRa.js"></script>
+
     <script src="/js/user/user.js"></script>
     <title>Alkalmazott</title>
 </head>
 
 <div class="managerinfo">
-    <div class="managerinfo-leftgrid">
+    <div class="umanagerinfo-leftgrid">
         <span class="profile-name "></span>
 
 
@@ -104,8 +104,8 @@
                     <img src="" alt="kép" />
                 </div>
                 <div class="name-location">
-                    <div class="profile-nev">Labanc Dániel</div>
-                    <div class="profile-munkakor">Munkakör</div>
+                    <div class="profile-nev"></div>
+                    <div class="profile-munkakor"></div>
                 </div>
                 <div>
                     <ul>
@@ -143,23 +143,24 @@
             <div id="Faliujsag" class="tabcontent">
                 <h3 id="fu">Faliújság</h3>
                 <div>
-                    <button id="newpost" class="fas fa-plus"></button>
+                <button id="newpost">Új bejegyzés</button>
                     <fieldset>
-                        <legend>Új bejegyzés</legend>
+                       
                         <div id="newpost-form">
                             <div class="form-grid">
-                                <label for="cim">Cim:</label>
-                                <input type="text" name="cim" id="newpost-cim">
+                           
+                                <input type="text" name="cim" id="newpost-cim" placeholder="Cím..">
                             </div>
                             <div class="form-grid">
-                                <label for="tartalom">Tartalom:</label>
-                                <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10"></textarea>
-                                <div class="buttons">
+                             
+                                <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10" placeholder="Tartalom..."></textarea>
+                                
+                            </div>
+                        </div>
+                        <div class="buttons">
                                     <button class="fas fa-check"></button>
                                     <button class="fas fa-times"></button>
                                 </div>
-                            </div>
-                        </div>
                     </fieldset>
 
                 </div>
@@ -167,9 +168,11 @@
 
 
                 <div class="posts-grid">
-                    <ul class="posts-container">
+                
+             
+                <table class="faliujsag-container">
 
-                    </ul>
+                </table>
 
                 </div>
                 <div id="Beosztas" class="tabcontent">

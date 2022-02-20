@@ -25,24 +25,48 @@
     <script src="/js/managermenu/manager.js"></script>
     <title>Üzletvezető</title>
 </head>
+<div>
+    <div class="managerinfo">
+        <div class="managerinfo-leftgrid">
+            <span class="profile-name "></span>
 
-<div class="managerinfo">
-    <div class="managerinfo-leftgrid">
-        <span class="profile-name "></span>
+
+        </div>
+
+        <div class="managerinfo-rightgrid">
 
 
+            <div class="openbtn"><img src="" alt="" class="profilepic"><span class="arrow">&#9660;</span></div>
+
+        </div>
+        
     </div>
-
-    <div class="managerinfo-rightgrid">
-
-
-        <div class="openbtn"><img src="" alt="" class="profilepic"><span class="arrow">&#9660;</span></div>
-
-    </div>
-
+    
 </div>
+<aside class="useraside">
+            <header>
+                <nav>
 
-</div>
+                    <div class="navbar">
+
+                        <a class="chilloutcafe">
+                            <div class="fas fa-home"></div><span>Chill Out Cafe</span>
+                        </a>
+                        <a id="profiladatok" class="profiladatok">
+                            <div class="fas fa-user"></div><span>Profil adatok</span>
+                        </a>
+                        <a class="darkmode-user">
+                            <div class="fas fa-eye"></div><span>Kompakt mód</span>
+                        </a>
+                        <a class="passchange">
+                            <div class="fas fa-user-lock"></div><span>Jelszó módosítás</span>
+                        </a>
+
+                    </div>
+                </nav>
+            </header>
+
+</aside>
 
 
 
@@ -76,8 +100,8 @@
         <div>Egyéb</div><span class="fas fa-cogs"><span class="arrow">&#9660;</span></span>
     </button>
     <div class="open3">
-        <a>Statisztika</a>
-        <a>Faliújság</a>
+        <a id="statisztika">Statisztika</a>
+        <a id="faliujsag">Faliújság</a>
     </div>
     <a href="/login" class="logout">
         <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
@@ -90,44 +114,15 @@
 
 
 <body>
+
     <div class="container">
-        <aside class="useraside">
-            <header>
 
-                <nav>
-
-                    <div class="navbar">
-
-                        <a class="chilloutcafe">
-                            <div class="fas fa-home"></div><span>Chill Out Cafe</span>
-                        </a>
-                        <a id="profiladatok" class="profiladatok">
-                            <div class="fas fa-user"></div><span>Profil adatok</span>
-                        </a>
-                        <a class="darkmode-user">
-                            <div class="fas fa-eye"></div><span>Kompakt mód</span>
-                        </a>
-                        <a class="passchange">
-                            <div class="fas fa-user-lock"></div><span>Jelszó módosítás</span>
-                        </a>
-
-                    </div>
-                </nav>
-
-
-
-
-            </header>
-
-
-
-        </aside>
 
         <article>
-            <div id="Profiladatok" class="tabcontent">
+            <div id="Profiladatok" >
                 <div class="profile-head">
                     <div class="profile-infos">
-                        <img src="../pictures/doctor.jpg" alt="kép" />
+                        <img src="" alt="kép" />
                     </div>
                     <div class="name-location">
                         <div class="profile-nev">Labanc Dániel</div>
@@ -155,7 +150,7 @@
                 </div>
             </div>
 
-            <div id="Muszaktipush" class="tabcontent">
+            <div id="Muszaktipush" >
                 <h3>Műszak típus hozzáadása</h3>
 
                 <div class="muszaktipush-container">
@@ -163,26 +158,37 @@
                 </div>
             </div>
 
-            <div id="Muszaktipusn" class="tabcontent">
+            <div id="Muszaktipusn" >
 
 
             </div>
 
-            <div id="Muszaktipusm" class="tabcontent">
+            <div id="Muszaktipusm" >
                 <h3>Műszak eloszlás módosítása</h3>
                 <div class="muszaktipusm-container">
 
                 </div>
             </div>
 
-            <div id="Munkakorok" class="tabcontent">
+            <div id="Munkakorok" >
                 <h3>Munkakörök</h3>
                 <button id="newmunkakor"><span class="fa fa-plus"></span></button>
                 <div class="munkakor-container">
 
                 </div>
             </div>
-            <div id="Alkalmazottak" class="tabcontent">
+            <div id="Statisztika">
+
+
+
+
+                <div id="Man-statisztika-elem">
+
+
+
+                </div>
+            </div>
+            <div id="Alkalmazottak" class="alkalmazottak">
                 <table id="AlkalmazottakTabla">
                     <tr>
                         <th>Név</th>
@@ -203,42 +209,44 @@
                     </ul>
                 </table>
             </div>
-            <div id="ManStatisztika" class="tabcontent">
 
-
-
-                <div class="statmenu">
-                    <div class="statmenu-buttons">
-
-                        <button class="fas fa-chart-bar" id="bar"><span> Munkakörök</span></button>
-                        <button class="fas fa-chart-pie" id="pie"><span> Heti óraszám</span></button>
-                        <button class="fas fa-stream" id="stream"><span> Szabadságon</span></button>
-
-                    </div>
-                    <div id="Man-statisztika-elem">
-
-                    </div>
-
-                </div>
-            </div>
-            <div id="ManFaliujsag" class="tabcontent">
+            <div id="ManFaliujsag" >
                 <h3 id="mfu">Faliújság</h3>
-                <button id="newpost">Új bejegyzés</button>
-                <div class="faliujsag-container">
+                <button id="newpost" >Új bejegyzés</button>
+                <fieldset>
+                       
+                        <div id="newpost-form">
+                            <div class="form-grid">
+                           
+                                <input type="text" name="cim" id="newpost-cim" placeholder="Cím..">
+                            </div>
+                            <div class="form-grid">
+                             
+                                <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10" placeholder="Tartalom..."></textarea>
+                                
+                            </div>
+                        </div>
+                        <div class="buttons">
+                                    <button class="fas fa-check"></button>
+                                    <button class="fas fa-times"></button>
+                                </div>
+                </fieldset>
+                <table class="faliujsag-container">
 
-                </div>
+            </table>
             </div>
-            <div id="Napimunka" class="tabcontent">
+            <div id="Napimunka" >
+                <h3>Napimunka</h3>
             </div>
-            <div id="Ujbeosztas" class="tabcontent">
+            <div id="Ujbeosztas" >
                 <h3>Új beosztás készítése</h3>
                 <p></p>
             </div>
-            <div id="Beosztasmod" class="tabcontent">
+            <div id="Beosztasmod" >
                 <h3>Beosztás módosítása</h3>
                 <p></p>
             </div>
-            <div id="Beosztasmeg" class="tabcontent">
+            <div id="Beosztasmeg" >
                 <h3>Beosztás megtekintése</h3>
                 <p></p>
             </div>

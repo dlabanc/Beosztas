@@ -5,14 +5,17 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
     UjelemEsemenyek();
     ajaxHivasok();
+    
 
     $(document).ajaxStop(function () {
-        $(".loading").hide();
+        $(".loading").fadeOut(1000, () => {});
+
     });
 
     $(".Alkalmazottak")
         .closest(".tabcontent")
         .prepend(`<input type="text" placeholder="Keresés..." class="search">`);
+        
     $(".search").keyup(function (e) {
         let ertek = $(this).val();
         ajax.ajaxApiGet(
@@ -618,7 +621,7 @@ $(function () {
         }
     }
 
-    
+
 
     $(window).on("Mentes", ({ detail }) => {
         for (const key in detail.adat) {

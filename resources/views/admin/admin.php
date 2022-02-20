@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css">
     <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.css">
     <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
-    
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="/node_modules/jquery-ui-1.13.0/jquery-ui.min.css">
     <script src="/node_modules/jquery-ui-1.13.0/jquery-ui.js"></script>

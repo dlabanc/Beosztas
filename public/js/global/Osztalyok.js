@@ -3,7 +3,7 @@ class Adminelemek {
     constructor(szulo, adat, ajax) {
         this.node = szulo;
         this.ajax = ajax;
-        szulo.append("<tr></tr>");
+        szulo.append("<tr class="+"mutat"+"></tr>");
         this.elem = this.node.children("tr:last");
         szulo.append(`<tr class="mod"></tr>`);
         this.clone = this.node.children(".mod:last");
@@ -162,31 +162,35 @@ class Munkakor {
         this.api = "http://localhost:8000/api/munkakor";
         this.ajax = ajax;
         this.szulo = szulo;
-        szulo.append(
-            `<div class="munkakor-content">
-      <div class="cimsor">
-      <div class="circle"><h2>Munkakör első betűje</h2></div>
-      <h3>Munkakör megnevezése</h3>
-      </div>
-      <p>Munkakör leírása</p>`
-        );
         this.adat = adat;
-        this.elem = $(".circle:last");
-        this.elem
-            .children("h2")
-            .text(this.adat.megnevezes.substring(0, 1).toUpperCase());
-        this.szulo
-            .children(".munkakor-content:last")
-            .children(".cimsor")
-            .children("h3")
-            .text(this.adat.megnevezes);
-        this.szulo
-            .children(".munkakor-content:last")
-            .children("p")
-            .text(this.adat.leiras);
-        this.szulo.find(".munkakor-content:last").prepend('<button class="fas fa-times torles"></button>');   
-        this.szulo.find(".torles:last").on("click",()=>{
-                 this.munkakorTorles();
+        szulo.append(
+            `<li class="munkakor-listitem">
+            <span class="munkakor-megnevezes">${this.adat.megnevezes}</span>
+            
+            </li>`
+        );
+        
+        this.elem = szulo.find(".munkakor-listitem:last");
+        this.elem.on("click",()=>{
+            const munkakorAdatok = $(".munkakor-adatok");
+            console.log(this.adat);
+            
+            ajax.ajaxApiGet ("http://localhost:8000/api/alkalmazottak",(adatok)=>{
+                munkakorAdatok.empty();
+                let munkakorAlkalmazottai = adatok.filter(alkalmazott=>{
+                    return alkalmazott.munkakor == this.adat.megnevezes;
+                })
+                
+                munkakorAdatok.append(`<span></span><div>${this.adat.leiras}</div>`);
+                munkakorAdatok.append(`<div><span class="munkakor-munkafonok">${this.adat.munkafonok==null ? "-":this.adat.munkafonok}</span></div>`);
+                munkakorAlkalmazottai.forEach(alkalmazott=>{
+                    munkakorAdatok.append(`<div>${alkalmazott.nev}</div>`);
+                    munkakorAdatok.append(`<div>${alkalmazott.elerhetoseg}</div>`);
+                    munkakorAdatok.append(`<div>${alkalmazott.email}</div>`);
+                    munkakorAdatok.append(`<div class="details">Részletek</div>`);
+                });
+                
+            });
         });
     }
     munkakorTorles(){
@@ -452,43 +456,113 @@ class Muszak {
 }
 
 class Faliujsag {
-    constructor(szulo, adat) {
+    constructor(szulo, adat, ajax) {
         this.szulo = szulo;
-        szulo.append(
-        `<li class="post-content">
-        <img src="" alt="" />
-        <div>
-          <h3></h3>              
-          <p></p>
-          <h4></h4>
-          <button id="removefaliujsagm"><span class="fa fa-minus"></span></button>
-          <button id="editfaliujsagm" ><span class="fas fa-pen"></span></button>
-        </div>
-      </li>`
+        this.ajax = ajax;
+        this.clickcounter = 0;
+        this.api = "http://localhost:8000/"+"api/faliujsag";
+        szulo.append(`
+          <tr class="post-title"><td><img src="" alt="" /></td><td><h3></h3></   td><td class="details">Részletek</td></tr>    
+          <tr class="post-content">
+          <td><p class="post-content-text"></p>     
+          <h4></h4></td>     
+          <td><button class="removefaliujsagm"><span class="fa fa-minus"></span></button></td>     
+          <td><button class="editfaliujsagm" ><span class="fas fa-pen"></span></button></td>     
+        
+      </tr>`
         );
+       
         this.adat = adat;
-        this.elem = $(".post-content:last div");
-        this.szulo
-            .children("div")
-            .children("img")
-            .attr(
-                "src",
-                "/pictures/christopher-campbell-rDEOVtE7vOs-unsplash.jpg"
-            );
-        this.elem.children("h3").text(this.adat.cim);
-        this.elem.children("p").text(this.adat.tartalom);
-        this.elem.children("h4").text(this.adat.mikor);
-        this.elem.children("#removefaliujsagm").on("click", () => {
+        this.elem = $(".post-content:last");
+        this.titleElem = $(".post-title:last");
+        this.detailElem = $(".details:last");
+        this.titleElem.find("h3").text(this.adat.cim); 
+        this.elem.find("p").text(this.adat.tartalom);
+        this.elem.find("h4").text(this.adat.mikor);
+        this.options = this.getMeretek(this.elem.find("p"));
+        console.log(this.options)
+
+        this.elem.find(".removefaliujsagm").on("click", () => {
+            
+            ajax.ajaxApiDelete(this.api,this.adat.faliu_azonosito);
             this.kattintasTrigger("torolf");
         });
+        
+        this.elem.find(".editfaliujsagm").on("click", () => {
+         
+            this.elem.find("p").html(`
+            <textarea class="post-content-text-input">${this.adat.tartalom}</textarea>
+            <div class="post-content-buttons">
+            <button class="edit-faliujsagm fas fa-check"></button>
+            <button class="cancel-faliujsagm fas fa-times"></button>
+            </div>`);
 
-        this.elem.children("#editfaliujsagm").on("click", () => {
-            this.kattintasTrigger("modositf");
+            this.cancelFaliujsagMod = this.elem.find(".cancel-faliujsagm");
+            this.editFaliujsagMod = this.elem.find(".edit-faliujsagm");
+            this.elem.find(".removefaliujsagm").parent().hide();
+            this.elem.find(".editfaliujsagm").parent().hide()
+            this.titleElem.find("h3").html(`<input type="text" class="post-content-text-input2" value="${this.adat.cim}" >`); 
+
+            let ujinput = this.elem.find(".post-content-text-input");
+            
+            ujinput.css("width",this.options.width);
+            ujinput.css("height",this.options.height);  
+            ujinput.closest(".post-content").addClass("post-content-nobuttons");
+           
+            this.cancelFaliujsagMod.on("click",()=>{
+                this.elem.removeClass("post-content-nobuttons");
+                this.elem.find(".removefaliujsagm").parent().show();
+                this.elem.find(".editfaliujsagm").parent().show();
+                this.elem.find("p").text(this.adat.tartalom);
+                this.titleElem.find("h3").text(this.adat.cim); 
+            });
+
+            this.editFaliujsagMod.on("click",()=>{
+                let text = this.elem.find(".post-content-text-input").val();
+                let title = this.titleElem.find(".post-content-text-input2").val();
+                this.adat.tartalom = text;
+                this.adat.cim = title;
+                this.kattintasTrigger("modositf");
+            });
+             
+            
+        });
+
+        
+        this.elem.hide();
+
+        this.detailElem.on("click",()=>{
+            this.elemKattintas();
         });
     }
 
+    put(){
+        this.ajax.ajaxApiPut(this.api, this.adat.faliu_azonosito, this.adat);
+    }
+  
+
+    getMeretek(fieldId){
+        let meretek = {width:0,height:0}; 
+        let szel= $(fieldId).width();
+        let hossz = $(fieldId).height();
+        meretek.width = szel;
+        meretek.height = hossz 
+        return meretek;
+    }   
+
+    elemKattintas(){
+        if(this.clickcounter==0){
+            this.elem.slideDown(500);
+            this.clickcounter=1;
+        }
+        else{
+            this.elem.slideUp(500);
+            this.clickcounter=0;
+        }
+    }
+
     kattintasTrigger(gomb) {
-        let esemeny = new CustomEvent(gomb, { detail: this.adat });
+        let esemeny = new CustomEvent(gomb, { detail: this });
         window.dispatchEvent(esemeny);
     }
 }

@@ -63,8 +63,9 @@ $(function () {
             {
                 
                     postinfoTomb.push(a);
-                    const szulo = $(".posts-container");
-                    let faliujsagPost = new Faliujsag(szulo, adat);
+                    const szulo = $(".faliujsag-container");
+                    let faliujsagPost = new Faliujsag(szulo, adat,ajax);
+                    
                     faliujsagPost.elem.find("button").remove();
                     if (postinfoTomb.length == adatok.length) {
                         console.log(adatok.length);
@@ -72,12 +73,15 @@ $(function () {
                         ajax.ajaxGet(
                             "https://randomuser.me/api/?results=" + adatok.length, (kepek) => {
                                 kepek.results.map((ember, index) => {
-                                    if (index >= adatok.length-5) {
+                                  
                                         const element = adatok[index];
                                         let kep = ember.picture.large;
                                         $(".profilepic").attr("src", kep);
                                         $(".profilepic").fadeIn(1000);
-
+                                        $(".post-title")
+                                        .eq(index)
+                                        .find("img")
+                                        .attr("src", ember.picture.large);
                                         $("#Profiladatok")
                                             .find("img")
                                             .attr("src", kep);
@@ -90,7 +94,7 @@ $(function () {
                                         );
 
                                       
-                                    }
+                                    
                                     $(".post-content")
                                         .eq(index)
                                         .find("img")
@@ -115,10 +119,10 @@ $(function () {
         const newpostMegse = $("#Faliujsag").find("fieldset").find(".fa-times");
         const newpostOk = $("#Faliujsag").find("fieldset").find(".fa-check");
         newpostElem.on("click", () => {
-            newpostForm.effect("slide", "1500");
+            newpostForm.slideDown(500);
         });
         newpostMegse.on("click", () => {
-            newpostForm.effect("clip", "1500");
+            newpostForm.slideUp(500);
         });
         newpostOk.on("click", () => {
           
@@ -136,6 +140,7 @@ $(function () {
             ajax.ajaxApiGet(
 
                 "http://localhost:8000/api/faliujsagok",
+               
                
                 faliujsagUser
                 
