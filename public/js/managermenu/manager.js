@@ -702,155 +702,10 @@ $(function () {
                     
             }
 
-            
-            $("#Alkalmazottak").find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
-            +"</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
-            +"<button class='fas fa-angle-right' id='eloreLepeget'></button>"
-            +"<button class='fas fa-angle-double-right' id='eloreUgrik'></button>")
+            pagination($("#Alkalmazottak"),$("#AlkalmazottakTabla"),$(".alkalmazott-sablon"));
+        
 
-            $("#Alkalmazottak #navigacio #eloreLepeget").on("click",eloreLepeget);
-            $("#Alkalmazottak #navigacio #hatraLepeget").on("click",hatraLepeget);
-            $("#Alkalmazottak #navigacio #eloreUgrik").on("click",eloreUgrik);
-            $("#Alkalmazottak #navigacio #hatraUgrik").on("click",hatraUgrik);
-            oldalSzamKiir();
-
-            let oldalUgras = $("#Alkalmazottak #oldalUgras");
-            oldalUgras.on("keyup", function (e) {
-                if (e.key === "Enter" || e.which == 13 || e.keyCode == 13) {
-                    e.preventDefault();
-
-                    if (oldalUgras.val()>0 && oldalUgras.val()*10-$("#AlkalmazottakTabla tr").length<=10) {
-                        console.log(oldalUgras.val()*10)
-                        console.log($("#AlkalmazottakTabla tr").length)
-
-                        if((oldalUgras.val()-1))
-
-                    $(".alkalmazott-sablon").remove();
-
-                    let elsoElem = (oldalUgras.val())-1;
-
-                    kiurit();
-
-                    for (let index = (elsoElem*10)+1; index < ((elsoElem*10)+1) + 10; index++) {
-                        $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
-                    }
-                } else {
-                    alert("Nincs ilyen oldal!")
-                }
-
-                oldalSzamKiir()
-            }
-            });
-
-            
-
-            function eloreLepeget(){
-                $(".alkalmazott-sablon").remove();
-                let utolsoElem = 0;
-                for (let index = 0; index < $("#AlkalmazottakTabla tr").length; index++) {
-                    if ($("#AlkalmazottakTabla tr").eq(index).css("display")!="none"){
-                        utolsoElem = index; 
-                    }
-                        
-                }
-
-                if (utolsoElem+1!=$("#AlkalmazottakTabla tr").length){
-                    
-                    kiurit();
-
-                    for (let index = utolsoElem+1; index < utolsoElem+1+10; index++) {
-                        $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
-
-                    }
-
-                }
-                oldalSzamKiir();
-            }
-
-            function hatraLepeget(){
-                $(".alkalmazott-sablon").remove();
-                elsoElem = 1;
-                
-                while ($("#AlkalmazottakTabla tr").eq(elsoElem).css("display")=="none"){
-                    elsoElem++;
-                }
-
-                if (elsoElem!=1){
-                    
-                    kiurit();
-
-                    for (let index = elsoElem-10; index < elsoElem; index++) {
-                        $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
-                    }
-
-                }
-                oldalSzamKiir();
-            }
-                
-
-            function eloreUgrik() {
-                $(".alkalmazott-sablon").remove();
-                
-                    let utolsoElem = $("#AlkalmazottakTabla tr").length;
-
-                    if (($("#AlkalmazottakTabla tr").eq(utolsoElem-1)).css("display")=="none"){
-                    let megjelenitettUtolso = 1;
-
-                    while ((utolsoElem - megjelenitettUtolso) % 10 != 0) {
-                        megjelenitettUtolso++;
-                    }
-
-                    kiurit();
-
-                    for (let index = utolsoElem - megjelenitettUtolso+1;index < utolsoElem;index++) {
-                        $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
-                    }
-                }
-                oldalSzamKiir();
-            }
-
-            function hatraUgrik(){
-                $(".alkalmazott-sablon").remove();
-                elsoElem=1;
-
-                if (($("#AlkalmazottakTabla tr").eq(elsoElem)).css("display")=="none")
-                {
-
-                kiurit();
-
-                for (let index = elsoElem; index < elsoElem+10; index++) {
-                    $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
-
-                }
-            }
-            oldalSzamKiir();
-        }
-
-                function kiurit() {
-                    for (let index = 1; index < $("#AlkalmazottakTabla tr").length; index++) {
-                        $("#AlkalmazottakTabla tr").eq(index).hide();
-                    }
-                }
-
-        }
-
-        function oldalSzamKiir() {
-            let utolsoElem = 0;
-
-            for (let index = 0; index < $("#AlkalmazottakTabla tr").length; index++) {
-                if ($("#AlkalmazottakTabla tr").eq(index).css("display")!="none"){
-                    utolsoElem = index; 
-                }
-            }
-            let elsoElem = 1;
-            
-            while ($("#AlkalmazottakTabla tr").eq(elsoElem).css("display")=="none"){
-                elsoElem++;
-            }
-        $("#oldalSzamok").html(elsoElem+" - "+utolsoElem +" elem ennyiből: "+ ($("#AlkalmazottakTabla tr").length-1))
-    }
-
-            
+}        
 
         $(".search").keyup(function (e) {
             let ertek = $(this).val();
@@ -1147,5 +1002,149 @@ $(function () {
                 }
             });
         });
+    }
+
+    function pagination(szulo,tabla,sablon){
+        szulo.find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
+        +"</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
+        +"<button class='fas fa-angle-right' id='eloreLepeget'></button>"
+        +"<button class='fas fa-angle-double-right' id='eloreUgrik'></button>")
+
+        szulo.find("#eloreLepeget").on("click",eloreLepeget);
+        szulo.find("#hatraLepeget").on("click",hatraLepeget);
+        szulo.find("#eloreUgrik").on("click",eloreUgrik);
+        szulo.find("#hatraUgrik").on("click",hatraUgrik);
+        oldalSzamKiir(tabla);
+
+        let oldalUgras = szulo.find("#oldalUgras");
+        oldalUgras.on("keyup", function (e) {
+            if (e.key === "Enter" || e.which == 13 || e.keyCode == 13) {
+                e.preventDefault();
+
+                if (oldalUgras.val()>0 && oldalUgras.val()*10-tabla.find("tr").length<=10) {
+
+                    sablon.remove();
+
+                let elsoElem = (oldalUgras.val())-1;
+
+                kiurit();
+
+                for (let index = (elsoElem*10)+1; index < ((elsoElem*10)+1) + 10; index++) {
+                    tabla.find("tr").eq(index).fadeIn(500);
+                }
+            } else {
+                alert("Nincs ilyen oldal!")
+            }
+
+            oldalSzamKiir(tabla)
+        }
+        });
+
+        
+
+        function eloreLepeget(){
+            sablon.remove();
+            let utolsoElem = 0;
+            for (let index = 0; index < tabla.find("tr").length; index++) {
+                if (tabla.find("tr").eq(index).css("display")!="none"){
+                    utolsoElem = index; 
+                }
+                    
+            }
+
+            if (utolsoElem+1!=tabla.find("tr").length){
+                
+                kiurit();
+
+                for (let index = utolsoElem+1; index < utolsoElem+1+10; index++) {
+                    tabla.find("tr").eq(index).fadeIn(500);
+
+                }
+
+            }
+            oldalSzamKiir(tabla);
+        }
+
+        function hatraLepeget(){
+            sablon.remove();
+            elsoElem = 1;
+            
+            while (tabla.find("tr").eq(elsoElem).css("display")=="none"){
+                elsoElem++;
+            }
+
+            if (elsoElem!=1){
+                
+                kiurit();
+
+                for (let index = elsoElem-10; index < elsoElem; index++) {
+                    tabla.find("tr").eq(index).fadeIn(500);
+                }
+
+            }
+            oldalSzamKiir(tabla);
+        }
+            
+
+        function eloreUgrik() {
+            sablon.remove();
+            
+                let utolsoElem = tabla.find("tr").length;
+
+                if ((tabla.find("tr").eq(utolsoElem-1)).css("display")=="none"){
+                let megjelenitettUtolso = 1;
+
+                while ((utolsoElem - megjelenitettUtolso) % 10 != 0) {
+                    megjelenitettUtolso++;
+                }
+
+                kiurit();
+
+                for (let index = utolsoElem - megjelenitettUtolso+1;index < utolsoElem;index++) {
+                    tabla.find("tr").eq(index).fadeIn(500);
+                }
+            }
+            oldalSzamKiir(tabla);
+        }
+
+        function hatraUgrik(){
+            sablon.remove();
+            elsoElem=1;
+
+            if ((tabla.find("tr").eq(elsoElem)).css("display")=="none")
+            {
+
+            kiurit();
+
+            for (let index = elsoElem; index < elsoElem+10; index++) {
+                tabla.find("tr").eq(index).fadeIn(500);
+
+            }
+        }
+        oldalSzamKiir(tabla);
+        }
+
+            function kiurit() {
+                for (let index = 1; index < tabla.find("tr").length; index++) {
+                    tabla.find("tr").eq(index).hide();
+                }
+            }
+
+            function oldalSzamKiir(tabla) {
+                let utolsoElem = 0;
+    
+                for (let index = 0; index < tabla.find("tr").length; index++) {
+                    if (tabla.find("tr").eq(index).css("display")!="none"){
+                        utolsoElem = index; 
+                    }
+                }
+                let elsoElem = 1;
+                
+                while (tabla.find("tr").eq(elsoElem).css("display")=="none"){
+                    elsoElem++;
+                }
+            $("#oldalSzamok").html(elsoElem+" - "+utolsoElem +" elem ennyiből: "+ (tabla.find("tr").length-1))
+        }
+
     }
 });
