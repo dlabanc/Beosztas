@@ -162,31 +162,35 @@ class Munkakor {
         this.api = "http://localhost:8000/api/munkakor";
         this.ajax = ajax;
         this.szulo = szulo;
-        szulo.append(
-            `<div class="munkakor-content">
-      <div class="cimsor">
-      <div class="circle"><h2>Munkakör első betűje</h2></div>
-      <h3>Munkakör megnevezése</h3>
-      </div>
-      <p>Munkakör leírása</p>`
-        );
         this.adat = adat;
-        this.elem = $(".circle:last");
-        this.elem
-            .children("h2")
-            .text(this.adat.megnevezes.substring(0, 1).toUpperCase());
-        this.szulo
-            .children(".munkakor-content:last")
-            .children(".cimsor")
-            .children("h3")
-            .text(this.adat.megnevezes);
-        this.szulo
-            .children(".munkakor-content:last")
-            .children("p")
-            .text(this.adat.leiras);
-        this.szulo.find(".munkakor-content:last").prepend('<button class="fas fa-times torles"></button>');   
-        this.szulo.find(".torles:last").on("click",()=>{
-                 this.munkakorTorles();
+        szulo.append(
+            `<li class="munkakor-listitem">
+            <span class="munkakor-megnevezes">${this.adat.megnevezes}</span>
+            
+            </li>`
+        );
+        
+        this.elem = szulo.find(".munkakor-listitem:last");
+        this.elem.on("click",()=>{
+            const munkakorAdatok = $(".munkakor-adatok");
+            console.log(this.adat);
+            
+            ajax.ajaxApiGet ("http://localhost:8000/api/alkalmazottak",(adatok)=>{
+                munkakorAdatok.empty();
+                let munkakorAlkalmazottai = adatok.filter(alkalmazott=>{
+                    return alkalmazott.munkakor == this.adat.megnevezes;
+                })
+                
+                munkakorAdatok.append(`<span></span><div>${this.adat.leiras}</div>`);
+                munkakorAdatok.append(`<div><span class="munkakor-munkafonok">${this.adat.munkafonok==null ? "-":this.adat.munkafonok}</span></div>`);
+                munkakorAlkalmazottai.forEach(alkalmazott=>{
+                    munkakorAdatok.append(`<div>${alkalmazott.nev}</div>`);
+                    munkakorAdatok.append(`<div>${alkalmazott.elerhetoseg}</div>`);
+                    munkakorAdatok.append(`<div>${alkalmazott.email}</div>`);
+                    munkakorAdatok.append(`<div class="details">Részletek</div>`);
+                });
+                
+            });
         });
     }
     munkakorTorles(){

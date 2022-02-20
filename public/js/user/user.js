@@ -73,7 +73,7 @@ $(function () {
                         ajax.ajaxGet(
                             "https://randomuser.me/api/?results=" + adatok.length, (kepek) => {
                                 kepek.results.map((ember, index) => {
-                                    if (index >= adatok.length-5) {
+                                  
                                         const element = adatok[index];
                                         let kep = ember.picture.large;
                                         $(".profilepic").attr("src", kep);
@@ -94,7 +94,7 @@ $(function () {
                                         );
 
                                       
-                                    }
+                                    
                                     $(".post-content")
                                         .eq(index)
                                         .find("img")
@@ -140,6 +140,7 @@ $(function () {
             ajax.ajaxApiGet(
 
                 "http://localhost:8000/api/faliujsagok",
+               
                
                 faliujsagUser
                 

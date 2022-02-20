@@ -145,21 +145,22 @@
                 <div>
                 <button id="newpost">Új bejegyzés</button>
                     <fieldset>
-                        <legend>Új bejegyzés</legend>
+                       
                         <div id="newpost-form">
                             <div class="form-grid">
-                                <label for="cim">Cim:</label>
-                                <input type="text" name="cim" id="newpost-cim">
+                           
+                                <input type="text" name="cim" id="newpost-cim" placeholder="Cím..">
                             </div>
                             <div class="form-grid">
-                                <label for="tartalom">Tartalom:</label>
-                                <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10"></textarea>
-                                <div class="buttons">
+                             
+                                <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10" placeholder="Tartalom..."></textarea>
+                                
+                            </div>
+                        </div>
+                        <div class="buttons">
                                     <button class="fas fa-check"></button>
                                     <button class="fas fa-times"></button>
                                 </div>
-                            </div>
-                        </div>
                     </fieldset>
 
                 </div>

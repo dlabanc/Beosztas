@@ -1,5 +1,5 @@
 $(function () {
-  
+
 
     const token = $('meta[name="csrf-token"]').attr("content");
     const ajax = new Ajax(token);
@@ -7,9 +7,9 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
 
     let article = $("article");
-    
-    class OldalKezelo{
-        constructor(tarolo){
+
+    class OldalKezelo {
+        constructor(tarolo) {
             this.tarolo = tarolo;
 
             this.alkalmazottLink = $(document).find("#alkalmazottak");
@@ -37,64 +37,65 @@ $(function () {
             this.beosztasmegg = this.tarolo.find("#Beosztasmeg").clone();
             this.munkakorokk = this.tarolo.find("#Munkakorok").clone();
             this.profiladatokk = this.tarolo.find("#Profiladatok").clone();
-         
-            
+
+
         }
 
-        alkalmazott(){
-            this.esemenyLetrehoz( this.alkalmazottLink,this.alkalmazottak,alkalmazottTabla);
+        alkalmazott() {
+            this.esemenyLetrehoz(this.alkalmazottLink, this.alkalmazottak, alkalmazottTabla);
         }
-        statisztika(){
-            this.esemenyLetrehoz(this.statisztikaLink,this.statisztikaa,managerStatisztika);
+        statisztika() {
+            this.esemenyLetrehoz(this.statisztikaLink, this.statisztikaa, managerStatisztika);
         }
-        faliujsag(){
-            this.esemenyLetrehoz(this.faliujsagLink,this.faliujsagg,faliujsag);
+        faliujsag() {
+            this.esemenyLetrehoz(this.faliujsagLink, this.faliujsagg, faliujsag);
+
         }
-        muszaktipush(){
-            this.esemenyLetrehoz(this.muszaktipushLink,this.muszaktipushh,muszakok);
+        muszaktipush() {
+            this.esemenyLetrehoz(this.muszaktipushLink, this.muszaktipushh, muszakok);
         }
-        muszaktipusn(){
-            this.esemenyLetrehoz(this.muszaktipusnLink,this.muszaktipusnn,muszakNaphozRendelese);
+        muszaktipusn() {
+            this.esemenyLetrehoz(this.muszaktipusnLink, this.muszaktipusnn, muszakNaphozRendelese);
         }
-        muszaktipusm(){
-            this.esemenyLetrehoz(this.muszaktipusmLink,this.muszaktipusmm,muszakEloszlas);
+        muszaktipusm() {
+            this.esemenyLetrehoz(this.muszaktipusmLink, this.muszaktipusmm, muszakEloszlas);
         }
-        napimunka(){
-            this.esemenyLetrehoz(this.napimunkaLink,this.napimunkaa,napiMin);
+        napimunka() {
+            this.esemenyLetrehoz(this.napimunkaLink, this.napimunkaa, napiMin);
         }
-        ujbeosztas(){
-            this.esemenyLetrehoz(this.ujbeosztasLink,this.ujbeosztass,()=>{});
+        ujbeosztas() {
+            this.esemenyLetrehoz(this.ujbeosztasLink, this.ujbeosztass, () => { });
         }
-        beosztasmod(){
-            this.esemenyLetrehoz(this.beoszasmodLink,this.beosztasmodd,()=>{});
+        beosztasmod() {
+            this.esemenyLetrehoz(this.beoszasmodLink, this.beosztasmodd, () => { });
         }
-        beosztasmeg(){
-            this.esemenyLetrehoz(this.beoszasmegLink,this.beosztasmegg,()=>{});
+        beosztasmeg() {
+            this.esemenyLetrehoz(this.beoszasmegLink, this.beosztasmegg, () => { });
         }
-        munkakor(){
-            this.esemenyLetrehoz(this.munkakorokLink,this.munkakorokk,munkakorok);
+        munkakor() {
+            this.esemenyLetrehoz(this.munkakorokLink, this.munkakorokk, munkakorok);
         }
-        profiladatok(){
-            this.esemenyLetrehoz(this.profiladatokLink,this.profiladatokk,ProfilAdatok);
-           
+        profiladatok() {
+            this.esemenyLetrehoz(this.profiladatokLink, this.profiladatokk, ProfilAdatok);
+
         }
 
-        esemenyLetrehoz(kattintasElem, DOM, callback){
-            kattintasElem.on("click",()=>{
+        esemenyLetrehoz(kattintasElem, DOM, callback) {
+            kattintasElem.on("click", () => {
                 this.tarolo.empty();
                 this.tarolo.append(DOM);
                 callback();
-                
+                newPost();
             });
         }
-        
+
     }
 
     const oldal = new OldalKezelo(article);
     oldal.alkalmazott();
     oldal.statisztika();
     oldal.munkakor();
-    oldal.faliujsag();    
+    oldal.faliujsag();
     oldal.muszaktipush();
     oldal.muszaktipusn();
     oldal.muszaktipusm();
@@ -104,17 +105,27 @@ $(function () {
     oldal.beosztasmod();
     oldal.profiladatok();
     article.empty();
+    bejelentkezettFelhasznalo(udvozloUzenet);
     faliujsag();
-    ajaxApiGet("http://localhost:8000/loggeduser",(adatok)=>{
-        let logged = adatok;
-        ajaxApiGet(apivegpont + "/alkalmazott/" + logged, (adatok) => {
-            $(".profile-name").text("Üdvözöllek, " + adatok.nev );
-            $(".profile-name").append(`<span> &#9660;</span>`);
-            
+
+
+    function bejelentkezettFelhasznalo(callback) {
+        ajaxApiGet("http://localhost:8000/loggeduser", (adatok) => {
+            let logged = adatok;
+            ajaxApiGet(apivegpont + "/alkalmazott/" + logged, (adatok) => {
+                callback(adatok);
+
+            });
         });
-    });
-    
-    
+
+    }
+
+    function udvozloUzenet(adatok) {
+        $(".profile-name").text("Üdvözöllek, " + adatok.nev);
+        $(".profile-name").append(`<span> &#9660;</span>`);
+    }
+
+
 
 
     //ajaxApiGet - Rendben
@@ -269,7 +280,7 @@ $(function () {
                                     );
                                 ajax.ajaxApiGet(
                                     "http://localhost:8000/api/muszaktipus/" +
-                                        nap.muszaktipus,
+                                    nap.muszaktipus,
                                     (muszak) => {
                                         this.muszakok.push(
                                             new Muszak(
@@ -491,56 +502,17 @@ $(function () {
 
         function munkakorBeallitas(munkakorok) {
             szuloElem.empty();
-            szuloElem.hide();
-            let sablon = `<div class="munkakor-content munkakor-content-sablon">
-            <div class="label-input">
-            <label>Megnevezés:</label>
-            <input type="text" name="megnevezes">
-            </div>
-            <div class="label-input">
-            <label>Leírás:</label>
-            <input type="text" name="leiras">
-            </div> 
-            <div class="manager-new-buttons">
-            <button class="fas fa-check manager-new-ok"></button>
-            <button class="fas fa-times manager-new-megse"></button>
-            </div>
-            </div>`;
+            //szuloElem.hide();
+            szuloElem.append(`<ul class="munkakor-list"></ul>`);
+            szuloElem.append(`<div class="munkakor-adatok">próba tároló</div>`);
+            const munkakorLista = $(".munkakor-list");
+            const munkakorAdatok = $(".munkakor-adatok");
 
-            szuloElem.append(sablon);
-            let sablonElem = szuloElem.find(".munkakor-content-sablon");
-            sablonElem.find(".manager-new-ok").on("click", () => {
-                let adatok = {};
-                for (
-                    let index = 0;
-                    index < sablonElem.find(".label-input input").length;
-                    index++
-                ) {
-                    let ertek = sablonElem
-                        .find(".label-input input")
-                        .eq(index)
-                        .val();
-                    let kulcs = sablonElem
-                        .find(".label-input input")
-                        .eq(index)
-                        .attr("name");
-                    adatok[kulcs] = ertek;
-                }
-                ajax.ajaxApiPost(munkakorApi, adatok);
 
-                ajaxApiGet(apivegpont + "/munkakorok", munkakorBeallitas);
-                sablonElem.fadeOut("1000");
-            });
-            sablonElem.find(".manager-new-megse").on("click", () => {
-                sablonElem.fadeOut("1000");
-            });
             munkakorok.forEach((elem) => {
-                new Munkakor(szuloElem, elem, ajax);
+                new Munkakor(munkakorLista, elem, ajax);
             });
-            szuloElem.slideDown(1000);
-            $("#newmunkakor").on("click", () => {
-                sablonElem.effect("slide", "1000");
-            });
+
         }
     }
     //ajaxApiGet - Rendben
@@ -553,10 +525,10 @@ $(function () {
             szuloElem.append(`<table class="muszakok-table"><tr><th>Típus</th><th>Leírás</th><th></th><th></th><th></th></tr></table>`);
             const tabla = szuloElem.find(".muszakok-table");
             muszakok.forEach((elem) => {
-                new MuszakHozzaAdas(tabla, elem,ajax);
+                new MuszakHozzaAdas(tabla, elem, ajax);
             });
-            MuszakHozzaAdas.hozzaAd(tabla,ajax,()=>{
-                ajaxApiGet(apivegpont + "/muszaktipusok",muszakBeallitas);
+            MuszakHozzaAdas.hozzaAd(tabla, ajax, () => {
+                ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
             });
         }
 
@@ -570,7 +542,7 @@ $(function () {
 
     $(window).on("MuszakModosit", (event) => {
         event.detail.modosit(muszakok);
-        
+
     });
 
     //ajaxApiGet - Hibás
@@ -595,18 +567,18 @@ $(function () {
 
     //ajaxApiGet - View kell
     function managerStatisztika() {
-       
+
         const localhost = "/statisztikak/";
         const statisztikaElem = document.getElementById("Man-statisztika-elem");
         for (let index = 0; index < 4; index++) {
             $(statisztikaElem).append(`<div id="Man-statisztika-elem${index}"></div>`);
-            
+
         }
         const statisztikaElem1 = document.getElementById("Man-statisztika-elem0");
         const statisztikaElem2 = document.getElementById("Man-statisztika-elem1");
         const statisztikaElem3 = document.getElementById("Man-statisztika-elem2");
         const statisztikaElem4 = document.getElementById("Man-statisztika-elem3");
-       
+
         let data, chart, options;
 
         oszlop();
@@ -617,7 +589,7 @@ $(function () {
         //-következő
         function oszlop() {
             ajaxGet("http://localhost:8000/api/munkakorstat", (adatok) => {
-              
+
                 googleChartsKonyvtar("corechart", drawChart);
 
                 function drawChart() {
@@ -631,14 +603,14 @@ $(function () {
                         data.addRows([[iterator.munkakor, iterator.db]]);
                     }
                     let options = {
-                        height:500,
-                        legend:{position:"labeled"},
-                        
-                        
-              
+                        height: 500,
+                        legend: { position: "labeled" },
+
+
+
                     }
-                    chart.draw(data,options);
-                    $(statisztikaElem1).prepend("<div class="+"stat-title"+">Munkakörök</div>");
+                    chart.draw(data, options);
+                    $(statisztikaElem1).prepend("<div class=" + "stat-title" + ">Munkakörök</div>");
                 }
             });
         }
@@ -663,12 +635,12 @@ $(function () {
                         ]);
                     }
                     let options = {
-                        height:500,
+                        height: 500,
                         bar: { groupWidth: "20%" },
-                     
+
                     }
-                    chart.draw(data,options);
-                    $(statisztikaElem2).prepend("<div class="+"stat-title"+">Heti óraszám</div>");
+                    chart.draw(data, options);
+                    $(statisztikaElem2).prepend("<div class=" + "stat-title" + ">Heti óraszám</div>");
                 }
             });
         }
@@ -681,10 +653,10 @@ $(function () {
                     chart = new google.visualization.Timeline(statisztikaElem3);
                     dataTable = new google.visualization.DataTable();
 
-                  
+
                     dataTable.addColumn({ type: 'string', id: 'President' });
                     dataTable.addColumn({ type: 'string', id: 'dummy bar label' });
-                    dataTable.addColumn({ type: 'string', role: 'tooltip' ,'p': {'html': true}});
+                    dataTable.addColumn({ type: 'string', role: 'tooltip', 'p': { 'html': true } });
                     dataTable.addColumn({ type: 'date', id: 'Start' });
                     dataTable.addColumn({ type: 'date', id: 'End' });
 
@@ -696,35 +668,35 @@ $(function () {
                         let mm = String(time.getMonth() + 1).padStart(2, "0");
                         return aktualisEv + "-" + mm + "-" + dd;
                     }
-                    
+
                     for (const iterator of adatok) {
-                        let tol = idoAtvalt( new Date(iterator.SZABADSAG[0].tól));
-                        let ig = idoAtvalt( new Date(iterator.SZABADSAG[0].ig));
+                        let tol = idoAtvalt(new Date(iterator.SZABADSAG[0].tól));
+                        let ig = idoAtvalt(new Date(iterator.SZABADSAG[0].ig));
                         dataTable.addRows([
                             [
-                               
+
                                 iterator.név,
                                 null,
-                                tol+" - "+ig,
+                                tol + " - " + ig,
                                 new Date(iterator.SZABADSAG[0].tól),
                                 new Date(iterator.SZABADSAG[0].ig),
                             ],
                         ]);
                     }
-                    options = { tooltip: { isHtml: true }};
-                    chart.draw(dataTable,options);
-                    $(statisztikaElem3).prepend("<div class="+"stat-title"+">Szabadság </div>");
+                    options = { tooltip: { isHtml: true } };
+                    chart.draw(dataTable, options);
+                    $(statisztikaElem3).prepend("<div class=" + "stat-title" + ">Szabadság </div>");
                 }
             });
 
-   
+
         }
 
-        function table(){
-            ajaxGet("http://localhost:8000/api/dolgozottnapok",(adatok)=>{
-            
+        function table() {
+            ajaxGet("http://localhost:8000/api/dolgozottnapok", (adatok) => {
+
             });
-            
+
         }
 
         function googleChartsKonyvtar(csomag, metodus) {
@@ -732,9 +704,9 @@ $(function () {
             google.charts.setOnLoadCallback(metodus);
         }
 
-     
 
-     
+
+
     }
 
     //ajaxApiGet - Rendben
@@ -746,7 +718,7 @@ $(function () {
             szuloElem.empty();
             muszakok.forEach((elem) => {
                 new Faliujsag(szuloElem, elem, ajax);
-               
+
             });
             ajaxGet(
                 "https://randomuser.me/api/?results=" + muszakok.length,
@@ -764,10 +736,10 @@ $(function () {
                     });
                 }
             );
-            
+
         }
         $(window).on("modositf", (event) => {
-            
+
             event.detail.put();
             ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
         });
@@ -776,56 +748,117 @@ $(function () {
             ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
         });
     }
+
+    function newPost() {
+        const apivegpont = "http://localhost:8000/api/faliujsag/";
+        const newpostElem = $("#ManFaliujsag").find("#newpost");
+        const newpostForm = $("#ManFaliujsag").find("fieldset");
+        const newpostMegse = $("#ManFaliujsag").find("fieldset").find(".fa-times");
+        const newpostOk = $("#ManFaliujsag").find("fieldset").find(".fa-check");
+
+        newpostElem.on("click", () => {
+            newpostForm.slideDown(500);
+            console.log("szaaa");
+        });
+        newpostMegse.on("click", () => {
+            newpostForm.slideUp(500);
+        });
+
+        newpostOk.on("click", () => {
+
+            let ma = formatDate(new Date());
+            bejelentkezettFelhasznalo(
+                (adatok) => {
+                    console.log(adatok);
+                    let obj = {
+
+                        dolgozoi_azon: adatok.dolgozoi_azon,
+                        mikor: ma,
+                        cim: $("#newpost-cim").val(),
+                        tartalom: $("#newpost-tartalom").val(),
+                    };
+                    console.log(obj)
+
+                    ajax.ajaxApiPost(apivegpont, obj);
+                    newpostForm.effect("clip", "1500");
+
+                    ajax.ajaxApiGet(
+
+                        "http://localhost:8000/api/faliujsagok",
+
+                        faliujsag
+
+                    );
+                }
+            );
+
+
+
+        });
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = "" + (d.getMonth() + 1),
+                day = "" + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = "0" + month;
+            if (day.length < 2) day = "0" + day;
+
+            return [year, month, day].join("-");
+        }
+    }
+
     //ajaxApiGet - Rendben
     function alkalmazottTabla() {
         $(".search").remove();
         $(".tablaAdatok").remove();
-        $("#Alkalmazottak").append("<div class='tablaAdatok'>"+
-        `<div class="navigacio-grid"> `+
-        "<div class="+"navigacio-input"+">"+
-        "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'"+"></div>"+
-        "<p id='oldalSzamok'></p>"+
-        "<div id='navigacio'></div>"+
-        "</div></div>");
+        $("#Alkalmazottak").append("<div class='tablaAdatok'>" +
+            `<div class="navigacio-grid"> ` +
+            "<div class=" + "navigacio-input" + ">" +
+            "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + "></div>" +
+            "<p id='oldalSzamok'></p>" +
+            "<div id='navigacio'></div>" +
+            "</div></div>");
 
         let menu = "#Alkalmazottak .dropdown-content";
         $(menu).hide();
         $("#Alkalmazottak").prepend(`<input type="text" placeholder="&#x1F50E Keresés..." class="search">`);
 
         ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
-        
+
         function alkalmazottTabla(alkalmazottak) {
-           
+
             $("#navigacio").empty();
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
             szuloElem.append(`<tr><td>Név</td><td>Beosztás</td><td>Lakcím</td><td>Elérhetőség</td><td>E-mail</td><td ></td>
             <td ></td></tr>`);
- 
-            
-            for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex+=10) {
-                let darabolt = alkalmazottak.slice(oldalIndex,oldalIndex+10)
+
+
+            for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex += 10) {
+                let darabolt = alkalmazottak.slice(oldalIndex, oldalIndex + 10)
                 darabolt.forEach((elem, index) => {
                     let tablaElem = new AlkalmazottTabla(szuloElem, elem, index);
-                    if (oldalIndex>1){
-                    tablaElem.elem.hide();
+                    if (oldalIndex > 1) {
+                        tablaElem.elem.hide();
                     }
                 });
 
-                    //$("#Alkalmazottak").find("#navigacio").append("<button>"+(oldalIndex/10+1)+"</button>")
-                    
+                //$("#Alkalmazottak").find("#navigacio").append("<button>"+(oldalIndex/10+1)+"</button>")
+
             }
 
-            
-            $("#Alkalmazottak").find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
-            +"</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
-            +"<button class='fas fa-angle-right' id='eloreLepeget'></button>"
-            +"<button class='fas fa-angle-double-right' id='eloreUgrik'></button>")
 
-            $("#Alkalmazottak #navigacio #eloreLepeget").on("click",eloreLepeget);
-            $("#Alkalmazottak #navigacio #hatraLepeget").on("click",hatraLepeget);
-            $("#Alkalmazottak #navigacio #eloreUgrik").on("click",eloreUgrik);
-            $("#Alkalmazottak #navigacio #hatraUgrik").on("click",hatraUgrik);
+            $("#Alkalmazottak").find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
+                + "</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
+                + "<button class='fas fa-angle-right' id='eloreLepeget'></button>"
+                + "<button class='fas fa-angle-double-right' id='eloreUgrik'></button>")
+
+            $("#Alkalmazottak #navigacio #eloreLepeget").on("click", eloreLepeget);
+            $("#Alkalmazottak #navigacio #hatraLepeget").on("click", hatraLepeget);
+            $("#Alkalmazottak #navigacio #eloreUgrik").on("click", eloreUgrik);
+            $("#Alkalmazottak #navigacio #hatraUgrik").on("click", hatraUgrik);
             oldalSzamKiir();
 
             let oldalUgras = $("#Alkalmazottak #oldalUgras");
@@ -833,46 +866,46 @@ $(function () {
                 if (e.key === "Enter" || e.which == 13 || e.keyCode == 13) {
                     e.preventDefault();
 
-                    if (oldalUgras.val()>0 && oldalUgras.val()*10-$("#AlkalmazottakTabla tr").length<=10) {
-                        console.log(oldalUgras.val()*10)
+                    if (oldalUgras.val() > 0 && oldalUgras.val() * 10 - $("#AlkalmazottakTabla tr").length <= 10) {
+                        console.log(oldalUgras.val() * 10)
                         console.log($("#AlkalmazottakTabla tr").length)
 
-                        if((oldalUgras.val()-1))
+                        if ((oldalUgras.val() - 1))
 
-                    $(".alkalmazott-sablon").remove();
+                            $(".alkalmazott-sablon").remove();
 
-                    let elsoElem = (oldalUgras.val())-1;
+                        let elsoElem = (oldalUgras.val()) - 1;
 
-                    kiurit();
+                        kiurit();
 
-                    for (let index = (elsoElem*10)+1; index < ((elsoElem*10)+1) + 10; index++) {
-                        $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
+                        for (let index = (elsoElem * 10) + 1; index < ((elsoElem * 10) + 1) + 10; index++) {
+                            $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
+                        }
+                    } else {
+                        alert("Nincs ilyen oldal!")
                     }
-                } else {
-                    alert("Nincs ilyen oldal!")
-                }
 
-                oldalSzamKiir()
-            }
+                    oldalSzamKiir()
+                }
             });
 
-            
 
-            function eloreLepeget(){
+
+            function eloreLepeget() {
                 $(".alkalmazott-sablon").remove();
                 let utolsoElem = 0;
                 for (let index = 0; index < $("#AlkalmazottakTabla tr").length; index++) {
-                    if ($("#AlkalmazottakTabla tr").eq(index).css("display")!="none"){
-                        utolsoElem = index; 
+                    if ($("#AlkalmazottakTabla tr").eq(index).css("display") != "none") {
+                        utolsoElem = index;
                     }
-                        
+
                 }
 
-                if (utolsoElem+1!=$("#AlkalmazottakTabla tr").length){
-                    
+                if (utolsoElem + 1 != $("#AlkalmazottakTabla tr").length) {
+
                     kiurit();
 
-                    for (let index = utolsoElem+1; index < utolsoElem+1+10; index++) {
+                    for (let index = utolsoElem + 1; index < utolsoElem + 1 + 10; index++) {
                         $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
 
                     }
@@ -881,33 +914,33 @@ $(function () {
                 oldalSzamKiir();
             }
 
-            function hatraLepeget(){
+            function hatraLepeget() {
                 $(".alkalmazott-sablon").remove();
                 elsoElem = 1;
-                
-                while ($("#AlkalmazottakTabla tr").eq(elsoElem).css("display")=="none"){
+
+                while ($("#AlkalmazottakTabla tr").eq(elsoElem).css("display") == "none") {
                     elsoElem++;
                 }
 
-                if (elsoElem!=1){
-                    
+                if (elsoElem != 1) {
+
                     kiurit();
 
-                    for (let index = elsoElem-10; index < elsoElem; index++) {
+                    for (let index = elsoElem - 10; index < elsoElem; index++) {
                         $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
                     }
 
                 }
                 oldalSzamKiir();
             }
-                
+
 
             function eloreUgrik() {
                 $(".alkalmazott-sablon").remove();
-                
-                    let utolsoElem = $("#AlkalmazottakTabla tr").length;
 
-                    if (($("#AlkalmazottakTabla tr").eq(utolsoElem-1)).css("display")=="none"){
+                let utolsoElem = $("#AlkalmazottakTabla tr").length;
+
+                if (($("#AlkalmazottakTabla tr").eq(utolsoElem - 1)).css("display") == "none") {
                     let megjelenitettUtolso = 1;
 
                     while ((utolsoElem - megjelenitettUtolso) % 10 != 0) {
@@ -916,35 +949,34 @@ $(function () {
 
                     kiurit();
 
-                    for (let index = utolsoElem - megjelenitettUtolso+1;index < utolsoElem;index++) {
+                    for (let index = utolsoElem - megjelenitettUtolso + 1; index < utolsoElem; index++) {
                         $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
                     }
                 }
                 oldalSzamKiir();
             }
 
-            function hatraUgrik(){
+            function hatraUgrik() {
                 $(".alkalmazott-sablon").remove();
-                elsoElem=1;
+                elsoElem = 1;
 
-                if (($("#AlkalmazottakTabla tr").eq(elsoElem)).css("display")=="none")
-                {
+                if (($("#AlkalmazottakTabla tr").eq(elsoElem)).css("display") == "none") {
 
-                kiurit();
+                    kiurit();
 
-                for (let index = elsoElem; index < elsoElem+10; index++) {
-                    $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
+                    for (let index = elsoElem; index < elsoElem + 10; index++) {
+                        $("#AlkalmazottakTabla tr").eq(index).fadeIn(500);
 
-                }
-            }
-            oldalSzamKiir();
-        }
-
-                function kiurit() {
-                    for (let index = 1; index < $("#AlkalmazottakTabla tr").length; index++) {
-                        $("#AlkalmazottakTabla tr").eq(index).hide();
                     }
                 }
+                oldalSzamKiir();
+            }
+
+            function kiurit() {
+                for (let index = 1; index < $("#AlkalmazottakTabla tr").length; index++) {
+                    $("#AlkalmazottakTabla tr").eq(index).hide();
+                }
+            }
 
         }
 
@@ -952,19 +984,19 @@ $(function () {
             let utolsoElem = 0;
 
             for (let index = 0; index < $("#AlkalmazottakTabla tr").length; index++) {
-                if ($("#AlkalmazottakTabla tr").eq(index).css("display")!="none"){
-                    utolsoElem = index; 
+                if ($("#AlkalmazottakTabla tr").eq(index).css("display") != "none") {
+                    utolsoElem = index;
                 }
             }
             let elsoElem = 1;
-            
-            while ($("#AlkalmazottakTabla tr").eq(elsoElem).css("display")=="none"){
+
+            while ($("#AlkalmazottakTabla tr").eq(elsoElem).css("display") == "none") {
                 elsoElem++;
             }
-        $("#oldalSzamok").html(`<span class="elso-utolso-szam">`+elsoElem+" - "+utolsoElem +`</span>`+" elem ennyiből: <span class="+"max-szam"+">"+ ($("#AlkalmazottakTabla tr").length-1)+"</span>")
-    }
+            $("#oldalSzamok").html(`<span class="elso-utolso-szam">` + elsoElem + " - " + utolsoElem + `</span>` + " elem ennyiből: <span class=" + "max-szam" + ">" + ($("#AlkalmazottakTabla tr").length - 1) + "</span>")
+        }
 
-            
+
 
         $(".search").keyup(function (e) {
             let ertek = $(this).val();
@@ -976,75 +1008,75 @@ $(function () {
         });
 
         $(window).on("klikk", (event) => {
-            ajaxApiGet(apivegpont+"/munkakorok",(adatok)=>{
+            ajaxApiGet(apivegpont + "/munkakorok", (adatok) => {
                 let select = '<select id="munkakor-alkalmazott">';
-                        adatok.forEach(a=>{
-                            select+='<option>'+a.megnevezes+'</option>';
-                        });
-                        select+='</select>';
-                        
-                        event.detail.clone.find("td").eq(1).html(select);
-                        event.detail.clone.find("select").eq(1).addClass("munkakor");
-                        $("#munkakor-alkalmazott").change("change", function () {
-                            let ertek = this.value;
-                            event.detail.clone.find("td").eq(1).html(`<input type="text" value="${ertek}"disabled> `);
-                            event.detail.clone.find("input").eq(1).addClass("munkakor");
-                        });
+                adatok.forEach(a => {
+                    select += '<option>' + a.megnevezes + '</option>';
+                });
+                select += '</select>';
+
+                event.detail.clone.find("td").eq(1).html(select);
+                event.detail.clone.find("select").eq(1).addClass("munkakor");
+                $("#munkakor-alkalmazott").change("change", function () {
+                    let ertek = this.value;
+                    event.detail.clone.find("td").eq(1).html(`<input type="text" value="${ertek}"disabled> `);
+                    event.detail.clone.find("input").eq(1).addClass("munkakor");
+                });
             });
-            $(menu).find(".tablaAl").on("click",()=>{
+            $(menu).find(".tablaAl").on("click", () => {
                 $(event.detail.menu).slideUp();
                 event.detail.clone.fadeIn(500);
-                event.detail.clone.find(".save-alkalmazott").on("click",()=>{
-                    
+                event.detail.clone.find(".save-alkalmazott").on("click", () => {
+
                     let hossz = event.detail.clone.find("input").length;
                     for (let index = 0; index < hossz; index++) {
-                        let kulcs =  event.detail.clone.find("input").eq(index).attr("class");
+                        let kulcs = event.detail.clone.find("input").eq(index).attr("class");
                         let ertek = event.detail.clone.find("input").eq(index).val();
                         event.detail.adat[kulcs] = ertek;
-                        
+
                     }
-                       ajax.ajaxApiPut("http://localhost:8000/api/alkalmazott",event.detail.adat.dolgozoi_azon,event.detail.adat);
-                       event.detail.clone.fadeOut(500,()=>{
+                    ajax.ajaxApiPut("http://localhost:8000/api/alkalmazott", event.detail.adat.dolgozoi_azon, event.detail.adat);
+                    event.detail.clone.fadeOut(500, () => {
                         ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
-                       });
-                       
+                    });
+
                 });
-                event.detail.clone.find(".cancel-alkalmazott").on("click",()=>{
+                event.detail.clone.find(".cancel-alkalmazott").on("click", () => {
                     event.detail.clone.fadeOut(500);
                 });
-                
+
             });
-            
-                
+
+
             if (event.detail.id >= 0) {
                 $(menu).css("z-index", 1);
-               
+
                 $(menu).attr("id", event.detail.id);
                 $(menu).find(".alkalmazott-nev span").text(event.detail.adat.nev);
-               
+
             }
         });
 
 
-        
+
         $(menu).on("click", () => {
-          
+
         });
 
         $(menu)
             .find("#AlkModosit")
             .on("click", () => {
-                
-                ProfilAdatok($(menu).attr("id"));
-                $(menu).attr("id","");
-        });
 
-        $(menu).find(".fa-times").on("click",()=>{
+                ProfilAdatok($(menu).attr("id"));
+                $(menu).attr("id", "");
+            });
+
+        $(menu).find(".fa-times").on("click", () => {
             $(".alkalmazott-sablon").remove();
             $(menu).slideUp(500);
         });
 
-     
+
     }
 
 
@@ -1115,10 +1147,10 @@ $(function () {
         ajax.ajaxGet(
             "https://randomuser.me/api/?results=1",
             (kep) => {
-               
+
                 $("#Profiladatok")
-                .find("img")
-                .attr("src", kep.results[0].picture.large);
+                    .find("img")
+                    .attr("src", kep.results[0].picture.large);
             }
         );
         ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok) => {
@@ -1128,7 +1160,7 @@ $(function () {
                 console.log(logged);
             }
             ajaxApiGet(apivegpont + "/alkalmazott/" + logged, (adatok) => {
-                
+
 
                 $(".profile-nev").text(adatok.nev);
                 $(".profile-munkakor").text(adatok.munkakor);
@@ -1197,9 +1229,9 @@ $(function () {
                 }
 
                 $("#tables tr").hover(modosit);
-               
 
-                $(".managerinfo").fadeIn(1000, () => {});
+
+                $(".managerinfo").fadeIn(1000, () => { });
                 $(".managerinfo").css("display", "grid");
                 function modosit() {
                     $("#tables tr")
@@ -1247,7 +1279,7 @@ $(function () {
                         .find(".kesz")
                         .html(
                             $(this).parent().find("input").val() +
-                                "<span class='modosit fa fa-edit'>"
+                            "<span class='modosit fa fa-edit'>"
                         );
 
                     modositAblak($(this));

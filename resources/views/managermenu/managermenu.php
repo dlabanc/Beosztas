@@ -212,7 +212,25 @@
 
             <div id="ManFaliujsag" >
                 <h3 id="mfu">Faliújság</h3>
-                <button id="newpost">Új bejegyzés</button>
+                <button id="newpost" >Új bejegyzés</button>
+                <fieldset>
+                       
+                        <div id="newpost-form">
+                            <div class="form-grid">
+                           
+                                <input type="text" name="cim" id="newpost-cim" placeholder="Cím..">
+                            </div>
+                            <div class="form-grid">
+                             
+                                <textarea name="tartalom" id="newpost-tartalom" cols="30" rows="10" placeholder="Tartalom..."></textarea>
+                                
+                            </div>
+                        </div>
+                        <div class="buttons">
+                                    <button class="fas fa-check"></button>
+                                    <button class="fas fa-times"></button>
+                                </div>
+                </fieldset>
                 <table class="faliujsag-container">
 
             </table>

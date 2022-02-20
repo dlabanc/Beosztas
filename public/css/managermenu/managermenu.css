@@ -562,6 +562,73 @@ header nav a {
     width: fit-content;
 
 }
+#ManFaliujsag fieldset {
+  width: 90%;
+  border-radius: 10px;
+  background:transparent;
+  border: none;
+  padding: 1rem;
+  /*box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;*/
+  margin: auto;
+  display: none;
+}
+
+.munkakor-list{
+
+}
+#ManFaliujsag fieldset label {
+  color: var(--fds-button-text);
+  padding: .5rem;
+  line-height: 1.2;
+
+}
+#ManFaliujsag fieldset .fa-check {
+  color:var(--fds-green-55);
+}
+#ManFaliujsag fieldset .fa-times {
+  color:var(--fds-red-55);
+}
+
+#ManFaliujsag fieldset .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:1rem;
+}
+#ManFaliujsag fieldset .buttons button {
+ border-radius: 10px;
+ background: var(--always-white)!important;
+ border: none;
+ padding: 1rem;
+ box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.form-grid {
+display: flex;
+margin-bottom: 1rem;
+
+}
+
+#newpost-form{
+  display: grid;
+
+}
+#newpost-cim{
+  margin-top: 1rem;
+}
+.form-grid input,.form-grid textarea {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top:.5rem;
+  padding-bottom: .5rem;
+  line-height: 1.3;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 10px;
+  width: 90%;
+  margin: auto;
+  
+}
 #Muszaktipusn {
   box-shadow: none;
   background-color: transparent;
@@ -883,7 +950,16 @@ header nav a {
     transition: margin-left 0.5s;
     padding: 16px;
   }
-  
+  .munkakor-container{
+    display: flex;
+    justify-content:stretch ;
+    gap: 1rem;
+    width: 90%;
+    margin: auto;
+  }
+  .munkakor-adatok{
+    padding-top: 1rem;
+  }
   /*!-----------!*/
   /* Mindenki menu vége */
   
@@ -922,97 +998,23 @@ header nav a {
     padding: 1.5rem;
     text-align: center;
   }
-  /*!------------!*/
-  /* Footer vége */
-  
-  
-  /*#############MUNKAKÖR###########*/
-  
-  #Munkakorok{
-    width: fit-content;
-    margin: auto;
+
+  .munkakor-list{
+
   }
-  .munkakor-container {
-    display: grid;
-    grid-template-columns: repeat(3,auto);
-    grid-gap: 20px;
-    margin-right: 15px;
-    width: fit-content;
-    margin: auto;
+  .munkakor-list li{
+    list-style-type: none;
+    
+    
+
+  }
+  .munkakor-megnevezes{
+    display: flex;
+    width: 100%;
+  
   }
   
-  .munkakor-content {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    background-color: var(--bs-light);
-    box-sizing: border-box;
-    padding: 1.5rem;
-    width: 22rem;
-    margin: 1rem;
-    border: 1px solid rgb(24, 206, 167);
-  }
   
-  .munkakor-content .cimsor {
-    display: grid;
-    grid-template-columns: 30% 70%;
-  }
-  .munkakor-content .cimsor h3 {
-    text-transform: uppercase;
-    padding: 1rem;
-    text-align: center;
-    position: relative;
-    right: 2rem;
-    font-size: 1.2rem;
-  }
-  
-  .munkakor-content p {
-    /*position: relative;*/
-    bottom: 30px;
-    font-weight: lighter;
-    text-align: justify;
-    display: block;
-  }
-  
-  .munkakor-content .circle {
-    border: 1px solid rgb(24, 206, 167);
-    background-color: rgb(24, 206, 167);
-    color: white;
-    border-radius: 50%;
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-  }
-  
-  .munkakor-content .circle h2 {
-    position: relative;
-    bottom: 10px;
-  }
-  
-  #newmunkakor {
-    color:var(--fds-button-text);
-    font-size: 1.2em;
-    text-shadow: 1px 1px   black;
-    border-radius: 50%;
-    background-image: linear-gradient(
-      45deg,
-      var(--fds-blue-05),var(--fds-spectrum-aluminum-tint-70),var(--always-white)
-    );
-    border-radius: 10px;
-    border: 1px solid rgba(12, 0, 0, 0.18);
-    cursor: pointer;
-    padding: 10px;
-    user-select: none;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    line-height: 20px;
-    padding-bottom: 10px;
-  }
-  
-  #newmunkakor:hover {
-    color: white;
-    background-color: rgb(24, 206, 167);
-  }
   .label-input {
     display: grid;
     grid-template-columns: 1fr auto;

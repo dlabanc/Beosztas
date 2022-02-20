@@ -851,9 +851,13 @@ article {
   {
   
       width: 100%;
-      margin-left: .5rem;
-      margin-right: .5rem;
+      
       border-collapse: collapse;
+  }
+  .faliujsag-container tr{
+     
+    margin: auto;
+    margin-top: 1rem;
   }
   .faliujsag-container th{
     background-color: var(--fds-highlight-cell-background);
@@ -882,7 +886,9 @@ article {
     margin-left: auto;
     
   }
- 
+  textarea {
+    resize: none;
+  }
   .showmuszak,.details{
     color:#2c7be3;
     font-weight: 450;
@@ -927,7 +933,9 @@ article {
     margin: 1rem;
   }
   .post-content-buttons button{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1rem;
     border: none;
     cursor: pointer;
@@ -993,64 +1001,71 @@ article {
 
 
 #Faliujsag fieldset {
-    display: none;
-    border: none;
-    font-weight: 500;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
-    width: 100%;
+    width: 90%;
     border-radius: 10px;
+    background:transparent;
+    border: none;
+    padding: 1rem;
+    /*box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;*/
     margin: auto;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    font-size: 1.2rem;
-    background-color: var(--always-white)!important;
+    display: none;
 }
 
 #Faliujsag fieldset legend {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
-    border-radius: 10px;
-    background-color: var(--always-white)!important;
-    padding: 0.5rem;
-    font-weight: 550;
+    
 }
 #Faliujsag fieldset label {
-    padding: 0.3rem;
-    margin: 0.3rem;
-    color:var(--fds-gray-70);
-    text-transform: uppercase;
+    color: var(--fds-button-text);
+    padding: .5rem;
+    line-height: 1.2;
+
 }
 #Faliujsag fieldset .fa-check {
-   background-color : var(--fds-green-55);
+    color:var(--fds-green-55);
 }
 #Faliujsag fieldset .fa-times {
-    background-color :  var(--bs-red);
+    color:var(--fds-red-55);
 }
 
 #Faliujsag fieldset .buttons {
-    width: fit-content;
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
 }
 #Faliujsag fieldset .buttons button {
-    padding: 0.5rem;
-    margin: 0.5rem;
-    color:var(--always-white);
-    width: fit-content;
-    border: none;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+   border-radius: 10px;
+   background: var(--always-white)!important;
+   border: none;
+   padding: 1rem;
+   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .form-grid {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.5rem;
+  display: flex;
+  margin-bottom: 1rem;
+
+}
+
+#newpost-form{
+    display: grid;
+
+}
+#newpost-cim{
+    margin-top: 1rem;
 }
 .form-grid input,.form-grid textarea {
-    margin: auto;
-    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top:.5rem;
+    padding-bottom: .5rem;
+    line-height: 1.3;
     border: none;
-    border: 1px solid var(--fds-gray-20);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 10px;
+    width: 90%;
+    margin: auto;
+    
 }
 .tabcontent {
     color: black;
