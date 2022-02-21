@@ -200,11 +200,16 @@ body {
     border-radius: 10px;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
     align-items: center;
     gap: 1rem;
   
 }
+
+.managerinfo .logo {
+    width:40%!important;
+    padding: 0;
+  }  
 
 
 .managerinfo img {

@@ -32,6 +32,12 @@
 
     </div>
 
+    <div class="managerinfo-midgrid">
+            <img class="logo" src="https://i.ibb.co/VVNr62w/logo.png" alt="">
+
+
+        </div>
+
     <div class="managerinfo-rightgrid">
 
 

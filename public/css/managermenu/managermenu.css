@@ -338,13 +338,17 @@ header nav a {
     border-radius: 10px;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
     align-items: center;
     gap: 1rem;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   }
-  
+
+  .managerinfo .logo {
+    width:40%!important;
+    padding: 0;
+  }  
   
   .managerinfo img {
     padding: 0.5rem;
@@ -373,6 +377,13 @@ header nav a {
     align-items: center;
     gap: 1rem;
    
+  }
+
+  .managerinfo-midgrid {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
   }
   .fa-home{
     color:var(--bs-info);
@@ -792,7 +803,7 @@ margin-bottom: 1rem;
   gap:1rem;
 }
 
-  }
+  
   .navbar {
    display: grid;
    grid-template-columns: auto;
@@ -1796,7 +1807,7 @@ margin-bottom: 1rem;
     align-self: center;
     align-items: center;
   }
-  #oldalSzamok{
+  #oldalSzamok, #oldalSzam{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1805,6 +1816,8 @@ margin-bottom: 1rem;
     border-radius: 10px;
   
   }
+
+ 
   .elso-utolso-szam{
     font-size: 1.1rem;
     color:var(--bs-info);

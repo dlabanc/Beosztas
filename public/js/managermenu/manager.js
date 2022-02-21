@@ -711,15 +711,29 @@ $(function () {
 
     //ajaxApiGet - Rendben
     function faliujsag() {
+        
         ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
 
         function faliujsagBeallitas(muszakok) {
+            
             const szuloElem = $(".faliujsag-container");
             szuloElem.empty();
-            muszakok.forEach((elem) => {
-                new Faliujsag(szuloElem, elem, ajax);
 
-            });
+            let oldalhossz = 5;
+            // muszakok.forEach((elem) => {
+            //     new Faliujsag(szuloElem, elem, ajax);
+
+            // });
+
+            for (let oldalIndex = 0; oldalIndex < muszakok.length; oldalIndex += oldalhossz) {
+                let darabolt = muszakok.slice(oldalIndex, oldalIndex + oldalhossz)
+                darabolt.forEach((elem) => {
+                    let tablaElem = new Faliujsag(szuloElem, elem, ajax);
+                    if (oldalIndex > 1) {
+                        tablaElem.titleElem.hide();
+                    }
+                });
+            }
             ajaxGet(
                 "https://randomuser.me/api/?results=" + muszakok.length,
                 (kepek, i) => {
@@ -736,7 +750,7 @@ $(function () {
                     });
                 }
             );
-
+            pagination($("#ManFaliujsag"),$(".faliujsag-container"),$(""),".post-title",oldalhossz);
         }
         $(window).on("modositf", (event) => {
 
@@ -747,6 +761,8 @@ $(function () {
         $(window).on("torolf", () => {
             ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
         });
+
+        
     }
 
     function newPost() {
@@ -813,13 +829,7 @@ $(function () {
     function alkalmazottTabla() {
         $(".search").remove();
         $(".tablaAdatok").remove();
-        $("#Alkalmazottak").append("<div class='tablaAdatok'>" +
-            `<div class="navigacio-grid"> ` +
-            "<div class=" + "navigacio-input" + ">" +
-            "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + "></div>" +
-            "<p id='oldalSzamok'></p>" +
-            "<div id='navigacio'></div>" +
-            "</div></div>");
+        
 
         let menu = "#Alkalmazottak .dropdown-content";
         $(menu).hide();
@@ -829,27 +839,25 @@ $(function () {
 
         function alkalmazottTabla(alkalmazottak) {
 
-            $("#navigacio").empty();
+            
             const szuloElem = $("#AlkalmazottakTabla");
             szuloElem.empty();
-            szuloElem.append(`<tr><td>Név</td><td>Beosztás</td><td>Lakcím</td><td>Elérhetőség</td><td>E-mail</td><td ></td>
+            szuloElem.append(`<tr class='AlkalmazottFejlec'><td>Név</td><td>Beosztás</td><td>Lakcím</td><td>Elérhetőség</td><td>E-mail</td><td ></td>
             <td ></td></tr>`);
 
+            let oldalhossz = 10;
 
-            for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex += 10) {
-                let darabolt = alkalmazottak.slice(oldalIndex, oldalIndex + 10)
+            for (let oldalIndex = 0; oldalIndex < alkalmazottak.length; oldalIndex += oldalhossz) {
+                let darabolt = alkalmazottak.slice(oldalIndex, oldalIndex + oldalhossz)
                 darabolt.forEach((elem, index) => {
                     let tablaElem = new AlkalmazottTabla(szuloElem, elem, index);
                     if (oldalIndex > 1) {
                         tablaElem.elem.hide();
                     }
                 });
-
-                //$("#Alkalmazottak").find("#navigacio").append("<button>"+(oldalIndex/10+1)+"</button>")
-
             }
 
-            pagination($("#Alkalmazottak"),$("#AlkalmazottakTabla"),$(".alkalmazott-sablon"));
+            pagination($("#Alkalmazottak"),$("#AlkalmazottakTabla"),$(".alkalmazott-sablon"),".alkalmazottElem",oldalhossz);
         
 
 }        
@@ -1183,7 +1191,21 @@ $(function () {
         });
     }
 
-    function pagination(szulo,tabla,sablon){
+    function pagination(szulo,tabla,sablon,elem,elemPerOldal){
+        $(".tablaAdatok").remove();
+
+        szulo.append("<div class='tablaAdatok'>" +
+            `<div class="navigacio-grid"> ` +
+            "<div class=" + "navigacio-input" + ">" +
+            "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + "></div>" +
+            "<p id='oldalSzamok'></p>" +
+            "<p id='oldalSzam'></p>"+
+            "<div id='navigacio'></div>" +
+            "</div></div>");
+
+            $("#navigacio").empty();
+
+
         szulo.find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
         +"</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
         +"<button class='fas fa-angle-right' id='eloreLepeget'></button>"
@@ -1200,22 +1222,22 @@ $(function () {
             if (e.key === "Enter" || e.which == 13 || e.keyCode == 13) {
                 e.preventDefault();
 
-                if (oldalUgras.val()>0 && oldalUgras.val()*10-tabla.find("tr").length<=10) {
-
+                if (oldalUgras.val()>0 && oldalUgras.val()*elemPerOldal-tabla.find(elem).length<=elemPerOldal) {
                     sablon.remove();
 
                 let elsoElem = (oldalUgras.val())-1;
 
                 kiurit();
 
-                for (let index = (elsoElem*10)+1; index < ((elsoElem*10)+1) + 10; index++) {
-                    tabla.find("tr").eq(index).fadeIn(500);
+                for (let index = elsoElem*elemPerOldal; index < (elsoElem*elemPerOldal) + elemPerOldal; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
                 }
             } else {
                 alert("Nincs ilyen oldal!")
             }
 
             oldalSzamKiir(tabla)
+            oldalSzamol(tabla);
         }
         });
 
@@ -1224,19 +1246,19 @@ $(function () {
         function eloreLepeget(){
             sablon.remove();
             let utolsoElem = 0;
-            for (let index = 0; index < tabla.find("tr").length; index++) {
-                if (tabla.find("tr").eq(index).css("display")!="none"){
+            for (let index = 0; index < tabla.find(elem).length; index++) {
+                if (tabla.find(elem).eq(index).css("display")!="none"){
                     utolsoElem = index; 
                 }
                     
             }
 
-            if (utolsoElem+1!=tabla.find("tr").length){
+            if (utolsoElem+1!=tabla.find(elem).length){
                 
                 kiurit();
 
-                for (let index = utolsoElem+1; index < utolsoElem+1+10; index++) {
-                    tabla.find("tr").eq(index).fadeIn(500);
+                for (let index = utolsoElem+1; index < utolsoElem+1+elemPerOldal; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
 
                 }
 
@@ -1246,18 +1268,18 @@ $(function () {
 
         function hatraLepeget(){
             sablon.remove();
-            elsoElem = 1;
+            elsoElem = 0;
             
-            while (tabla.find("tr").eq(elsoElem).css("display")=="none"){
+            while (tabla.find(elem).eq(elsoElem).css("display")=="none"){
                 elsoElem++;
             }
 
-            if (elsoElem!=1){
+            if (elsoElem!=0){
                 
                 kiurit();
 
-                for (let index = elsoElem-10; index < elsoElem; index++) {
-                    tabla.find("tr").eq(index).fadeIn(500);
+                for (let index = elsoElem-elemPerOldal; index < elsoElem; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
                 }
 
             }
@@ -1268,19 +1290,19 @@ $(function () {
         function eloreUgrik() {
             sablon.remove();
             
-                let utolsoElem = tabla.find("tr").length;
+                let utolsoElem = tabla.find(elem).length;
 
-                if ((tabla.find("tr").eq(utolsoElem-1)).css("display")=="none"){
-                let megjelenitettUtolso = 1;
+                if ((tabla.find(elem).eq(utolsoElem-1)).css("display")=="none"){ 
+                let megjelenitettUtolso = 1; 
 
-                while ((utolsoElem - megjelenitettUtolso) % 10 != 0) {
+                while ((utolsoElem - megjelenitettUtolso) % elemPerOldal != 0) {
                     megjelenitettUtolso++;
                 }
 
                 kiurit();
 
-                for (let index = utolsoElem - megjelenitettUtolso+1;index < utolsoElem;index++) {
-                    tabla.find("tr").eq(index).fadeIn(500);
+                for (let index = utolsoElem - megjelenitettUtolso;index < utolsoElem;index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
                 }
             }
             oldalSzamKiir(tabla);
@@ -1288,15 +1310,15 @@ $(function () {
 
         function hatraUgrik(){
             sablon.remove();
-            elsoElem=1;
+            elsoElem=0;
 
-            if ((tabla.find("tr").eq(elsoElem)).css("display")=="none")
+            if ((tabla.find(elem).eq(elsoElem)).css("display")=="none")
             {
 
             kiurit();
 
-            for (let index = elsoElem; index < elsoElem+10; index++) {
-                tabla.find("tr").eq(index).fadeIn(500);
+            for (let index = elsoElem; index < elsoElem+elemPerOldal; index++) {
+                tabla.find(elem).eq(index).fadeIn(500);
 
             }
         }
@@ -1304,25 +1326,26 @@ $(function () {
         }
 
             function kiurit() {
-                for (let index = 1; index < tabla.find("tr").length; index++) {
-                    tabla.find("tr").eq(index).hide();
+                for (let index = 0; index < tabla.find(elem).length; index++) {
+                    tabla.find(elem).eq(index).hide();
                 }
             }
 
             function oldalSzamKiir(tabla) {
                 let utolsoElem = 0;
     
-                for (let index = 0; index < tabla.find("tr").length; index++) {
-                    if (tabla.find("tr").eq(index).css("display")!="none"){
+                for (let index = 0; index < tabla.find(elem).length; index++) {
+                    if (tabla.find(elem).eq(index).css("display")!="none"){
                         utolsoElem = index; 
                     }
                 }
-                let elsoElem = 1;
+                let elsoElem = 0;
                 
-                while (tabla.find("tr").eq(elsoElem).css("display")=="none"){
+                while (tabla.find(elem).eq(elsoElem).css("display")=="none"){
                     elsoElem++;
                 }
-            $("#oldalSzamok").html(elsoElem+" - "+utolsoElem +" elem ennyiből: "+ (tabla.find("tr").length-1))
+            $("#oldalSzamok").html((elsoElem+1)+" - "+(utolsoElem+1) +" elem ennyiből: "+ (tabla.find(elem).length))
+            $("#oldalSzam").html((elsoElem/elemPerOldal+1)+ ". / " + (Math.ceil(tabla.find(elem).length/elemPerOldal) + " oldal"))
         }
 
     }
