@@ -126,7 +126,7 @@ class AlkalmazottTabla {
             
             $(".alkalmazott-sablon").remove();
             $(this.menu).hide();
-            this.elem.after(`<tr class="alkalmazott-sablon">Ez itt egy próba sor</tr>`);
+            this.elem.after(`<tr class="alkalmazott-sablon"></tr>`);
             this.clone = szulo.find(".alkalmazott-sablon:last");
             this.clone.hide();
             for (let index = 0; index < this.elem.children("td").length-2; index++) {
@@ -158,6 +158,7 @@ class AlkalmazottTabla {
     }
 }
 class Munkakor {
+    
     constructor(szulo, adat, ajax) {
         this.api = "http://localhost:8000/api/munkakor";
         this.ajax = ajax;
@@ -166,37 +167,88 @@ class Munkakor {
         szulo.append(
             `<li class="munkakor-listitem">
             <span class="munkakor-megnevezes">${this.adat.megnevezes}</span>
-            
+            <div class="details">Részletek</div>
             </li>`
         );
-        
+        ajax.ajaxApiGet ("http://localhost:8000/api/alkalmazottak",(adatok)=>{
+        this.munkakorAlkalmazottai = adatok.filter(alkalmazott=>{
+            return alkalmazott.munkakor == this.adat.megnevezes;
+        });
+        });
         this.elem = szulo.find(".munkakor-listitem:last");
-        this.elem.on("click",()=>{
-            const munkakorAdatok = $(".munkakor-adatok");
-            console.log(this.adat);
-            
-            ajax.ajaxApiGet ("http://localhost:8000/api/alkalmazottak",(adatok)=>{
+        this.elem.find(".details").on("click",()=>{
+                const munkakorAdatok = $(".munkakor-adatok");
                 munkakorAdatok.empty();
-                let munkakorAlkalmazottai = adatok.filter(alkalmazott=>{
-                    return alkalmazott.munkakor == this.adat.megnevezes;
-                })
-                
-                munkakorAdatok.append(`<span></span><div>${this.adat.leiras}</div>`);
-                munkakorAdatok.append(`<div><span class="munkakor-munkafonok">${this.adat.munkafonok==null ? "-":this.adat.munkafonok}</span></div>`);
-                munkakorAlkalmazottai.forEach(alkalmazott=>{
-                    munkakorAdatok.append(`<div>${alkalmazott.nev}</div>`);
-                    munkakorAdatok.append(`<div>${alkalmazott.elerhetoseg}</div>`);
-                    munkakorAdatok.append(`<div>${alkalmazott.email}</div>`);
-                    munkakorAdatok.append(`<div class="details">Részletek</div>`);
+                munkakorAdatok.parent().append(` <div class="loading">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>`);
+                munkakorAdatok.hide();
+                munkakorAdatok.append(`
+                <div class="munkakor-adatok-title">
+                <div class="munkakor-adatok-megnev">${this.adat.megnevezes}</div>
+                <div class="munkakor-munkafonok">${this.adat.munkafonok==null ? "Munkafőnök: Nincs ":"Munkafőnök: "+this.adat.munkafonok}</div>
+                <div class="munkakor-adatok-leiras">${this.adat.leiras}</div>
+                </div>`);
+                munkakorAdatok.append(`<div class="munkakor-dolgozo"></div>`);
+                munkakorAdatok.append(`<div class="munkakor-dolgozo-adatok">Válassz az alkalmazott képei közül!</div>`);
+        
+                this.munkakorAlkalmazottai.forEach(alkalmazott=>{
+                   
+                    let munkakorDolgozok = munkakorAdatok.find(".munkakor-dolgozo");
+                    ajax.ajaxApiGet("https://randomuser.me/api/?results=1",(adat)=>{
+
+                        munkakorDolgozok.append(`<img alt="p">`);
+                        let dolgozoElem = munkakorDolgozok.find("img:last");
+                        let fenykep = adat.results[0].picture.large;
+                        let alkalmazottt = new MunkakorAlkalmazott(fenykep,alkalmazott,dolgozoElem);
+
+                       
+                    });
+                    $(document).ajaxStop(()=>{
+                        $(".loading").hide();
+                        munkakorAdatok.slideDown(500);
+                    });
+                      
                 });
+               
                 
-            });
+            
         });
     }
+
+  
     munkakorTorles(){
         let esemeny = new CustomEvent("MunkakorTorles",{detail:this});
         window.dispatchEvent(esemeny);
     }
+    
+}
+
+class MunkakorAlkalmazott{
+        constructor(kep,adat,elem)
+        {
+            this.elem = elem;
+            this.kep = kep;
+            this.adat = adat;
+            this.elem.attr("src",this.kep);
+            this.elem.on("click",()=>{
+                
+                $(".munkakor-dolgozo-adatok").html(`
+                <div>
+                <img src="${this.kep}" alt="">
+                </div>
+                <div class="munkakor-dolgozo-adatai">
+                <div class="fas fa-user"><span> ${this.adat.nev}</span></div>
+                <div class="fas fa-phone"><span> ${this.adat.elerhetoseg}</span></div>
+                <div class="fas fa-envelope"><span> ${this.adat.email}</span></div>
+                </div>
+               `);
+               $(".munkakor-dolgozo-adatok").hide();
+               $(".munkakor-dolgozo-adatok").slideDown(500);
+
+            });
+            
+        }
+       
 }
 
 class MuszakEloszlas {

@@ -346,7 +346,7 @@ header nav a {
   }
 
   .managerinfo .logo {
-    width:40%!important;
+    width: fit-content;
     padding: 0;
   }  
   
@@ -384,6 +384,7 @@ header nav a {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+
   }
   .fa-home{
     color:var(--bs-info);
@@ -584,9 +585,7 @@ header nav a {
   display: none;
 }
 
-.munkakor-list{
 
-}
 #ManFaliujsag fieldset label {
   color: var(--fds-button-text);
   padding: .5rem;
@@ -963,13 +962,94 @@ margin-bottom: 1rem;
   }
   .munkakor-container{
     display: flex;
-    justify-content:stretch ;
+    
+    margin: 1rem;
+    border-radius: 10px;
+  }
+  .munkakor-adatok-leiras{
+    color: var(--fds-gray-70);
+    font-size: 1.05rem;
+  }
+  .munkakor-adatok-title{
+   padding: 0;
+   margin: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 2rem;
+    background-color:var(--fds-comment-background);
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+  }
+  .munkakor-dolgozo{
+    display: flex;
+    width: fit-content;
+    border-radius: 10px;
+    justify-content: center;
     gap: 1rem;
-    width: 90%;
-    margin: auto;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+   
+    
+  }
+  .munkakor-adatok-megnev{
+    font-size: 1.2rem;
+    font-style: italic;
+    color:var(--fds-blue-60);
+  }
+  .munkakor-dolgozo img{
+    border-radius: 50px;
+    width: 50px;
+    height: 100%;
+    box-shadow: rgb(9 30 66 / 25%) 0px 1px 1px, rgb(9 30 66 / 13%) 0px 0px 1px 1px;
+    margin: 1rem;
+    
   }
   .munkakor-adatok{
-    padding-top: 1rem;
+    box-shadow: rgb(9 30 66 / 25%) 0px 1px 1px, rgb(9 30 66 / 13%) 0px 0px 1px 1px;
+    width: 100%;
+    border-radius: 10px;
+    margin: 2rem;
+  }
+  .munkakor-dolgozo-adatok{
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgb(9 30 66 / 25%) 0px 1px 1px, rgb(9 30 66 / 13%) 0px 0px 1px 1px;
+    margin: 2rem auto;
+    gap:.5rem;
+    margin-top: 2rem;
+    background: var(--always-white);
+    width: fit-content;
+    border-radius: 10px;
+    padding: 2rem;
+    
+ 
+  }
+  .munkakor-dolgozo-adatai{
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    padding: 1rem;
+    width: fit-content;
+  }
+  .munkakor-dolgozo-adatok span{
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: black !important;
+  }
+  .munkakor-dolgozo-adatok img{
+    width: 100px;
+    height: 100%;
+    border-radius: 10px;
+  }
+  .munkakor-dolgozo-adatok .fa-user{
+    color:var(--bs-green);
+  }
+  .munkakor-dolgozo-adatok .fa-phone{
+    color:var(--bs-info);
+  }
+  .munkakor-dolgozo-adatok .fa-envelope{
+    color:var(--fds-gray-70);
   }
   /*!-----------!*/
   /* Mindenki menu vége */
@@ -1011,19 +1091,39 @@ margin-bottom: 1rem;
   }
 
   .munkakor-list{
+   
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    padding: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
 
+    height: 100%;
+    /* background-color:var(--fds-comment-background);
+     
+   */
+    
   }
   .munkakor-list li{
     list-style-type: none;
-    
-    
-
-  }
-  .munkakor-megnevezes{
-    display: flex;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--fds-gray-20);
     width: 100%;
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+    display: flex;
+    align-items: center;
+    gap:2rem;
+
   
   }
+ 
   
   
   .label-input {
@@ -1069,7 +1169,19 @@ margin-bottom: 1rem;
     display: grid;
     grid-template-columns: repeat(3,auto);
   }
-  
+  #Munkakorok{
+   
+  }
+  #Munkakorok h3{
+    padding: 1.5rem;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom:1px solid var(--fds-gray-20);
+    margin: 0;
+  }
   #Muszaktipusm h3{
     padding: 1.5rem;
     font-weight: 450;
@@ -1403,9 +1515,8 @@ margin-bottom: 1rem;
   #Muszaktipusn {
     box-shadow: none;
     background-color: transparent;
-    display: inline-grid;
-    grid-template-columns: 2fr 2fr;
-    
+    display: flex;
+    justify-content: center;
   }
   .timer-datettime {
     padding-left: 1rem;
@@ -2046,10 +2157,27 @@ margin-bottom: 1rem;
     margin-right: 2rem;
   }
   
-  .showmuszak,.details{
+  .showmuszak{
+
     color:#2c7be3;
     font-weight: 450;
+  
    
+  }
+  .details{
+    margin-left: auto;
+    font-weight:450;
+    color: var(--bs-info);
+  }
+  #Munkakorok .details{
+    margin-left: auto;
+    color: var(--bs-info);
+    font-weight:450;
+    font-size: 1.1rem;
+   
+    width: fit-content;
+    padding: .5rem;
+    border-radius: 10px;
   }
   .removemuszak,.nosavemuszak{
     color:var(--fds-red-55);
@@ -2088,7 +2216,7 @@ margin-bottom: 1rem;
   
   .muszakok-table,.faliujsag-container
   {
-  
+    margin-bottom: 2rem;
       width: 100%;
       margin-left: .5rem;
       margin-right: .5rem;
@@ -2129,10 +2257,7 @@ margin-bottom: 1rem;
     display: flex;
     justify-content: center;
   }
-  .details{
-    margin-left: auto;
-    
-  }
+ 
  
   .faliujsag-container td{
     text-align: left;

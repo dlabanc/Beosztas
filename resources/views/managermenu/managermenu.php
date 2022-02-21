@@ -34,7 +34,7 @@
         </div>
 
         <div class="managerinfo-midgrid">
-            <img class="logo" src="https://i.ibb.co/VVNr62w/logo.png" alt="">
+           
 
 
         </div>
@@ -178,9 +178,9 @@
 
             <div id="Munkakorok" >
                 <h3>Munkakörök</h3>
-                <button id="newmunkakor"><span class="fa fa-plus"></span></button>
+                
                 <div class="munkakor-container">
-
+                    
                 </div>
             </div>
             <div id="Statisztika">

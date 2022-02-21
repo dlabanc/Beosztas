@@ -504,7 +504,8 @@ $(function () {
             szuloElem.empty();
             //szuloElem.hide();
             szuloElem.append(`<ul class="munkakor-list"></ul>`);
-            szuloElem.append(`<div class="munkakor-adatok">próba tároló</div>`);
+            szuloElem.append(`<div class="munkakor-adatok"></div>`);
+            $(".munkakor-adatok").hide();
             const munkakorLista = $(".munkakor-list");
             const munkakorAdatok = $(".munkakor-adatok");
 
