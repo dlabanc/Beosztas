@@ -242,8 +242,9 @@ class MunkakorAlkalmazott{
                 <div class="fas fa-envelope"><span> ${this.adat.email}</span></div>
                 </div>
                `);
-               $(".munkakor-dolgozo-adatok").hide();
-               $(".munkakor-dolgozo-adatok").slideDown(500);
+               $(".munkakor-dolgozo-adatok").children().hide();
+               $(".munkakor-dolgozo-adatok").children().slideDown(500);
+              
 
             });
             
