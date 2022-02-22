@@ -20,6 +20,7 @@
     
   }
   :root {
+    --base-lemon: #F7B928;
     --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
     --fds-black-alpha-10: rgba(0, 0, 0, 0.1);
     --fds-black-alpha-15: rgba(0, 0, 0, 0.15);
@@ -1228,9 +1229,120 @@ input:focus, textarea:focus, select:focus{
   }
   /*#############MŰSZAKELOSZLÁS MÓDOSÍTÁSA#######*/
   .muszaktipusm-container{
-    display: grid;
-    grid-template-columns: repeat(3,auto);
+   padding: 0;
+   margin: 0;
   }
+  .muszakeloszlasok-muszakok{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:1rem;
+    
+  }
+.muszakeloszlasok-muszakok .muszak-info{
+  padding: 1rem;
+  margin: .5rem;
+  background-color: var(--bs-info);
+  color:var(--always-white);
+  border-radius: 5px;
+}
+.arrows{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrows-active{
+  background-color: var(--always-white)!important;
+  font-size: 1.1rem;
+  color:var(--bs-info)!important;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.muszakeloszlasok-timeline{
+    margin-bottom: 2rem;
+  }
+  .muszakelo-clone{
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    background-color: var(--fds-highlight-cell-background);
+    
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .muszakelo-clone button,.muszakelo-clone-delete{
+    background: var(--always-white);
+    border-radius: 10px;
+    padding: 1rem;
+    width: fit-content;
+    border: none!important;
+  }
+  .muszakelo-clone input{
+    border:none;
+    border:1px solid var(--fds-gray-20);
+    padding:.5rem;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+
+    outline: none !important;
+  }
+  .muszakelo-clone-delete{
+    color: var(--fds-red-55);
+    margin-left: auto;
+    margin-right: 2rem;
+
+  }
+  .muszakelo-clone .fa-check{
+    color: var(--fds-green-55);
+  }
+  .muszakelo-clone-cancel{
+    color: var(--bs-info);
+  }
+  .times{
+    width: 10rem;
+    border-right: .5px solid var(--fds-gray-30);
+  }
+  .muszakeloszlas-elem{
+     display: flex;
+     width: 90%;
+     border-bottom: .5px solid var(--fds-gray-30);
+     margin: auto;
+     
+  }
+  .muszaknev{
+    padding: 1rem;
+    background-color: var(--base-lemon);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:var(--always-black);
+    font-weight: 450;
+    margin: 2rem;
+    
+  }
+  .muszakeloszlasok-timeline .oratol
+  {
+    font-size: 1.1rem;
+    color:var(--fds-gray-70);
+    padding: 1rem;
+    border-bottom: .5px dashed var(--fds-gray-30);
+  } 
+
+  .muszakeloszlasok-timeline .oraig
+  {
+    
+    font-size: 1.1rem;
+    color:var(--fds-gray-70);
+    padding: 1rem;
+  }
+
+
   #Munkakorok{
    
   }
@@ -2010,6 +2122,7 @@ input:focus, textarea:focus, select:focus{
     margin: auto;
     margin-top: .5rem;
   }
+
   
   
   

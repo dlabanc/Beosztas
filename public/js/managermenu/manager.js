@@ -601,23 +601,121 @@ $(function () {
 
     //ajaxApiGet - Hibás
     function muszakEloszlas() {
-        ajaxApiGet(apivegpont + "/muszakeloszlasok", muszakeloszlasBeallitas);
+        muszakApiGet();
 
-        function muszakeloszlasBeallitas(muszakok) {
+        function muszakeloszlasBeallitas(muszakEloszlasok) {
+            
             const szuloElem = $(".muszaktipusm-container");
-            muszakok.forEach((elem) => {
-                new MuszakEloszlas(szuloElem, elem);
+            szuloElem.empty();
+            szuloElem.append(`
+            <div class="muszakeloszlasok-muszakok"> </div>
+            <div class="aktiv-muszak-leiras"></div>
+            <div class="muszakeloszlasok-timeline"></div>`
+            );
+            let muszakokSelect = $(".muszakeloszlasok-muszakok");
+            muszakokSelect.prepend(`<div class="fa fa-angle-left arrows"></div>`);
+            const tablazat = szuloElem.find(".muszakeloszlasok-timeline");
+            ajaxApiGet("http://localhost:8000/api/muszaktipusok",muszakok=>{
+                muszakok.forEach((muszak,index)=>{
+                    let optionElem = `<div class="muszak-info-${index} muszak-info"></div>`;
+                    muszakokSelect.append(optionElem);
+                    muszakokSelect.find("div:last").text(muszak.tipus);
+                    
+                    
+                });
+                muszakokSelect.append(`<div class="fa fa-angle-right arrows"></div>`);
+                let elsomuszak = muszakok[0].tipus;
+                let aktivMuszakLeiras = $(".aktiv-muszak-leiras");
+                aktivMuszaktipus(elsomuszak,aktivMuszakLeiras);
+                console.log(elsomuszak)
+                let szurt = muszakEloszlasok.filter(muszak=>{
+                    return muszak.muszaktipus == elsomuszak;
+                });
+                szurt.forEach(muszakeloszlas=>{
+                    new MuszakEloszlas(tablazat,muszakeloszlas,ajax);
+                });
+
+                muszakokSelect.find(".muszak-info").on("click",function(event){
+                    muszakTablazatFeltolt(tablazat,muszakEloszlasok,event);
+                   
+                }); 
+                muszakokSelect.find(".fa-angle-left").on("click",function(event){
+                    
+                    let aktivia = aktivPage();
+                    console.log(aktivia);
+
+                });
+
+                muszakokSelect.find(".fa-angle-right").on("click",function(event){
+                   let aktivia = aktivPage();
+                  
+                    
+                });
+
             });
+             
         }
 
-        $(window).on("torolm", (event) => {
-            console.log(event.detail.tipus);
-        });
 
-        $(window).on("modositm", (event) => {
-            console.log(event.detail.tipus);
+        $(window).on("MuszakEloszlasValtozas",(event)=>{
+            event.detail.put();
+            muszakApiGet();
         });
+        $(window).on("MuszakEloszlasTorles",(event)=>{
+            event.detail.delete();
+            muszakApiGet();
+        });
+        function aktivMuszaktipus (tipus,elem){
+            ajaxApiGet("http://localhost:8000/api/muszaktipus/"+tipus,(muszak)=>{
+            elem.text(muszak.leiras);
+            });
+        }
+        function aktivPage(){
+            let aktivIndex=0;
+            for (let index = 0; index < $(".muszak-info").length; index++) {
+                if($(".muszak-info").eq(index).hasClass("arrows-active"))
+                {
+                    aktivIndex = index;
+                }
+                
+                
+            }
+            return aktivIndex;
+        }
+
+        function muszakApiGet(){
+            ajaxApiGet(apivegpont + "/muszakeloszlasok", muszakeloszlasBeallitas);
+        }
+
+        function muszakTablazatFeltolt(tablazat,muszakEloszlasok,event){
+          
+                    
+                    $(".muszak-info").removeClass("arrows-active");
+                    tablazat.empty();
+                    let aktiv = $(event.target);
+                    aktiv.addClass("arrows-active");
+                    let muszaknev = ($(event.target).text());
+                    let aktivMuszakLeiras = $(".aktiv-muszak-leiras");
+                    aktivMuszaktipus(muszaknev,aktivMuszakLeiras);
+                    let szurt = muszakEloszlasok.filter(muszak=>{
+                        return muszak.muszaktipus == muszaknev;
+                    });
+                    
+                    if(szurt.length<=0) {
+    
+                    }
+
+                    else{
+                    szurt.forEach(muszakeloszlas=>{
+                        new MuszakEloszlas(tablazat,muszakeloszlas,ajax);
+                    });
+                }
+                let muszakokSelect = $(".muszakeloszlasok-muszakok");    
+                
+        }
     }
+
+   
 
     //ajaxApiGet - View kell
     function managerStatisztika() {

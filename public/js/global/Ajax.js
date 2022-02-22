@@ -29,7 +29,7 @@
                 type: "GET",
                 success: function(result){
                     callback(result);
-                    console.log(result);
+                    
                 }
             }
         );

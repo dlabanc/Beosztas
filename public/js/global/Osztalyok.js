@@ -258,61 +258,90 @@ class MunkakorAlkalmazott{
 }
 
 class MuszakEloszlas {
-    constructor(szulo, adat) {
-        this.szulo = szulo;
-        szulo.append(
-            `<div class="muszaktipusm-content">
-        <h3></h3>  
-        <table>
-            <tr>
-              <th>Műszakszám</th>
-              <th>Órától</th>
-              <th>Óráig</th>
-              <th>Szerkesztés</th>
-              <th>Törlés</th>
-            </tr>
-        </table>
-    </div>`
-        );
+    constructor(szulo,adat,ajax){
+        this.ajax = ajax;
+        this.szulo=szulo;
         this.adat = adat;
-        this.elem = $(".muszaktipusm-content:last");
-        this.elem.children("h3").text(this.adat.muszaktipus);
-        this.tabla = this.elem.children("table");
+        this.muszakeloazon = this.adat.muszakelo_azon;
+        this.muszakszam = this.adat.muszakszam;
+        this.muszakOratol = this.adat.oratol;
+        this.muszakOraig = this.adat.oraig;
+        this.szulo.find(".table-header").text(this.adat.muszaktipus);
+        this.szulo.append(`<div class="muszakeloszlas-elem"></div>`);
+        this.elem = this.szulo.find("div:last"); 
+        this.elem.append('<div class="times"></div>');
+        Object.keys(this.adat).forEach(kulcs=>{
+            
+            if(kulcs=="muszakelo_azon" || kulcs=="muszaktipus") return;
+            if(kulcs=="oratol" || kulcs == "oraig"){
 
-        for (const key in this.adat.muszakok) {
-            this.tabla.append("<tr></tr>");
-            this.tablaElem = this.tabla.children("tbody").children("tr:last");
-            this.tablaElem.append(
-                "<td>" + this.adat.muszakok[key].muszakszam + "</td>"
-            );
-            this.tablaElem.append(
-                "<td>" + this.adat.muszakok[key].oratól + "</td>"
-            );
-            this.tablaElem.append(
-                "<td>" + this.adat.muszakok[key].oraig + "</td>"
-            );
-            this.tablaElem.append(
-                '<td><button class="editmuszakm" ><span class="fas fa-pen"></span></button></td>'
-            );
-            this.tablaElem.append(
-                '<td><button class="removemuszakm"><span class="fas fa-minus"></span></button></td>'
-            );
-        }
-
-        this.elem.children(".removemuszakm").on("click", () => {
-            this.kattintasTrigger("torolm");
+                this.elem.find(".times").append(`<div class="${kulcs}">${this.adat[kulcs]}:00</div>`);
+            }
+            else{
+                this.elem.append(`<div class="muszaknev">${this.adat[kulcs]}. műszak</div>`); 
+            }    
         });
-        this.elem.children(".editmuszakm").on("click", () => {
-            this.kattintasTrigger("modositm");
+       
+        this.szulo.append
+        (`
+        <div class="muszakelo-clone">
+        <input type="number"  placeholder="${this.muszakOratol}:00" > - <input type="number"   placeholder="${this.muszakOraig}:00">
+        <input type="number"  placeholder="${this.muszakszam}. műszak">
+        <button class="fas fa-check muszakelo-clone-ok"></button>
+        <button class="muszakelo-clone-cancel" >Mégse</button>
+        <button class="fas fa-trash muszakelo-clone-delete"></button>
+        </div>
+        `);
+        this.clone = this.szulo.find(".muszakelo-clone:last");  
+        this.clone.hide();
+        this.elem.on("click",()=>{
+            this.clone.slideDown(300);
         });
+        this.clone.find(".muszakelo-clone-delete").on("click",()=>{
+            
+            this.torlesTrigger(); 
+        });
+        this.clone.find(".muszakelo-clone-cancel").on("click",()=>{
+              
+               this.clone.slideUp(300); 
+        });    
+        this.clone.find(".muszakelo-clone-ok").on("click",()=>{
+            this.kattintasTrigger();
+        });   
     }
 
-    kattintasTrigger(gomb) {
-        let esemeny = new CustomEvent(gomb, {
-            detail: this.adat,
-        });
+    kattintasTrigger(){
+        let esemeny = new CustomEvent("MuszakEloszlasValtozas",{detail:this});
         window.dispatchEvent(esemeny);
     }
+
+    torlesTrigger(){
+        let esemeny = new CustomEvent("MuszakEloszlasTorles",{detail:this});
+        window.dispatchEvent(esemeny);
+    }
+
+    put(){
+        this.adat.oratol = this.clone.find("input").eq(0).val();
+        this.adat.oraig = this.clone.find("input").eq(1).val();
+        this.adat.muszakszam = this.clone.find("input").eq(2).val();
+       
+            ///api/muszakeloszlas/{muszakelo_azon}
+        this.ajax.ajaxApiPut("http://localhost:8000/api/muszakeloszlas",this.muszakeloazon,this.adat);
+    }
+
+    delete(){
+        // $( "td" ).hover(
+        //     function() {
+        //       $( this ).addClass( "hover" );
+        //     }, function() {
+        //       $( this ).removeClass( "hover" );
+        //     }
+        //   );
+        this.ajax.ajaxApiDelete("http://localhost:8000/api/muszakeloszlas",this.muszakeloazon);
+    }
+   
+
+    
 }
 
 class MuszakHozzaAdas {
@@ -538,7 +567,6 @@ class Faliujsag {
         this.elem.find("p").text(this.adat.tartalom);
         this.elem.find("h4").text(this.adat.mikor);
         this.options = this.getMeretek(this.elem.find("p"));
-        console.log(this.options)
 
         this.elem.find(".removefaliujsagm").on("click", () => {
             
