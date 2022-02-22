@@ -188,9 +188,14 @@ class Munkakor {
                 <div class="munkakor-munkafonok">${this.adat.munkafonok==null ? "Munkafőnök: Nincs ":"Munkafőnök: "+this.adat.munkafonok}</div>
                 <div class="munkakor-adatok-leiras">${this.adat.leiras}</div>
                 </div>`);
+
                 munkakorAdatok.append(`<div class="munkakor-dolgozo"></div>`);
-                munkakorAdatok.append(`<div class="munkakor-dolgozo-adatok">Válassz az alkalmazott képei közül!</div>`);
-        
+                munkakorAdatok.append(`<div class="munkakor-dolgozo-adatok">Válassz az alkalmazottak képei közül!</div>`);
+                if(this.munkakorAlkalmazottai.length<=0){
+                    $(".loading").hide();
+                    munkakorAdatok.slideDown(500);
+                    munkakorAdatok.find(".munkakor-dolgozo-adatok").html(`<div class="munkakor-dolgozo-adatok nincs-dolgozo">Ehhez a munkakörhöz még nincs hozzárendelve dolgozó!</div>`);
+                }
                 this.munkakorAlkalmazottai.forEach(alkalmazott=>{
                    
                     let munkakorDolgozok = munkakorAdatok.find(".munkakor-dolgozo");
@@ -199,7 +204,7 @@ class Munkakor {
                         munkakorDolgozok.append(`<img alt="p">`);
                         let dolgozoElem = munkakorDolgozok.find("img:last");
                         let fenykep = adat.results[0].picture.large;
-                        let alkalmazottt = new MunkakorAlkalmazott(fenykep,alkalmazott,dolgozoElem);
+                        new MunkakorAlkalmazott(fenykep,alkalmazott,dolgozoElem);
 
                        
                     });

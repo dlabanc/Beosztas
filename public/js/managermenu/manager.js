@@ -152,7 +152,6 @@ $(function () {
             </div>
             <div class="dateinfo-muszaktipus" id="selectable"></div>
             <div class="dateinfo-buttons"><button class="fas fa-check user-send-ok"></button><button class="fas fa-trash user-send-cancel"></button></div>`);
-            $(".datettime-info").hide();
             $(".dateinfo-buttons").hide();
         }
 
@@ -249,7 +248,7 @@ $(function () {
                 this.muszakTipusElem = $(".dateinfo-muszaktipus");
 
                 this.elem.on("click", () => {
-                    this.infoElem.hide();
+                    
                     this.infoElem.show(500);
                     $(".dateinfo-massage-grid").hide();
                     $(".dateinfo-buttons").hide();
@@ -508,11 +507,65 @@ $(function () {
             $(".munkakor-adatok").hide();
             const munkakorLista = $(".munkakor-list");
             const munkakorAdatok = $(".munkakor-adatok");
-
+            
 
             munkakorok.forEach((elem) => {
                 new Munkakor(munkakorLista, elem, ajax);
             });
+            let masolat = munkakorLista.children(".munkakor-listitem").eq(0).clone();
+            masolat.addClass("munkakor-new-elem");
+            masolat.empty();
+            masolat.append(`<div>Új hozzáadása</div>`);
+            munkakorLista.prepend(masolat);
+            masolat.on("click",()=>{
+                masolat.hide();
+                $(".munkakor-new-field").remove();
+                munkakorLista.prepend(`
+                <div class="munkakor-new-field">
+                    <div class="munkakor-new-inputs">
+                    <div class="munkakor-new-box">
+                    <span>Megnevezés*</span>
+                    <input type="text" id="megnevezes">
+                    </div>
+                    <div class="munkakor-new-box">
+                    <span>Leírás*</span>
+                    <input type="text" id="leiras">
+                    </div>
+                    <div class="munkakor-new-box">
+                    <span>Munkafőnök</span>
+                    <input type="text" id="munkafonok">
+                    </div>
+                    
+                    </div>
+                    <div class="munkakor-new-buttons">
+                    <button class="munkakor-new-ok fas fa-check"></button>
+                    <button class="munkakor-new-cancel fas fa-times"></button>
+                    </div>
+                </div>    
+                `);
+                let munkakorInputMezo =  $(".munkakor-new-field");
+                let munkakorNewOk = munkakorInputMezo.find(".munkakor-new-ok");
+                let munkakorNewCancel = munkakorInputMezo.find(".munkakor-new-cancel");
+                munkakorInputMezo.hide();
+                munkakorInputMezo.slideDown(500);
+                munkakorInputMezo.find(munkakorNewOk).on("click",()=>{
+                    munkakorInputMezo.slideUp(500);
+                    masolat.show();
+                    let megnevezes = $("#megnevezes").val();
+                    let leiras = $("#leiras").val();
+                    let munkafonok = $("#munkafonok").val();
+                    let uj = {megnevezes:megnevezes,leiras:leiras,munkafonok:munkafonok};
+                    ajax.ajaxApiPost(munkakorApi,uj);
+                    ajaxApiGet(apivegpont + "/munkakorok", munkakorBeallitas);
+                });
+
+                munkakorInputMezo.find(munkakorNewCancel).on("click",()=>{
+                    munkakorInputMezo.slideUp(500);
+                    masolat.show();
+                });
+
+            });
+
 
         }
     }

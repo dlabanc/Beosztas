@@ -642,8 +642,8 @@ margin-bottom: 1rem;
 #Muszaktipusn {
   box-shadow: none;
   background-color: transparent;
-  display: inline-grid;
-  grid-template-columns: 2fr 2fr;
+  padding: 2rem;
+
   
 }
 .timer-datettime {
@@ -660,7 +660,67 @@ margin-bottom: 1rem;
 .datettime {
   margin-top: 0.5rem;
 }
+.munkakor-new-elem{
+  
+  border: .5px dashed var(--fds-gray-20)!important;
+  text-align: center;
+  color:var(--fds-gray-30);
+  justify-content: center;
+  font-style: italic;
+  font-weight: 300;
 
+}
+
+.munkakor-new-buttons{
+  display: flex;
+  gap:1rem;
+  
+  justify-content: center;
+  
+}
+.munkakor-new-buttons button{
+  background: var(--always-white);
+  border-radius: 10px;
+ padding: 1rem;
+  width: 50px;
+ 
+  border: none!important;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.munkakor-new-buttons .fa-times{
+  color: var(--fds-red-55);
+}
+.munkakor-new-buttons .fa-check{
+  color:var(--fds-green-55);
+}
+.munkakor-new-box{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  
+}
+.munkakor-new-box span{
+  text-indent: 1rem;
+  vertical-align: text-top;
+  font-weight: 300;
+  padding-bottom: .2rem;
+  color:var(--bs-gray);
+  font-style: italic;
+}
+.munkakor-new-box input{
+  border: none!important;
+  text-indent: 1rem;
+  margin: auto;
+  border-radius: 10px;
+  padding: .35rem;
+  width: 100%;
+ 
+}
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
 .datettime-info {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
@@ -1020,7 +1080,7 @@ margin-bottom: 1rem;
     margin-top: 2rem;
     background: var(--always-white);
     width: 100%;
-    border-radius: 10px;
+   
     padding: 2rem;
     
  
@@ -1051,10 +1111,12 @@ margin-bottom: 1rem;
   .munkakor-dolgozo-adatok .fa-envelope{
     color:var(--fds-gray-70);
   }
-  /*!-----------!*/
-  /* Mindenki menu vége */
-  
-  /* Tartalom */
+  .nincs-dolgozo{
+    font-size: 1.2rem;
+    color:var(--fds-red-55);
+    border: none !important;
+    border-radius: 0;
+  }
   
   article {
     
