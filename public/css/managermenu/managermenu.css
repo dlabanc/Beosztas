@@ -558,15 +558,6 @@ header nav a {
 }
 
 
-
-
-
-/*---------------------*/
-.stat-title{
- 
-  
-}
-
 #ManFaliujsag{
   
     background-color: transparent;
@@ -1122,11 +1113,11 @@ input:focus, textarea:focus, select:focus{
   article {
     
     height: fit-content;
-    width: 100%;
+    
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     background-color: var(--always-white);
     border-radius: 10px;
-    margin: auto;
+  
     
   }
   
@@ -1237,6 +1228,8 @@ input:focus, textarea:focus, select:focus{
     flex-wrap: wrap;
     justify-content: center;
     gap:1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
     
   }
 .muszakeloszlasok-muszakok .muszak-info{
@@ -1307,6 +1300,16 @@ input:focus, textarea:focus, select:focus{
     width: 10rem;
     border-right: .5px solid var(--fds-gray-30);
   }
+  .aktiv-muszak-leiras{
+    width: 90%;
+    text-align: center;
+    padding: .5rem;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin: auto;
+    border-bottom: 1px solid var(--fds-gray-20);
+   
+  }
   .muszakeloszlas-elem{
      display: flex;
      width: 90%;
@@ -1344,7 +1347,7 @@ input:focus, textarea:focus, select:focus{
 
 
   #Munkakorok{
-   
+   padding: 1rem;
   }
   #Munkakorok h3{
     padding: 1.5rem;
@@ -1356,9 +1359,17 @@ input:focus, textarea:focus, select:focus{
     border-bottom:1px solid var(--fds-gray-20);
     margin: 0;
   }
+  
   #Muszaktipusm h3{
     padding: 1.5rem;
-    font-weight: 450;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom:1px solid var(--fds-gray-20);
+    margin: 0;
+    margin-bottom: 1rem;
   }
   .muszaktipusm-content{
     
@@ -1876,10 +1887,7 @@ input:focus, textarea:focus, select:focus{
     width: 100%;
   }
   
-  .posts-container{
-    
-  }
-  
+
   .post-content {
     display: none;
     margin-left: 2rem;
@@ -1907,9 +1915,7 @@ input:focus, textarea:focus, select:focus{
     background-color: #77a7ff;
     color:white;
   }
-  .cancel-faliujsagm{
 
-  }
   .post-content-buttons{
     display: flex;
     flex-direction: row;
@@ -2011,12 +2017,12 @@ input:focus, textarea:focus, select:focus{
     grid-template-columns: auto;
     gap:2rem;
     padding: 2rem;
+    min-width: 1000px;
   }
-  
-  #Man-statisztika-elem1,#Man-statisztika-elem2,#Man-statisztika-elem3{
-   
- 
+  .hover{
+    background-color: var(--fds-highlight-cell-background);
   }
+
   #Man-statisztika-elem2{
     height: 25%;
   }
@@ -2114,9 +2120,7 @@ input:focus, textarea:focus, select:focus{
     color:var(--bs-indigo);
     padding: .5rem;
   }
-  #navigacio{
 
-  }
   #oldalUgras{
     
     margin: auto;

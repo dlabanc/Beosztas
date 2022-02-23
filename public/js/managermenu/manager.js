@@ -612,44 +612,83 @@ $(function () {
             <div class="aktiv-muszak-leiras"></div>
             <div class="muszakeloszlasok-timeline"></div>`
             );
+
             let muszakokSelect = $(".muszakeloszlasok-muszakok");
             muszakokSelect.prepend(`<div class="fa fa-angle-left arrows"></div>`);
             const tablazat = szuloElem.find(".muszakeloszlasok-timeline");
+
             ajaxApiGet("http://localhost:8000/api/muszaktipusok",muszakok=>{
+              
                 muszakok.forEach((muszak,index)=>{
                     let optionElem = `<div class="muszak-info-${index} muszak-info"></div>`;
                     muszakokSelect.append(optionElem);
-                    muszakokSelect.find("div:last").text(muszak.tipus);
-                    
-                    
+                    muszakokSelect.find("div:last").text(muszak.tipus); 
                 });
                 muszakokSelect.append(`<div class="fa fa-angle-right arrows"></div>`);
+                $(".muszak-info").eq(0).addClass("arrows-active");
                 let elsomuszak = muszakok[0].tipus;
                 let aktivMuszakLeiras = $(".aktiv-muszak-leiras");
-                aktivMuszaktipus(elsomuszak,aktivMuszakLeiras);
-                console.log(elsomuszak)
                 let szurt = muszakEloszlasok.filter(muszak=>{
                     return muszak.muszaktipus == elsomuszak;
                 });
+
+                aktivMuszaktipus(elsomuszak,aktivMuszakLeiras);
                 szurt.forEach(muszakeloszlas=>{
                     new MuszakEloszlas(tablazat,muszakeloszlas,ajax);
                 });
 
                 muszakokSelect.find(".muszak-info").on("click",function(event){
                     muszakTablazatFeltolt(tablazat,muszakEloszlasok,event);
+                    
                    
                 }); 
                 muszakokSelect.find(".fa-angle-left").on("click",function(event){
+                   let aktivOldal = aktivPage();
+                   let maxHossz = $(".muszak-info").length;
+                   
+                   $(".muszak-info").removeClass("arrows-active");
+                   if(maxHossz>4){
+                    $(".muszak-info").hide();
+                   }
+                   
+
+                   if(aktivOldal==0){
+                       aktivOldal = maxHossz-1;
+                   }
+                   else
+                   {
+                        aktivOldal -= 1;
+                   }
+                   let aktiv = $(".muszak-info").eq(aktivOldal);
+                   $(".muszak-info").eq(aktivOldal).addClass("arrows-active");
+                   $(".muszak-info").eq(aktivOldal).show();
+                   $(".muszak-info").eq(aktivOldal+1).show();
+                   $(".muszak-info").eq(aktivOldal+2).show();
+                   muszakTablazatFeltolt(tablazat,muszakEloszlasok,{target:aktiv});
                     
-                    let aktivia = aktivPage();
-                    console.log(aktivia);
 
                 });
 
                 muszakokSelect.find(".fa-angle-right").on("click",function(event){
-                   let aktivia = aktivPage();
-                  
-                    
+                   let aktivOldal = aktivPage();
+                   let maxHossz = $(".muszak-info").length;
+                   if(maxHossz>4){
+                    $(".muszak-info").hide();
+                   }
+                   $(".muszak-info").removeClass("arrows-active");
+                   if(aktivOldal==maxHossz-1){
+                       aktivOldal = 0;
+                   }
+                   else
+                   {
+                        aktivOldal += 1;
+                   }
+                   let aktiv = $(".muszak-info").eq(aktivOldal);
+                   $(".muszak-info").eq(aktivOldal).show();
+                   $(".muszak-info").eq(aktivOldal+1).show();
+                   $(".muszak-info").eq(aktivOldal+2).show();
+                   $(".muszak-info").eq(aktivOldal).addClass("arrows-active");
+                   muszakTablazatFeltolt(tablazat,muszakEloszlasok,{target:aktiv});
                 });
 
             });
@@ -664,12 +703,15 @@ $(function () {
         $(window).on("MuszakEloszlasTorles",(event)=>{
             event.detail.delete();
             muszakApiGet();
+
         });
+
         function aktivMuszaktipus (tipus,elem){
             ajaxApiGet("http://localhost:8000/api/muszaktipus/"+tipus,(muszak)=>{
             elem.text(muszak.leiras);
             });
         }
+
         function aktivPage(){
             let aktivIndex=0;
             for (let index = 0; index < $(".muszak-info").length; index++) {
@@ -688,8 +730,6 @@ $(function () {
         }
 
         function muszakTablazatFeltolt(tablazat,muszakEloszlasok,event){
-          
-                    
                     $(".muszak-info").removeClass("arrows-active");
                     tablazat.empty();
                     let aktiv = $(event.target);
@@ -710,7 +750,8 @@ $(function () {
                         new MuszakEloszlas(tablazat,muszakeloszlas,ajax);
                     });
                 }
-                let muszakokSelect = $(".muszakeloszlasok-muszakok");    
+                tablazat.hide();
+                tablazat.slideDown(500);      
                 
         }
     }

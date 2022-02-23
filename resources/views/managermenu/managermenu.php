@@ -157,7 +157,7 @@
             </div>
 
             <div id="Muszaktipush" >
-                <h3>Műszak típus hozzáadása</h3>
+          
 
                 <div class="muszaktipush-container">
 
@@ -170,14 +170,14 @@
             </div>
 
             <div id="Muszaktipusm" >
-                <h3>Műszak eloszlás módosítása</h3>
+            
                 <div class="muszaktipusm-container">
 
                 </div>
             </div>
 
             <div id="Munkakorok" >
-                <h3>Munkakörök</h3>
+              
                 
                 <div class="munkakor-container">
                     
@@ -217,7 +217,7 @@
             </div>
 
             <div id="ManFaliujsag" >
-                <h3 id="mfu">Faliújság</h3>
+                
                 <button id="newpost" >Új bejegyzés</button>
                 <fieldset>
                        

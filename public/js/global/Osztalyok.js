@@ -308,6 +308,7 @@ class MuszakEloszlas {
         this.clone.find(".muszakelo-clone-ok").on("click",()=>{
             this.kattintasTrigger();
         });   
+        this.hoverEffect();
     }
 
     kattintasTrigger(){
@@ -330,14 +331,17 @@ class MuszakEloszlas {
     }
 
     delete(){
-        // $( "td" ).hover(
-        //     function() {
-        //       $( this ).addClass( "hover" );
-        //     }, function() {
-        //       $( this ).removeClass( "hover" );
-        //     }
-        //   );
         this.ajax.ajaxApiDelete("http://localhost:8000/api/muszakeloszlas",this.muszakeloazon);
+    }
+
+    hoverEffect(){
+        this.elem.hover(
+            function() {
+              $( this ).addClass( "hover" );
+            }, function() {
+              $( this ).removeClass( "hover" );
+            }
+          );
     }
    
 
