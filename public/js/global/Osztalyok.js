@@ -749,6 +749,7 @@ class Muszaktipus extends Adminelemek {
         this.ajax.ajaxApiDelete(this.api, this.adat.tipus);
     }
 }
+
 class Napimunkaeroigeny extends Adminelemek {
     //Route::put('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'update']);
     //Route::post('/api/napimunkaeroigeny', [NapiMunkaeroIgenyController::class, 'store']);

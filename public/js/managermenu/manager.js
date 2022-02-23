@@ -1139,29 +1139,138 @@ $(function () {
 
     //ajaxApiGet - Hibás
     function napiMin() {
+        const szuloElem = $("#Napimunka");
+        szuloElem.append(`
+        <div class="napimunka-napok">
+        <div>Válassz a napok közül!<span class="fa fa-angle-down"></span></div>
+        </div>
+        
+        <div class="napimunka-napok-container"></div>
 
-        /*
-        let vegpont = "../json/napiMin.json";
+        </div>
+        <div class="napimunka-napok-munkakorok"></div>
 
-        ajaxGet("../json/napok.json", ujHivas);
-        let napokTomb = [];
+        </div>
+        <div class="napimunka-table">
+        <div class="title-datum"></div>
+        <div class="title-munkakor"></div>
+        </div>`);
+        const tablazat = szuloElem.find(".napimunka-table:last");
+        const napokFoElem = szuloElem.find(".napimunka-napok:last");
+        const napokSelect = szuloElem.find(".napimunka-napok-container:last");
+        const napokMunkakorElem = szuloElem.find(".napimunka-napok-munkakorok:last");
+        const cimDatum = tablazat.find(".title-datum");
+        const cimMunkakor = tablazat.find(".title-munkakor");
+        ajaxApiGet("http://localhost:8000/api/napokossz",(napok)=>{
+                
+                
+                ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(a)=>{
+                const napimunkaeroigenyek = [];
+                a.forEach((b)=>{
+                    napimunkaeroigenyek.push(new NapimunkaeroigenyManager(tablazat,b));
+                });
+                napok.forEach(nap=>{
+                    new NapiMunkaeroIgenyNap(napokSelect,nap,napimunkaeroigenyek);
+                });
+                napokFoElem.on("click",()=>{
+                    napokMunkakorElem.slideUp(500);
+                    napokSelect.slideDown(500);
+                    
+                });
+                $(".napi-igenyek").hide();
+                napokMunkakorElem.hide();
+            });
+        });
 
-        function ujHivas(napok) {
-            napokTomb.push(napok);
-            ajaxGet(vegpont, napiMinBeallitas);
-        }
-
-        function napiMinBeallitas(napiMin) {
-            const szuloElem = $("#Napimunka");
-            for (let index = 0; index < napokTomb[0].length; index++) {
-                new NapiMin(szuloElem, napiMin, napokTomb[0][index].nap);
+        class NapiMunkaeroIgenyNap{
+            constructor(szulo,napok,tomb){
+                this.napok = napok;
+                this.szulo = szulo;
+                this.napimunkaeroigenyek = tomb;
+                this.nap = this.napok.nap;
+                this.munkakorok = new Set();
+                this.szulo.append(`<div class="napi-igenyek-datum">${this.nap}</div>`);
+                this.elem = szulo.find("div:last");
+                this.szulo.hide();
+                this.elem.on("click",()=>{
+                    
+                    $(".napi-igenyek").hide();
+                    let szurt = this.napimunkaeroigenyek.filter(igeny=>{
+                        return igeny.nap == this.nap;
+                    });
+                    szurt.forEach(szurtElem => { 
+                        this.munkakorok.add(szurtElem.munkakor);
+                    });
+                    
+                    $(".napi-igenyek-munkakorok").remove();
+                    this.munkakorok.forEach(munkakor=>{
+                        new NapimunkaKor(napokMunkakorElem,{munkakor:munkakor,nap:this.nap},szurt);
+                    });
+                    this.szulo.slideUp(500,()=>{
+                        napokMunkakorElem.slideDown(500);
+                    });
+                }); 
             }
         }
-        */
+
+        class NapimunkaKor{
+            constructor(szulo,adat,tomb){
+                this.adat = adat;
+                this.szulo = szulo;
+                this.napimunkaeroigenyek = tomb;
+                this.szulo.append(`<div class="napi-igenyek-munkakorok">
+                ${this.adat.munkakor}
+                </div>`);
+                this.elem = szulo.find("div:last");
+               
+                this.elem.on("click",()=>{
+                    $(".napi-igenyek").hide();
+                    let szurt = this.napimunkaeroigenyek.filter(igeny=>{
+                        return igeny.munkakor == this.adat.munkakor;
+                    });
+                    szurt.forEach(szurtElem => { 
+                        szurtElem.elem.slideDown(500);
+                    });
+                    this.szulo.slideUp(500);
+                    cimMunkakor.text(this.adat.munkakor);
+                    cimDatum.text(this.adat.nap);
+                    
+                });
+                
+            }
+        }
+        
+        class NapimunkaeroigenyManager{
+            constructor(szulo,adat){
+                this.adat = adat;
+                this.szulo = szulo;
+                this.nap = this.adat.datum;
+                this.munkakor = this.adat.munkakor;
+                this.muszakeloszlas = this.adat.muszakeloszlas;
+                this.szulo.append("<div class="+"napi-igenyek"+"></div>");
+                this.elem = szulo.find("div:last");
+                this.elem.append(
+                    `
+                    
+                    <div class="times">
+                    <div>${this.muszakeloszlas[0].oratol}:00</div>
+                    <div>${this.muszakeloszlas[0].oraig}:00</div>
+                    </div>
+                    <div class="munkaero-db">
+                    Szükséges alkalmazott: ${this.adat.db}
+                    </div>
+                    <div>`
+                );
+                this.elem.hide();
+
+               
+                
+            }
+
+        }
 
     }
 
-    //ajaxApiGet - Rendben
     function ProfilAdatok(id) {
         $("article").empty();
         $("article").append(`  <div id="Profiladatok" class="tabcontent">

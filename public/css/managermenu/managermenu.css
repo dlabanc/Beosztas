@@ -2263,7 +2263,31 @@ input:focus, textarea:focus, select:focus{
     border:1px solid rgba(255, 255, 255, 0.699);
   }
   
-  
+  .napi-igenyek{
+    display: flex;
+    width: 90%;
+    border-bottom: .5px solid var(--fds-gray-30);
+    margin: auto;
+  }
+  .napimunka-napok-container{
+    margin-left: 1rem;
+    border: 1px solid var(--fds-gray-20);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .napimunka-napok{
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    padding: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+    border-radius: 10px;
+  }
+  .napimunka-napok .fa-angle-down{
+    padding-left: .3rem;
+  }
   .napiMin input {
   width:40px;
   }
