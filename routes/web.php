@@ -70,6 +70,7 @@ Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
 // });
 
 Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
+Route::get('/api/alkalmazott/sort', [AlkalmazottController::class, 'sortBy']);
 Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
 Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
 Route::put('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'update']);
@@ -100,6 +101,7 @@ Route::post('/api/beosztas', [BeosztasController::class, 'store']);
 Route::delete('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'destroy']);
 
 ##FALIUJSAG
+Route::get('/api/faliujsag/search', [FaliujsagController::class, 'search']);
 Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
 Route::get('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'show']);
 Route::put('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'update']);

@@ -127,4 +127,17 @@ class AlkalmazottController extends Controller
         }
         return $tasks->get();
     }
+
+    public function sortBy(Request $request)
+    {
+        $column = $request->_sort;
+        if ($request->has('_order')){
+            $order=$request->_order;
+            $task=Alkalmazott::orderBy($column, $order)->get();
+        }
+        else{
+            $task=Alkalmazott::orderBy($column, 'asc')->get();
+        }
+        return response()->json($task);
+    }
 }
