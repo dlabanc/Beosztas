@@ -14,7 +14,7 @@ class Enged extends Migration
     public function up()
     {
         DB::unprepared("
-        CREATE TRIGGER `enged` BEFORE INSERT ON `muszakeloszlas` FOR EACH ROW begin
+        CREATE TRIGGER `engedInsert` BEFORE INSERT ON `muszakeloszlas` FOR EACH ROW begin
             set @oratoldb=(select count(*) from muszakeloszlas where oratol<new.oratol);
             set @oraigdb=(select count(*) from muszakeloszlas where oraig<new.oraig);
             if @oratoldb!=@oraigdb
@@ -23,6 +23,18 @@ class Enged extends Migration
                 SET MESSAGE_TEXT = 'Nem lehet atfedes';
             end if;
         end");
+
+        DB::unprepared("
+        CREATE TRIGGER `engedUpdate` BEFORE UPDATE ON `muszakeloszlas` FOR EACH ROW begin
+            set @oratoldb=(select count(*) from muszakeloszlas where oratol<new.oratol);
+            set @oraigdb=(select count(*) from muszakeloszlas where oraig<new.oraig);
+            if @oratoldb!=@oraigdb
+            THEN
+                SIGNAL SQLSTATE '45000' 
+                SET MESSAGE_TEXT = 'Nem lehet atfedes';
+            end if;
+        end");
+
     }
 
     /**
@@ -32,6 +44,7 @@ class Enged extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER IF EXISTS enged');
+        DB::unprepared('DROP TRIGGER IF EXISTS engedInsert');
+        DB::unprepared('DROP TRIGGER IF EXISTS engedUpdate');
     }
 }

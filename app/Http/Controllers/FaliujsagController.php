@@ -95,4 +95,16 @@ class FaliujsagController extends Controller
         $faliujsag = Faliujsag::find($faliujsagId);
         $faliujsag->delete();
     }
+
+    public function search(Request $request)
+    {
+        $queryString = $request->query();
+        foreach ($queryString as $key => $value) {
+            $explodedKey=explode('_',$key);
+            $column=$explodedKey[0];
+            $expression=$explodedKey[1];
+            $tasks=Faliujsag::where($column, $expression, '%' . $value . '%')->get();
+        }
+        return $tasks;
+    }
 }
