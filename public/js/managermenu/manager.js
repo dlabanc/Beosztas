@@ -893,7 +893,7 @@ $(function () {
         }
 
         function googleChartsKonyvtar(csomag, metodus) {
-            google.charts.load("current", { packages: [csomag] });
+            google.charts.load("jelenlegent", { packages: [csomag] });
             google.charts.setOnLoadCallback(metodus);
         }
 
@@ -1140,10 +1140,17 @@ $(function () {
     //ajaxApiGet - Hibás
     function napiMin() {
         const szuloElem = $("#Napimunka");
+        szuloElem.hide();
         szuloElem.empty();
         szuloElem.append(`
         <div class="napimunka-napok">
+        
+        <div class="napimunka-nap-grid">
         <div>Válassz a napok közül!<span class="fa fa-angle-down"></span></div>
+        <button class=" napok-het-mutat" alt="Hét napja">Aktuális hét</button>
+        <button class=" napok-ossz-mutat" alt="Összes nap">Összes</button>
+        </div>
+        
         <div class="napimunka-kivalasztott-datum"></div>
         </div>
         
@@ -1160,33 +1167,67 @@ $(function () {
         </div>`);
         const tablazat = szuloElem.find(".napimunka-table:last");
         const napokFoElem = szuloElem.find(".napimunka-napok:last");
+        const napokHetMutat = szuloElem.find(".napok-het-mutat:last");
+        const napokOsszMutat = szuloElem.find(".napok-ossz-mutat:last");
         const napokSelect = szuloElem.find(".napimunka-napok-container:last");
         const napokMunkakorElem = szuloElem.find(".napimunka-napok-munkakorok:last");
         const cimMunkakor = tablazat.find(".title-munkakor");
         const kivalasztottDatum = $(".napimunka-kivalasztott-datum");
         kivalasztottDatum.hide();
+        napokSelect.hide();
+        $(document).ajaxStop(()=>{
+            szuloElem.show();
+        });
         ajaxApiGet("http://localhost:8000/api/napokossz",(napok)=>{
                 
                 
                 ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(a)=>{
+
                 const napimunkaeroigenyek = [];
+                const napiMunkaeroigenyNapok = [];
                 a.forEach((b)=>{
-                    napimunkaeroigenyek.push(new NapimunkaeroigenyManager(tablazat,b));
+                    napimunkaeroigenyek.push(new NapimunkaeroigenyManager(tablazat,b,ajax));
                 });
+
                 napok.forEach(nap=>{
-                    new NapiMunkaeroIgenyNap(napokSelect,nap,napimunkaeroigenyek);
+                    let obj = new NapiMunkaeroIgenyNap(napokSelect,nap,napimunkaeroigenyek);
+                    napiMunkaeroigenyNapok.push(obj);
+                    
                 });
+
+                $(".napi-igenyek").hide();
+                napokMunkakorElem.hide();
+
                 napokFoElem.on("click",()=>{
                     napokMunkakorElem.slideUp(500);
-                    napokSelect.fadeIn(500);
+                    napokSelect.slideDown(500);
                     cimMunkakor.text("");
                     kivalasztottDatum.hide();
                     tablazat.hide(500);
                     cimMunkakor.removeClass("title-aktiv");
                     
                 });
-                $(".napi-igenyek").hide();
-                napokMunkakorElem.hide();
+                napokOsszMutat.on("click",()=>{
+                    napiMunkaeroigenyNapok.forEach(nap=>{
+                            nap.elem.show();
+                        });
+                });
+                napokHetMutat.on("click",()=>{
+                    
+                    let jelenleg=new Date();
+                    let elsonap = new Date(jelenleg.setDate(jelenleg.getDate() - jelenleg.getDay()+1));
+                    let utolsonap = new Date(jelenleg.setDate(jelenleg.getDate() - jelenleg.getDay()+7));
+                    napiMunkaeroigenyNapok.forEach(nap=>{
+                    if(new Date(nap.nap) >= elsonap&& new Date(nap.nap) <= utolsonap)
+                    {
+                        nap.elem.show();
+                    }
+                    else{
+                        nap.elem.hide();
+                    }
+                    });
+                    
+                });
             });
         });
 
@@ -1198,9 +1239,8 @@ $(function () {
                 this.nap = this.napok.nap;
                 this.napNev = this.getNap(this.nap);
                 this.munkakorok = new Set();
-                this.szulo.append(`<tr class="napi-igenyek-datum"><td>${this.nap} - ${this.napNev}</td><td class="badge">${this.munkakorok.size}</td> </tr>`);
+                this.szulo.append(`<tr class="napi-igenyek-datum"><td>${this.nap} - ${this.napNev}</td></tr>`);
                 this.elem = szulo.find("tr:last");
-                this.szulo.hide();
                 this.elem.on("click",()=>{
                     
                     $(".napi-igenyek").hide();
@@ -1252,6 +1292,10 @@ $(function () {
                     this.szulo.slideUp(500);
                     cimMunkakor.text(this.adat.munkakor);
                     cimMunkakor.addClass("title-aktiv");
+                    cimMunkakor.on("click",()=>{
+                        
+                        this.szulo.slideDown(500);
+                    });
                     
                 });
                 
@@ -1259,24 +1303,19 @@ $(function () {
         }
         
         class NapimunkaeroigenyManager{
-            constructor(szulo,adat){
+            constructor(szulo,adat,ajax){
                 this.adat = adat;
                 this.szulo = szulo;
                 this.nap = this.adat.datum;
                 this.munkakor = this.adat.munkakor;
                 this.muszakeloszlas = this.adat.muszakeloszlas;
-                
-
-               
-                
+                this.ajax=ajax;
             }
 
             megjelenit(obj,szulo){
                 obj.szulo.append("<div class="+"napi-igenyek"+"></div>");
                 obj.elem = szulo.find("div:last");
-                obj.elem.append(
-                    `
-                    
+                obj.elem.append(`
                     <div class="times">
                     <div class="oratol">${obj.muszakeloszlas[0].oratol}:00</div>
                     <div class="oraig">${obj.muszakeloszlas[0].oraig}:00</div>
@@ -1285,10 +1324,52 @@ $(function () {
                     <div class="munkaero-db">
                     Szükséges ${obj.adat.munkakor}: 
                     </div>
-                    <span>${obj.adat.db}</span>
+                    <span class="napi-igenyek-db">${obj.adat.db}</span>
+                    <div class="napi-igenyek-form"></div>
                     </div>
                     <div>`
                 );
+                obj.elem.find(".napi-igenyek-db-input").hide();    
+                obj.elem.find(".napi-igenyek-db").on("click",()=>{
+                    $(".napi-igenyek-db-input").remove();
+                    obj.elem.find(".napi-igenyek-form").append(`
+                    <div  class="napi-igenyek-db-input">
+                    <input type="number" placeholder="${obj.adat.db}">
+                    <button class="fas fa-check napi-igenyek-ok"></button>
+                    <button class="napi-igenyek-megse">Mégse</button>
+                    <button class="fas fa-times napi-igenyek-torles"></button>
+                    </div>`);
+                    
+                    obj.elem.find(".napi-igenyek-db-input").show();
+
+                    obj.elem.find(".napi-igenyek-ok").on("click",()=>{
+                        let ertek = obj.elem.find(".napi-igenyek-db-input").find("input").val();
+                        obj.adat.db=ertek;
+                        console.log(obj.adat)
+                        this.setBadge(obj.elem,obj.adat.db);
+                        this.put(obj);
+                        $(".napi-igenyek-db-input").remove();
+                    });
+
+                    obj.elem.find(".napi-igenyek-torles").on("click",()=>{
+                        obj.adat.db=0;
+                        this.setBadge(obj.elem,obj.adat.db);
+                        this.put(obj);
+                        $(".napi-igenyek-db-input").remove();
+                    });
+
+                    obj.elem.find(".napi-igenyek-megse").on("click",()=>{
+                        $(".napi-igenyek-db-input").remove();
+                    });
+                });
+               
+            }
+            setBadge(obj,db){
+                obj.find(".napi-igenyek-db").text(db);
+                
+            }
+            put(obj){
+                ajax.ajaxApiPut("http://localhost:8000/api/napimunkaeroigeny",obj.adat.napim_azonosito,obj.adat);
             }
 
         }

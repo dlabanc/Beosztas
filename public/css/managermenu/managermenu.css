@@ -1336,14 +1336,15 @@ input:focus, textarea:focus, select:focus{
   .munkaero{
     display: flex;
     align-items: center;
-    justify-content: center;  
+    
+    width: 100%;
   }
   .munkaero span{
     background-color: var(--always-white);
     padding: 1rem;
     background-color: var(--bs-info);
     color:var(--always-white);
-   
+    cursor: pointer;
     font-size: 1.1rem;
     border-radius: 50px;
   }
@@ -2287,26 +2288,42 @@ input:focus, textarea:focus, select:focus{
     border-bottom: .5px solid var(--fds-gray-30);
     margin: auto;
   }
-  .napi-igenyek-datum{
-    
-  }
-  .napi-igenyek-datum >* {
-    
-  }
-  .badge{
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    background-color: var(--fds-gray-10);
-    color:var(--fds-gray-70);
+  .napi-igenyek-megse{
+    color:var(--bs-info);
 
   }
+  .napi-igenyek input{
+    border: none;
+    border: 1px solid var(--fds-gray-20);
+    padding: 0.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+    outline: none !important;
+  }
+ .napi-igenyek button{
+  background: var(--always-white);
+  border-radius: 10px;
+  padding: 1rem;
+  width: fit-content;
+  border: none!important;
+ }
+ .napi-igenyek .fa-times{
+  color:var(--fds-red-55);
+  margin-left: auto;
+  margin-right: 2rem;
+ }
+ .napi-igenyek .fa-check{
+
+   
+   color:var(--fds-green-55);
+ }
   .napimunka-napok-munkakorok{
     width: fit-content;
     
    
   }
+  
   .napi-igenyek-munkakorok{
     width: 100%;
     padding: 1rem;
@@ -2346,6 +2363,7 @@ input:focus, textarea:focus, select:focus{
    
   }
   .napimunka-table{
+    display: none;
     margin-bottom: 1rem;
     border-collapse: collapse;
     padding: .5rem;
@@ -2355,6 +2373,24 @@ input:focus, textarea:focus, select:focus{
     padding: 1rem;
     border-radius: 10px;
   }
+  .napimunka-nap-grid{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+  }
+  .napimunka-nap-grid button{
+    background: none;
+    border: none;
+    border-radius: 10px;
+    padding: .5rem;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    color:var(--fds-button-text);
+  }
+  .napimunka-nap-grid button:hover{
+    background: var(--fds-blue-60);
+    color:var(--always-white)
+  }
+  
    .napimunka-napok-munkakorok{
     margin-left: 1rem;
     padding: 1rem;
