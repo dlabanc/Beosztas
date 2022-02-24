@@ -2302,6 +2302,19 @@ input:focus, textarea:focus, select:focus{
     color:var(--fds-gray-70);
 
   }
+  .napimunka-napok-munkakorok{
+    width: fit-content;
+    
+   
+  }
+  .napi-igenyek-munkakorok{
+    width: 100%;
+    padding: 1rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+    
+  }
   .napi-igenyek-datum:hover,.napi-igenyek-munkakorok:hover,.napi-igenyek:hover{
     background-color: var(--fds-highlight-cell-background);
   }
@@ -2317,12 +2330,20 @@ input:focus, textarea:focus, select:focus{
     margin-left: 1rem;
     padding: 1rem;
     font-size: 1.1rem;
+    width: fit-content;
+    padding: 1rem;
    
+    margin-bottom: 1rem;
+  }
+  .title-aktiv{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
   }
   .title-munkakor{
-    padding: 0;
-    padding-left: 1rem;
-    margin-bottom: 1rem;
+    
+    
+   
   }
   .napimunka-table{
     margin-bottom: 1rem;
@@ -2338,8 +2359,9 @@ input:focus, textarea:focus, select:focus{
     margin-left: 1rem;
     padding: 1rem;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap:1rem;
   }
   .napimunka-napok{
     border-bottom: 1px solid var(--fds-gray-20);

@@ -1182,7 +1182,7 @@ $(function () {
                     cimMunkakor.text("");
                     kivalasztottDatum.hide();
                     tablazat.hide(500);
-                    
+                    cimMunkakor.removeClass("title-aktiv");
                     
                 });
                 $(".napi-igenyek").hide();
@@ -1251,7 +1251,7 @@ $(function () {
                     });
                     this.szulo.slideUp(500);
                     cimMunkakor.text(this.adat.munkakor);
-                    
+                    cimMunkakor.addClass("title-aktiv");
                     
                 });
                 
