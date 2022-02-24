@@ -1317,7 +1317,11 @@ input:focus, textarea:focus, select:focus{
      margin: auto;
      
   }
-  .muszaknev{
+  .title-datum, .title-munkakor{
+    width: 100%;
+    
+  }
+  .muszaknev,.munkaero-db{
     padding: 1rem;
     background-color: var(--base-lemon);
     border-radius: 10px;
@@ -1329,7 +1333,21 @@ input:focus, textarea:focus, select:focus{
     margin: 2rem;
     
   }
-  .muszakeloszlasok-timeline .oratol
+  .munkaero{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+  }
+  .munkaero span{
+    background-color: var(--always-white);
+    padding: 1rem;
+    background-color: var(--bs-info);
+    color:var(--always-white);
+   
+    font-size: 1.1rem;
+    border-radius: 50px;
+  }
+  .muszakeloszlasok-timeline .oratol,  .napi-igenyek .oratol
   {
     font-size: 1.1rem;
     color:var(--fds-gray-70);
@@ -1337,7 +1355,7 @@ input:focus, textarea:focus, select:focus{
     border-bottom: .5px dashed var(--fds-gray-30);
   } 
 
-  .muszakeloszlasok-timeline .oraig
+  .muszakeloszlasok-timeline .oraig,  .napi-igenyek .oraig
   {
     
     font-size: 1.1rem;
@@ -2265,25 +2283,72 @@ input:focus, textarea:focus, select:focus{
   
   .napi-igenyek{
     display: flex;
-    width: 90%;
+    width: 100%;
     border-bottom: .5px solid var(--fds-gray-30);
     margin: auto;
   }
+  .napi-igenyek-datum{
+    
+  }
+  .napi-igenyek-datum >* {
+    
+  }
+  .badge{
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: var(--fds-gray-10);
+    color:var(--fds-gray-70);
+
+  }
+  .napi-igenyek-datum:hover,.napi-igenyek-munkakorok:hover,.napi-igenyek:hover{
+    background-color: var(--fds-highlight-cell-background);
+  }
+  .napimunka-kivalasztott-datum{
+    background-color: var(--bs-blue);
+    width: fit-content;
+    color:var(--always-white);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: .5rem;
+  }
+  .title-munkakor{
+    margin-left: 1rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+   
+  }
+  .title-munkakor{
+    padding: 0;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  .napimunka-table{
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+    padding: .5rem;
+  }
   .napimunka-napok-container{
     margin-left: 1rem;
-    border: 1px solid var(--fds-gray-20);
+    padding: 1rem;
+    border-radius: 10px;
+  }
+   .napimunka-napok-munkakorok{
+    margin-left: 1rem;
     padding: 1rem;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
   }
   .napimunka-napok{
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    border-bottom: 1px solid var(--fds-gray-20);
     padding: 1rem;
     margin-left: 1rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     width: fit-content;
-    border-radius: 10px;
+    
   }
   .napimunka-napok .fa-angle-down{
     padding-left: .3rem;

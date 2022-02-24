@@ -1140,27 +1140,31 @@ $(function () {
     //ajaxApiGet - Hibás
     function napiMin() {
         const szuloElem = $("#Napimunka");
+        szuloElem.empty();
         szuloElem.append(`
         <div class="napimunka-napok">
         <div>Válassz a napok közül!<span class="fa fa-angle-down"></span></div>
+        <div class="napimunka-kivalasztott-datum"></div>
         </div>
         
-        <div class="napimunka-napok-container"></div>
+        <table class="napimunka-napok-container"></table>
 
         </div>
+        
         <div class="napimunka-napok-munkakorok"></div>
 
         </div>
         <div class="napimunka-table">
-        <div class="title-datum"></div>
+        
         <div class="title-munkakor"></div>
         </div>`);
         const tablazat = szuloElem.find(".napimunka-table:last");
         const napokFoElem = szuloElem.find(".napimunka-napok:last");
         const napokSelect = szuloElem.find(".napimunka-napok-container:last");
         const napokMunkakorElem = szuloElem.find(".napimunka-napok-munkakorok:last");
-        const cimDatum = tablazat.find(".title-datum");
         const cimMunkakor = tablazat.find(".title-munkakor");
+        const kivalasztottDatum = $(".napimunka-kivalasztott-datum");
+        kivalasztottDatum.hide();
         ajaxApiGet("http://localhost:8000/api/napokossz",(napok)=>{
                 
                 
@@ -1174,7 +1178,11 @@ $(function () {
                 });
                 napokFoElem.on("click",()=>{
                     napokMunkakorElem.slideUp(500);
-                    napokSelect.slideDown(500);
+                    napokSelect.fadeIn(500);
+                    cimMunkakor.text("");
+                    kivalasztottDatum.hide();
+                    tablazat.hide(500);
+                    
                     
                 });
                 $(".napi-igenyek").hide();
@@ -1188,9 +1196,10 @@ $(function () {
                 this.szulo = szulo;
                 this.napimunkaeroigenyek = tomb;
                 this.nap = this.napok.nap;
+                this.napNev = this.getNap(this.nap);
                 this.munkakorok = new Set();
-                this.szulo.append(`<div class="napi-igenyek-datum">${this.nap}</div>`);
-                this.elem = szulo.find("div:last");
+                this.szulo.append(`<tr class="napi-igenyek-datum"><td>${this.nap} - ${this.napNev}</td><td class="badge">${this.munkakorok.size}</td> </tr>`);
+                this.elem = szulo.find("tr:last");
                 this.szulo.hide();
                 this.elem.on("click",()=>{
                     
@@ -1203,13 +1212,21 @@ $(function () {
                     });
                     
                     $(".napi-igenyek-munkakorok").remove();
+                    $(".napimunka-kivalasztott-datum").text(this.nap+" "+this.napNev);
                     this.munkakorok.forEach(munkakor=>{
-                        new NapimunkaKor(napokMunkakorElem,{munkakor:munkakor,nap:this.nap},szurt);
+                        new NapimunkaKor(napokMunkakorElem,{munkakor:munkakor,nap:this.nap,napNev:this.napNev},szurt);
                     });
                     this.szulo.slideUp(500,()=>{
                         napokMunkakorElem.slideDown(500);
+                        kivalasztottDatum.slideDown(500);
+                        tablazat.slideDown(500);
                     });
                 }); 
+            }
+            getNap(datum) {
+                let napok = ['Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat'];
+                let date = new Date(datum);
+                return napok[date.getDay()];    
             }
         }
 
@@ -1229,11 +1246,12 @@ $(function () {
                         return igeny.munkakor == this.adat.munkakor;
                     });
                     szurt.forEach(szurtElem => { 
+                        szurtElem.megjelenit(szurtElem,szurtElem.szulo);
                         szurtElem.elem.slideDown(500);
                     });
                     this.szulo.slideUp(500);
                     cimMunkakor.text(this.adat.munkakor);
-                    cimDatum.text(this.adat.nap);
+                    
                     
                 });
                 
@@ -1247,24 +1265,30 @@ $(function () {
                 this.nap = this.adat.datum;
                 this.munkakor = this.adat.munkakor;
                 this.muszakeloszlas = this.adat.muszakeloszlas;
-                this.szulo.append("<div class="+"napi-igenyek"+"></div>");
-                this.elem = szulo.find("div:last");
-                this.elem.append(
-                    `
-                    
-                    <div class="times">
-                    <div>${this.muszakeloszlas[0].oratol}:00</div>
-                    <div>${this.muszakeloszlas[0].oraig}:00</div>
-                    </div>
-                    <div class="munkaero-db">
-                    Szükséges alkalmazott: ${this.adat.db}
-                    </div>
-                    <div>`
-                );
-                this.elem.hide();
+                
 
                
                 
+            }
+
+            megjelenit(obj,szulo){
+                obj.szulo.append("<div class="+"napi-igenyek"+"></div>");
+                obj.elem = szulo.find("div:last");
+                obj.elem.append(
+                    `
+                    
+                    <div class="times">
+                    <div class="oratol">${obj.muszakeloszlas[0].oratol}:00</div>
+                    <div class="oraig">${obj.muszakeloszlas[0].oraig}:00</div>
+                    </div>
+                    <div class="munkaero">
+                    <div class="munkaero-db">
+                    Szükséges ${obj.adat.munkakor}: 
+                    </div>
+                    <span>${obj.adat.db}</span>
+                    </div>
+                    <div>`
+                );
             }
 
         }
