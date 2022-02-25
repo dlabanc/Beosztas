@@ -2318,30 +2318,48 @@ input:focus, textarea:focus, select:focus{
    
    color:var(--fds-green-55);
  }
-  .napimunka-napok-munkakorok{
-    width: fit-content;
-    
-   
-  }
-  
+ 
   .napi-igenyek-munkakorok{
-    width: 100%;
+    width: fit-content;
+    text-align: center;
     padding: 1rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border-radius: 10px;
     
   }
+  .napi-igenyek-datum .kesz-allapot{
+    display: none;
+    color: var(--fds-blue-60);
+    padding-left: 1rem;
+    margin-left: auto;
+  }
   .napi-igenyek-datum:hover,.napi-igenyek-munkakorok:hover,.napi-igenyek:hover{
     background-color: var(--fds-highlight-cell-background);
   }
   .napimunka-kivalasztott-datum{
-    background-color: var(--bs-blue);
+    text-align: center;
     width: fit-content;
-    color:var(--always-white);
-    border-radius: 10px;
-    padding: 1rem;
     margin-top: .5rem;
+  }
+  .napimunka-kivalasztott-datum .buttons{
+    display: flex;
+    justify-content: space-around;
+  }
+  .napimunka-kivalasztott-datum .buttons button
+  {
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: var(--bs-blue) !important;
+    cursor: pointer;
+  }
+  .napimunka-kivalasztott-datum .buttons button:hover{
+    background-color: var(--fds-highlight-cell-background);
+    color:var(--fds-button-text);
+  }
+  .napimunka-kivalasztott-datum .text{
+    padding-bottom: .5rem;
+    border-bottom:1px solid var(--fds-gray-20);
   }
   .title-munkakor{
     margin-left: 1rem;
@@ -2357,11 +2375,7 @@ input:focus, textarea:focus, select:focus{
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     border-radius: 10px;
   }
-  .title-munkakor{
-    
-    
-   
-  }
+
   .napimunka-table{
     display: none;
     margin-bottom: 1rem;
@@ -2369,8 +2383,8 @@ input:focus, textarea:focus, select:focus{
     padding: .5rem;
   }
   .napimunka-napok-container{
-    margin-left: 1rem;
-    padding: 1rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
     border-radius: 10px;
   }
   .napimunka-nap-grid{
@@ -2378,6 +2392,28 @@ input:focus, textarea:focus, select:focus{
     gap:1rem;
     align-items: center;
   }
+  .napimunka-nap-grid2{
+    display: flex;
+    gap:1rem;
+    
+  }
+  
+  .napimunka-lead{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+.napimunka-nap-grid2 button{
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    margin-top: 1rem;
+    color: var(--always-white);
+    
+   
+    
+}
+
   .napimunka-nap-grid button{
     background: none;
     border: none;
@@ -2392,15 +2428,16 @@ input:focus, textarea:focus, select:focus{
   }
   
    .napimunka-napok-munkakorok{
-    margin-left: 1rem;
+    
     padding: 1rem;
     border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(2,auto);
+    display: flex;
+    flex-wrap: wrap;
     gap:1rem;
+    flex-direction: row;
+   justify-content: center;
   }
   .napimunka-napok{
-    border-bottom: 1px solid var(--fds-gray-20);
     padding: 1rem;
     margin-left: 1rem;
     margin-top: 1rem;

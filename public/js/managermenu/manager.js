@@ -1146,12 +1146,14 @@ $(function () {
         <div class="napimunka-napok">
         
         <div class="napimunka-nap-grid">
-        <div>Válassz a napok közül!<span class="fa fa-angle-down"></span></div>
+        <div>Válassz a napok közül!</div>
         <button class=" napok-het-mutat" alt="Hét napja">Aktuális hét</button>
         <button class=" napok-ossz-mutat" alt="Összes nap">Összes</button>
         </div>
-        
+        <div class="napimunka-nap-grid2">
         <div class="napimunka-kivalasztott-datum"></div>
+        
+        </div>
         </div>
         
         <table class="napimunka-napok-container"></table>
@@ -1160,13 +1162,15 @@ $(function () {
         
         <div class="napimunka-napok-munkakorok"></div>
 
+        <div>
+        </div>
         </div>
         <div class="napimunka-table">
         
         <div class="title-munkakor"></div>
         </div>`);
         const tablazat = szuloElem.find(".napimunka-table:last");
-        const napokFoElem = szuloElem.find(".napimunka-napok:last");
+        const napokFoElem = szuloElem.find(".napimunka-nap-grid:last");
         const napokHetMutat = szuloElem.find(".napok-het-mutat:last");
         const napokOsszMutat = szuloElem.find(".napok-ossz-mutat:last");
         const napokSelect = szuloElem.find(".napimunka-napok-container:last");
@@ -1178,6 +1182,7 @@ $(function () {
         $(document).ajaxStop(()=>{
             szuloElem.show();
         });
+
         ajaxApiGet("http://localhost:8000/api/napokossz",(napok)=>{
                 
                 
@@ -1190,7 +1195,11 @@ $(function () {
                 });
 
                 napok.forEach(nap=>{
-                    let obj = new NapiMunkaeroIgenyNap(napokSelect,nap,napimunkaeroigenyek);
+                    let obj = new NapiMunkaeroIgenyNap(napokSelect,nap,napimunkaeroigenyek,ajax);
+                    if(nap.allapot>0){
+                       obj.elem.find(".kesz-allapot").show();
+                      console.log(obj)
+                    }
                     napiMunkaeroigenyNapok.push(obj);
                     
                 });
@@ -1230,16 +1239,21 @@ $(function () {
                 });
             });
         });
+      
 
         class NapiMunkaeroIgenyNap{
-            constructor(szulo,napok,tomb){
+            constructor(szulo,napok,tomb,ajax){
+               
+                this.ajax = ajax;
                 this.napok = napok;
                 this.szulo = szulo;
                 this.napimunkaeroigenyek = tomb;
                 this.nap = this.napok.nap;
                 this.napNev = this.getNap(this.nap);
                 this.munkakorok = new Set();
-                this.szulo.append(`<tr class="napi-igenyek-datum"><td>${this.nap} - ${this.napNev}</td></tr>`);
+                this.munkakorElemTomb=[];
+                this.muszaktipus = this.napok.muszaktipus;
+                this.szulo.append(`<tr class="napi-igenyek-datum"><td>${this.nap} - ${this.napNev} </td><td><span class="fas fa-check kesz-allapot"></span></td></tr>`);
                 this.elem = szulo.find("tr:last");
                 this.elem.on("click",()=>{
                     
@@ -1252,10 +1266,36 @@ $(function () {
                     });
                     
                     $(".napi-igenyek-munkakorok").remove();
-                    $(".napimunka-kivalasztott-datum").text(this.nap+" "+this.napNev);
+                    $(".napimunka-kivalasztott-datum").html(`<div class="text">`+this.nap+" "+this.napNev+`</div>
+                    <div class="buttons">
+                    <button class="fas fa-clipboard-check"></button>
+                    <button class="fas fa-clipboard"></button>
+                    </div>`);
+
                     this.munkakorok.forEach(munkakor=>{
-                        new NapimunkaKor(napokMunkakorElem,{munkakor:munkakor,nap:this.nap,napNev:this.napNev},szurt);
+                       this.munkakorElemTomb.push( new NapimunkaKor(napokMunkakorElem,{munkakor:munkakor,nap:this.nap,napNev:this.napNev},szurt));
                     });
+
+                    this.allapotGomb =  $(".napimunka-kivalasztott-datum").find(".fa-clipboard-check");
+                    this.allapotGombTorles =  $(".napimunka-kivalasztott-datum").find(".fa-clipboard");
+                    this.allapotGomb.on("click",()=>{
+                      
+                        this.napok.allapot=1;
+                        this.ajax.ajaxApiPut("http://localhost:8000/api/napok",this.nap,this.napok);
+                        this.elem.find(".kesz-allapot").show();
+                        this.munkakorElemTomb.forEach(munkakorElem=>{
+                            munkakorElem.elem.css("color","red");
+                        });
+                        delete this.allapotGomb;
+                    });
+                    this.allapotGombTorles.on("click",()=>{
+                      
+                        this.napok.allapot=0;
+                        this.ajax.ajaxApiPut("http://localhost:8000/api/napok",this.nap,this.napok);
+                        this.elem.find(".kesz-allapot").hide();
+                        delete this.allapotGombTorles;
+                    });
+
                     this.szulo.slideUp(500,()=>{
                         napokMunkakorElem.slideDown(500);
                         kivalasztottDatum.slideDown(500);
@@ -1268,6 +1308,7 @@ $(function () {
                 let date = new Date(datum);
                 return napok[date.getDay()];    
             }
+            
         }
 
         class NapimunkaKor{
@@ -1281,13 +1322,16 @@ $(function () {
                 this.elem = szulo.find("div:last");
                
                 this.elem.on("click",()=>{
-                    $(".napi-igenyek").hide();
+               
+                    $(".napi-igenyek").remove();
                     let szurt = this.napimunkaeroigenyek.filter(igeny=>{
                         return igeny.munkakor == this.adat.munkakor;
                     });
                     szurt.forEach(szurtElem => { 
                         szurtElem.megjelenit(szurtElem,szurtElem.szulo);
+                        
                         szurtElem.elem.slideDown(500);
+                        
                     });
                     this.szulo.slideUp(500);
                     cimMunkakor.text(this.adat.munkakor);
@@ -1297,9 +1341,9 @@ $(function () {
                         this.szulo.slideDown(500);
                     });
                     
-                });
-                
+                });                
             }
+           
         }
         
         class NapimunkaeroigenyManager{
@@ -1313,6 +1357,7 @@ $(function () {
             }
 
             megjelenit(obj,szulo){
+                
                 obj.szulo.append("<div class="+"napi-igenyek"+"></div>");
                 obj.elem = szulo.find("div:last");
                 obj.elem.append(`
@@ -1345,7 +1390,6 @@ $(function () {
                     obj.elem.find(".napi-igenyek-ok").on("click",()=>{
                         let ertek = obj.elem.find(".napi-igenyek-db-input").find("input").val();
                         obj.adat.db=ertek;
-                        console.log(obj.adat)
                         this.setBadge(obj.elem,obj.adat.db);
                         this.put(obj);
                         $(".napi-igenyek-db-input").remove();
@@ -1356,10 +1400,12 @@ $(function () {
                         this.setBadge(obj.elem,obj.adat.db);
                         this.put(obj);
                         $(".napi-igenyek-db-input").remove();
+                       
                     });
 
                     obj.elem.find(".napi-igenyek-megse").on("click",()=>{
                         $(".napi-igenyek-db-input").remove();
+                        
                     });
                 });
                
@@ -1371,6 +1417,7 @@ $(function () {
             put(obj){
                 ajax.ajaxApiPut("http://localhost:8000/api/napimunkaeroigeny",obj.adat.napim_azonosito,obj.adat);
             }
+           
 
         }
 
