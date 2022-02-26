@@ -64,7 +64,7 @@ $(function () {
             this.esemenyLetrehoz(this.napimunkaLink, this.napimunkaa, napiMin);
         }
         ujbeosztas() {
-            this.esemenyLetrehoz(this.ujbeosztasLink, this.ujbeosztass, () => { });
+            this.esemenyLetrehoz(this.ujbeosztasLink, this.ujbeosztass, ujBeosztas);
         }
         beosztasmod() {
             this.esemenyLetrehoz(this.beoszasmodLink, this.beosztasmodd, () => { });
@@ -776,7 +776,7 @@ $(function () {
 
         oszlop();
         kor();
-        timeLine();
+       // timeLine();
         table();
         //Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
         //-következő
@@ -1283,9 +1283,6 @@ $(function () {
                         this.napok.allapot=1;
                         this.ajax.ajaxApiPut("http://localhost:8000/api/napok",this.nap,this.napok);
                         this.elem.find(".kesz-allapot").show();
-                        this.munkakorElemTomb.forEach(munkakorElem=>{
-                            munkakorElem.elem.css("color","red");
-                        });
                         delete this.allapotGomb;
                     });
                     this.allapotGombTorles.on("click",()=>{
@@ -1800,6 +1797,100 @@ $(function () {
                 }
             $("#oldalSzamok").html((elsoElem+1)+" - "+(utolsoElem+1) +" elem ennyiből: "+ (tabla.find(elem).length))
             $("#oldalSzam").html((elsoElem/elemPerOldal+1)+ ". / " + (Math.ceil(tabla.find(elem).length/elemPerOldal) + " oldal"))
+        }
+
+    }
+
+    function ujBeosztas(){
+        const fehasznaloListaString = `<div class="ujbeosztas-alkalmazottak-lita"></div>`;
+        const selectString = `<select class="ujbeosztas-alkalmazottak-select"></select>`;
+        const felhasznaloTarolo = `<div class="ujbeosztas-alkalmazottak-container">${selectString} ${fehasznaloListaString}</div>`
+        const szuloElem = $("#Ujbeosztas");
+        szuloElem.empty();
+        szuloElem.append(felhasznaloTarolo);
+        const fehasznaloLista = szuloElem.find(".ujbeosztas-alkalmazottak-lita");
+        const selectAlkalmazottak = szuloElem.find(".ujbeosztas-alkalmazottak-select");
+
+        ajaxApiGet("http://localhost:8000/api/alkalmazottak",(alkalmazottak)=>{ 
+            const randomAlkalmazottKepek = [];
+            const beosztasAklamazottak = [];
+            const munkakorSet = new Set();
+            ajaxApiGet("https://randomuser.me/api/?results="+alkalmazottak.length,(adatok)=>{
+              
+                adatok.results.forEach(adat=>{
+                    randomAlkalmazottKepek.push(adat.picture.thumbnail);
+                });
+                alkalmazottak.forEach((alkalmazott,index)=>{
+                    beosztasAklamazottak.push(new BeosztasAlkalmazott(fehasznaloLista,randomAlkalmazottKepek[index],alkalmazott));
+                    munkakorSet.add(alkalmazott.munkakor);
+                });
+                munkakorSet.forEach(munkakor=>{
+                    const optionMunkakor = `<option>${munkakor}</option>`;
+                    selectAlkalmazottak.append(optionMunkakor);
+                });
+
+                selectAlkalmazottak.change("change",function(){
+                    fehasznaloLista.empty();
+                    let index = selectAlkalmazottak.prop('selectedIndex');
+                    console.log(index)
+                    let ertek = this.value;
+                    let szurt = beosztasAklamazottak.filter((alkalmazott)=>{
+                        return alkalmazott.munkakor == ertek;
+                    });
+                    szurt.forEach(alkalmazott=>{
+                        alkalmazott.megjelenit();
+                       
+                    });
+                    
+                    const balra = `<div class="fas fa-angle-left"></div>`;
+                    const jobbra = `<div class="fas fa-angle-right"></div>`;
+                    const beosztasAlkalmazottPagination = `<div class="ujbeosztas-alkalmazottak-pagination">${balra} ${jobbra}</div>`;
+                    fehasznaloLista.append(beosztasAlkalmazottPagination);
+                    const balraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-left");
+                    const jobbraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-right");
+
+                    balraLeptet.on("click",()=>{
+                        //$(".uj-beosztas-alkalmazott").remove();
+
+                    
+                    });
+                    jobbraLeptet.on("click",()=>{
+                        console.log("sziajobbra");
+                    });
+                });
+   
+                
+            });
+            
+        });
+
+        class BeosztasAlkalmazott{
+            constructor(szulo,kep,adat){
+                this.szulo = szulo;
+                this.kep = kep;
+                this.adat = adat;
+                this.munkakor = this.adat.munkakor;
+                this.nev = this.adat.nev;
+                this.ID = this.adat.dolgozoi_azon;
+                
+            }
+
+            megjelenit(){
+                     
+                this.szulo.append(`
+                <div class="uj-beosztas-alkalmazott">
+                <div>
+                <img src="${this.kep}">
+                </div>
+                <div class="uj-beosztas-alkalmazott-adatai">
+                <div><span class="fas fa-user"></span><div  class="uj-beszotas-alkalmazott-nev">${this.nev}</div></div>
+                <div><span class="fas fa-phone"></span>${this.adat.elerhetoseg}</div>
+                <div><span class="far fa-envelope"></span>${this.adat.email}</div>
+                </div>
+                </div>`);
+                this.elem = this.szulo.find("div:last");
+                
+            }
         }
 
     }

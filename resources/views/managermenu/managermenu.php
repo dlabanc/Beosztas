@@ -245,8 +245,7 @@
                 <h3>Napimunka</h3>
             </div>
             <div id="Ujbeosztas" >
-                <h3>Új beosztás készítése</h3>
-                <p></p>
+               
             </div>
             <div id="Beosztasmod" >
                 <h3>Beosztás módosítása</h3>
