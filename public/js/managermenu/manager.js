@@ -1830,33 +1830,64 @@ $(function () {
                 });
 
                 selectAlkalmazottak.change("change",function(){
-                    fehasznaloLista.empty();
-                    let index = selectAlkalmazottak.prop('selectedIndex');
-                    console.log(index)
+                    
+                    
                     let ertek = this.value;
-                    let szurt = beosztasAklamazottak.filter((alkalmazott)=>{
-                        return alkalmazott.munkakor == ertek;
-                    });
-                    szurt.forEach(alkalmazott=>{
-                        alkalmazott.megjelenit();
-                       
-                    });
+                   
+                    listaFeltolt(ertek);
+                    listaKezeles();
                     
-                    const balra = `<div class="fas fa-angle-left"></div>`;
-                    const jobbra = `<div class="fas fa-angle-right"></div>`;
-                    const beosztasAlkalmazottPagination = `<div class="ujbeosztas-alkalmazottak-pagination">${balra} ${jobbra}</div>`;
-                    fehasznaloLista.append(beosztasAlkalmazottPagination);
-                    const balraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-left");
-                    const jobbraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-right");
+                    function listaKezeles(){
+                        const balraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-left");
+                        const jobbraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-right");
+                        balraLeptet.on("click",()=>{
+                            let index = selectAlkalmazottak.prop('selectedIndex');
+                            
+                            let balIndex;
+                            if(index==0){ balIndex = getSize(munkakorSet)-1; }
+                            else{
+                                balIndex = index-1;
+                            }
+                            selectAlkalmazottak.prop('selectedIndex',balIndex);
+                            let ertek = selectAlkalmazottak.find("option").eq(balIndex).text();
+                            listaFeltolt(ertek);
+                            listaKezeles();
+                        
+                        });
+                        jobbraLeptet.on("click",()=>{
+                            let index = selectAlkalmazottak.prop('selectedIndex');
+                            
+                            let balIndex;
+                            if(index==getSize(munkakorSet)-1){ balIndex = 0; }
+                            else{
+                                balIndex = index+1;
+                            }
+                            selectAlkalmazottak.prop('selectedIndex',balIndex);
+                            let ertek = selectAlkalmazottak.find("option").eq(balIndex).text();
+                            listaFeltolt(ertek);
+                            listaKezeles();
+                        });
+                    }
 
-                    balraLeptet.on("click",()=>{
-                        //$(".uj-beosztas-alkalmazott").remove();
+                    function getSize(set){
+                        return set.size;
+                    }
+                    function listaFeltolt(ertek){
+                        fehasznaloLista.empty();
+                        
+                        let szurt = beosztasAklamazottak.filter((alkalmazott)=>{
+                            return alkalmazott.munkakor == ertek;
+                        });
+                        szurt.forEach(alkalmazott=>{
+                            alkalmazott.megjelenit();
+                           
+                        });
 
-                    
-                    });
-                    jobbraLeptet.on("click",()=>{
-                        console.log("sziajobbra");
-                    });
+                        const balra = `<div class="fas fa-angle-left"></div>`;
+                        const jobbra = `<div class="fas fa-angle-right"></div>`;
+                        const beosztasAlkalmazottPagination = `<div class="ujbeosztas-alkalmazottak-pagination">${balra} ${jobbra}</div>`;
+                        fehasznaloLista.append(beosztasAlkalmazottPagination);
+                    }
                 });
    
                 
