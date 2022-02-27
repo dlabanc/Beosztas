@@ -2727,7 +2727,18 @@ input:focus, textarea:focus, select:focus{
   margin-top: 2rem;
 
 }
+.ujbeosztas-naptar input[type="date"]{
+  
 
+}
+
+.ujbeosztas-naptar input::-webkit-calendar-picker-indicator{
+ 
+}
+#Ujbeosztas{
+  display: flex;
+  justify-content: space-between;
+}
   @media screen and (max-width:1820px) {
      
      html{
