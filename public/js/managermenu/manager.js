@@ -776,8 +776,8 @@ $(function () {
 
         oszlop();
         kor();
-       // timeLine();
-        table();
+        timeLine();
+       // table();
         //Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
         //-következő
         function oszlop() {
@@ -839,7 +839,7 @@ $(function () {
         }
 
         function timeLine() {
-            ajaxGet(localhost + "szabadsagon.json", (adatok) => {
+            ajaxGet("http://localhost:8000/"+"api/szabadsagstat", (adatok) => {
                 googleChartsKonyvtar("timeline", drawChart);
 
                 function drawChart() {
@@ -847,12 +847,12 @@ $(function () {
                     dataTable = new google.visualization.DataTable();
 
 
-                    dataTable.addColumn({ type: 'string', id: 'President' });
+                    dataTable.addColumn({ type: 'string', id: 'Nev' });
                     dataTable.addColumn({ type: 'string', id: 'dummy bar label' });
                     dataTable.addColumn({ type: 'string', role: 'tooltip', 'p': { 'html': true } });
                     dataTable.addColumn({ type: 'date', id: 'Start' });
                     dataTable.addColumn({ type: 'date', id: 'End' });
-
+                    
                     function idoAtvalt(ido) {
                         let date = new Date();
                         let aktualisEv = date.getFullYear();
@@ -863,16 +863,16 @@ $(function () {
                     }
 
                     for (const iterator of adatok) {
-                        let tol = idoAtvalt(new Date(iterator.SZABADSAG[0].tól));
-                        let ig = idoAtvalt(new Date(iterator.SZABADSAG[0].ig));
+                        let tol = idoAtvalt(new Date(iterator.tol));
+                        let ig = idoAtvalt(new Date(iterator.ig));
                         dataTable.addRows([
                             [
 
-                                iterator.név,
+                                iterator.nev,
                                 null,
                                 tol + " - " + ig,
-                                new Date(iterator.SZABADSAG[0].tól),
-                                new Date(iterator.SZABADSAG[0].ig),
+                                new Date(iterator.tol),
+                                new Date(iterator.ig),
                             ],
                         ]);
                     }
@@ -885,15 +885,10 @@ $(function () {
 
         }
 
-        function table() {
-            ajaxGet("http://localhost:8000/api/dolgozottnapok", (adatok) => {
-
-            });
-
-        }
+      
 
         function googleChartsKonyvtar(csomag, metodus) {
-            google.charts.load("jelenlegent", { packages: [csomag] });
+            google.charts.load("current", { packages: [csomag] });
             google.charts.setOnLoadCallback(metodus);
         }
 
