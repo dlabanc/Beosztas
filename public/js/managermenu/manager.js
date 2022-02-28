@@ -1799,10 +1799,17 @@ $(function () {
     }
 
     function ujBeosztas(){
+        function idoAtvalt(ido) {
+            let time = ido;
+            let aktualisEv = time.getFullYear();
+            let dd = String(time.getDate()).padStart(2, "0");
+            let mm = String(time.getMonth() + 1).padStart(2, "0");
+            return aktualisEv + "-" + mm + "-" + dd;
+        }
 
         const fehasznaloListaString = `<div class="ujbeosztas-alkalmazottak-lita"></div>`;
         const selectString = `<select class="ujbeosztas-alkalmazottak-select"></select>`;
-        const naptarString = `<div><input type="date" class="ujbeosztas-valasztott-datum"><h4 class="ujbeosztas-naptar-title"></h4></div><div class="ujbeosztas-naptar"></div>`;
+        const naptarString = `<div><input type="date" class="ujbeosztas-valasztott-datum" value="${idoAtvalt(new Date())}"></div><div class="ujbeosztas-naptar"></div>`;
         const felhasznaloTarolo = `<div>${naptarString}</div><div class="ujbeosztas-alkalmazottak-container">${selectString} ${fehasznaloListaString}</div>`
         const szuloElem = $("#Ujbeosztas");
         szuloElem.empty();
@@ -1813,12 +1820,15 @@ $(function () {
         const randomAlkalmazottKepek = [];
         const beosztasAklamazottak = [];
         const napiMunkaErok = [];
+        const nemdolgoznaTomb = [];
         const munkakorSet = new Set();
 
         ajaxApiGet("http://localhost:8000/api/alkalmazottak",(alkalmazottak)=>{ 
             
             ajaxApiGet("https://randomuser.me/api/?results="+alkalmazottak.length,(adatok)=>{
-              
+                
+                
+                
                 adatok.results.forEach(adat=>{
                     randomAlkalmazottKepek.push(adat.picture.thumbnail);
                 });
@@ -1826,6 +1836,21 @@ $(function () {
                     beosztasAklamazottak.push(new BeosztasAlkalmazott(fehasznaloLista,randomAlkalmazottKepek[index],alkalmazott));
                     munkakorSet.add(alkalmazott.munkakor);
                 });
+                ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz/expand",adatok=>{
+                        
+                    adatok.forEach(adat=>{nemdolgoznaTomb.push(adat)});
+                    beosztasAklamazottak.forEach(alkalmazott=>{
+                        let szurt = nemdolgoznaTomb.filter(nemdolgozna =>{
+                           return alkalmazott.ID == nemdolgozna.alkalmazott;
+                        });
+                        alkalmazott.nemDolgoznek.push(szurt);
+                        
+                    });
+                   
+                });
+
+                
+                
                 munkakorSet.forEach(munkakor=>{
                     const optionMunkakor = `<option>${munkakor}</option>`;
                     selectAlkalmazottak.append(optionMunkakor);
@@ -1833,73 +1858,34 @@ $(function () {
                 });
                 
                 selectAlkalmazottak.change("change",function(){
-                    
-                    
                     let ertek = this.value;
-                   
                     listaFeltolt(ertek);
                     listaKezeles();
-                    
-                    function listaKezeles(){
-                        const balraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-left");
-                        const jobbraLeptet = $(".ujbeosztas-alkalmazottak-pagination").find(".fa-angle-right");
-                        balraLeptet.on("click",()=>{
-                            let index = selectAlkalmazottak.prop('selectedIndex');
-                            
-                            let balIndex;
-                            if(index==0){ balIndex = getSize(munkakorSet)-1; }
-                            else{
-                                balIndex = index-1;
-                            }
-                            selectAlkalmazottak.prop('selectedIndex',balIndex);
-                            let ertek = selectAlkalmazottak.find("option").eq(balIndex).text();
-                            listaFeltolt(ertek);
-                            listaKezeles();
-                        
+                    ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
+                    if(napok.length>0){
+                        napiMunkaErok.splice(0,napiMunkaErok.length);
+                        napok.forEach(napigeny => {
+                            napiMunkaErok.push(napigeny);
                         });
-                        jobbraLeptet.on("click",()=>{
-                            let index = selectAlkalmazottak.prop('selectedIndex');
+        
+                            let kivalasztottDatum =  ujbeosztasNaptar.parent().find(".ujbeosztas-valasztott-datum").val();
+                            beosztasNaptar(kivalasztottDatum);
                             
-                            let balIndex;
-                            if(index==getSize(munkakorSet)-1){ balIndex = 0; }
-                            else{
-                                balIndex = index+1;
-                            }
-                            selectAlkalmazottak.prop('selectedIndex',balIndex);
-                            let ertek = selectAlkalmazottak.find("option").eq(balIndex).text();
-                            listaFeltolt(ertek);
-                            listaKezeles();
-                        });
                     }
-
-                   
+                }); 
                 });
-
             });
 
             ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
                 
-               
+                napiMunkaErok.splice(0,napiMunkaErok.length);
                 napok.forEach(napigeny => {
                     napiMunkaErok.push(napigeny);
                 });
 
                 ujbeosztasNaptar.parent().find(".ujbeosztas-valasztott-datum").change("change",function(){
-                    ujbeosztasNaptar.empty();
-                    let kivalasztottDatum = this.value;
-                    let kivalaszottMunkaeroIndex = selectAlkalmazottak.prop('selectedIndex');
-                    let kivalaszottMunkaero = selectAlkalmazottak.find("option").eq(kivalaszottMunkaeroIndex).text();
-                    listaFeltolt(kivalaszottMunkaero);
-
-                    let szurt = napiMunkaErok.filter(nap=>{
-                        return nap.datum == kivalasztottDatum && nap.munkakor == kivalaszottMunkaero;
-                    });
-                    if(szurt.length>0){
-                        szurt.forEach(elem=>{
-                            const beosztasNap = new BeosztasNap(elem,ujbeosztasNaptar); 
-                            beosztasNap.megjelenit();
-                        });
-                    }
+                    
+                    beosztasNaptar( this.value);
                     
                     
                 });
@@ -1909,22 +1895,115 @@ $(function () {
         });
 
         class BeosztasNap{
-            constructor(adat,szulo){
+            constructor(adat,szulo,dolgozoTomb){
                 this.szulo = szulo;
                 this.adat = adat;
                 this.datum = this.adat.datum;
                 this.munkakor = this.adat.munkakor;
                 this.ID = this.adat.napim_azonosito;
                 this.muszakEloszlas = this.adat.muszakeloszlas;
-               
+                this.dolgozoTomb = dolgozoTomb;
+                console.log(this.muszakEloszlas[0])
+                this.dolgozok = this.dolgozoTomb.filter(dolgozo=>{
+                    return dolgozo.munkakor == this.munkakor;
+                });
+                this.nemdolgozik(this.nap);
+                this.dolgozoTomb=[];
+                
             }
 
             megjelenit(){
-               this.szulo.parent().find(".ujbeosztas-naptar-title").text(this.munkakor);
-               this.szulo.append(`<div><div>${this.muszakEloszlas[0].oratol}:00</div><span> - </span><div>${this.muszakEloszlas[0].oraig}:00</div><div>${this.adat.db}</div></div>`);
+               $(".ujbeosztas-naptar-title").text(this.munkakor);
+               this.szulo.append(`
+               <div class="ujbeosztas-sor">
+               <div class="ujbeosztas-time">
+               <div class="time1">${this.muszakEloszlas[0].oratol}:00</div>
+               <div>${this.muszakEloszlas[0].oraig}:00</div>
+               </div>
+               <div class="beosztott"></div>
+               <div class="beosztott-darab">${this.adat.db}</div>
+               </div>
                
-       
+               `);
+               
+               this.kattintas();
+            
             }
+
+            kattintas(){
+                this.elem = this.szulo.find(".ujbeosztas-sor:last");
+                this.beosztottakElem = this.elem.find(".beosztott");
+                this.elem.on("click",(event)=>{
+
+                    this.beosztottakElem.empty();
+                    let dolgozoDarab = 0;
+                    this.dolgozoTomb = [];
+                    this.dolgozok.forEach(dolgozo =>{
+                        if(dolgozo.aktiv){
+                            let clone =
+                            {elem: dolgozo.elem.clone(),
+                             adat : dolgozo.adat,
+                             id : dolgozo.ID
+                            };
+                            
+                            clone.elem.find(".uj-beosztas-alkalmazott-adatai").find("div").eq(1).hide();
+                            clone.elem.find(".uj-beosztas-alkalmazott-adatai").find("div").eq(2).hide();
+                            clone.elem.find(".uj-beosztas-alkalmazott-adatai").find("div").eq(3).hide();
+                            
+                            this.dolgozoHozzaad(dolgozo);
+                            this.beosztottakElem.append(clone.elem);
+                            clone.elem.css("background","white");
+                            dolgozoDarab++;
+                            clone.elem.on("click",()=>{
+                                for (let index = 0; index < this.dolgozoTomb.length; index++) {
+                                    const element = this.dolgozoTomb[index];
+                                    if(element.ID == clone.id){
+                                        this.dolgozoTomb.splice(index,1);
+                                    }                              
+                                }
+                               
+                            });
+                            clone.elem.find("img").hover(
+                            (e)=>{
+                                this.x = e.clientX;
+                                this.y = e.clientY;
+                                clone.elem.append(`<div class="clonemenu"></div>`);
+                                clone.menu = clone.elem.find(".clonemenu:last");
+                                
+                                clone.menu.append(` <div><span class="fas fa-user"></span><div  class="uj-beszotas-alkalmazott-nev">${clone.adat.nev}</div></div>
+                                <div><span class="fas fa-phone"></span>${clone.adat.elerhetoseg}</div>
+                                <div><span class="far fa-envelope"></span>${clone.adat.email}</div>`);
+                                clone.menu.css("left", this.x);
+                                clone.menu.css("top", this.y);
+                                clone.menu.css("z-index","5000");
+                            },
+                            ()=>{
+                                clone.menu.remove();
+                            });
+                        }
+                    });
+
+                    let darabElem =  this.elem.find(".beosztott-darab");
+                    darabElem.text(dolgozoDarab);
+                    if(dolgozoDarab>this.adat.db){
+                        darabElem.addClass("hibas");
+                    }
+                    else{
+                        darabElem.removeClass("hibas");
+                    }
+                    
+
+                });
+            }
+
+            dolgozoHozzaad(dolgozo){
+                this.dolgozoTomb.push(dolgozo);
+            }
+            nemdolgozik(datum){
+               
+            }
+
+            
         }
 
         class BeosztasAlkalmazott{
@@ -1935,7 +2014,9 @@ $(function () {
                 this.munkakor = this.adat.munkakor;
                 this.nev = this.adat.nev;
                 this.ID = this.adat.dolgozoi_azon;
-                
+                this.aktiv = false;
+                this.cc = 0;
+                this.nemDolgoznek = [];
             }
 
             megjelenit(){
@@ -1951,40 +2032,81 @@ $(function () {
                 <div><span class="far fa-envelope"></span>${this.adat.email}</div>
                 </div>
                 </div>`);
-                // this.szulo.addClass("ui-widget-header");
-                // this.szulo.droppable({
-                //     drop: function( event, ui ) {
-                //         ui.draggable.detach().appendTo($(this));
-                //     },
-                  
-                //     accept:".uj-beosztas-alkalmazott"
-                //   });
-                // this.elem = this.szulo.find(".uj-beosztas-alkalmazott:last");
-                // this.elem.addClass("ui-widget-content");
-                // this.elem.draggable();
+                
+                this.kattintas();
+               
+            }
+
+
+            kattintas(){
+                this.elem = this.szulo.find(".uj-beosztas-alkalmazott:last");
+                this.elem.on("click",()=>{
+                    if(this.cc ==0){
+                        this.aktiv = true;
+                        this.cc=1;
+                    }
+                    else{
+                        this.aktiv = false;
+                        this.cc=0;
+                    }
+                    this.szinez();
+                    
+                });
+            }
+
+            szinez(){
+                if(this.aktiv){
+                    this.elem.css("background","var(--fds-highlight-cell-background)");
+                }
+                else{
+                    this.elem.css("background","white");
+                }
+            }
+
+            getNemDolgozna(datum){
+                this.nemDolgoznek.forEach(nap=>{
+                    nap.forEach(valami=>{
+                       
+                    });
+                })
+            
             }
         }
-
-        function getSize(set){
-            return set.size;
+        function beosztasNaptar(datum){
+            ujbeosztasNaptar.empty();
+                    let kivalasztottDatum = datum;
+                    let kivalaszottMunkaeroIndex = selectAlkalmazottak.prop('selectedIndex');
+                    let kivalaszottMunkaero = selectAlkalmazottak.find("option").eq(kivalaszottMunkaeroIndex).text();
+                    listaFeltolt(kivalaszottMunkaero);
+                    listaKezeles();
+                    let szurt = napiMunkaErok.filter(nap=>{
+                        return nap.datum == kivalasztottDatum && nap.munkakor == kivalaszottMunkaero;
+                    });
+                    if(szurt.length>0){
+                        szurt.forEach(elem=>{
+                            const beosztasNap = new BeosztasNap(elem,ujbeosztasNaptar,beosztasAklamazottak); 
+                            beosztasNap.megjelenit();
+                        });
+                    }
         }
+        
         function listaFeltolt(ertek){
             fehasznaloLista.empty();
-            let datum = ujbeosztasNaptar.parent().find(".ujbeosztas-valasztott-datum").val();
-            console.log(datum)
+            
             let szurt = beosztasAklamazottak.filter((alkalmazott)=>{
                 return alkalmazott.munkakor == ertek;
             });
-            console.log(szurt)
+           
+            
             szurt.forEach(alkalmazott=>{
                 alkalmazott.megjelenit();
-               
             });
 
-            const balra = `<div class="fas fa-angle-left"></div>`;
-            const jobbra = `<div class="fas fa-angle-right"></div>`;
-            const beosztasAlkalmazottPagination = `<div class="ujbeosztas-alkalmazottak-pagination">${balra} ${jobbra}</div>`;
-            fehasznaloLista.append(beosztasAlkalmazottPagination);
+
+           
+        }
+        function listaKezeles(){
+            
         }
     }
 });
