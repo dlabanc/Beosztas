@@ -189,5 +189,6 @@ Route::get('/api/jovohet', [StatisztikaController::class, 'jovohet']);
 Route::get('/api/aktualishet', [StatisztikaController::class, 'aktualishet']);
 
 ## 
-Route::post('/elfelejtett-jelszo', [JelszoVisszaAllitasController::class, 'linkKuldes'])->name('password.email');
-Route::post('/reset-password', [JelszoVisszaAllitasController::class, 'jelszoVisszaallitas'])->name('password.update');
+Route::post('/elfelejtett-jelszo', [JelszoVisszaAllitasController::class, 'sendResetLink'])->name('password.email');
+Route::post('/reset-password', [JelszoVisszaAllitasController::class, 'passwordReset'])->name('password.update');
+Route::post('/change', [AuthController::class, 'changePassword'])->name('password.change');

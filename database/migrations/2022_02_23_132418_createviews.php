@@ -87,7 +87,16 @@ class Createviews extends Migration
             FROM napok 
             WHERE nap BETWEEN date_sub(curdate(), interval weekday(curdate()) day) and date_add(curdate(), interval 6-weekday(curdate()) day);'
             );
-        }
+
+        DB::unprepared('
+            CREATE PROCEDURE napimunkaeroigeny_torles()
+            BEGIN
+                delete 
+                from napimunkaeroigeny
+                where datum<date_sub(curdate(), interval weekday(curdate()) day) and weekday(curdate())=0;
+            END
+            ');
+        }  
         
 
     /**
