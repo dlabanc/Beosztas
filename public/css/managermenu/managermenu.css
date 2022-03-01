@@ -2849,6 +2849,7 @@ input:focus, textarea:focus, select:focus{
 .nempreferal{
   display: flex;
   align-items: center; 
+  gap:.5rem;
 }
 .beosztas-flex .uj-beosztas-alkalmazott .warning
 {

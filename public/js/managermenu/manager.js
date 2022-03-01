@@ -2025,17 +2025,18 @@ $(function () {
               z.forEach(y=>{
                 if(y.muszakelo_azon==this.muszakEloszlas[0].muszakelo_azon){
                    
-                    dolgozo.elem.find(".uj-beosztas-alkalmazott-adatai").append(`<div class="warning">Nem dolgozna: ${this.muszakEloszlas[0].oratol}:00 - ${this.muszakEloszlas[0].oraig}:00</div>`);
-                  
+               
                     this.elem.find(".nempreferal").append(`<img src="${dolgozo.kep}">`);
                     this.elem.find("img").hover(
                         function(){
                             dolgozo.elem.addClass("figyelmeztetes");
                             dolgozo.elem.find(".warning").addClass("figyelmeztetes-text");
+                            
                         },
                         function(){
                             dolgozo.elem.removeClass("figyelmeztetes");
                             dolgozo.elem.find(".warning").removeClass("figyelmeztetes-text");
+                           
                         }
                     );
                     this.elem.find("span").show();
