@@ -2658,7 +2658,6 @@ input:focus, textarea:focus, select:focus{
  
   display: grid;
   grid-template-columns: repeat( 2,auto);
- 
   gap:1.5rem;
   border-radius: 10px;
   padding: 2rem;
@@ -2672,6 +2671,7 @@ input:focus, textarea:focus, select:focus{
   align-items: center;
   gap:.5rem;
   width: 100%;
+  height: fit-content;
 
 }
 .uj-beosztas-alkalmazott img{
@@ -2737,6 +2737,7 @@ input:focus, textarea:focus, select:focus{
 }
 .ujbeosztas-naptar{
   grid-area: ujbeonaptar;
+
 }
 .ujbeosztas-valasztott-datum{
   border: none;
@@ -2759,11 +2760,13 @@ input:focus, textarea:focus, select:focus{
 .ujbeosztas-sor{
   display: flex;
   gap:2rem;
-  border-bottom: 1px solid var(--fds-gray-20);
+  
   width: 100%;
   justify-content: space-between;
   cursor: pointer;
+ 
 }
+
 .ujbeosztas-sor .ujbeosztas-time{
   display: flex;
   flex-direction: column;
@@ -2798,19 +2801,118 @@ input:focus, textarea:focus, select:focus{
   border-radius: 50px;
   width: fit-content;
   height: fit-content;
-  background-color:var(--bs-success);
-  color:var(--always-white)!important;
+  background-color: var(--fds-gray-20);
+  color:black;
+  font-weight: 500;
   margin-left: auto;
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 1rem;
  
 }
+.uj-beosztas-kuld, .uj-beosztas-success{
+  border: none;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 1rem;
+  padding: .5rem;
+  color:var(--bs-info);
+  cursor: pointer;
+  background-color: var(--always-white)!important;
+}
+.uj-beosztas-success{
+  color: var(--bs-success);
+  font-size: 1.1rem;
+}
 .hibas{
   background-color: var(--bs-red)!important;
   color:var(--always-white)!important;
 }
+.megkell{
+  background-color: var(--bs-yellow)!important;
+  color:var(--always-white)!important;
+}
+.ok{
+  background-color: var(--bs-success)!important;
+  color:var(--always-white)!important;
+}
+.figyelmeztetes{
+  background-color: var(--bs-yellow)!important;
+}
+.figyelmeztetes-text{
+  background-color: var(--always-white)!important;
 
+}
+.jel,.jel2{
+  font-size: 1.1rem;
+  color:red;
+}
+.jel2{
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  
+}
+.warning{
+  background-color: var(--bs-yellow);
+  border-radius: 10px;
+  color:var(--always-black);
+  padding: 1rem;
+}
+
+.beosztas-flex{
+  display:flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--fds-gray-20);
+}
+.beosztas-flex img{
+  border-radius: 50px;
+  width: 30px;
+  height: 100%;
+}
+.nempreferal{
+  display: flex;
+  align-items: center; 
+  gap:.5rem;
+}
+.beosztas-flex .uj-beosztas-alkalmazott .warning
+{
+  display: none;
+}
+.nem-preferal-text{
+  display: none;
+  padding: 1rem;
+  font-weight: 500;
+}
+.uj-beosztas-uzenet{
+  font-size: 1.1rem;
+  width: fit-content;
+  padding: 2rem;
+  margin: auto;
+  margin-top: 2rem;
+  border: 1px dashed var(--fds-gray-20);
+  color:var(--fds-gray-70);
+  text-align: justify;
+}
+.uj-beosztas-uzenet2{
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  color:var(--fds-blue-60);
+}
+.uj-beosztas-uzenet-linkek{
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-decoration: underline;
+  color: var(--bs-indigo);
+  margin-bottom: 2rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
 #Ujbeosztas{
   display: grid;
   grid-template-areas: "ujbeonaptar alkalmazottak";
