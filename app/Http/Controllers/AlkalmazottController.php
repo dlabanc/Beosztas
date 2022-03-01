@@ -116,16 +116,16 @@ class AlkalmazottController extends Controller
     public function search(Request $request)
     {
         $queryString = $request->query('q');
-        $tasks=Alkalmazott::select('*');
+        $alkalmazottak=Alkalmazott::select('*');
 
         $columns = \Schema::getColumnListing('alkalmazott');
 
         foreach ($columns as $column) {
-            $tasks->orWhere(function ($tasks) use ($column, $queryString){
-                $tasks->orWhere($column,'like', '%' . $queryString . '%');
+            $alkalmazottak->orWhere(function ($alkalmazottak) use ($column, $queryString){
+                $alkalmazottak->orWhere($column,'like', '%' . $queryString . '%');
             });
         }
-        return $tasks->get();
+        return $alkalmazottak->get();
     }
 
     public function sortBy(Request $request)
@@ -133,11 +133,11 @@ class AlkalmazottController extends Controller
         $column = $request->_sort;
         if ($request->has('_order')){
             $order=$request->_order;
-            $task=Alkalmazott::orderBy($column, $order)->get();
+            $alkalmazottak=Alkalmazott::orderBy($column, $order)->get();
         }
         else{
-            $task=Alkalmazott::orderBy($column, 'asc')->get();
+            $alkalmazottak=Alkalmazott::orderBy($column, 'asc')->get();
         }
-        return response()->json($task);
+        return response()->json($alkalmazottak);
     }
 }
