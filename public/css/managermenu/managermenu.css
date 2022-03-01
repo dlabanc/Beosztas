@@ -2782,6 +2782,10 @@ input:focus, textarea:focus, select:focus{
   margin: 1rem;
   
 }
+.ujbeosztas-sor .beosztott img{
+  width: 50px;
+  height: 100%;
+}
 .ujbeosztas-time{
   gap:1rem;
   
