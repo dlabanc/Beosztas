@@ -1843,7 +1843,10 @@ $(function () {
                         let szurt = nemdolgoznaTomb.filter(nemdolgozna =>{
                            return alkalmazott.ID == nemdolgozna.alkalmazott;
                         });
-                        alkalmazott.nemDolgoznek.push(szurt);
+                        szurt.forEach(elem=>{
+                            alkalmazott.nemDolgoznek.push(elem);
+                        })
+                       
                         
                     });
                    
@@ -1903,11 +1906,12 @@ $(function () {
                 this.ID = this.adat.napim_azonosito;
                 this.muszakEloszlas = this.adat.muszakeloszlas;
                 this.dolgozoTomb = dolgozoTomb;
-                console.log(this.muszakEloszlas[0])
                 this.dolgozok = this.dolgozoTomb.filter(dolgozo=>{
                     return dolgozo.munkakor == this.munkakor;
                 });
-                this.nemdolgozik(this.nap);
+
+                
+                
                 this.dolgozoTomb=[];
                 
             }
@@ -1915,23 +1919,28 @@ $(function () {
             megjelenit(){
                $(".ujbeosztas-naptar-title").text(this.munkakor);
                this.szulo.append(`
+               <div class="beosztas-flex">
                <div class="ujbeosztas-sor">
-               <div class="ujbeosztas-time">
-               <div class="time1">${this.muszakEloszlas[0].oratol}:00</div>
-               <div>${this.muszakEloszlas[0].oraig}:00</div>
+                    <div class="ujbeosztas-time">
+                    <div class="time1">${this.muszakEloszlas[0].oratol}:00</div>
+                    <div>${this.muszakEloszlas[0].oraig}:00</div>
+                    </div>
+                    <div class="beosztott"></div>
+                    <div class="beosztott-darab">${this.adat.db}</div>
                </div>
-               <div class="beosztott"></div>
-               <div class="beosztott-darab">${this.adat.db}</div>
+                    <div class="nempreferal">
+                    <span class="nem-preferal-text">Nem dolgozna <span class="jel">!</span></span>
+                    </div>
                </div>
-               
                `);
                
                this.kattintas();
+              
             
             }
 
             kattintas(){
-                this.elem = this.szulo.find(".ujbeosztas-sor:last");
+                this.elem = this.szulo.find(".beosztas-flex:last");
                 this.beosztottakElem = this.elem.find(".beosztott");
                 this.elem.on("click",(event)=>{
 
@@ -1994,13 +2003,46 @@ $(function () {
                     
 
                 });
+                
             }
 
             dolgozoHozzaad(dolgozo){
                 this.dolgozoTomb.push(dolgozo);
             }
-            nemdolgozik(datum){
-               
+            
+            nemdolgozna(){
+                
+                this.dolgozok.forEach(dolgozo=>{
+                    if(dolgozo.nemDolgoznek.length>0){
+                        this.getNempreferaltMuszakok(dolgozo,this.datum);
+                    }
+                });
+            }
+
+            getNempreferaltMuszakok(dolgozo,datum){
+              let z = dolgozo.getNemDolgozna(datum);
+              
+              z.forEach(y=>{
+                if(y.muszakelo_azon==this.muszakEloszlas[0].muszakelo_azon){
+                   
+                    dolgozo.elem.find(".uj-beosztas-alkalmazott-adatai").append(`<div class="warning">Nem dolgozna: ${this.muszakEloszlas[0].oratol}:00 - ${this.muszakEloszlas[0].oraig}:00</div>`);
+                  
+                    this.elem.find(".nempreferal").append(`<img src="${dolgozo.kep}">`);
+                    this.elem.find("img").hover(
+                        function(){
+                            dolgozo.elem.addClass("figyelmeztetes");
+                            dolgozo.elem.find(".warning").addClass("figyelmeztetes-text");
+                        },
+                        function(){
+                            dolgozo.elem.removeClass("figyelmeztetes");
+                            dolgozo.elem.find(".warning").removeClass("figyelmeztetes-text");
+                        }
+                    );
+                    this.elem.find("span").show();
+                }
+                
+              });
+             
             }
 
             
@@ -2023,14 +2065,14 @@ $(function () {
                      
                 this.szulo.append(`
                 <div class="uj-beosztas-alkalmazott">
-                <div>
-                <img src="${this.kep}">
-                </div>
-                <div class="uj-beosztas-alkalmazott-adatai">
-                <div><span class="fas fa-user"></span><div  class="uj-beszotas-alkalmazott-nev">${this.nev}</div></div>
-                <div><span class="fas fa-phone"></span>${this.adat.elerhetoseg}</div>
-                <div><span class="far fa-envelope"></span>${this.adat.email}</div>
-                </div>
+                    <div>
+                    <img src="${this.kep}">
+                    </div>
+                    <div class="uj-beosztas-alkalmazott-adatai">
+                    <div><span class="fas fa-user"></span><div  class="uj-beszotas-alkalmazott-nev">${this.nev}</div></div>
+                    <div><span class="fas fa-phone"></span>${this.adat.elerhetoseg}</div>
+                    <div><span class="far fa-envelope"></span>${this.adat.email}</div>
+                    </div>
                 </div>`);
                 
                 this.kattintas();
@@ -2064,11 +2106,19 @@ $(function () {
             }
 
             getNemDolgozna(datum){
-                this.nemDolgoznek.forEach(nap=>{
-                    nap.forEach(valami=>{
-                       
-                    });
-                })
+                  
+            let x = (this.nemDolgoznek.filter(adat=>{
+                return adat.datum == datum;
+                
+            }));
+            if(x!=undefined){
+                
+                return x;
+                
+            }
+            else{
+                return 0;
+            }
             
             }
         }
@@ -2086,6 +2136,7 @@ $(function () {
                         szurt.forEach(elem=>{
                             const beosztasNap = new BeosztasNap(elem,ujbeosztasNaptar,beosztasAklamazottak); 
                             beosztasNap.megjelenit();
+                            beosztasNap.nemdolgozna();
                         });
                     }
         }
