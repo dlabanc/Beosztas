@@ -30,4 +30,12 @@ class StatisztikaController extends Controller
     public function szabadsag_kerok(){
         return DB::table('szabadsag_kerok')->get();
     }
+
+    public function jovohet(){
+        return DB::table('jovohet')->get();
+    }
+
+    public function aktualishet(){
+        return DB::table('aktualis_het')->get();
+    }
 }

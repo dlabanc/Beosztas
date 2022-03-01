@@ -33,7 +33,7 @@ class Alkalmazott extends Model
     }
 
     public function bejelentkezes(){
-        return $this->hasOne(Bejelentkezes::class, 'user_login', 'dolgozoi_azon');
+        return $this->hasOne(BejelentkezesiAdatok::class, 'user_login', 'dolgozoi_azon');
     }
 
     public function nemdolgozna(){

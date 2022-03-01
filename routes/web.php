@@ -19,6 +19,7 @@ use App\Http\Controllers\HitelesitesController;
 use App\Http\Controllers\DolgozottNapokStatController;
 use App\Http\Controllers\StatisztikaController;
 use App\Http\Middleware\IsAuthenticated;
+use App\Http\Controllers\JelszoVisszaAllitasController;
 
 
 
@@ -53,6 +54,14 @@ Route::get('/login', function () {
     return view('login/login');
 });
 
+Route::get('/elfelejtett-jelszo', function () {
+    return view('login/forgetpassword');
+});
+
+Route::get('/reset-password/{token}', function ($token2) {
+    return view('login/resetpassword', ['token2' => $token2]);
+})->name('password.reset');
+
 Route::get('/login', [HitelesitesController::class, 'index'])->name('bejelentkezes');
 Route::post('/authenticate', [HitelesitesController::class, 'authenticate'])->name('hitelesites');
 Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentkezes');
@@ -68,7 +77,7 @@ Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
 //     Route::post('/api/alkalmazott', [AlkalmazottController::class, 'store']);
 //     Route::delete('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'destroy']);
 // });
-
+Route::get('/api/alkalmazott/expand', [AlkalmazottController::class, 'expand']);
 Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
 Route::get('/api/alkalmazott/sort', [AlkalmazottController::class, 'sortBy']);
 Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
@@ -172,3 +181,13 @@ Route::get('/api/napiposzt', [StatisztikaController::class, 'napiposzt']);
 
 ##SZABADSAG KEROK
 Route::get('/api/szabadsagkerok', [StatisztikaController::class, 'szabadsag_kerok']);
+
+##JOVOHET
+Route::get('/api/jovohet', [StatisztikaController::class, 'jovohet']);
+
+##AKTUALIS HET
+Route::get('/api/aktualishet', [StatisztikaController::class, 'aktualishet']);
+
+## 
+Route::post('/elfelejtett-jelszo', [JelszoVisszaAllitasController::class, 'linkKuldes'])->name('password.email');
+Route::post('/reset-password', [JelszoVisszaAllitasController::class, 'jelszoVisszaallitas'])->name('password.update');

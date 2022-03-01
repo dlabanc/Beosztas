@@ -71,6 +71,22 @@ class Createviews extends Migration
             SELECT `m`.`megnevezes` AS `megnevezes`, `a`.`nev` AS `nev`, `m`.`munkafonok` AS `munkafonok` 
             FROM (`munkakor` `m` join `alkalmazott` `a` on(`m`.`munkafonok` = `a`.`dolgozoi_azon`));'
         );
+
+        DB::unprepared(
+            'CREATE VIEW `jovohet`  
+            AS 
+            SELECT `napok`.`nap` AS `nap`, `napok`.`muszaktipus` AS `muszaktipus`, `napok`.`allapot` AS `allapot` 
+            FROM `napok` 
+            WHERE `napok`.`nap` between curdate() + interval 7 - weekday(curdate()) day and curdate() + interval weekday(curdate()) + 1 day ;'
+            );
+
+        DB::unprepared(
+            'CREATE view `aktualis_het`
+            AS
+            SELECT * 
+            FROM napok 
+            WHERE nap BETWEEN date_sub(curdate(), interval weekday(curdate()) day) and date_add(curdate(), interval 6-weekday(curdate()) day);'
+            );
         }
         
 
@@ -89,5 +105,7 @@ class Createviews extends Migration
         DB::unprepared('DROP VIEW IF EXISTS szabadsag_kerok');
         DB::unprepared('DROP VIEW IF EXISTS `dolgozottstat`');
         DB::unprepared('DROP VIEW IF EXISTS `munkafonokok`');
+        DB::unprepared('DROP VIEW IF EXISTS `jovohet`');
+        DB::unprepared('DROP VIEW IF EXISTS `aktualis_het`');
     }
 }
