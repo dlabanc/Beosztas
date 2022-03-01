@@ -190,20 +190,22 @@
         </article>
         <div class="password-window">
             <div class="password-window-bg">
-                <h3>Jelszó módosítása</h3>
-                <p class="password-notification">
-                    A megadott jelszavak nem egyeznek meg!
-                </p>
-                <input type="text" placeholder="Régi jelszó..." />
-                <br />
-                <input id="pass-first" type="text" placeholder="Új jelszó..." />
-                <br />
-                <input id="pass-second" type="password" placeholder="Új jelszó ismét..." />
-                <br />
-                <div class="password-buttons">
-                    <button class="passwordOk" disabled>Ok</button>
-                    <button class="passwordNo">Mégse</button>
-                </div>
+            <form id="form" method="POST" action=<?php $route=route('password.change'); echo $route?>>
+                    <fieldset>
+                    <legend>Jelszó Módosítás:</legend>
+                    <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
+                    <label for="oldpwd">Régi jelszó:</label><br>                   
+                    <input type="password" id="oldpwd" name="oldpwd"><br>
+                    <p><?php if(session('errors')!==null) { $error=session('errors')->first('oldpwd'); if ($error!==''){echo $error; echo "<br>";}} ?></p>
+                    <label for="newpwd">Új jelszó:</label><br>
+                    <input type="password" id="newpwd" name="newpwd"><br>
+                    <p><?php if(session('errors')!==null) { $error=session('errors')->first('newpwd'); if ($error!==''){echo $error; echo "<br>";}} ?></p>
+                    <label for="confirmpwd">Jelszó megerősítése:</label><br>
+                    <input type="password" id="confirmpwd" name="confirmpwd"><br>
+                    <p><?php if(session('errors')!==null) { $error=session('errors')->first('currentpwd'); if ($error!==''){echo $error; echo "<br>";}} ?></p>
+                    <input type="submit" id="submit" value="OK">
+                </fieldset> 
+                </form>
             </div>
         </div>
         <div class="post-info">

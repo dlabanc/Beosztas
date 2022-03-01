@@ -188,7 +188,13 @@ Route::get('/api/jovohet', [StatisztikaController::class, 'jovohet']);
 ##AKTUALIS HET
 Route::get('/api/aktualishet', [StatisztikaController::class, 'aktualishet']);
 
+##ALKALMAZHATO ALKALMAZATTAK
+Route::get('/api/alkalmazhatoak', [StatisztikaController::class, 'aktualishet']);
+
+##JOVOHETI NAPIMUNKAEROIGENY
+Route::get('/api/jovohet-nmi', [StatisztikaController::class, 'jovoheti_napimunkaeroigeny']);
+
 ## 
 Route::post('/elfelejtett-jelszo', [JelszoVisszaAllitasController::class, 'sendResetLink'])->name('password.email');
 Route::post('/reset-password', [JelszoVisszaAllitasController::class, 'passwordReset'])->name('password.update');
-Route::post('/change', [AuthController::class, 'changePassword'])->name('password.change');
+Route::post('/change', [HitelesitesController::class, 'changePassword'])->name('password.change');
