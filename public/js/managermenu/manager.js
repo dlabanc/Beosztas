@@ -2052,19 +2052,19 @@ $(function () {
                 
                 this.dolgozok.forEach(dolgozo=>{
                     if(dolgozo.nemDolgoznek.length>0){
-                        this.getNempreferaltMuszakok(dolgozo,this.datum);
+                        this.getNempreferaltMuszakok(dolgozo,this.datum,this);
                     }
                 });
             }
-            getNempreferaltMuszakok(dolgozo,datum){
+            getNempreferaltMuszakok(dolgozo,datum,obj){
               let z = dolgozo.getNemDolgozna(datum);
-              
+             
               z.forEach(y=>{
                 if(y.muszakelo_azon==this.muszakEloszlas[0].muszakelo_azon){
                    
                
-                    this.elem.find(".nempreferal").append(`<img src="${dolgozo.kep}">`);
-                    this.elem.find("img").hover(
+                    obj.elem.parent().find(".nempreferal").append(`<img src="${dolgozo.kep}">`);
+                    obj.elem.parent().find("img").hover(
                         function(){
                             dolgozo.elem.addClass("figyelmeztetes");
                             dolgozo.elem.find(".warning").addClass("figyelmeztetes-text");
@@ -2076,7 +2076,7 @@ $(function () {
                            
                         }
                     );
-                    this.elem.find("span").show();
+                    obj.elem.parent().find("span").show();
                 }
                 
               });
@@ -2166,7 +2166,6 @@ $(function () {
                         let kivalaszottMunkaeroIndex = selectAlkalmazottak.prop('selectedIndex');
                         let kivalaszottMunkaero = selectAlkalmazottak.find("option").eq(kivalaszottMunkaeroIndex).text();
                         listaFeltolt(kivalaszottMunkaero);
-                        listaKezeles();
                         let szurt = napiMunkaErok.filter(nap=>{
                             return nap.datum == kivalasztottDatum && nap.munkakor == kivalaszottMunkaero;
                         });
@@ -2174,7 +2173,7 @@ $(function () {
                             szurt.forEach(elem=>{
                                 const beosztasNap = new BeosztasNap(elem,ujbeosztasNaptar,beosztasAklamazottak); 
                                 beosztasNap.megjelenit();
-                                beosztasNap.nemdolgozna();
+                                beosztasNap.nemdolgozna(beosztasNap);
                                 let dolgozoDarab = 0;
                                 beosztasNap.dolgozok.forEach(dolg=>{
                                     
@@ -2196,10 +2195,8 @@ $(function () {
                                        
                                     })
                                 });
-                              
-
                             });
-                        
+                           
                             
                         }
                         else{
