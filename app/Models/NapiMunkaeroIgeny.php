@@ -12,7 +12,7 @@ class NapiMunkaeroIgeny extends Model
     protected $primaryKey = 'napim_azonosito';
     public $timestamps = false;
     protected $fillable = [
-      'napim_azonosito', 'datum', 'muszakelo_azon', 'munkakor'  
+      'napim_azonosito', 'datum', 'muszakelo_azon', 'munkakor', 'db'  
     ];
 
     public function muszakeloszlas(){

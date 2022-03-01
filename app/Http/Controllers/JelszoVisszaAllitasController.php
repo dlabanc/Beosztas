@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Models\BejelentkezesiAdatok;
-use App\Models\Alkalmazott;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class JelszoVisszaAllitasController extends Controller
 {
-    public function linkKuldes(Request $request){
+    public function sendResetLink(Request $request){
         $email=$request->only('email');
         $status = Password::sendResetLink(
             $email
@@ -24,7 +23,7 @@ class JelszoVisszaAllitasController extends Controller
     }
 
 
-    public function jelszoVisszaallitas(Request $request){
+    public function passwordReset(Request $request){
         $alk = BejelentkezesiAdatok::where('email',$request->only('email'))->get()->first();
         $credentials=['user_login' => $alk->user_login, 'password' => $request->only('password')['password'], 'email'=>$alk->email, 'token'=>$request->token2];
         $status = Password::reset(
