@@ -38,4 +38,12 @@ class StatisztikaController extends Controller
     public function aktualishet(){
         return DB::table('aktualis_het')->get();
     }
+
+    public function alkalmazhatoak(){
+        return DB::table('alkalmazhatoak')->get();
+    }
+
+    public function jovoheti_napimunkaeroigeny(){
+        return DB::table('jovoheti_napimunkaeroigeny')->get();
+    }
 }

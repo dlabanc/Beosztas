@@ -41,6 +41,37 @@ class HitelesitesController extends Controller
         return Auth::user()->user_login;
     }
 
+    public function changePassword(Request $request)
+    {       
+        $user = Auth::user();
+        
+        $userPassword = $user->password;
+        
+        // $request->validate([
+        //     'oldpwd' => 'required',
+        //     'newpwd' => 'same:confirmpwd|min:6',
+        //     'confirmpwd' => 'required',
+        // ]);
+        
+        if (!Hash::check($request->oldpwd, $userPassword)) {
+            return redirect()->back()->withErrors(['oldpwd'=>'A jelszó nem egyezzik!']);
+        }
+
+        if (Hash::check($request->newpwd, $userPassword)) {
+            return redirect()->back()->withErrors(['newpwd'=>'Az új jelszó nem lehet ugyanaz mint a régi jelszó!']);
+        }
+
+        if(!strcmp($request->newpwd,$request->confirmpwd)==0){
+            return redirect()->back()->withErrors(['currentpwd'=>'A megadott jelszó nem egyezik meg az új jelszóval!']);
+        }
+
+        $user->password = Hash::make($request->newpwd);
+        $user->timestamps = false;
+        $user->save();
+
+        return redirect()->back();
+    }
+
 
     public function logout() {
         Session::flush();

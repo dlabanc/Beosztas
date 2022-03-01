@@ -87,7 +87,46 @@ class Createviews extends Migration
             FROM napok 
             WHERE nap BETWEEN date_sub(curdate(), interval weekday(curdate()) day) and date_add(curdate(), interval 6-weekday(curdate()) day);'
             );
-        }
+
+        DB::unprepared(
+            'CREATE view `alkalmazhatoak`
+            AS
+            SELECT *
+            FROM alkalmazott a
+            WHERE a.dolgozoi_azon NOT IN (
+            SELECT a.dolgozoi_azon
+            FROM alkalmazott a
+            INNER JOIN szabadsag sz ON a.dolgozoi_azon=sz.alkalmazott
+            where sz.tol>=date_add(curdate(), interval 7 - weekday(curdate()) day) and sz.ig<=date_add(curdate(), interval weekday(curdate()) + 1 day));'
+        );
+
+        DB::unprepared(
+            'CREATE VIEW `jovoheti_napimunkaeroigeny`
+            AS
+            SELECT * FROM `napimunkaeroigeny`
+            WHERE datum>date_add(curdate(), interval 6-weekday(curdate()) day);'
+        );
+
+        DB::unprepared(
+            'CREATE PROCEDURE napimunkaeroigeny_torles()
+            BEGIN
+                delete 
+                from napimunkaeroigeny
+                where datum<date_sub(curdate(), interval weekday(curdate()) day) and weekday(curdate())=0;
+            END
+            ');
+
+        DB::unprepared('SET GLOBAL event_scheduler = 1;');
+
+        DB::unprepared(
+            'CREATE EVENT napimunkaeroigeny_heti_torles
+            ON SCHEDULE EVERY 1 WEEK
+	            STARTS curdate() + interval  7-weekday(curdate()) day
+            ON COMPLETION PRESERVE
+            DO 
+	            CALL napimunkaeroigeny_torles();
+        ');
+        }  
         
 
     /**
