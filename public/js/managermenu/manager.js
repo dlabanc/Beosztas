@@ -82,11 +82,15 @@ $(function () {
 
         esemenyLetrehoz(kattintasElem, DOM, callback) {
             kattintasElem.on("click", () => {
-                this.tarolo.empty();
-                this.tarolo.append(DOM);
-                callback();
-                newPost();
+                this.esemeny(DOM,callback);
             });
+        }
+
+        esemeny(DOM,callback){
+            this.tarolo.empty();
+            this.tarolo.append(DOM);
+            callback();
+            newPost();
         }
 
     }
@@ -1865,6 +1869,7 @@ $(function () {
                     listaFeltolt(ertek);
                     listaKezeles();
                     ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
+                    
                     if(napok.length>0){
                         napiMunkaErok.splice(0,napiMunkaErok.length);
                         napok.forEach(napigeny => {
@@ -1909,7 +1914,7 @@ $(function () {
                 this.dolgozok = this.dolgozoTomb.filter(dolgozo=>{
                     return dolgozo.munkakor == this.munkakor;
                 });
-
+                console.log(this)
                 
                 
                 this.dolgozoTomb=[];
@@ -1934,9 +1939,10 @@ $(function () {
                </div>
                `);
                
+               
                this.kattintas();
-              
-            
+               if(!(this.adat.db==0)){this.elem.append(`<div><button class="uj-beosztas-kuld" disabled>Rögzítés</button></div>`);}
+               $(".uj-beosztas-kuld").hide();
             }
 
             kattintas(){
@@ -1993,15 +1999,58 @@ $(function () {
                     });
 
                     let darabElem =  this.elem.find(".beosztott-darab");
-                    darabElem.text(dolgozoDarab);
-                    if(dolgozoDarab>this.adat.db){
+                    const mentesElem = $(".uj-beosztas-kuld");
+                    
+                    if(dolgozoDarab==this.adat.db){
+                        darabElem.text(dolgozoDarab);
+                        darabElem.removeClass("megkell");
+                        darabElem.addClass("ok");
+                        this.elem.find(mentesElem).show();
+                        
+                        this.elem.find(mentesElem).attr("disabled",false);
+                        this.elem.find(mentesElem).on("click",()=>{
+                           
+                            this.dolgozoTomb.forEach(alkalmazott=>{
+                            let ujadat = {napim_azonosito:this.ID,alkalmazott:alkalmazott.ID};
+                            ajax.ajaxApiPost("http://localhost:8000/api/beosztas",ujadat);
+                            
+                            });
+                         this.elem.find(mentesElem).parent().html(`<div class="uj-beosztas-success">Sikeres Mentés!</div>`);   
+                         
+                         this.dolgozoTomb = [];  
+                        });
+                    }
+                    else if(dolgozoDarab>this.adat.db){
+                        darabElem.text(dolgozoDarab);
                         darabElem.addClass("hibas");
+                        removeOkMegkell();
+                        gombLetilt(this.elem);
+                    }
+
+                    else if(dolgozoDarab==0){
+                        darabElem.text(this.adat.db);
+                        darabElem.removeClass("hibas");
+                        removeOkMegkell();
+                        gombLetilt(this.elem);
+                        
                     }
                     else{
-                        darabElem.removeClass("hibas");
+                        darabElem.text(dolgozoDarab);
+                        darabElem.addClass("megkell");
+                        darabElem.removeClass("ok");
+                        gombLetilt(this.elem);
+                    }
+
+                    function gombLetilt(elem){
+                        elem.find(mentesElem).attr("disabled",true);
+                        elem.find(mentesElem).hide();
+                    }
+
+                    function removeOkMegkell(){
+                        darabElem.removeClass("megkell");
+                        darabElem.removeClass("ok");
                     }
                     
-
                 });
                 
             }
@@ -2124,7 +2173,10 @@ $(function () {
             }
         }
         function beosztasNaptar(datum){
-            ujbeosztasNaptar.empty();
+                    ajaxApiGet("http://localhost:8000/api/beosztasok/",beosztasok=>{
+                            
+                    });
+                    ujbeosztasNaptar.empty();
                     let kivalasztottDatum = datum;
                     let kivalaszottMunkaeroIndex = selectAlkalmazottak.prop('selectedIndex');
                     let kivalaszottMunkaero = selectAlkalmazottak.find("option").eq(kivalaszottMunkaeroIndex).text();
@@ -2138,6 +2190,26 @@ $(function () {
                             const beosztasNap = new BeosztasNap(elem,ujbeosztasNaptar,beosztasAklamazottak); 
                             beosztasNap.megjelenit();
                             beosztasNap.nemdolgozna();
+                        });
+                        
+                    }
+                    else{
+                        ujbeosztasNaptar.html(`<div>
+                        <p class="uj-beosztas-uzenet">Még nem állítottad be a nap műszaktipusát vagy munkaerőigényét. ( ${datum} )</p>
+                        <p class="uj-beosztas-uzenet2">Válassz az alábbi linkek közül:</p>
+                        <div class="uj-beosztas-uzenet-linkek">
+                        <a class="uj-beosztas-napi-igeny">Napi munkaerőigény</a>
+                        <a class="uj-beosztas-muszaktipus-naphoz">Műszaktípus naphoz rendelése</a>
+                        </div>    
+                        </div>`);
+                        const napiIgenyLink = $(".uj-beosztas-napi-igeny");
+                        const muszaktipusLink = $(".uj-beosztas-muszaktipus-naphoz");
+                        napiIgenyLink.on("click",()=>{
+                            oldal.esemeny(oldal.napimunkaa,napiMin);
+                            
+                        });
+                        muszaktipusLink.on("click",()=>{
+                            oldal.esemeny(oldal.muszaktipusnn,muszakNaphozRendelese);
                         });
                     }
         }
