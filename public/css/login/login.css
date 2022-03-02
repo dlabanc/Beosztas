@@ -1,231 +1,198 @@
-/* HTML */
-
-.login {
-  
-  overflow-y: hidden;
-  background: none;
-  background: none;
-  font-size: 1.2rem;
- 
-  
-}
-
-*{
-  box-sizing: border-box;
-  user-select: none; 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
-}
-/* Login felülete */
-.container {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 65vh;
-  background-color:#f2f3f5 ;
-  height: 96vh;
-  margin: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  border-radius: 15px;
-}
-
-/*.form{
-  position: relative;
-  bottom: 2vh;
-}
-*/
-.container h3 {
-  position: relative;
-  bottom: 5vh;
-  text-transform: uppercase;
-}
-/* Login bevitelimezők*/
-.login .form .inputs:first-child {
-  margin-bottom: 3rem;
-}
-
-.login .form .inputs, .login .form .input_buttons {
-  margin: 0;
-  padding: 2rem;
-  background: rgba(255, 255, 255);
-  border-radius: 16px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  
-}
-
-
-
-.login .form .inputs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  box-sizing: border-box;
-  position: relative;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  
-}
-
-.login .form .inputs .icons {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  left:2rem;
-  color:rgb(24, 206, 166);
-}
-
-.login .form .inputs input {
-  padding-left: 2rem;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 40vh;
-  margin-right: 1rem;
-  border-radius: 5px;
-  border: none; 
-  border:1px solid rgba(0, 0, 0, 0.404); 
-  
-}
-
-.login .form .inputs input:focus{
-    outline:none;
-    border-color:  rgb(24, 206, 166);
-    
-}
-
-input:-webkit-autofill  {
-  -webkit-box-shadow: 0 0 0 30px  white inset !important;
-  -webkit-text-fill-color: black;
-}
-
-.login .form .inputs #user_login{
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
-    
-}
-
-.login .form .inputs #password{
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 30%);
- 
-}
-
-.login .form .input_buttons {
-  display: flex;
-  flex-direction: column;
-}
-
-.login .form .input_buttons a{
-    margin-top: 2rem;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    display: flex;
-    width: max-content;
-    align-self: center;
-    border-bottom: 1px solid transparent;
-}
-
-.login .form .input_buttons a:hover{
-    border-bottom:1px solid black ;
-   
-   
-}
-
-.login .form .input_buttons #login{
-
-    color:white;
-    padding: 1rem;
-    border: none;
-    width: 44vh;
-    margin: auto;
-    border-radius: 5px;
-    text-transform: uppercase;
-    background: linear-gradient(to right, rgb(24, 206, 166), rgb(8, 138, 110), rgb(8, 73, 59));
-}
-
-.login .form .input_buttons #login:hover{
-
-    background: linear-gradient(to right, rgb(24, 206, 166),  rgb(43, 67, 133));
-
-}
-
-
-.login .label {
-  background: rgba(255, 255, 255);
-  border-radius: 16px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  
-  padding: 1.5rem;
-  margin-top: 1rem;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+.label{
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
+  width: 100%;
 }
+:root {
+  --base-lemon: #F7B928;
+  --fds-black-alpha-05: rgba(0, 0, 0, 0.05);
+  --fds-black-alpha-10: rgba(0, 0, 0, 0.1);
+  --fds-black-alpha-15: rgba(0, 0, 0, 0.15);
+  --fds-black-alpha-20: rgba(0, 0, 0, 0.2);
+  --fds-black-alpha-30: rgba(0, 0, 0, 0.3);
+  --fds-black-alpha-40: rgba(0, 0, 0, 0.4);
+  --fds-black-alpha-50: rgba(0, 0, 0, 0.5);
+  --fds-black-alpha-60: rgba(0, 0, 0, 0.6);
+  --fds-black-alpha-80: rgba(0, 0, 0, 0.8);
+  --fds-blue-05: #ecf3ff;
+  --fds-blue-30: #aac9ff;
+  --fds-blue-40: #77a7ff;
+  --fds-blue-60: #1877f2;
+  --fds-blue-70: #2851a3;
+  --fds-blue-80: #1d3c78;
+  --fds-button-text: #444950;
+  --fds-comment-background: #f2f3f5;
+  --fds-gray-00: #f5f6f7;
+  --fds-gray-05: #f2f3f5;
+  --fds-gray-10: #ebedf0;
+  --fds-gray-20: #dadde1;
+  --fds-gray-25: #ccd0d5;
+  --fds-gray-30: #bec3c9;
+  --fds-gray-45: #8d949e;
+  --fds-gray-70: #606770;
+  --fds-gray-80: #444950;
+  --fds-gray-90: #303338;
+  --fds-gray-100: #1c1e21;
+  --fds-green-55: #00a400;
+  --fds-highlight-cell-background: #ecf3ff;
+  --fds-primary-icon: #1c1e21;
+  --fds-primary-text: #1c1e21;
+  --fds-red-55: #fa383e;
+  --fds-soft: cubic-bezier(0.08, 0.52, 0.52, 1);
+  --fds-spectrum-aluminum-tint-70: #e4f0f6;
+  --fds-spectrum-blue-gray-tint-70: #cfd1d5;
+  --fds-spectrum-cherry: #f35369;
+  --fds-spectrum-lime: #a3ce71;
+  --fds-spectrum-seafoam-tint-70: #caeef9;
+  --fds-spectrum-slate-dark-2: #89a1ac;
+  --fds-spectrum-slate-tint-70: #eaeff2;
+  --fds-spectrum-teal: #6bcebb;
+  --fds-spectrum-teal-dark-1: #4dbba6;
+  --fds-spectrum-teal-dark-2: #31a38d;
+  --fds-spectrum-teal-tint-70: #d2f0ea;
+  --fds-spectrum-teal-tint-90: #f0faf8;
+  --fds-spectrum-tomato: #fb724b;
+  --fds-spectrum-tomato-tint-30: #f38e7b;
+  --fds-spectrum-tomato-tint-90: #fdefed;
+  --always-white: #ffffff;
+  --always-black: black;
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #f33155;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #7ace4c;
+  --bs-teal: #20c997;
+  --bs-cyan: #4fc3f7;
+  --bs-white: #fff;
+  --bs-gray: #8898aa;
+  --bs-gray-dark: #313131;
+  --bs-primary: #707cd2;
+  --bs-secondary: #8898aa;
+  --bs-success: #7ace4c;
+  --bs-info: #2cabe3;
+  --bs-warning: #ffc36d;
+  --bs-danger: #f33155;
+  --bs-light: #f7fafc;
+  --bs-dark: #313131;
+  --bs-cyan: #4fc3f7;
+  --bs-orange: #ffc36d;
+  --bs-purple: #707cd2;
+  --bs-inverse: #4c5667;
+}
+html{
+  background-image: url("paige-cody-RdlBK-0XOxk-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+.inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  
+}
+h3{
+  font-size: 2rem;
+  border-bottom: 1px solid var(--fds-gray-45);
+  padding-bottom: 1rem;
+  
+
+ 
+}
+.field{
+  margin-top: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.field span{
+  padding: .5rem;
+  color:var(--fds-button-text);
+}
+.field input{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 1rem;
+ 
+  height: 15px;
+  width: 250px;
+  margin: auto;
+  font-size: 1.1rem;
+}
+
 
 #login{
-    cursor: pointer;
-}
-
-.rememberme{
-    position: relative;
-    bottom: 2rem;
-    width: fit-content;
-    margin: auto;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.rememberme label{
-    margin-left: .5rem;
-    font-size: 1.1rem;
-    font-weight: lighter;
-}
-
-.rememberme input{
-  transform: scale(1.2);
-}
-
-
-
-footer{
- position: relative;
- top: 100px;
- 
-
-}
-
-.darkmode--activated .label , .darkmode--activated .inputs,.darkmode--activated label{
-  background-color: black!important;
-  color:white!important;
+  border: none;
+  padding: 1rem;
+  width: fit-content;
+  border-radius: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(235, 153, 1);
+  background-color: var(--fds-spectrum-slate-tint-70);
+  font-family: 'Montserrat', sans-serif;
+  color: var(--fds-button-text);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: .9px;
   
 }
-.darkmode--activated input[type="text"], .darkmode--activated input[type="password"]{
-  background-color: rgb(29, 28, 28);
- 
+#login:hover{
+  cursor: pointer;
+  transition: .3s ease-in-out;
+  background-color: var(--bs-blue);
+  color: var(--always-white);
+  
 }
-.darkmode--activated div{
-  box-shadow: 0 0px 0px transparent!important;
-
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100vh;
+  gap: 1rem;
 }
-.darkmode--activated .fa-user,.darkmode--activated .fa-lock{
-  color: palevioletred!important;
+.uveg{
+  padding: 5rem;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
 }
-.darkmode--activated .inputs input:focus{
-  border-color: palevioletred!important;
+html{
+overflow: hidden;
 }
-
-@media screen and (max-width:700px) {
- .container{
-   display: flex;
-   flex-wrap: wrap;
-   width: 100%;
-   margin: auto;
-   padding: 0;
-   
- }
- .inputs{
-   width: 100%;
- }
+.input_buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.input_buttons input{
+  display: block;
+  margin: auto;
+  width: 100%; 
+}
+.forgotpass{
+  color: var(--bs-info);
+  text-decoration: none;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  color:var(--fds-blue-60);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-decoration: underline;
+}
+footer{
+  margin-top: 2rem;
 }

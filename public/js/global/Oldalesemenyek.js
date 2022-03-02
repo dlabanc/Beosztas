@@ -21,8 +21,7 @@ $(function () {
         autoMatchOsTheme: true, // default: true
     };
 
-    const darkmode = new Darkmode(options);
-    darkmode.showWidget();
+    
 
     function sideNav() {
         let width = 0;

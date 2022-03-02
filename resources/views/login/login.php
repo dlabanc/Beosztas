@@ -10,17 +10,20 @@
       href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
     />
     <link rel="stylesheet" href="/css/login/login.css" />
-    <link rel="stylesheet" href="/css/global/global.css">
+
     <script src="/node_modules/darkmode-js/lib/darkmode-js.js"></script>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script src="/js/global/Oldalesemenyek.js"></script>
     
     <title>Bejelentkezés</title>
   </head>
-  <button class="btn"></button>
+  
   <body class="login">
+    
     <div class="container">
+    <div class="uveg"> 
       <div>
+        <div class="icon"></div>
         <h3 class="label">Login</h3>
       </div>
       <div class="form">
@@ -29,16 +32,18 @@
           <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
           <div class="inputs">
             <div class="field">
-              <li class="icons fas fa-user"></li>
+            <span class="fas fa-user"></span>
               <input
                 type="text"
                 id="user_login"
                 name="user_login"
                 placeholder="Felhasználónév..."
+                
               />
+              
             </div>
             <div class="field">
-              <li class="icons fas fa-lock"></li>
+            <span class="fas fa-lock"></span>
               <input
                 type="password"
                 id="password"
@@ -48,11 +53,7 @@
             </div>
             
           </div>
-          <div class="rememberme">
-            
-            <input type="checkbox" name="remember" id="remember" value="" />
-            <label for="remember">Felhasználónév megjegyzése</label>
-          </div>
+         
           <div class="input_buttons">
             <input
               type="submit"
@@ -67,6 +68,7 @@
       <div>
         <footer class="label">Vizsgamunka © 2021</footer>
       </div>
+    </div>
     </div>
 
   </body>
