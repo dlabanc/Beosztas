@@ -51,6 +51,8 @@ $(function () {
                 }
             }
         }
+
+        
        
         $(".posts-container").empty();
         
@@ -58,58 +60,77 @@ $(function () {
         $(".posts").append(`<div> <h1>Faliújság</h1></div>`);
        
         const postinfoTomb = [];
-        adatok.forEach((adat) => {
-            ajax.ajaxApiGet(apivegpont + "/alkalmazott/" + adat.dolgozoi_azon, (a) => 
-            {
+        let oldalhossz = 5;
+        let i = 1;
+
+        pagiJobbBal($(".posts-grid"),$(".faliujsag-container"),$(""),".post-title",oldalhossz)
+        
+        for (let oldalIndex = 0; oldalIndex < adatok.length; oldalIndex += oldalhossz) {
+            let darabolt = adatok.slice(oldalIndex, oldalIndex + oldalhossz)
+            darabolt.forEach((adat) => {
                 
-                    postinfoTomb.push(a);
-                    const szulo = $(".faliujsag-container");
-                    let faliujsagPost = new Faliujsag(szulo, adat,ajax);
+                ajax.ajaxApiGet(apivegpont + "/alkalmazott/" + adat.dolgozoi_azon, (a) => 
+                {
                     
-                    faliujsagPost.elem.find("button").remove();
-                    if (postinfoTomb.length == adatok.length) {
-                        console.log(adatok.length);
-                        const szulo = $(".posts");
-                        ajax.ajaxGet(
-                            "https://randomuser.me/api/?results=" + adatok.length, (kepek) => {
-                                kepek.results.map((ember, index) => {
-                                  
-                                        const element = adatok[index];
-                                        let kep = ember.picture.large;
-                                        $(".profilepic").attr("src", kep);
-                                        $(".profilepic").fadeIn(1000);
-                                        $(".post-title")
-                                        .eq(index)
-                                        .find("img")
-                                        .attr("src", ember.picture.large);
-                                        $("#Profiladatok")
+                        postinfoTomb.push(a);
+                        const szulo = $(".faliujsag-container");
+                        let faliujsagPost = new Faliujsag(szulo, adat,ajax);
+
+                        if(oldalIndex>0){
+                            faliujsagPost.titleElem.hide();
+                        }
+
+                        faliujsagPost.elem.find("button").remove();
+                        if (postinfoTomb.length == darabolt.length-i+oldalIndex) {
+                            const szulo = $(".posts");
+                            ajax.ajaxGet(
+                                "https://randomuser.me/api/?results=" + darabolt.length+oldalIndex, (kepek) => {
+                                    kepek.results.map((ember, index) => {
+                                            const element = darabolt[index];
+                                            let kep = ember.picture.large;
+                                            $(".profilepic").attr("src", kep);
+                                            $(".profilepic").fadeIn(1000);
+                                            $(".post-title")
+                                            .eq(index+oldalIndex)
                                             .find("img")
-                                            .attr("src", kep);
+                                            .attr("src", ember.picture.large);
+                                            $("#Profiladatok")
+                                                .find("img")
+                                                .attr("src", kep);
+    
+                                            let post = new Post(
+                                                szulo,
+                                                element,
+                                                kep,
+                                                postinfoTomb[index+oldalIndex]
+                                            );
 
-                                        let post = new Post(
-                                            szulo,
-                                            element,
-                                            kep,
-                                            postinfoTomb[index]
-                                        );
+                                            
+                                        
+                                        $(".post-content")
+                                            .eq(index+oldalIndex)
+                                            .find("img")
+                                            .attr("src", ember.picture.large);
 
-                                      
+                                            if(oldalIndex>0 && index<oldalIndex-1){
+                                                post.elem.hide();
+                                            }
+                                    });
+                                    if (oldalIndex>0) {
+                                    pagiJobbBal($(".posts"),$(".posts"),$(""),".post",oldalhossz)
+                                    }
                                     
-                                    $(".post-content")
-                                        .eq(index)
-                                        .find("img")
-                                        .attr("src", ember.picture.large);
-                                });
-                            }
-                        );
-                    }
-                   
-                }
-                
-            );
-           
-        });
-       
+                                }
+                            );
+                            i--;
+                        }
+                       
+                    });
+                    
+            });
+            
+        }
+         
     }
 
     function newPost() {
@@ -166,7 +187,7 @@ $(function () {
         ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok)=>{
             logged = adatok;
             ajax.ajaxApiGet("http://localhost:8000/api/alkalmazott/"+logged, (adatok) => {
-                console.log(adatok);
+                
                 sor = 0;
                 $(".profile-name").text("Üdvözöllek, "+adatok.nev);
                 
@@ -447,7 +468,7 @@ $(function () {
                             szurt = szurt.map((adat) => {
                                 return adat.muszakelo_azon;
                             });
-                            console.log(szurt);
+                            
                             szurt.forEach((id) => {
                                 let kihuz = this.muszakTipusElem.find(`#${id}`);
                                 kihuz.parent().css("text-decoration","line-through");
@@ -515,8 +536,7 @@ $(function () {
                     aktualisTablazat.append(`<div class="datedays"></div>`);
                 }
                 let i = 0;
-                console.log(honapElsoNapja);
-                console.log(honapOsszNapja);
+
                 
                 while(i<honapOsszNapja){
                     
@@ -555,5 +575,64 @@ $(function () {
         }
     
         let ujNaptar = new Naptar(naptar, napok, honapok);
+    }
+
+    function pagiJobbBal(szulo,tabla,sablon,elem,elemPerOldal) {
+        szulo.append("<div id='navigacio'></div>");
+        $("#navigacio").empty();
+
+        szulo.find("#navigacio").append(
+         "</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
+        +"<button class='fas fa-angle-right' id='eloreLepeget'></button>")
+
+        szulo.find("#eloreLepeget").on("click",eloreLepeget);
+        szulo.find("#hatraLepeget").on("click",hatraLepeget);
+
+        function eloreLepeget(){
+            sablon.remove();
+            let utolsoElem = 0;
+            for (let index = 0; index < tabla.find(elem).length; index++) {
+                if (tabla.find(elem).eq(index).css("display")!="none"){
+                    utolsoElem = index; 
+                }
+                    
+            }
+
+            if (utolsoElem+1!=tabla.find(elem).length){
+                
+                kiurit();
+
+                for (let index = utolsoElem+1; index < utolsoElem+1+elemPerOldal; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+
+                }
+
+            }
+        }
+
+        function hatraLepeget(){
+            sablon.remove();
+            elsoElem = 0;
+            
+            while (tabla.find(elem).eq(elsoElem).css("display")=="none"){
+                elsoElem++;
+            }
+
+            if (elsoElem!=0){
+                
+                kiurit();
+
+                for (let index = elsoElem-elemPerOldal; index < elsoElem; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+                }
+
+            }
+        }
+
+        function kiurit() {
+            for (let index = 0; index < tabla.find(elem).length; index++) {
+                tabla.find(elem).eq(index).hide();
+            }
+        }
     }
 });

@@ -942,7 +942,7 @@ $(function () {
                     });
                 }
             );
-            pagination($("#ManFaliujsag"),$(".faliujsag-container"),$(""),".post-title",oldalhossz);
+            pagiJobbBal($("#ManFaliujsag"),$(".faliujsag-container"),$(""),".post-title",oldalhossz);
         }
         $(window).on("modositf", (event) => {
 
@@ -1647,16 +1647,17 @@ $(function () {
         $(".tablaAdatok").remove();
 
         szulo.append("<div class='tablaAdatok'>" +
-            `<div class="navigacio-grid"> ` +
-            "<div class=" + "navigacio-input" + ">" +
-            "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + "></div>" +
-            "<p id='oldalSzamok'></p>" +
-            "<p id='oldalSzam'></p>"+
             "<div id='navigacio'></div>" +
-            "</div></div>");
+            "</div>");
 
             $("#navigacio").empty();
 
+            $(".tablaAdatok").prepend(
+                `<div class="navigacio-grid"> ` +
+                
+                "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + ">" +
+                "<p id='oldalSzamok'></p>" +
+                "<p id='oldalSzam'></p></div>")
 
         szulo.find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
         +"</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
@@ -1801,6 +1802,67 @@ $(function () {
         }
 
     }
+
+    function pagiJobbBal(szulo,tabla,sablon,elem,elemPerOldal) {
+        szulo.append("<div id='navigacio'></div>");
+        $("#navigacio").empty();
+
+        szulo.find("#navigacio").append(
+         "</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
+        +"<button class='fas fa-angle-right' id='eloreLepeget'></button>")
+
+        szulo.find("#eloreLepeget").on("click",eloreLepeget);
+        szulo.find("#hatraLepeget").on("click",hatraLepeget);
+
+        function eloreLepeget(){
+            sablon.remove();
+            let utolsoElem = 0;
+            for (let index = 0; index < tabla.find(elem).length; index++) {
+                if (tabla.find(elem).eq(index).css("display")!="none"){
+                    utolsoElem = index; 
+                }
+                    
+            }
+
+            if (utolsoElem+1!=tabla.find(elem).length){
+                
+                kiurit();
+
+                for (let index = utolsoElem+1; index < utolsoElem+1+elemPerOldal; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+
+                }
+
+            }
+        }
+
+        function hatraLepeget(){
+            sablon.remove();
+            elsoElem = 0;
+            
+            while (tabla.find(elem).eq(elsoElem).css("display")=="none"){
+                elsoElem++;
+            }
+
+            if (elsoElem!=0){
+                
+                kiurit();
+
+                for (let index = elsoElem-elemPerOldal; index < elsoElem; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+                }
+
+            }
+        }
+
+        function kiurit() {
+            for (let index = 0; index < tabla.find(elem).length; index++) {
+                tabla.find(elem).eq(index).hide();
+            }
+        }
+    }
+
+    
 
     function ujBeosztas(){
         function idoAtvalt(ido) {
