@@ -1910,9 +1910,9 @@ $(function () {
                 this.dolgozok = this.dolgozoTomb.filter(dolgozo=>{
                     return dolgozo.munkakor == this.munkakor;
                 });
-              
                 this.dolgozoTomb=[];
-                
+                this.dolgozoDb = 0;
+                this.beosztasok = [];
             }
 
             megjelenit(){
@@ -1930,14 +1930,34 @@ $(function () {
                     <div class="nempreferal">
                     <span class="nem-preferal-text">Nem dolgozna <span class="jel">!</span></span>
                     </div>
+                    <div class="uj-beosztas-buttons">
+                    <div><button class="uj-beosztas-kuld" disabled>Mentés</button></div>
+                    <div><button class="uj-beosztas-urit">Mégse</button></div>
+                    <div><button class="uj-beosztas-torles">Törlés</button></div>
+                    </div>
                </div>
                `);
                
-               
-               this.kattintas();
-               if(!(this.adat.db==0)){this.elem.parent().append(`<div><button class="uj-beosztas-kuld" disabled>Rögzítés</button></div>`);}
-               $(".uj-beosztas-kuld").hide();
+                
+                this.kattintas(this.dolgozok);
+
+                const mentesElem = $(".uj-beosztas-kuld");
+                const megseElem = this.elem.parent().find(".uj-beosztas-urit");
+                const torlesElem = this.elem.parent().find(".uj-beosztas-torles");
+                this.mentesElem = this.elem.parent().find(mentesElem); 
+                this.megseElem = this.elem.parent().find(megseElem); 
+                this.torlesElem = this.elem.parent().find(torlesElem);
+                this.darabElem =  this.elem.find(".beosztott-darab");  
+
+                megseElem.hide();       
+                mentesElem.hide();
+                torlesElem.hide();
+                mentesElem.attr("disabled",true);
+                this.sorTorlesEsemeny(this.dolgozoTomb);
+                this.mnetesEsemeny(this.dolgozoTomb);
+                
             }
+
             klonoz(alkalmazott,elem){
                 let clone =
                     {elem: alkalmazott.elem.clone(),
@@ -1968,83 +1988,129 @@ $(function () {
                             clone.menu.remove();
                         });
             }
-            darabEllenorzes(elem,db,darabElem,mentesElem){
+
+            darabEllenorzes(db,darabelem){
+                
                 if(db==this.adat.db){
-                    darabElem.text(db);
-                    darabElem.removeClass("megkell");
-                    darabElem.addClass("ok");
-                    this.elem.parent().find(mentesElem).show();
+                    darabelem.text(db);
+                    darabelem.removeClass("megkell");
+                    darabelem.addClass("ok");
+                    this.elem.parent().find(this.mentesElem).show();
+                    this.elem.parent().find(this.mentesElem).attr("disabled",false);
                     
-                    this.elem.parent().find(mentesElem).attr("disabled",false);
-                    this.elem.parent().find(mentesElem).on("click",()=>{
-                        this.beosztottakElem.empty();
-                        this.dolgozoTomb.forEach(alkalmazott=>{
-                        let ujadat = {napim_azonosito:this.ID,alkalmazott:alkalmazott.ID};
-                        ajax.ajaxApiPost("http://localhost:8000/api/beosztas",ujadat);
-                        this.klonoz(alkalmazott,this.beosztottakElem);
-                        });
-                        this.elem.parent().find(mentesElem).remove();
-                        elem.prop("onclick",null).off("click");
-                        
-                    });
+
+                  
                 }
                 else if(db>this.adat.db){
-                    darabElem.text(db);
-                    darabElem.addClass("hibas");
+                    darabelem.text(db);
+                    darabelem.addClass("hibas");
                     removeOkMegkell();
-                    gombLetilt(elem);
+                    gombLetilt(this.mentesElem);
                 }
 
                 else if(db==0){
-                    darabElem.text(this.adat.db);
-                    darabElem.removeClass("hibas");
+                    darabelem.text(this.adat.db);
+                    darabelem.removeClass("hibas");
                     removeOkMegkell();
-                    gombLetilt(elem);
+                    gombLetilt(this.mentesElem);
                     
                 }
                 else{
-                    darabElem.text(db);
-                    darabElem.addClass("megkell");
-                    darabElem.removeClass("ok");
-                    gombLetilt(elem);
+                    darabelem.text(db);
+                    darabelem.addClass("megkell");
+                    darabelem.removeClass("ok");
+                    gombLetilt(this.mentesElem);
                 }
                  
                   
 
                 function gombLetilt(elem){
-                    elem.find(mentesElem).attr("disabled",true);
-                    elem.find(mentesElem).hide();
+                    elem.attr("disabled",true);
+                    elem.hide();
                 }
 
                 function removeOkMegkell(){
-                    darabElem.removeClass("megkell");
-                    darabElem.removeClass("ok");
+                    darabelem.removeClass("megkell");
+                    darabelem.removeClass("ok");
                 }
             }
-            kattintas(){
+            kattintas(tomb){
                 this.elem = this.szulo.find(".ujbeosztas-sor:last");
                 this.beosztottakElem = this.elem.find(".beosztott");
-               
-                this.elem.on("click",(event)=>{
-
-                    this.beosztottakElem.empty();
-                    let dolgozoDarab = 0;
-                    this.dolgozoTomb = [];
-                    this.dolgozok.forEach(dolgozo =>{
-                        if(dolgozo.aktiv){
+                
+                
+                this.elem.on("click",()=>{                   
+                    
+                    tomb.forEach(dolgozo =>{
+                        if(dolgozo.aktiv && (!this.dolgozoTomb.includes(dolgozo))){
                             this.klonoz(dolgozo,this.beosztottakElem);
                             this.dolgozoHozzaad(dolgozo);
-                            dolgozoDarab++;
+                            
                         }
                         
                     });
-                    let darabElem =  this.elem.find(".beosztott-darab");
-                    const mentesElem = $(".uj-beosztas-kuld");
-                    this.darabEllenorzes(this.elem,dolgozoDarab,darabElem,mentesElem);
-                 
+                    
+                    this.darabEllenorzes(this.dolgozoTomb.length,this.darabElem);
+                    if(this.dolgozoTomb.length>0){
+                       
+                            this.megseElem.show();
+                    
+                    }
                 });
+
                 
             }
+
+            torlesEsemeny(){
+                this.torlesElem.on("click",()=>{
+                    this.beosztasok.forEach(beosztas=>{
+                        ajax.ajaxApiDelete("http://localhost:8000/api/beosztas",beosztas);
+                    });
+                     
+                    this.beosztottakElem.empty();
+                    this.dolgozoTomb.splice(0,this.dolgozoTomb.length);
+                    let dolgozoDarab = 0;
+                    this.darabEllenorzes(this.dolgozoTomb.length,this.darabElem);
+                    this.darabElem.text(dolgozoDarab);
+                    this.darabEllenorzes(this.dolgozoTomb.length,this.darabElem);
+                    this.torlesElem.hide();
+                    this.elem.prop("onclick",null).off("click");
+                    beosztasNaptar(this.datum);
+                });
+            }
+           
+            sorTorlesEsemeny(tomb){
+                
+                this.megseElem.on("click",()=>{
+                    
+                    this.beosztottakElem.empty();
+                    tomb.splice(0,tomb.length);
+                    console.log(tomb)
+                    let dolgozoDarab = 0;
+                    this.darabEllenorzes(this.dolgozoTomb.length,this.darabElem);
+                    this.darabElem.text(this.adat.db);
+                    this.megseElem.hide();
+                    
+                });
+            }
+
+            mnetesEsemeny(tomb){
+                this.elem.parent().find(".uj-beosztas-kuld").on("click",()=>{
+                    this.beosztottakElem.empty();
+                    tomb.forEach(alkalmazott=>{
+                    let ujadat = {napim_azonosito:this.ID,alkalmazott:alkalmazott.ID};
+                    ajax.ajaxApiPost("http://localhost:8000/api/beosztas",ujadat);
+                
+                        alkalmazott.aktiv=false;
+                        alkalmazott.cc=0;
+                    });
+                    beosztasNaptar(this.datum);
+
+                    this.elem.parent().find(this.mentesElem).remove();
+                    this.mentesElem.prop("onclick",null).off("click");
+                });
+            }
+
             dolgozoHozzaad(dolgozo){
                 this.dolgozoTomb.push(dolgozo);
             }
@@ -2078,6 +2144,8 @@ $(function () {
                     );
                     obj.elem.parent().find("span").show();
                 }
+                
+
                 
               });
              
@@ -2174,7 +2242,12 @@ $(function () {
                                 const beosztasNap = new BeosztasNap(elem,ujbeosztasNaptar,beosztasAklamazottak); 
                                 beosztasNap.megjelenit();
                                 beosztasNap.nemdolgozna(beosztasNap);
+
+                                if(beosztasNap.adat.db==0){
+                                    beosztasNap.elem.parent().remove();
+                                }
                                 let dolgozoDarab = 0;
+                                beosztasNap.beosztasok = [];
                                 beosztasNap.dolgozok.forEach(dolg=>{
                                     
                                     beosztasok.forEach(beo=>{
@@ -2186,15 +2259,18 @@ $(function () {
                                             dolg.beo_azon = beo.beo_azonosito;
                                             dolgozoDarab++;
                                             
-                                                let darabElem =  beosztasNap.elem.find(".beosztott-darab");
-                                                const mentesElem = $(".uj-beosztas-kuld");
-                                                beosztasNap.darabEllenorzes(beosztasNap.elem,dolgozoDarab,darabElem,mentesElem);
-                                                beosztasNap.elem.prop("onclick",null).off("click");
+                                            beosztasNap.darabEllenorzes(dolgozoDarab,beosztasNap.darabElem);
+                                            beosztasNap.elem.prop("onclick",null).off("click");
+                                            beosztasNap.beosztasok.push(beo.beo_azonosito); 
+                                            beosztasNap.elem.on("click",()=>{
+                                                beosztasNap.torlesElem.show();
+                                                beosztasNap.torlesEsemeny();
+                                            });
                                         }
                                      
                                        
-                                    })
-                                });
+                                    });
+                                }); 
                             });
                            
                             

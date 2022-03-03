@@ -9,14 +9,11 @@
   body{
     display: grid;
     border-radius: 16px;
-    
     padding: 2rem;
     width: 95%;
     margin: auto;
     margin-top: 5rem;
-    
-    
-    background-color: var(--always-white)!important;
+    background-color: var(--fds-gray-05)
     
   }
   :root {
@@ -2149,139 +2146,6 @@ input:focus, textarea:focus, select:focus{
   
   
   
-  .darkmode--activated article{
-    box-shadow: none;
-    background-color: transparent;
-   
-  }
-  .darkmode--activated .tabcontent{
-    box-shadow: none;
-    background-color: transparent;
-  }
-  .darkmode--activated .container{
-  
-    background-color:transparent;
-    
-  }
-  
-  .darkmode--activated aside{
-    
-    color:white;
-  }
-  
-  .darkmode--activated .post{
-    background-color: rgb(155, 17, 63);
-  }
-  
-  .darkmode--activated .managerinfo{
-   background-color: black!important;
-   color: white;
-  }
-  .darkmode--activated .managerinfo {
-    border-bottom: 1px solid palevioletred;
-  }
-  .darkmode--activated header span{
-    color: black!important;
-  }
-  .darkmode--activated aside .posts{
-    background-color: rgba(29, 28, 28, 0.505);
-  }
-  
-  .darkmode--activated nav span{
-    color:var(--fds-gray-30);
-  }
-  
-  .darkmode--activated .openbtn{
-   background-color: black;
-   color:rgb(223, 59, 113)!important;
-  }
-  .darkmode--activated .managerinfo a{
-    color:rgb(223, 59, 113)!important;
-  }
-  .darkmode--activated .managerinfo span{
-  
-      color:white!important;
-  }
-  
-  
-  .darkmode--activated .managerinfo,.darkmode--activated nav  {
-    box-shadow: none;
-    border: none;
-    
-  }
-  .darkmode--activated{
-    
-    box-shadow: none;
-    border: none;
-     
-    border:1px solid rgba(255, 255, 255, 0.699);
-  }
-  .darkmode--activated .logout{
-    color: rgb(223, 59, 113) !important;
-  }
-  .darkmode--activated article {
-    background-color: var(--always-white) !important;
-    
-  }
-  .darkmode--activated .sidenav{
-    background-color: rgb(19, 18, 18);
-  }
-  .darkmode--activated .sidenav a,.darkmode--activated .sidenav button{
-    color:var(--fds-gray-20 );
-  }
-  .darkmode--activated .dropdown-content4,
-  .darkmode--activated .dropdown-content2,
-  .darkmode--activated .dropdown-content3{
-    background-color: var(--always-black);
-  }
-  .darkmode--activated .sidenav a:hover{
-    background-color: palevioletred;
-  }
-  .darkmode--activated .ujAlkalmazott,.darkmode--activated #newpost{
-    background-color: rgb(19, 18, 18)!important;
-    color: palevioletred !important;
-  }
-  .darkmode--activated .cimsor{
-    background-color: var(--fds-spectrum-teal-tint-90);
-    border-radius: 30px;
-    color:var(--fds-spectrum-seafoam-tint-70);
-  }
-  
-  .darkmode--activated #tables{
-  color:white;
-  }
-  .darkmode--activated #tables tr{
-    border-bottom: 1px solid palevioletred;
-  }
-  
-  .darkmode--activated .tabcontent{
-    
-    background-color: rgba(0, 0, 0, 0.014);
-    border-radius: 15px;
-    color: black;
-  }
-  .darkmode--activated .post:hover{
-    background-color: palevioletred;
-  }
-  .darkmode--activated .post-content{
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
-      background-color: rgb(236, 230, 230)!important;
-      color:var(--fds-spectrum-slate-tint-70);
-  }
-  
-  .darkmode--activated .post-content > h3{
-    color: palevioletred !important;
-    
-    
-  }
-  .darkmode--activated .post-content h4{
-    color: rgb(61, 61, 61) !important;
-  }
-  .darkmode--activated{
-    
-    border:1px solid rgba(255, 255, 255, 0.699);
-  }
-  
   .napi-igenyek{
     display: flex;
     width: 100%;
@@ -2701,7 +2565,8 @@ input:focus, textarea:focus, select:focus{
   margin-right: .5rem;
 }
 .ujbeosztas-alkalmazottak-select{
-
+  font-size: 1.1rem;
+  font-weight: 500;
   appearance: none;
   line-height: 1.3;
   width: 100%;
@@ -2735,9 +2600,18 @@ input:focus, textarea:focus, select:focus{
   margin-top: 2rem;
 
 }
+#Ujbeosztas > div:nth-child(1){
+   display: flex;
+   flex-direction: column;
+   justify-content: stretch;
+}
 .ujbeosztas-naptar{
   grid-area: ujbeonaptar;
-
+margin-top: auto;
+margin-bottom: auto;
+  display: grid;
+  grid-template-columns: auto;
+  height: 100%;
 }
 .ujbeosztas-valasztott-datum{
   border: none;
@@ -2752,6 +2626,8 @@ input:focus, textarea:focus, select:focus{
   width: fit-content;
   border-bottom: 1px solid var(--fds-gray-20);
   width: 100%;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 
@@ -2770,9 +2646,20 @@ input:focus, textarea:focus, select:focus{
 .ujbeosztas-sor .ujbeosztas-time{
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  align-items: center;
-  justify-content: center;
+  justify-content:  space-around;
+  background-color: var(--fds-comment-backgroun);
+  text-align: center;
+  
+  font-size:1rem;
+  border-radius: 10px;
+
+ 
+  font-weight: 500;
+}
+.time1{
+  
+  width: 50px;
+  text-align: center;
 }
 .ujbeosztas-sor .beosztott{
   display: flex;
@@ -2786,10 +2673,7 @@ input:focus, textarea:focus, select:focus{
   width: 50px;
   height: 100%;
 }
-.ujbeosztas-time{
-  gap:1rem;
-  
-}
+
 
 .ujbeosztas-sor .beosztott .uj-beosztas-alkalmazott{
   box-shadow: none;
@@ -2814,16 +2698,45 @@ input:focus, textarea:focus, select:focus{
   margin-right: 1rem;
  
 }
-.uj-beosztas-kuld, .uj-beosztas-success{
+.uj-beosztas-buttons{
+  display: flex;
+  gap:2rem;
+  padding: .5rem;
+  justify-content: center;
+}
+.uj-beosztas-buttons button{
+  min-width: 100px;
+  padding: .2rem;
+}
+.uj-beosztas-torles{
+  font-weight: 450;
   border: none;
   display: flex;
   justify-content: center;
-  margin: auto;
-  margin-top: 1rem;
-  padding: .5rem;
-  color:var(--bs-info);
+  border-radius: 5px;
+  color:var(--always-white);
   cursor: pointer;
-  background-color: var(--always-white)!important;
+  background-color: var(--fds-red-55)!important;
+}
+.uj-beosztas-urit{
+  font-weight: 450;
+  border: none;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  color:var(--fds-button-text);
+  cursor: pointer;
+  background-color: var(--fds-gray-10)!important;
+}
+.uj-beosztas-kuld{
+  border: none;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  color:var(--always-white);
+  cursor: pointer;
+  font-weight: 450;
+  background-color: var(--bs-info)!important;
 }
 .uj-beosztas-success{
   color: var(--bs-success);
@@ -2867,8 +2780,11 @@ input:focus, textarea:focus, select:focus{
 
 .beosztas-flex{
   display:flex;
+  
+  justify-content: center;
   flex-direction: column;
   border-bottom: 1px solid var(--fds-gray-20);
+  
 }
 .beosztas-flex img{
   border-radius: 50px;
@@ -2906,6 +2822,7 @@ input:focus, textarea:focus, select:focus{
   padding: 1rem;
   color:var(--fds-blue-60);
 }
+
 .uj-beosztas-uzenet-linkek{
   margin-top: 1rem;
   display: flex;
@@ -2919,9 +2836,10 @@ input:focus, textarea:focus, select:focus{
 }
 #Ujbeosztas{
   display: grid;
+  min-height: 100%;
   grid-template-areas: "ujbeonaptar alkalmazottak";
   overflow: scroll;
- 
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
   @media screen and (max-width:1820px) {
      

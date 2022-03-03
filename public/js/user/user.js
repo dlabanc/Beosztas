@@ -289,7 +289,7 @@ $(function () {
             <div class="dateinfo-muszaktipus" id="selectable"></div>
             <div class="dateinfo-buttons"><button class="fas fa-check user-send-ok"></button><button class="fas fa-trash user-send-cancel"></button></div>`);
             $(".dateinfo-buttons").hide();
-            $(".datettime-info").hide();
+            
         }
     
         class Nap {

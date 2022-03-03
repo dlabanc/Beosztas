@@ -1086,8 +1086,8 @@ h1 {
 #Nemerekra {
     box-shadow: none;
     background-color: transparent;
-    display: grid;
-    grid-template-columns: auto 45%;
+    display: flex;
+    justify-content: center;
 }
 .timer-datettime {
     padding-left: 1rem;
@@ -1111,6 +1111,7 @@ h1 {
     color: var(--fds-button-text);
     border-radius: 10px;
     display: flex;
+    width: 100%;
     flex-direction: column;
 }
 .dateinfo-massage-grid {
