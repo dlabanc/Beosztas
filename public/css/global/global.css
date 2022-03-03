@@ -167,6 +167,26 @@
     font-size: 15px;
 }
 
+/* PAGINATION
+#navigacio{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: .2rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+#navigacio button{
+    border: none;
+    background-color: var(--bs-blue);
+    padding: 1rem;
+    color:var(--always-white);
+    border-radius: 10px;
+    margin-top:1rem;
+    margin-bottom: 0.1rem;
+  } */
+
 /* PROFIL ADATOK */
 .profile-head{
   display: flex;

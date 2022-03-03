@@ -1465,7 +1465,7 @@ $(function () {
                     });
                 }
             );
-            pagination($("#ManFaliujsag"),$(".faliujsag-container"),$(""),".post-title",oldalhossz);
+            pagiJobbBal($("#ManFaliujsag"),$(".faliujsag-container"),$(""),".post-title",oldalhossz);
         }
         $(window).on("modositf", (event) => {
 
@@ -2170,16 +2170,17 @@ $(function () {
         $(".tablaAdatok").remove();
 
         szulo.append("<div class='tablaAdatok'>" +
-            `<div class="navigacio-grid"> ` +
-            "<div class=" + "navigacio-input" + ">" +
-            "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + "></div>" +
-            "<p id='oldalSzamok'></p>" +
-            "<p id='oldalSzam'></p>"+
             "<div id='navigacio'></div>" +
-            "</div></div>");
+            "</div>");
 
             $("#navigacio").empty();
 
+            $(".tablaAdatok").prepend(
+                `<div class="navigacio-grid"> ` +
+                
+                "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + ">" +
+                "<p id='oldalSzamok'></p>" +
+                "<p id='oldalSzam'></p></div>")
 
         szulo.find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
         +"</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"

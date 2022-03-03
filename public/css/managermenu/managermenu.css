@@ -550,9 +550,9 @@ header nav a {
 }
 #Alkalmazottak .tablaAdatok {
   display:flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 
@@ -1683,8 +1683,6 @@ input:focus, textarea:focus, select:focus{
     flex-direction: row;
     justify-content: center;
     gap: .5rem;
-    width: 100%;
-    margin: auto;
     border-radius: 5px;
   }
   #navigacio button{
@@ -2062,38 +2060,27 @@ input:focus, textarea:focus, select:focus{
   }
   
 
-  .navigacio-input input{
+  .navigacio-grid input{
     border:none;
     border:1px solid var(--fds-gray-20);
-    padding:.5rem;
-    display: flex;
-    justify-content: center;
     border-radius: 10px;
-    width: 100%;
+    padding:.3rem;
     outline: none !important;
   }
   
-  .navigacio-input{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
   .navigacio-grid{
- 
-    margin: auto;
-  }
-  .navigacio-input label{
-    display: flex;
+    display:flex;
     justify-content: center;
-    text-align: center;
-    align-self: center;
     align-items: center;
+  }
+  .navigacio-grid label{
+    padding-right: 0.5rem;
   }
   #oldalSzamok, #oldalSzam{
     display: flex;
     justify-content: center;
     align-items: center;
-  
+    margin:0px;
     padding: 1rem;
     border-radius: 10px;
   
@@ -2110,12 +2097,6 @@ input:focus, textarea:focus, select:focus{
     font-size: 1.1rem;
     color:var(--bs-indigo);
     padding: .5rem;
-  }
-
-  #oldalUgras{
-    
-    margin: auto;
-    margin-top: .5rem;
   }
 
   
