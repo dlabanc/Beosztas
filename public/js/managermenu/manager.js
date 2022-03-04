@@ -2064,7 +2064,10 @@ $(function () {
                 $(".location-email").text(adatok.email);
                 let sor = 0;
 
-                for (const [key, value] of Object.entries(adatok)) {
+                for (let [key, value] of Object.entries(adatok)) {
+                    if (value==null){
+                        value="-"
+                    }
                     $("#Profiladatok").find("h2").text(adatok.nev);
 
                     $(".managerinfo-name").text(
