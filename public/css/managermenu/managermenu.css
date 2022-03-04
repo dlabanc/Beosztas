@@ -2595,6 +2595,37 @@ width: 100%;
 
 
 
+.beosztas-megtekintes-heti{
+  display: flex;
+  gap: 1rem;
+}
+.beosztas-megtekintes-heti > *{
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.beosztas-megtekintes-nap{
+
+}
+.a{
+  display: grid;
+  grid-template-columns: auto;
+}
+.beosztas-nap-adatok{
+color:var(--fds-blue-60);
+font-size: 1.1rem;
+font-weight: 650;
+}
+#Beosztasmeg > div > div:nth-child(1) > div:nth-child(2){
+  color: var(--fds-gray-70);
+  font-weight: 600;
+
+}
 
 .ujbeosztas-sor{
   display: flex;
