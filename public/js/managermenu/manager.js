@@ -2387,7 +2387,8 @@ $(function () {
 
     function beosztasMegtekinkes(){
         const szulo = $("#Beosztasmeg");
-        ajax.ajaxApiGet("http://localhost:8000/api/aktualishet",napok=>{
+        
+        ajax.ajaxApiGet("http://localhost:8000/api/aktualishet/expand",napok=>{
 
             ajax.ajaxApiGet("http://localhost:8000/api/beosztasok/expand",beosztasok=>{
                 const osszesbeosztas = [];
@@ -2397,12 +2398,17 @@ $(function () {
 
                 let munkakorok = new Set();
                 osszesbeosztas.forEach(beo=>{munkakorok.add(beo.alkalmazott_adat[0].munkakor)});
-
                 munkakorok.forEach((munkakor)=>{
-                    const hetiTabla = new Hetitablazat(napok,szulo,osszesbeosztas,munkakor);
-                    hetiTabla.letrehozNapok(hetiTabla.beosztasok);
+                    
+                console.log(munkakor)
+                   
                 });
                 
+                szulo.empty();
+                const hetiTabla = new Hetitablazat(napok,szulo,osszesbeosztas,"Szakács");
+                hetiTabla.letrehozNapok();
+                const hetiTabla2 = new Hetitablazat(napok,szulo,osszesbeosztas,"Felszolgáló");
+                hetiTabla2.letrehozNapok();
             });
         });
 
@@ -2412,22 +2418,26 @@ $(function () {
                 this.adat = adat;
                 this.beosztasok = beosztasok;
                 this.szulo = szulo;
-                this.szulo.append(`<div class="beosztas-megtekintes-heti">${this.munkakor}</div>`);
-                this.elem = this.szulo.find(".beosztas-megtekintes-heti");
+                
+                this.szulo.append(`<div class="beosztas-megtekinktes-munkakor">${this.munkakor}</div><div class="beosztas-megtekintes-heti"></div>`);
+                this.elem = this.szulo.find(".beosztas-megtekintes-heti:last");
                 
             }
            
             letrehozNapok(){
                 this.szurtBeosztasok = [];
                 this.beosztasSzur(this.beosztasok);
-                let a = this.szurtBeosztasok.filter(beo=>{return beo.szurt.length>0});
+                let a = this.szurtBeosztasok.filter(beo=>{ return beo.szurt.length>0});
+               
                 a.forEach(hm=>{
                     let nap = new Hetnapja(hm.nap,this.elem,hm.szurt); 
+                    console.log(nap)
                 });
                
             }
 
             beosztasSzur(tomb){
+                
                 this.adat.forEach(nap=>{
                     let szurt = tomb.filter(beosztas=>{
                     return ((beosztas.napimunkaeroigeny[0].datum == nap.nap) && (beosztas.alkalmazott_adat[0].munkakor == this.munkakor));
@@ -2436,16 +2446,25 @@ $(function () {
                     this.szurtBeosztasok.push({nap,szurt});
                 });
             }
+
+            ellenorzes(){
+                this.nemAktiv =  this.szurtBeosztasok.every(b=>{
+                    return b.szurt.length===0;
+                });
+            }
+
         }
         class Hetnapja{
             constructor(adat,szulo,beosztasok){
                 this.szulo = szulo;
                 this.adat = adat;
                 this.beosztasok = beosztasok;
-                this.szulo.append(`<div class="beosztas-megtekintes-nap"></div>`);
+                this.szulo.append(`<div class="beosztas-megtekintes-grid"><div class="beosztas-megtekintes-nap"></div><table class="beosztas-megtekintes-tabla"></table></div>`);
                 this.elem = this.szulo.find(".beosztas-megtekintes-nap:last");
+                this.muszakeloszlasElem = this.szulo.find(".beosztas-megtekintes-tabla:last");
                 this.setElem();
                 this.datumbolNap();
+                this.muszakFeloszlas();
                 
             }
 
@@ -2459,7 +2478,29 @@ $(function () {
                 this.elem.append(`<div>${napok[ujDatum]}</div>`);
             }
 
-          
+            muszakFeloszlas(){
+                this.dolgSet = new Set();
+                this.beosztasok.forEach(beo=>{
+                    this.dolgSet.add(beo.alkalmazott_adat[0].nev);
+                });
+                let string="";
+                this.dolgSet.forEach(d=>{
+                    string+=`<td class="${d.replace(" ","")}"></td>`;
+                });
+                this.adat.muszakeloszlas.forEach(muszakelo=>{
+                    this.muszakeloszlasElem.append(`<tr id="${muszakelo.muszakelo_azon}"><td class="beosztas-megtekintes-times"><span>${muszakelo.oratol}:00</span><span>${muszakelo.oraig}:00</span></td>${string}</tr>`)
+                    
+                    let a = this.beosztasok.filter(beosztott=>{
+                        return( beosztott.napimunkaeroigeny[0].muszakelo_azon == muszakelo.muszakelo_azon)
+                    });
+                    
+                    a.forEach(aa=>{
+                        
+                        this.muszakeloszlasElem.find(`#${aa.napimunkaeroigeny[0].muszakelo_azon}`).find(`.${aa.alkalmazott_adat[0].nev.replace(" ","")}`).text(aa.alkalmazott_adat[0].nev);
+                    });
+                    
+                });
+            }
         }
 
       
