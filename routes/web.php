@@ -187,6 +187,7 @@ Route::get('/api/jovohet', [StatisztikaController::class, 'jovohet']);
 
 ##AKTUALIS HET
 Route::get('/api/aktualishet', [StatisztikaController::class, 'aktualishet']);
+Route::get('/api/aktualishet/expand', [StatisztikaController::class, 'aktualishetExpand']);
 
 ##ALKALMAZHATO ALKALMAZATTAK
 Route::get('/api/alkalmazhatoak', [StatisztikaController::class, 'aktualishet']);
