@@ -80,14 +80,18 @@ $(function () {
         esemenyLetrehoz(kattintasElem, DOM, callback) {
             kattintasElem.on("click", () => {
                 this.esemeny(DOM,callback);
+                this.tarolo.removeClass("ujBeosztasPage");
+
             });
         }
 
         esemeny(DOM,callback){
             this.tarolo.empty();
             this.tarolo.append(DOM);
+           
             callback();
             newPost();
+            
         }
 
     }
@@ -120,13 +124,7 @@ $(function () {
 
 
         function ujBeosztas(){
-            function idoAtvalt(ido) {
-                let time = ido;
-                let aktualisEv = time.getFullYear();
-                let dd = String(time.getDate()).padStart(2, "0");
-                let mm = String(time.getMonth() + 1).padStart(2, "0");
-                return aktualisEv + "-" + mm + "-" + dd;
-            }
+           
     
             const fehasznaloListaString = `<div class="ujbeosztas-alkalmazottak-lita"></div>`;
             const selectString = `<select class="ujbeosztas-alkalmazottak-select"></select>`;
@@ -382,6 +380,7 @@ $(function () {
                 }
     
                 torlesEsemeny(){
+                    this.torlesElem.prop("onclick",null).off("click");
                     this.torlesElem.on("click",()=>{
                         this.beosztasok.forEach(beosztas=>{
                             ajax.ajaxApiDelete("http://localhost:8000/api/beosztas",beosztas);
