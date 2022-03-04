@@ -634,7 +634,7 @@ margin-bottom: 1rem;
   background-color: transparent;
   border-right: 1px solid var(--fds-gray-20);
   width: fit-content;
-  
+  grid-area: Muszakn;
 }
 .timer-datettime {
   padding: 1rem;
@@ -1789,7 +1789,7 @@ input:focus, textarea:focus, select:focus{
     width: 100%;
     margin: auto;
     border-bottom: 1px solid var(--fds-gray-20);
-  
+    background-color: var(--always-white);
     
   }
   .naptar .honap {
@@ -2465,26 +2465,31 @@ input:focus, textarea:focus, select:focus{
   .darkmode--activated .managerinfo, .darkmode--activated .openbtn{background-color: black; color:white}
   
 .ujbeosztas-alkalmazottak-container{
- 
+  border-left: 1px solid var(--fds-gray-20);
+  margin-left: 1rem;
   display: flex;
   flex-direction: column;
   height: fit-content;
-  width: 100%;
+ 
   height: 100%;
   grid-area: alkalmazottak;
 }
 .ujbeosztas-alkalmazottak-lita
 {
-  display: grid;
-  width: fit-content;
-  margin: auto;
-  padding: 2rem;
-  gap:1rem;
+ padding: 2rem;
+display: grid;
+grid-template-columns: auto;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 1rem;
 
 }
 .ujBeosztasPage{
-  display: grid;
-  grid-template-columns: auto auto;
+display: grid;
+grid-template-areas: "Muszakn Ujbeosztas";
+
+box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 .uj-beosztas-alkalmazott{
   background-color: var(--always-white);
@@ -2494,7 +2499,7 @@ input:focus, textarea:focus, select:focus{
   display: flex;
   align-items: center;
   gap:.5rem;
-  width: 100%;
+  
   height: fit-content;
 
 }
@@ -2524,20 +2529,15 @@ input:focus, textarea:focus, select:focus{
 .uj-beosztas-alkalmazott span{
   margin-right: .5rem;
 }
-.ujbeosztas-grid{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 2rem;
-}
+
 .ujbeosztas-alkalmazottak-select{
   font-size: 1.1rem;
   font-weight: 500;
   appearance: none;
   line-height: 1.3;
   width: 100%;
-  background-color: var(--fds-soft);
-  color:var(--always-black);
+  background-color: var(--bs-blue);
+  color:var(--always-white);
   text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2568,13 +2568,13 @@ input:focus, textarea:focus, select:focus{
 }
 
 .ujbeosztas-naptar{
-  grid-area: ujbeonaptar;
-margin-top: auto;
-margin-bottom: auto;
-  display: grid;
-  grid-template-columns: auto;
-  height: 100%;
-  width: 100%;
+
+grid-area: ujbeonaptar;
+margin: auto;
+display: flex;
+flex-direction: column;
+width: 100%;
+ 
 }
 .ujbeosztas-valasztott-datum{
   border: none;
@@ -2599,29 +2599,29 @@ margin-bottom: auto;
 .ujbeosztas-sor{
   display: flex;
   gap:1rem;
-  margin: 1rem;
-  border-radius: 10px;
+  margin: auto;
+ background-color: var(--always-white);
+ border-radius: 5px;
   width: 100%;
   justify-content: space-between;
   cursor: pointer;
-  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-  
+  border-bottom: 1px solid var(--fds-gray-20);
+  border: 1px solid var(--fds-gray-20);
+  margin: .5rem;
 }
 
 .ujbeosztas-sor .ujbeosztas-time{
-  display: flex;
-  flex-direction: column;
-  justify-content:  space-around;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
   text-align: center;
   height: 100%;
   font-size:1rem;
   border-radius: 10px;
-
- 
   font-weight: 500;
+ 
 }
 .time1{
-  
   width: 50px;
   text-align: center;
 }
@@ -2744,9 +2744,10 @@ margin-bottom: auto;
 }
 
 .beosztas-flex{
-  display:flex;
+  display:table-row;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
 }
 .beosztas-flex img{
   border-radius: 50px;
@@ -2797,8 +2798,10 @@ margin-bottom: auto;
   font-size: 1.1rem;
 }
 #Ujbeosztas{
-  
-
+  display: grid;
+  grid-template-areas: "ujbeonaptar alkalmazottak ";
+  justify-content: space-between;
+  grid-area: Ujbeosztas;
 
 }
   @media screen and (max-width:1820px) {

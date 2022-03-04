@@ -54,9 +54,6 @@ $(function () {
         muszaktipush() {
             this.esemenyLetrehoz(this.muszaktipushLink, this.muszaktipushh, muszakok);
         }
-        // muszaktipusn() {
-        //     this.esemenyLetrehoz(this.muszaktipusnLink, this.muszaktipusnn, muszakNaphozRendelese);
-        // }
         muszaktipusm() {
             this.esemenyLetrehoz(this.muszaktipusmLink, this.muszaktipusmm, muszakEloszlas);
         }
@@ -64,7 +61,7 @@ $(function () {
             this.esemenyLetrehoz(this.napimunkaLink, this.napimunkaa, napiMin);
         }
         ujbeosztas() {
-            this.esemenyLetrehoz(this.ujbeosztasLink, this.ujbeosztass, ujBeosztas);
+            this.esemenyLetrehoz(this.ujbeosztasLink, this.ujbeosztass, ujBeosztasPage);
         }
         beosztasmod() {
             this.esemenyLetrehoz(this.beoszasmodLink, this.beosztasmodd, () => { });
@@ -83,14 +80,18 @@ $(function () {
         esemenyLetrehoz(kattintasElem, DOM, callback) {
             kattintasElem.on("click", () => {
                 this.esemeny(DOM,callback);
+                this.tarolo.removeClass("ujBeosztasPage");
+
             });
         }
 
         esemeny(DOM,callback){
             this.tarolo.empty();
             this.tarolo.append(DOM);
+           
             callback();
             newPost();
+            
         }
 
     }
@@ -104,7 +105,7 @@ $(function () {
    // oldal.muszaktipusn();
     oldal.muszaktipusm();
     oldal.napimunka();
-    //oldal.ujbeosztas();
+    oldal.ujbeosztas(oldal);
     oldal.beosztasmeg();
     oldal.beosztasmod();
     oldal.profiladatok();
@@ -123,18 +124,12 @@ $(function () {
 
 
         function ujBeosztas(){
-            function idoAtvalt(ido) {
-                let time = ido;
-                let aktualisEv = time.getFullYear();
-                let dd = String(time.getDate()).padStart(2, "0");
-                let mm = String(time.getMonth() + 1).padStart(2, "0");
-                return aktualisEv + "-" + mm + "-" + dd;
-            }
+           
     
             const fehasznaloListaString = `<div class="ujbeosztas-alkalmazottak-lita"></div>`;
             const selectString = `<select class="ujbeosztas-alkalmazottak-select"></select>`;
-            const naptarString = `<div></div><div class="ujbeosztas-naptar"></div>`;
-            const felhasznaloTarolo = `<div class="ujbeosztas-grid"><div>${naptarString}</div><div class="ujbeosztas-alkalmazottak-container">${selectString} ${fehasznaloListaString}</div></div>`
+            const naptarString = `<div class="ujbeosztas-naptar"></div>`;
+            const felhasznaloTarolo = `${naptarString}<div class="ujbeosztas-alkalmazottak-container">${selectString} ${fehasznaloListaString}</div>`
             const szuloElem = $("#Ujbeosztas");
             szuloElem.empty();
             szuloElem.append(felhasznaloTarolo);
@@ -385,6 +380,7 @@ $(function () {
                 }
     
                 torlesEsemeny(){
+                    this.torlesElem.prop("onclick",null).off("click");
                     this.torlesElem.on("click",()=>{
                         this.beosztasok.forEach(beosztas=>{
                             ajax.ajaxApiDelete("http://localhost:8000/api/beosztas",beosztas);
@@ -1466,6 +1462,66 @@ $(function () {
                 }
             );
             pagiJobbBal($("#ManFaliujsag"),$(".faliujsag-container"),$(""),".post-title",oldalhossz);
+            function pagiJobbBal(szulo,tabla,sablon,elem,elemPerOldal) {
+                szulo.append("<div id='navigacio'></div>");
+                $("#navigacio").empty();
+        
+                szulo.find("#navigacio").append(
+                 "</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
+                +"<button class='fas fa-angle-right' id='eloreLepeget'></button>")
+        
+                szulo.find("#eloreLepeget").on("click",eloreLepeget);
+                szulo.find("#hatraLepeget").on("click",hatraLepeget);
+        
+                function eloreLepeget(){
+                    sablon.remove();
+                    let utolsoElem = 0;
+                    for (let index = 0; index < tabla.find(elem).length; index++) {
+                        if (tabla.find(elem).eq(index).css("display")!="none"){
+                            utolsoElem = index; 
+                        }
+        
+                    }
+        
+                    if (utolsoElem+1!=tabla.find(elem).length){
+        
+                        kiurit();
+        
+                        for (let index = utolsoElem+1; index < utolsoElem+1+elemPerOldal; index++) {
+                            tabla.find(elem).eq(index).fadeIn(500);
+        
+                        }
+        
+                    }
+                }
+        
+                function hatraLepeget(){
+                    sablon.remove();
+                    elsoElem = 0;
+        
+                    while (tabla.find(elem).eq(elsoElem).css("display")=="none"){
+                        elsoElem++;
+                    }
+        
+                    if (elsoElem!=0){
+        
+                        kiurit();
+        
+                        for (let index = elsoElem-elemPerOldal; index < elsoElem; index++) {
+                            tabla.find(elem).eq(index).fadeIn(500);
+                        }
+        
+                    }
+                }
+        
+                function kiurit() {
+                    for (let index = 0; index < tabla.find(elem).length; index++) {
+                        tabla.find(elem).eq(index).hide();
+                    }
+                }
+            }
+        
+        
         }
         $(window).on("modositf", (event) => {
 
@@ -2008,7 +2064,10 @@ $(function () {
                 $(".location-email").text(adatok.email);
                 let sor = 0;
 
-                for (const [key, value] of Object.entries(adatok)) {
+                for (let [key, value] of Object.entries(adatok)) {
+                    if (value==null){
+                        value="-"
+                    }
                     $("#Profiladatok").find("h2").text(adatok.nev);
 
                     $(".managerinfo-name").text(
