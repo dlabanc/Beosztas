@@ -2602,9 +2602,11 @@ width: 100%;
 .beosztas-megtekintes-grid{
   display: flex;
   flex-direction: column;
+  width: fit-content;
 }
+
 .beosztas-megtekintes-heti > .beosztas-megtekintes-grid{
-  flex-basis: 100%;
+  
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -2622,11 +2624,21 @@ width: 100%;
   gap: 1rem;
   width: 4rem;
   background-color: #ebedf0;
- 
 }
+
+.beosztas-megtekintese-fejlec th{
+  margin: 0!important;
+  padding: 0!important;
+  text-align: left;
+  width: fit-content;
+}
+
 .beosztas-megtekintes-times span{
   display: block;
   
+}
+.nnn{
+  display: block;
 }
 .beosztas-megtekinktes-munkakor{
   border-bottom: 1px solid var(--fds-gray-20);
