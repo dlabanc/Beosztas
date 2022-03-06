@@ -22,7 +22,35 @@
 </head>
 
 <body>
-
+<aside>
+        <nav>
+            <ul>
+                <div class="admininfo">
+                    <h4>Chill out Cafe</h4>
+                    
+                    </div>
+                </div>
+           
+                <li id="alkalmazottak">Alkalmazott</li>
+                <li id="munkakorok">Munkakör</li>
+                <li id="beadatok">Bejelentkezési adatok</li>
+                <li id="faliujsag">Faliújság</li>
+                <li id="muszaktipus">Műszaktípus</li>
+                <li id="napimunkaeroigeny">Napimunkaerőigény</li>
+                <li id="napok">Napok</li>
+                <li id="beosztas">Beosztás</li>
+                <li id="nemdolgozna">Nem dolgozna</li>
+                <li id="szabadsag">Szabadság</li>
+                <li class="btn">Kompakt mód</li>
+                <li class="logout"><a href="../login/login.html"><div class="fas fa-sign-out-alt">
+                </div><span> Kijelentkezés</span>
+                </a>
+                </li>
+                
+            </ul>
+        </nav>
+    </aside>
+    <div class="admin-article">
     <header class="adminheader">
         <div class="stat1 box" >
             <div class="allusers"> 
@@ -158,33 +186,8 @@
                 </table>
             </div>
     </article>
-    <aside>
-        <nav>
-            <ul>
-                <div class="admininfo">
-                    <h4>Chill out Cafe</h4>
-                    <div class="fas fa-user"></div> Admin
-                    </div>
-                </div>
-           
-                <li id="alkalmazottak">Alkalmazott</li>
-                <li id="munkakorok">Munkakör</li>
-                <li id="beadatok">Bejelentkezési adatok</li>
-                <li id="faliujsag">Faliújság</li>
-                <li id="muszaktipus">Műszaktípus</li>
-                <li id="napimunkaeroigeny">Napimunkaerőigény</li>
-                <li id="napok">Napok</li>
-                <li id="beosztas">Beosztás</li>
-                <li id="nemdolgozna">Nem dolgozna</li>
-                <li id="szabadsag">Szabadság</li>
-                <li class="btn">Kompakt mód</li>
-                <li class="logout"><a href="../login/login.html"><div class="fas fa-sign-out-alt">
-                </div><span> Kijelentkezés</span>
-                </a>
-                </li>
-                
-            </ul>
-        </nav>
-        </aside>
-</body>
+    </div>
+    
+
+    </body>
 </html>
