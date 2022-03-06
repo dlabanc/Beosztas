@@ -46,4 +46,18 @@ class StatisztikaController extends Controller
     public function jovoheti_napimunkaeroigeny(){
         return DB::table('jovoheti_napimunkaeroigeny')->get();
     }
+
+    public function aktualishetExpand(){
+        $akthet = DB::table('aktualis_het')->get()->toArray();
+        $muszak = DB::table('muszakeloszlas')->get()->toArray();
+
+        foreach($akthet as $nap)
+        {
+            $nap->muszakeloszlas = array_filter($muszak, function($muszakelo) use ($nap) {
+                return $muszakelo->muszaktipus === $nap->muszaktipus;
+            });
+        }
+
+        return $akthet;
+    }
 }

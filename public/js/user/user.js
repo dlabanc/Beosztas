@@ -112,7 +112,7 @@ $(function () {
                                             .find("img")
                                             .attr("src", ember.picture.large);
 
-                                            if(oldalIndex>0 && index<oldalIndex-1){
+                                            if(oldalIndex>0 && post.elem!=undefined){
                                                 post.elem.hide();
                                             }
                                     });
@@ -203,6 +203,9 @@ $(function () {
                     
                     if((kulcs!="dolgozoi_azon"))
                     {
+                        if (adatok[kulcs]==null){
+                            adatok[kulcs]="-"
+                        }
                        sorFeltolt(kulcsok[i],adatok[kulcs]);
                        i++;
                     }
