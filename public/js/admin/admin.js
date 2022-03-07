@@ -112,7 +112,7 @@ $(function () {
             .parent()
             .find("h3")
             .after(
-                `<button class="fas fa-plus uj"></button><div class="ujmezo"></div>`
+                `<button class="uj">Hozzáadás</button><div class="ujmezo"></div>`
             );
 
         ujFelvetele(
