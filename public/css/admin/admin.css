@@ -412,6 +412,7 @@ body{
     .stat1value,.stat2value,.stat3value,.stat4value{
         width: fit-content;
         margin-left: auto;
+        
     }
 }
 @media screen and (max-width:1000px) {
