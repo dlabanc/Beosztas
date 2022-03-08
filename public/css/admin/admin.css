@@ -86,7 +86,7 @@
     color: black;
     visibility: hidden;
     width: 100%;
-    max-width: 85vw;
+    
     margin: auto;
 }
 .adminheader{
@@ -199,6 +199,7 @@
 .admin-article{
     display:block;
     width: 100%;
+    
 }
 aside{
     height: 100%;
@@ -256,6 +257,7 @@ nav ul {
 article table{
     padding: 1rem;
     border-radius: 10px;
+    width: 100%;
     overflow: scroll;
     background-color: var(--always-white);
     border-collapse: collapse;
@@ -269,7 +271,7 @@ article table{
 
 article table tr,td{
     padding: 1rem;
-
+    text-align: center;
 }
 
 article table tr{
@@ -333,15 +335,16 @@ article input{
     padding: .5rem;
 }
 .fejlec{
-    background-color: var(--fds-blue-60);
-    color:var(--always-white);
-    font-weight: 500;
+    background-color:var(--fds-blue-05);
+    color:var(--fds-primary-text);
+    font-weight: 650;
     font-size: 1.1rem;
     padding: .5rem;
     width: 100%;
-
+    margin-top: 1rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
 }
 .logout{
     font-size: 1rem;
@@ -383,9 +386,61 @@ nav ul li{
     min-width: 10vw;
    
 }
+
 body{
-    margin: auto;
+    
+  
     display: flex;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
     height: 100vh;
-    max-width: 99vw;
+    width: 100%;
+    overflow: auto;
+    max-width: 100vw;
 }
+@media screen and (max-width:1400px) {
+    .adminheader{
+        align-items: unset;
+        justify-content:center;
+        overflow: hidden;
+    }
+    body{
+        flex-direction: column;
+    }
+    .stat1value,.stat2value,.stat3value,.stat4value{
+        width: fit-content;
+        margin-left: auto;
+    }
+}
+@media screen and (max-width:1000px) {
+    .adminheader{
+        flex-direction: column;
+        width: 100%;
+        align-items: unset;
+        justify-content: unset;
+        width: auto;
+        gap:0rem;
+        padding: 1rem;
+        margin: 0;
+    }
+    .box{
+        
+        display: grid;
+        grid-template-columns: repeat(2,auto);
+        margin: 0%;
+       
+        box-shadow: none;
+        flex-direction: row;
+        border-bottom: 1px solid var(--fds-blue-60);
+        border-radius: 0px;
+        gap:0;
+        justify-content: unset;
+        padding: .5rem;
+       
+    }
+    .box div{
+     display: inline;
+    }
+    
