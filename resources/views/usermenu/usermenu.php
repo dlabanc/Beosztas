@@ -50,10 +50,10 @@
 <div class="sidenav-container">
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn">&times;</a>
-        <a href="../usermenu" class="home">
-            <div>Kezdőlap</div><span class="fas fa-home"></span>
+        <a class="home">
+            <div>Főmenü</div><span class="fas fa-home"></span>
         </a>
-        <a id="nemerekra">Nem érek rá</a>
+     
         <a id="statisztika">Statisztika</a>
         <a id="faliujsag">Faliújság</a>
         <a id="beosztas">Beosztás</a>
@@ -67,6 +67,12 @@
 
     
     <div class="container">
+        
+    <div id="Nemerekra" >
+
+
+
+</div>
         <aside class="useraside">
             <header>
 
@@ -136,11 +142,6 @@
                 </div>
             </div>
 
-            <div id="Nemerekra" class="tabcontent">
-
-
-
-            </div>
 
             <div id="Statisztika" class="tabcontent">
                 <h3>Statisztika</h3>

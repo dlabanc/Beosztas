@@ -62,6 +62,7 @@
   border: 1px solid rgba(209, 213, 219, 0.3);
             }
         </style>
+
     </head>
     <white class="antialiased">
     <div class="video-wrapper">
