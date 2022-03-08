@@ -2494,8 +2494,8 @@ $(function () {
                     let stringFejlec ="";
     
                     this.tomb.forEach(d=>{
-                        stringFejlec+= `<th class="${d.nev.replace(" ","")}"><span class="nnn">${d.nev}</span><img src="${d.kep}" /></th>`; 
-                        string+=`<td class="${d.nev.replace(" ","")}"></td>`;
+                        stringFejlec+= `<th class="${d.nev.replace(" ","")} nemszinezheto"><span class="nnn">${d.nev}</span><img src="${d.kep}" /></th>`; 
+                        string+=`<td class="${d.nev.replace(" ","")} "></td>`;
                     });
                     this.muszakeloszlasElem.append(`<tr  class="beosztas-megtekintese-fejlec"><th>Műszak</th>${stringFejlec}</tr>`);
                     this.adat.muszakeloszlas.forEach(muszakelo=>{
@@ -2515,7 +2515,6 @@ $(function () {
                             if(element.text()!="X"){
                                 element.css("background","white");  
                             }
-                            
                         }
                     });
                 });

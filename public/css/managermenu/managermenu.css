@@ -2632,7 +2632,9 @@ width: 100%;
   text-align: left;
   width: fit-content;
 }
-
+.nemszinezheto{
+  background-color: var(--always-white)!important;
+}
 .beosztas-megtekintes-times span{
   display: block;
   
