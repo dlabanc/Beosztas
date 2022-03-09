@@ -62,6 +62,9 @@ $(function () {
     }
 
     function changePass() {
+        $(".close").on("click",()=>{
+            $(".password-window").slideUp(1000);
+        });
         $(".passchange").on("click", () => {
             $(".password-window").slideDown(1000);
         });

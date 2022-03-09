@@ -192,9 +192,10 @@
         </article>
         <div class="password-window">
             <div class="password-window-bg">
+             <button class="fas fa-times close"></button>   
             <form id="form" method="POST" action=<?php $route=route('password.change'); echo $route?>>
                     <fieldset>
-                    <legend>Jelszó Módosítás:</legend>
+                    <legend>Jelszó Módosítás</legend>
                     <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
                     <label for="oldpwd">Régi jelszó:</label><br>                   
                     <input type="password" id="oldpwd" name="oldpwd"><br>
@@ -206,6 +207,7 @@
                     <input type="password" id="confirmpwd" name="confirmpwd"><br>
                     <p><?php if(session('errors')!==null) { $error=session('errors')->first('currentpwd'); if ($error!==''){echo $error; echo "<br>";}} ?></p>
                     <input type="submit" id="submit" value="OK">
+         
                 </fieldset> 
                 </form>
             </div>
