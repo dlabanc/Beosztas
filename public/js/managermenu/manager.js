@@ -102,7 +102,6 @@ $(function () {
     oldal.munkakor();
     oldal.faliujsag();
     oldal.muszaktipush();
-   // oldal.muszaktipusn();
     oldal.muszaktipusm();
     oldal.napimunka();
     oldal.ujbeosztas(oldal);
@@ -112,7 +111,7 @@ $(function () {
     article.empty();
     faliujsag();
     ujBeosztasPage(oldal);
-
+    bejelentkezettFelhasznalo(udvozloUzenet);
     function ujBeosztasPage(oldal){
         oldal.tarolo.empty();
         const page1 = oldal.ujbeosztass.clone();
@@ -993,7 +992,7 @@ $(function () {
             let logged = adatok;
             ajaxApiGet(apivegpont + "/alkalmazott/" + logged, (adatok) => {
                 callback(adatok);
-
+                
             });
         });
 
@@ -2388,6 +2387,7 @@ $(function () {
     function beosztasMegtekinkes(){
         const szulo = $("#Beosztasmeg");
         
+        
         ajax.ajaxApiGet("http://localhost:8000/api/aktualishet/expand",napok=>{
 
             ajax.ajaxApiGet("http://localhost:8000/api/beosztasok/expand",getBeosztas);
@@ -2400,13 +2400,26 @@ $(function () {
                 let munkakorok = new Set();
                 osszesbeosztas.forEach(beo=>{munkakorok.add(beo.alkalmazott_adat[0].munkakor)});
                 szulo.empty();
+                szulo.append("<button class="+"nezet1"+">Nezet1</button>");
+                szulo.append("<button class="+"nezet2"+">Nezet2</button>");
+                $(".nezet1").on("click",()=>{
+                    $(".beosztas-megtekintes-tabla tr").css("display","table-row");
+                    $(".beosztas-megtekintes-tabla td").css("display","table-cell");
+                    $(".beosztas-megtekintes-tabla td").css("text-align","center");
+                    $(".beosztas-megtekintes-tabla").css("display","table");
+                });
+                $(".nezet2").on("click",()=>{
+                    $(".beosztas-megtekintes-tabla tr").css("display","grid");
+                    $(".beosztas-megtekintes-tabla td").css("display","flex");
+                    $(".beosztas-megtekintes-tabla").css("display","flex");
+                });
                 munkakorok.forEach((munkakor)=>{
                     
                 const hetiTabla2 = new Hetitablazat(napok,szulo,osszesbeosztas,munkakor);
                 hetiTabla2.letrehozNapok();
                    
                 });
-            }
+            }   
         });
 
         class Hetitablazat{
@@ -2497,7 +2510,7 @@ $(function () {
                         stringFejlec+= `<th class="${d.nev.replace(" ","")} nemszinezheto"><span class="nnn">${d.nev}</span><img src="${d.kep}" /></th>`; 
                         string+=`<td class="${d.nev.replace(" ","")} "></td>`;
                     });
-                    this.muszakeloszlasElem.append(`<tr  class="beosztas-megtekintese-fejlec"><th>Műszak</th>${stringFejlec}</tr>`);
+                    this.muszakeloszlasElem.append(`<tr  class="beosztas-megtekintese-fejlec"><th class="f"></th>${stringFejlec}</tr>`);
                     this.adat.muszakeloszlas.forEach(muszakelo=>{
                         this.muszakeloszlasElem.append(`<tr id="${muszakelo.muszakelo_azon}"><td class="beosztas-megtekintes-times"><span>${muszakelo.oratol}:00</span><span>${muszakelo.oraig}:00</span></td>${string}</tr>`)
                         
@@ -2510,14 +2523,11 @@ $(function () {
                             let beosztottElem = this.muszakeloszlasElem.find(`#${dolgozo.napimunkaeroigeny[0].muszakelo_azon}`).find(`.${dolgozo.alkalmazott_adat[0].nev.replace(" ","")}`);
                             new BeosztottAlkalmazott(beosztottElem,dolgozo);
                         }); 
-                        for (let index = 0; index < $(".beosztas-megtekintes-tabla").find("td").length; index++) {
-                            const element = $(".beosztas-megtekintes-tabla").find("td").eq(index);
-                            if(element.text()!="X"){
-                                element.css("background","white");  
-                            }
-                        }
+                        
                     });
                 });
+                
+                
 
                
             }
@@ -2534,8 +2544,8 @@ $(function () {
             }
 
             megjelenit(){
-                this.elem.text("X");
-                $(`.${this.alkalmazott_adat.nev.replace(" ","")}`).css("background",this.getRandomColor());  
+                this.elem.addClass("fas fa-check");
+                $(`.${this.alkalmazott_adat.nev.replace(" ","")}`).css("color",this.getRandomColor());  
             };
 
             klikk(){

@@ -2609,26 +2609,79 @@ width: 100%;
   
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border-radius: 10px;
+  margin: 1rem;
+ 
+  padding: 1rem;
   height: fit-content;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+ 
 }
 .beosztas-megtekintes-tabla{
   width: 100%;
+  display: flex;
+  border-collapse: collapse;
+
+  
+}
+.beosztas-megtekintes-tabla td{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--fds-gray-20);
+  border-right: 1px solid var(--fds-gray-20);
+ 
+}
+.beosztas-megtekintes-tabla td,th{
+  height: 100px;
+  padding: 0!important;
+}
+.beosztas-megtekintes-tabla tr{
+  display: grid;
+  grid-template-columns: auto;
+ 
+}
+.f{
+  height: 100px;
+  margin-bottom: .5rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: auto;
+  
+ 
+}
+
+.beosztas-megtekintes-nap{
+  border-bottom: 1px solid var(--fds-gray-20);
+  text-align: center;
+  width: 100%;
+  background-color: var(--bs-blue);
+  color:var(--always-white);
 }
 .beosztas-megtekintes-times{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   width: 4rem;
-  background-color: #ebedf0;
+  font-weight: 550;
+  text-align: center;
+  border-bottom: 1px solid var(--fds-gray-20);
+  border-right: 1px solid var(--fds-gray-20);
+  
+
+}
+.beosztas-megtekintese-fejlec img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+
 }
 
 .beosztas-megtekintese-fejlec th{
-  margin: 0!important;
-  padding: 0!important;
+ 
   text-align: left;
   width: fit-content;
 }
@@ -2640,7 +2693,7 @@ width: 100%;
   
 }
 .nnn{
-  display: block;
+  display: none;
 }
 .beosztas-megtekinktes-munkakor{
   border-bottom: 1px solid var(--fds-gray-20);
@@ -2650,7 +2703,7 @@ width: 100%;
   grid-template-columns: auto;
 }
 .beosztas-nap-adatok{
-color:var(--fds-blue-60);
+
 font-size: 1.1rem;
 font-weight: 650;
 }
@@ -2811,6 +2864,9 @@ font-weight: 650;
   display:table-row;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
+}
+.beosztas-flex > div{
   width: 100%;
 }
 .beosztas-flex img{
