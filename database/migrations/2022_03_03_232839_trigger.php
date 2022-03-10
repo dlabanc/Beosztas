@@ -62,6 +62,18 @@ class Trigger extends Migration
             END WHILE;
         END
         ");
+
+        DB::unprepared("
+        CREATE TRIGGER beo_torles
+        AFTER UPDATE
+        ON napok FOR EACH ROW BEGIN
+            IF (new.allapot=0) THEN
+                DELETE b FROM beosztas b
+                INNER JOIN napimunkaeroigeny n ON b.napim_azonosito=n.napim_azonosito 
+                WHERE new.nap=napimunkaeroigeny.datum;
+            END IF;
+        END
+        ");
     }
 
     /**
@@ -75,5 +87,6 @@ class Trigger extends Migration
         DB::unprepared('DROP TRIGGER IF EXISTS engedUpdate');
         DB::unprepared('DROP TRIGGER IF EXISTS user_felvet');
         DB::unprepared('DROP TRIGGER IF EXISTS muszakeloszlas_feltolt');
+        DB::unprepared('DROP TRIGGER IF EXISTS beo_torles');
     }
 }
