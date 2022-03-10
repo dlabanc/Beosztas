@@ -563,7 +563,32 @@ $(function () {
             function beosztasNaptar(datum){
                 ajaxApiGet("http://localhost:8000/api/beosztasok/",beosztasok=>{
                     ujbeosztasNaptar.empty();
-                    
+                    ujbeosztasNaptar.html(`
+                    <button class="fas fa-question beosztas-info-lenyit"></button>
+                    <div class="beosztas-info-tarolo">
+                    <h3 class="beosztas-info-cim">Új beosztás készítéséhez tedd a következőket:</h3>
+                    <ul class="beosztas-info-uzenet">
+                    <li>1. Válassz a naptárból egy napot!</li>
+                    <li>2. A naptár alatt lévő menüből válaszd ki a nap műszaktípusát!</li>
+                    <li class="info-al">2/a Amennyiben most rendeltél a naphoz műszakot, kérlek válaszd a Menüből:<br><span>Beosztás -> Napi munkaerőigényt! </span></li>
+                    <li class="info-al">2/b Amennyiben rendeltél Munkaerőigényt a munkakörökhöz, válassz az alkalmazottak közül és add hozzá a műszakokhoz! </li>
+                    <li class="beosztas-info-ok">3. <span>Kattints a mentésre, kész is vagyunk!</span> </li>
+                    </ul></div>`);
+                    ujbeosztasNaptar.find(".beosztas-info-tarolo").hide();
+                    ujbeosztasNaptar.find(".beosztas-info-lenyit").on("click",()=>{
+                        let infoElem = $(".beosztas-info-tarolo");
+                       
+                        if(infoElem.is(":visible")){
+                            infoElem.slideUp(500);
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("background","var(--fds-gray-20)");
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("color","var(--always-black)");
+                        }
+                        else{
+                            infoElem.slideDown(500);
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("background","var(--bs-info)");
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("color","var(--always-white)");
+                        }
+                    });
                     let kivalasztottDatum = datum;
                     let kivalaszottMunkaeroIndex = selectAlkalmazottak.prop('selectedIndex');
                     let kivalaszottMunkaero = selectAlkalmazottak.find("option").eq(kivalaszottMunkaeroIndex).text();
@@ -599,6 +624,7 @@ $(function () {
                                         beosztasNap.elem.on("click",()=>{
                                             beosztasNap.torlesElem.show();
                                             beosztasNap.torlesEsemeny();
+                                            
                                         });
                                     }
                                  
@@ -733,13 +759,14 @@ $(function () {
                         this.elem.on("click", () => {
                             
                             ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
-                    
+                              
                                 napiMunkaErok.splice(0,napiMunkaErok.length);
                                 napok.forEach(napigeny => {
                                     napiMunkaErok.push(napigeny);
                                 });
                                 beosztasNaptar(this.napNev);
                                 kivalasztottDatum=(this.napNev);
+                             
                             });
                             this.infoElem.show(500);
                             $(".dateinfo-massage-grid").hide();
