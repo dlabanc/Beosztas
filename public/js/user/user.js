@@ -307,8 +307,8 @@ $(function () {
         
             $(".datettime-info").append(`
             <div class="dateinfo-massage-grid">
-                <div class="dateinfo"></div>
-                <div class="message"></div>
+                <div class="dateinfo">Melyik nap nem jó neked?</div>
+                <div class="message">Válassz a naptár napjaiból!</div>
             </div>
             <div class="dateinfo-muszaktipus" id="selectable"></div>
             <div class="dateinfo-buttons"><button class="fas fa-check user-send-ok"></button><button class="fas fa-trash user-send-cancel"></button></div>`);

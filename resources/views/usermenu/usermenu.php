@@ -34,7 +34,21 @@
 
     <div class="managerinfo-midgrid">
           
+    <nav>
 
+<div class="navbar">
+    <a id="profiladatok" class="profiladatok">
+        <div class="fas fa-user"></div><span>Profil adatok</span>
+    </a>
+    <a class="darkmode-user">
+        <div class="fas fa-eye"></div><span>Kompakt mód</span>
+    </a>
+    <a class="passchange">
+        <div class="fas fa-user-lock"></div><span>Jelszó módosítás</span>
+    </a>
+
+</div>
+</nav>
 
         </div>
 
@@ -64,7 +78,14 @@
 </div>
 
 <body>
+<header>
 
+
+
+
+
+
+</header>
     
     <div class="container">
         
@@ -74,32 +95,7 @@
 
 </div>
         <aside class="useraside">
-            <header>
-
-                <nav>
-
-                    <div class="navbar">
-
-                        <a class="chilloutcafe">
-                            <div class="fas fa-home"></div><span>Chill Out Cafe</span>
-                        </a>
-                        <a id="profiladatok" class="profiladatok">
-                            <div class="fas fa-user"></div><span>Profil adatok</span>
-                        </a>
-                        <a class="darkmode-user">
-                            <div class="fas fa-eye"></div><span>Kompakt mód</span>
-                        </a>
-                        <a class="passchange">
-                            <div class="fas fa-user-lock"></div><span>Jelszó módosítás</span>
-                        </a>
-
-                    </div>
-                </nav>
-
-
-
-
-            </header>
+           
 
             <div class="posts">
 

@@ -618,16 +618,13 @@ $(function () {
                 const SZULO = $("#Muszaktipusn");
                 SZULO.empty();
                 muszakTipusNaphozSeged();
-        
-                const token = $('meta[name="csrf-token"]').attr("content");
+                
                 const naptar = SZULO.find(".naptar");
                 const timer = $(".timer");
                 const datettime = $(".datettime");
         
                 function muszakTipusNaphozSeged() {
-                    SZULO.append(
-                        `<div class="naptar"><div class="timer-datettime"><div class="timer"></div><div class="datettime"></div></div></div>`
-                    );
+                    SZULO.append(`<div class="naptar"><div class="timer-datettime"><div class="timer"></div><div class="datettime"></div></div></div>`);
                     SZULO.append('<div class="datettime-info"></div>');
         
                     $(".datettime-info").append(`
@@ -715,6 +712,7 @@ $(function () {
                         this.elem = $(szulo).find(".muszaktipusok-info:last");
                     }
                 }
+
                 class Nap {
                     constructor(szulo, nap, napok, elem) {
                         this.muszakok = [];
@@ -731,6 +729,7 @@ $(function () {
                         this.infoElem = $(".datettime-info");
                         this.elem = elem.text(`${this.nap}`);
                         this.muszakTipusElem = $(".dateinfo-muszaktipus");
+                            
                         this.elem.on("click", () => {
                             
                             ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
@@ -978,6 +977,7 @@ $(function () {
                     }
                 }
                 let ujNaptar = new Naptar(naptar, napok, honapok);
+                
             }
         }
 
