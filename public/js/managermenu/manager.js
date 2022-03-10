@@ -1597,7 +1597,7 @@ $(function () {
         }
     }
 
-    //ajaxApiGet - Rendben
+    
     function alkalmazottTabla() {
         $(".search").remove();
         $(".tablaAdatok").remove();
@@ -1719,15 +1719,14 @@ $(function () {
     
     function napiMin() {
         const szuloElem = $("#Napimunka");
-        szuloElem.hide();
+    
         szuloElem.empty();
         szuloElem.append(`
         <div class="napimunka-napok">
         
         <div class="napimunka-nap-grid">
         <div>Válassz a napok közül!</div>
-        <button class=" napok-het-mutat" alt="Hét napja">Aktuális hét</button>
-        <button class=" napok-ossz-mutat" alt="Összes nap">Összes</button>
+        
         </div>
         <div class="napimunka-nap-grid2">
         <div class="napimunka-kivalasztott-datum"></div>
@@ -1750,14 +1749,11 @@ $(function () {
         </div>`);
         const tablazat = szuloElem.find(".napimunka-table:last");
         const napokFoElem = szuloElem.find(".napimunka-nap-grid:last");
-        const napokHetMutat = szuloElem.find(".napok-het-mutat:last");
-        const napokOsszMutat = szuloElem.find(".napok-ossz-mutat:last");
         const napokSelect = szuloElem.find(".napimunka-napok-container:last");
         const napokMunkakorElem = szuloElem.find(".napimunka-napok-munkakorok:last");
         const cimMunkakor = tablazat.find(".title-munkakor");
         const kivalasztottDatum = $(".napimunka-kivalasztott-datum");
-        kivalasztottDatum.hide();
-        napokSelect.hide();
+      
         $(document).ajaxStop(()=>{
             szuloElem.show();
         });
@@ -1783,41 +1779,14 @@ $(function () {
                     
                 });
 
-                $(".napi-igenyek").hide();
-                napokMunkakorElem.hide();
-
                 napokFoElem.on("click",()=>{
-                    napokMunkakorElem.slideUp(500);
-                    napokSelect.slideDown(500);
                     cimMunkakor.text("");
-                    kivalasztottDatum.hide();
-                    tablazat.hide(500);
                     cimMunkakor.removeClass("title-aktiv");
                     
                 });
-                napokOsszMutat.on("click",()=>{
-                    napiMunkaeroigenyNapok.forEach(nap=>{
-                            nap.elem.show();
-                        });
-                });
-                napokHetMutat.on("click",()=>{
-                    
-                    let jelenleg=new Date();
-                    let elsonap = new Date(jelenleg.setDate(jelenleg.getDate() - jelenleg.getDay()+1));
-                    let utolsonap = new Date(jelenleg.setDate(jelenleg.getDate() - jelenleg.getDay()+7));
-                    
-                    napiMunkaeroigenyNapok.forEach(nap=>{
-                    let ellenorzott = new Date(nap.nap)
-                    if(ellenorzott >= elsonap && ellenorzott <= utolsonap)
-                    {
-                        nap.elem.show();
-                    }
-                    else{
-                        nap.elem.hide();
-                    }
-                    });
-                    
-                });
+                
+                
+                
             });
         });
       
@@ -1838,7 +1807,7 @@ $(function () {
                 this.elem = szulo.find("tr:last");
                 this.elem.on("click",()=>{
                     
-                    $(".napi-igenyek").hide();
+                
                     let szurt = this.napimunkaeroigenyek.filter(igeny=>{
                         return igeny.nap == this.nap;
                     });
@@ -1847,10 +1816,10 @@ $(function () {
                     });
                     
                     $(".napi-igenyek-munkakorok").remove();
-                    $(".napimunka-kivalasztott-datum").html(`<div class="text">`+this.nap+" "+this.napNev+`</div>
+                    $(".napimunka-kivalasztott-datum").html(`<div class="text">`+this.nap+", "+this.napNev+`</div>
                     <div class="buttons">
-                    <button class="fas fa-clipboard-check"></button>
-                    <button class="fas fa-clipboard"></button>
+                    <button class="fas fa-clipboard-check" title="Véglegesít"></button>
+                    <button class="fas fa-clipboard" title="Visszavonás"></button>
                     </div>`);
 
                     this.munkakorok.forEach(munkakor=>{
@@ -1874,11 +1843,10 @@ $(function () {
                         delete this.allapotGombTorles;
                     });
 
-                    this.szulo.slideUp(500,()=>{
-                        napokMunkakorElem.slideDown(500);
-                        kivalasztottDatum.slideDown(500);
+                  
+                        
                         tablazat.slideDown(500);
-                    });
+                   
                 }); 
             }
             getNap(datum) {
@@ -1900,7 +1868,12 @@ $(function () {
                 this.elem = szulo.find("div:last");
                
                 this.elem.on("click",()=>{
-               
+                    $(".napi-igenyek-munkakorok").css("background","var(--always-white)");
+                    $(".napi-igenyek-munkakorok").css("border-color","var(--bs-info)");
+                    $(".napi-igenyek-munkakorok").css("font-weight","unset");
+                    this.elem.css("background","var(--base-lemon)");
+                    this.elem.css("border-color","var(--base-lemon)");
+                    this.elem.css("font-weight","600");
                     $(".napi-igenyek").remove();
                     let szurt = this.napimunkaeroigenyek.filter(igeny=>{
                         return igeny.munkakor == this.adat.munkakor;
@@ -1911,12 +1884,12 @@ $(function () {
                         szurtElem.elem.slideDown(500);
                         
                     });
-                    this.szulo.slideUp(500);
+                   
                     cimMunkakor.text(this.adat.munkakor);
                     cimMunkakor.addClass("title-aktiv");
                     cimMunkakor.on("click",()=>{
                         
-                        this.szulo.slideDown(500);
+                      
                     });
                     
                 });                
@@ -2009,8 +1982,8 @@ $(function () {
                 <img src="" alt="kép" />
             </div>
             <div class="name-location">
-                <div class="profile-nev">Labanc Dániel</div>
-                <div class="profile-munkakor">Munkakör</div>
+                <div class="profile-nev"></div>
+                <div class="profile-munkakor"></div>
             </div>
             <div>
                 <ul>
