@@ -112,6 +112,7 @@ $(function () {
     faliujsag();
     ujBeosztasPage(oldal);
     bejelentkezettFelhasznalo(udvozloUzenet);
+
     function ujBeosztasPage(oldal){
         oldal.tarolo.empty();
         const page1 = oldal.ujbeosztass.clone();
@@ -140,9 +141,11 @@ $(function () {
             const napiMunkaErok = [];
             const nemdolgoznaTomb = [];
             const munkakorSet = new Set();
-    
+            let kivalasztottDatum;
             ajaxApiGet("http://localhost:8000/api/alkalmazottak",(alkalmazottak)=>{ 
+                
                 muszakNaphozRendelese();
+
                 ajaxApiGet("https://randomuser.me/api/?results="+alkalmazottak.length,(adatok)=>{
                     
                     
@@ -186,7 +189,7 @@ $(function () {
                                 napiMunkaErok.push(napigeny);
                             });
             
-                                let kivalasztottDatum =  ujbeosztasNaptar.parent().find(".ujbeosztas-valasztott-datum").val();
+                                
                                 beosztasNaptar(kivalasztottDatum);
                                 
                         }
@@ -205,7 +208,7 @@ $(function () {
                     ujbeosztasNaptar.parent().find(".ujbeosztas-valasztott-datum").change("change",function(){
                         
                     beosztasNaptar( this.value);
-                    console.log(this.value)
+                    console.log(this.value);
                     });
                     
                 });
@@ -295,11 +298,9 @@ $(function () {
                                 clone.menu = clone.elem.find(".clonemenu:last");
                                 
                                 clone.menu.append(` <div><span class="fas fa-user"></span><div  class="uj-beszotas-alkalmazott-nev">${clone.adat.nev}</div></div>
-                                <div><span class="fas fa-phone"></span>${clone.adat.elerhetoseg}</div>
-                                <div><span class="far fa-envelope"></span>${clone.adat.email}</div>`);
-                                clone.menu.css("left", this.x);
-                                clone.menu.css("top", this.y);
-                                clone.menu.css("z-index","5000");
+                                <div><span class="fas fa-phone"></span>${clone.adat.elerhetoseg}</div>`);
+                                clone.menu.hide();
+                                clone.menu.slideDown(500);
                             },
                             ()=>{
                                 clone.menu.remove();
@@ -739,6 +740,7 @@ $(function () {
                                     napiMunkaErok.push(napigeny);
                                 });
                                 beosztasNaptar(this.napNev);
+                                kivalasztottDatum=(this.napNev);
                             });
                             this.infoElem.show(500);
                             $(".dateinfo-massage-grid").hide();
@@ -2441,7 +2443,7 @@ $(function () {
                
                 a.forEach(hm=>{
                     let nap = new Hetnapja(hm.nap,this.elem,hm.szurt); 
-                    console.log(nap)
+                  
                 });
                
             }
@@ -2472,9 +2474,11 @@ $(function () {
                 this.szulo.append(`<div class="beosztas-megtekintes-grid"><div class="beosztas-megtekintes-nap"></div><table class="beosztas-megtekintes-tabla"></table></div>`);
                 this.elem = this.szulo.find(".beosztas-megtekintes-nap:last");
                 this.muszakeloszlasElem = this.szulo.find(".beosztas-megtekintes-tabla:last");
+                this.tabla = this.szulo.find(".beosztas-megtekintes-tabla");
                 this.setElem();
                 this.datumbolNap();
                 this.muszakFeloszlas();
+              
                 
             }
 
