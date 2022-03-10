@@ -1004,7 +1004,7 @@ input:focus, textarea:focus, select:focus{
   }
   .munkakor-container{
     display: flex;
-    
+  
     margin: 1rem;
     border-radius: 10px;
   }
@@ -1303,9 +1303,10 @@ input:focus, textarea:focus, select:focus{
   .muszakeloszlas-elem{
      display: flex;
      width: 90%;
+     height: fit-content;
      border-bottom: .5px solid var(--fds-gray-30);
      margin: auto;
-     
+     cursor: pointer;
   }
   .title-datum, .title-munkakor{
     width: 100%;
@@ -1357,6 +1358,7 @@ input:focus, textarea:focus, select:focus{
 
   #Munkakorok{
    padding: 1rem;
+   
   }
   #Munkakorok h3{
     padding: 1.5rem;
@@ -2327,21 +2329,42 @@ input:focus, textarea:focus, select:focus{
     font-weight: 400;
   }
   .reszletek-lista{
-    display: grid;
-    grid-template-columns: auto;
-    gap:1rem;
-    padding-left: 1rem;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+   
   }
   .reszletek-lista li{
+    display: table-row;
     list-style-type: none;
-    margin: .5rem;
+  
+    text-align: center;
     
   }
   .reszletek-lista li span{
     margin-right: 2rem;
+    display: block;
+    margin: auto;
+    padding: 1rem;
+    text-align: center;
+    
   }
-  
+  .muszaklista-muszakszam{
+    
+    background-color: var(--base-lemon);
+    color:black;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    
+  }
+  .muszaklista-tol-ig{
+    font-weight: 550;
+    color:var(--bs-blue);
+    border-bottom: 1px solid var(--fds-gray-20);
+    border-right: 1px solid var(--fds-gray-20);
+  }
+  #Muszaktipush > div > table > tbody > tr:nth-child(3) > ul > li:nth-child(1) > span.muszaklista-tol-ig{
+    border-left: 1px solid var(--fds-gray-20);
+  }
   .showmuszak{
 
     color:#2c7be3;
@@ -2385,9 +2408,8 @@ input:focus, textarea:focus, select:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: 2rem;
-    margin-bottom: 1rem;
+   
+    
     background-color: none;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
@@ -2397,6 +2419,11 @@ input:focus, textarea:focus, select:focus{
     padding-bottom: .5rem;
     border-radius: 10px;
     cursor: pointer;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--bs-blue);
+    color:var(--always-white);
   }
   
   .muszakok-table,.faliujsag-container
@@ -2413,7 +2440,15 @@ input:focus, textarea:focus, select:focus{
       border-bottom: 1px solid var(--fds-gray-20);
       
   }
-  .muszakok-table th,.faliujsag-container th{
+  .muszakok-table th{
+    border-bottom: 1px solid black;
+  }
+  .muszaklista-tipus{
+    background-color: var(--fds-highlight-cell-background);
+    font-weight: 650;
+
+  }
+  .faliujsag-container th{
     background-color: var(--fds-highlight-cell-background);
   }
   .muszakok-table td,th{

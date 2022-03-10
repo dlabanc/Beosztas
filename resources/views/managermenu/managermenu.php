@@ -90,7 +90,6 @@
     </button>
     <div class="open1">
         <a id="muszaktipush">Műszak típus hozzáadása</a>
-        <a id="muszaktipusn">Műszak típus naphoz rendelése</a>
         <a id="muszaktipusm">Műszak eloszlás módosítása</a>
     </div>
     <button class="links links2" id="beosztasmenu">
@@ -98,8 +97,6 @@
     </button>
     <div class="open2">
         <a id="napimunka">Napi munkaerőigény</a>
-        <a id="ujbeosztas">Új Beosztás készítése</a>
-        <a id="beosztasmod">Beosztás módosítása</a>
         <a id="beosztasmeg">Beosztás megtekintése</a>
     </div>
     <button class="links links2" id="egyebmenu">

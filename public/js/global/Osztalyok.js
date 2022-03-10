@@ -358,10 +358,10 @@ class MuszakHozzaAdas {
         this.torlesEsemeny = this.torles;
         this.adat = adat;
         this.elem = $(".muszak-sorok:last");
-        this.elem.append(`<td>${adat.tipus}</td><td>${adat.leiras}</td>`);
+        this.elem.append(`<td class="muszaklista-tipus">${adat.tipus}</td><td>${adat.leiras}</td>`);
         this.elem.append('<td><button  class="fas fa-trash removemuszak"></button></td>');
         this.elem.append('<td><button  class="fas fa-edit editmuszak"></button></td>');
-        this.elem.append('<td class="showmuszak">Részletek</td>');
+        this.elem.append('<td class="showmuszak"></td>');
         this.torolElem = this.elem.find(".removemuszak");
         this.szerkesztElem = this.elem.find(".editmuszak") ;
         this.reszletekElem = this.elem.find(".showmuszak");
@@ -382,18 +382,8 @@ class MuszakHozzaAdas {
     }
 
     reszletekMutat(){
-        
-        this.reszletekElem.on('click',()=>{
-            if(this.click==1) {
-                this.click = 0;
-                this.details();
-                
-              }
-            else {
-                this.click = 1;
-                this.reszletek.children("ul").slideUp(500);
-            }
-        });
+        this.details();
+       
     }
 
     static hozzaAd(szulo,ajax,callback){
@@ -489,7 +479,7 @@ class MuszakHozzaAdas {
                         reszlet += adat[kulcs]+" ";
                     });
                     
-                    this.reszletek.children("ul").append(`<li><span>${muszakszam}. műszak:</span> ${oratol}:00 ${oraig}:00</li>`);
+                    this.reszletek.children("ul").append(`<li><span class="muszaklista-muszakszam">${muszakszam}. műszak</span><span class="muszaklista-tol-ig"> ${oratol}:00 - ${oraig}:00</span></li>`);
                     
                    
                 });            
