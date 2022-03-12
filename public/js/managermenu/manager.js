@@ -2402,19 +2402,7 @@ $(function () {
                 let munkakorok = new Set();
                 osszesbeosztas.forEach(beo=>{munkakorok.add(beo.alkalmazott_adat[0].munkakor)});
                 szulo.empty();
-                szulo.append("<button class="+"nezet1"+">Nezet1</button>");
-                szulo.append("<button class="+"nezet2"+">Nezet2</button>");
-                $(".nezet1").on("click",()=>{
-                    $(".beosztas-megtekintes-tabla tr").css("display","table-row");
-                    $(".beosztas-megtekintes-tabla td").css("display","table-cell");
-                    $(".beosztas-megtekintes-tabla td").css("text-align","center");
-                    $(".beosztas-megtekintes-tabla").css("display","table");
-                });
-                $(".nezet2").on("click",()=>{
-                    $(".beosztas-megtekintes-tabla tr").css("display","grid");
-                    $(".beosztas-megtekintes-tabla td").css("display","flex");
-                    $(".beosztas-megtekintes-tabla").css("display","flex");
-                });
+                szulo.append(`<h3 class="beosztas-cim">Beosztások</h3>`)
                 munkakorok.forEach((munkakor)=>{
                     
                 const hetiTabla2 = new Hetitablazat(napok,szulo,osszesbeosztas,munkakor);
@@ -2433,7 +2421,16 @@ $(function () {
                 
                 this.szulo.append(`<div class="beosztas-megtekinktes-munkakor">${this.munkakor}</div><div class="beosztas-megtekintes-heti"></div>`);
                 this.elem = this.szulo.find(".beosztas-megtekintes-heti:last");
+                this.elem.hide();
                 
+                this.szulo.find(".beosztas-megtekinktes-munkakor:last").on("click",()=>{
+                    $(".beosztas-megtekintes-heti").hide();
+                    this.elem.slideDown(500);
+                    this.szulo.find(".beosztas-megtekinktes-munkakor").css("background","white");
+                    this.elem.prev().css("background","var(--fds-highlight-cell-background)");
+                 
+
+                });
             }
            
             letrehozNapok(){
@@ -2474,10 +2471,16 @@ $(function () {
                 this.szulo.append(`<div class="beosztas-megtekintes-grid"><div class="beosztas-megtekintes-nap"></div><table class="beosztas-megtekintes-tabla"></table></div>`);
                 this.elem = this.szulo.find(".beosztas-megtekintes-nap:last");
                 this.muszakeloszlasElem = this.szulo.find(".beosztas-megtekintes-tabla:last");
-                this.tabla = this.szulo.find(".beosztas-megtekintes-tabla");
+                this.tabla = this.szulo.find(".beosztas-megtekintes-tabla:last");
+                this.tabla.hide();
                 this.setElem();
                 this.datumbolNap();
                 this.muszakFeloszlas();
+                this.elem.on("click",()=>{
+                    $(".beosztas-megtekintes-tabla").hide();
+                    this.tabla.slideDown(500);
+                }); 
+                
               
                 
             }
@@ -2489,7 +2492,7 @@ $(function () {
             datumbolNap(){
                 let ujDatum = new Date(this.adat.nap).getDay();
                 const napok = ["Vasárnap","Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"];
-                this.elem.append(`<div>${napok[ujDatum]}</div>`);
+                this.elem.append(`<div class="nap">${napok[ujDatum]}</div>`);
             }
 
             muszakFeloszlas(){
