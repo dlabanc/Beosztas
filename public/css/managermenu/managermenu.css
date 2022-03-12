@@ -877,6 +877,11 @@ input:focus, textarea:focus, select:focus{
     text-transform: uppercase;
     font-weight: 350;
   }
+  .managerinfo .arrow{
+    font-size: smaller;
+    color:var(--fds-button-text);
+    padding-left: .5rem;
+  }
   .openbtn .arrow{
     font-size: smaller;
     color:var(--fds-button-text);
@@ -1228,6 +1233,8 @@ input:focus, textarea:focus, select:focus{
   background-color: var(--bs-info);
   color:var(--always-white);
   border-radius: 5px;
+  font-weight: 550;
+  font-size: 1.1rem;
 }
 .arrows{
   display: flex;
@@ -1243,12 +1250,13 @@ input:focus, textarea:focus, select:focus{
 
 .muszakeloszlasok-timeline{
     margin-bottom: 2rem;
+  
   }
   .muszakelo-clone{
     padding: 1rem;
-    display: flex;
+   
     gap: 1rem;
-    width: 90%;
+    
     margin: auto;
     align-items: center;
     background-color: var(--fds-highlight-cell-background);
@@ -1291,10 +1299,11 @@ input:focus, textarea:focus, select:focus{
     border-right: .5px solid var(--fds-gray-30);
   }
   .aktiv-muszak-leiras{
-    width: 90%;
+    width: 100%;
     text-align: center;
     padding: .5rem;
     font-size: 1.1rem;
+    font-weight: 550;
     margin-top: 2rem;
     margin: auto;
     border-bottom: 1px solid var(--fds-gray-20);
@@ -1302,16 +1311,18 @@ input:focus, textarea:focus, select:focus{
   }
   .muszakeloszlas-elem{
      display: flex;
-     width: 90%;
+    
      height: fit-content;
      border-bottom: .5px solid var(--fds-gray-30);
      margin: auto;
      cursor: pointer;
   }
+ 
   .title-datum, .title-munkakor{
     width: 100%;
     
   }
+  
   .muszaknev,.munkaero-db{
     padding: 1rem;
     background-color: var(--base-lemon);
@@ -1322,7 +1333,9 @@ input:focus, textarea:focus, select:focus{
     color:var(--always-black);
     font-weight: 450;
     margin: 2rem;
-    
+  }
+  .muszaknev{
+    font-weight: 600;
   }
   .munkaero{
     display: flex;
@@ -1341,17 +1354,18 @@ input:focus, textarea:focus, select:focus{
   }
   .muszakeloszlasok-timeline .oratol,  .napi-igenyek .oratol
   {
+    text-align: center;
     font-size: 1.1rem;
-    color:var(--fds-gray-70);
+    color: var(--bs-blue)!important;
     padding: 1rem;
     border-bottom: .5px dashed var(--fds-gray-30);
   } 
 
   .muszakeloszlasok-timeline .oraig,  .napi-igenyek .oraig
   {
-    
+    text-align: center;
     font-size: 1.1rem;
-    color:var(--fds-gray-70);
+    color: var(--bs-blue)!important;
     padding: 1rem;
   }
 
@@ -1854,7 +1868,7 @@ input:focus, textarea:focus, select:focus{
   
   .muszaktipusok-info{
    list-style-type: none;
-   
+    padding: .5rem;
   }
   .muszaktipusok-input{
     
@@ -1998,22 +2012,31 @@ input:focus, textarea:focus, select:focus{
     display: flex;
     justify-content: center;
   }
- 
+ .stat-title{
+   text-align: center;
+   padding-bottom: 1rem;
+ }
   
   /*#### STATISZTIKA ####*/
   #Statisztika{
+    grid-area: sss;
     display: grid;
     grid-template-columns: auto;
     gap:2rem;
     padding: 2rem;
-    min-width: 1000px;
+    min-height:350px;
+   
   }
   .hover{
     background-color: var(--fds-highlight-cell-background);
   }
-
+  #Man-statisztika-elem1{
+    grid-area: hetiora;
+    width: fit-content;
+  }
   #Man-statisztika-elem2{
-    height: 25%;
+    grid-area: szabadsag;
+    height:100%;
   }
   .tabcontent tr{
       display: table-row!important;
@@ -2513,6 +2536,7 @@ input:focus, textarea:focus, select:focus{
   
 .ujbeosztas-alkalmazottak-container{
   border-left: 1px solid var(--fds-gray-20);
+  border-top: 1px solid var(--fds-gray-20);
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
@@ -2533,9 +2557,13 @@ align-items: center;
 gap: 1rem;
 
 }
+
 .ujBeosztasPage{
 display: grid;
-grid-template-areas: "Muszakn Ujbeosztas";
+grid-template-areas: 
+"sss sss"
+"Muszakn Ujbeosztas";
+
 grid-template-columns: min-content auto;
 box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
@@ -2600,8 +2628,8 @@ box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px
 }
 .beosztas-info-uzenet{
 
-  max-width: 30rem;
-  text-align: justify;
+ 
+ 
   width: fit-content;
   margin: auto;
 
@@ -2623,9 +2651,13 @@ font-size: .9rem;
   margin: .5rem;
   
 }
+.beosztas-info-tarolo{
+  margin: 1rem;
+}
 .beosztas-info-uzenet .info-al{
-  text-indent: 1rem;
-  padding: 1rem;
+ 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   font-weight: 550;
 }
 .beosztas-info-uzenet .info-al span{
@@ -2659,7 +2691,6 @@ font-size: .9rem;
 }
 
 .ujbeosztas-naptar{
-
 grid-area: ujbeonaptar;
 margin: auto;
 display: flex;
@@ -3035,6 +3066,7 @@ font-weight: 650;
   grid-template-areas: "ujbeonaptar alkalmazottak ";
   grid-template-columns: auto min-content;
   grid-area: Ujbeosztas;
+  
 
 }
   @media screen and (max-width:1820px) {
@@ -3262,12 +3294,13 @@ font-weight: 650;
       min-width: 100%;
     }
     #Muszaktipusm {
-      min-width: 100%;
+      width: fit-content;
       display: grid;
       grid-template-columns: auto;
       align-items: center;
       margin-left: auto;
       margin-right: auto;
+      
     }
     .post-content{
       grid-template-columns: auto ;

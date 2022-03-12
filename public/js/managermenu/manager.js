@@ -111,12 +111,19 @@ $(function () {
     article.empty();
     faliujsag();
     ujBeosztasPage(oldal);
+    
     bejelentkezettFelhasznalo(udvozloUzenet);
+
 
     function ujBeosztasPage(oldal){
         oldal.tarolo.empty();
         const page1 = oldal.ujbeosztass.clone();
         const page2 = oldal.muszaktipusnn.clone();
+        const stat = oldal.statisztikaa.clone();
+        oldal.tarolo.append(stat);
+        managerStatisztika();
+        $(" #Man-statisztika-elem0").remove(); 
+        $(" #Man-statisztika-elem1").remove(); 
         oldal.tarolo.append(page2);
         oldal.tarolo.append(page1);
         ujBeosztas();
@@ -574,7 +581,7 @@ $(function () {
                     <li class="info-al">2/b Amennyiben rendeltél Munkaerőigényt a munkakörökhöz, válassz az alkalmazottak közül és add hozzá a műszakokhoz! </li>
                     <li class="beosztas-info-ok">3. <span>Kattints a mentésre, kész is vagyunk!</span> </li>
                     </ul></div>`);
-                    ujbeosztasNaptar.find(".beosztas-info-tarolo").hide();
+                    
                     ujbeosztasNaptar.find(".beosztas-info-lenyit").on("click",()=>{
                         let infoElem = $(".beosztas-info-tarolo");
                        
@@ -1004,7 +1011,7 @@ $(function () {
                     }
                 }
                 let ujNaptar = new Naptar(naptar, napok, honapok);
-                
+                $(".dateinfo-massage-grid").show();
             }
         }
 
@@ -1029,7 +1036,7 @@ $(function () {
 
     function udvozloUzenet(adatok) {
         $(".profile-name").text("Üdvözöllek, " + adatok.nev);
-        $(".profile-name").append(`<span> &#9660;</span>`);
+        $(".profile-name").append(`<span class="arrow">&#9660;</span>`);
     }
 
 
