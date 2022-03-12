@@ -907,7 +907,7 @@ input:focus, textarea:focus, select:focus{
   }
   
   .useraside{
-    padding: 1rem;
+    
     display: none;
     cursor: pointer;
     position: absolute;
@@ -2023,7 +2023,8 @@ input:focus, textarea:focus, select:focus{
     display: grid;
     grid-template-columns: auto;
     gap:2rem;
-    
+    margin: auto;
+    width: 100%;
     min-height:350px;
    
   }
@@ -2038,6 +2039,7 @@ input:focus, textarea:focus, select:focus{
     grid-area: szabadsag;
     height:100%;
     padding: 2rem;
+    margin: auto;
   }
   .tabcontent tr{
       display: table-row!important;

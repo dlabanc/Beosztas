@@ -1011,7 +1011,7 @@ $(function () {
                     }
                 }
                 let ujNaptar = new Naptar(naptar, napok, honapok);
-                $(".dateinfo-massage-grid").show();
+
             }
         }
 
