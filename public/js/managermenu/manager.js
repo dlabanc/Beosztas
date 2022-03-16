@@ -46,6 +46,7 @@ $(function () {
         }
         statisztika() {
             this.esemenyLetrehoz(this.statisztikaLink, this.statisztikaa, managerStatisztika);
+           
         }
         faliujsag() {
             this.esemenyLetrehoz(this.faliujsagLink, this.faliujsagg, faliujsag);
@@ -1335,14 +1336,22 @@ $(function () {
         oszlop();
         kor();
         timeLine();
+        
        // table();
         //Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
         //-következő
+
+        function reszponziv(callback){
+            $(window).resize(function(){
+                callback()
+              });
+        }
+
         function oszlop() {
             ajaxGet("http://localhost:8000/api/munkakorstat", (adatok) => {
-
+                
                 googleChartsKonyvtar("corechart", drawChart);
-
+                reszponziv(drawChart);
                 function drawChart() {
                     data = new google.visualization.DataTable();
                     chart = new google.visualization.PieChart(statisztikaElem1);
@@ -1369,7 +1378,7 @@ $(function () {
         function kor() {
             ajaxGet("http://localhost:8000/api/hetioraszamstat", (adatok) => {
                 googleChartsKonyvtar("corechart", drawChart);
-
+                reszponziv(drawChart);
                 function drawChart() {
                     data = new google.visualization.DataTable();
                     chart = new google.visualization.ColumnChart(
@@ -1399,7 +1408,7 @@ $(function () {
         function timeLine() {
             ajaxGet("http://localhost:8000/"+"api/szabadsagstat", (adatok) => {
                 googleChartsKonyvtar("timeline", drawChart);
-
+                reszponziv(drawChart);
                 function drawChart() {
                     chart = new google.visualization.Timeline(statisztikaElem3);
                     dataTable = new google.visualization.DataTable();
@@ -1434,7 +1443,8 @@ $(function () {
                             ],
                         ]);
                     }
-                    options = { tooltip: { isHtml: true } };
+                    options = { tooltip: { isHtml: true }, height: 300,
+                    width_units: '%' };
                     chart.draw(dataTable, options);
                     $(statisztikaElem3).prepend("<div class=" + "stat-title" + ">Szabadság </div>");
                 }
