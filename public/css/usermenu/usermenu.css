@@ -1287,11 +1287,25 @@ h1 {
             width: 650px;
            left:0;
         }
-        .sidenav{
-            position: fixed;
+        #mySidenav > a.links.links2{
+            border-radius: 10px;
+          }
+          .sidenav{
+            display: block;
+            position: static;
             left: 50%;
             top:15%;
-            transform: translate(-50%,-50%);
+            width: 100%;
+            margin-bottom: 1rem;
+            
         }
-        
+        .closebtn{
+          display: none!important;
+        }
+        .arrow{
+            display: none!important;
+        }
+        .openbtn{
+            grid-template-columns: 100%;
+        }
 }

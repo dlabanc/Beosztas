@@ -3157,4 +3157,53 @@ font-weight: 650;
     justify-content: center;
     gap:.5rem;
   }
+  #mySidenav > a.links.links2{
+    border-radius: 10px;
+  }
+  .useraside{
+    position: static;
+    margin: 0;
+    margin-bottom: 1rem;
+
+  }
+  .navbar span{
+    margin: auto
+  };
+  header nav a{
+    display: grid;
+    grid-template-columns: min-content auto;
+  }
+  .sidenav{
+    display: block;
+    position: static;
+    left: 50%;
+    top:15%;
+    width: 100%;
+    margin-bottom: 1rem;
+    
+}
+.sidenav a{
+  margin: 0;
+  padding: 1rem;
+  padding-left: 2rem;
+}
+.sidenav .links{
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: .5rem;
+  padding: .5rem;
+  padding-left: 1rem;
+}
+.closebtn{
+  display: none!important;
+}
+.arrow{
+    display: none!important;
+}
+.managerinfo-leftgrid .arrow{
+  display: inline!important;
+}
+.openbtn{
+    grid-template-columns: 100%;
+}
 }
