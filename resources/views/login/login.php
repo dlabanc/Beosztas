@@ -61,7 +61,7 @@
               name="login"
               value="Bejelentkezés"
             />
-            <a href="#" class="forgotpass">Elfelejtetted a jelszavadat?</a>
+            <a href="/elfelejtett-jelszo" class="forgotpass">Elfelejtetted a jelszavadat?</a>
           </div>
         </form>
       </div>

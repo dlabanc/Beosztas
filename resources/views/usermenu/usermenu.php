@@ -190,7 +190,7 @@
             </div>
 
         </article>
-        <div class="password-window">
+        <div class="password-window" <?php if(session('errors')!==null) {?>style="display:block"<?php } ?>>
             <div class="password-window-bg">
              <button class="fas fa-times close"></button>   
             <form id="form" method="POST" action=<?php $route=route('password.change'); echo $route?>>
