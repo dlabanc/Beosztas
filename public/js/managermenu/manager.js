@@ -46,6 +46,7 @@ $(function () {
         }
         statisztika() {
             this.esemenyLetrehoz(this.statisztikaLink, this.statisztikaa, managerStatisztika);
+           
         }
         faliujsag() {
             this.esemenyLetrehoz(this.faliujsagLink, this.faliujsagg, faliujsag);
@@ -111,12 +112,19 @@ $(function () {
     article.empty();
     faliujsag();
     ujBeosztasPage(oldal);
+    
     bejelentkezettFelhasznalo(udvozloUzenet);
+
 
     function ujBeosztasPage(oldal){
         oldal.tarolo.empty();
         const page1 = oldal.ujbeosztass.clone();
         const page2 = oldal.muszaktipusnn.clone();
+        const stat = oldal.statisztikaa.clone();
+        oldal.tarolo.append(stat);
+        managerStatisztika();
+        $(" #Man-statisztika-elem0").remove(); 
+        $(" #Man-statisztika-elem1").remove(); 
         oldal.tarolo.append(page2);
         oldal.tarolo.append(page1);
         ujBeosztas();
@@ -563,7 +571,32 @@ $(function () {
             function beosztasNaptar(datum){
                 ajaxApiGet("http://localhost:8000/api/beosztasok/",beosztasok=>{
                     ujbeosztasNaptar.empty();
+                    ujbeosztasNaptar.html(`
+                    <button class="fas fa-question beosztas-info-lenyit"></button>
+                    <div class="beosztas-info-tarolo">
+                    <h3 class="beosztas-info-cim">Új beosztás készítéséhez tedd a következőket:</h3>
+                    <ul class="beosztas-info-uzenet">
+                    <li>1. Válassz a naptárból egy napot!</li>
+                    <li>2. A naptár alatt lévő menüből válaszd ki a nap műszaktípusát!</li>
+                    <li class="info-al">2/a Amennyiben most rendeltél a naphoz műszakot, kérlek válaszd a Menüből:<br><span>Beosztás -> Napi munkaerőigényt! </span></li>
+                    <li class="info-al">2/b Amennyiben rendeltél Munkaerőigényt a munkakörökhöz, válassz az alkalmazottak közül és add hozzá a műszakokhoz! </li>
+                    <li class="beosztas-info-ok">3. <span>Kattints a mentésre, kész is vagyunk!</span> </li>
+                    </ul></div>`);
                     
+                    ujbeosztasNaptar.find(".beosztas-info-lenyit").on("click",()=>{
+                        let infoElem = $(".beosztas-info-tarolo");
+                       
+                        if(infoElem.is(":visible")){
+                            infoElem.slideUp(500);
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("background","var(--fds-gray-20)");
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("color","var(--always-black)");
+                        }
+                        else{
+                            infoElem.slideDown(500);
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("background","var(--bs-info)");
+                            ujbeosztasNaptar.find(".beosztas-info-lenyit").css("color","var(--always-white)");
+                        }
+                    });
                     let kivalasztottDatum = datum;
                     let kivalaszottMunkaeroIndex = selectAlkalmazottak.prop('selectedIndex');
                     let kivalaszottMunkaero = selectAlkalmazottak.find("option").eq(kivalaszottMunkaeroIndex).text();
@@ -599,6 +632,7 @@ $(function () {
                                         beosztasNap.elem.on("click",()=>{
                                             beosztasNap.torlesElem.show();
                                             beosztasNap.torlesEsemeny();
+                                            
                                         });
                                     }
                                  
@@ -618,16 +652,13 @@ $(function () {
                 const SZULO = $("#Muszaktipusn");
                 SZULO.empty();
                 muszakTipusNaphozSeged();
-        
-                const token = $('meta[name="csrf-token"]').attr("content");
+                
                 const naptar = SZULO.find(".naptar");
                 const timer = $(".timer");
                 const datettime = $(".datettime");
         
                 function muszakTipusNaphozSeged() {
-                    SZULO.append(
-                        `<div class="naptar"><div class="timer-datettime"><div class="timer"></div><div class="datettime"></div></div></div>`
-                    );
+                    SZULO.append(`<div class="naptar"><div class="timer-datettime"><div class="timer"></div><div class="datettime"></div></div></div>`);
                     SZULO.append('<div class="datettime-info"></div>');
         
                     $(".datettime-info").append(`
@@ -715,6 +746,7 @@ $(function () {
                         this.elem = $(szulo).find(".muszaktipusok-info:last");
                     }
                 }
+
                 class Nap {
                     constructor(szulo, nap, napok, elem) {
                         this.muszakok = [];
@@ -731,16 +763,18 @@ $(function () {
                         this.infoElem = $(".datettime-info");
                         this.elem = elem.text(`${this.nap}`);
                         this.muszakTipusElem = $(".dateinfo-muszaktipus");
+                            
                         this.elem.on("click", () => {
                             
                             ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
-                    
+                              
                                 napiMunkaErok.splice(0,napiMunkaErok.length);
                                 napok.forEach(napigeny => {
                                     napiMunkaErok.push(napigeny);
                                 });
                                 beosztasNaptar(this.napNev);
                                 kivalasztottDatum=(this.napNev);
+                             
                             });
                             this.infoElem.show(500);
                             $(".dateinfo-massage-grid").hide();
@@ -978,6 +1012,7 @@ $(function () {
                     }
                 }
                 let ujNaptar = new Naptar(naptar, napok, honapok);
+
             }
         }
 
@@ -1002,7 +1037,7 @@ $(function () {
 
     function udvozloUzenet(adatok) {
         $(".profile-name").text("Üdvözöllek, " + adatok.nev);
-        $(".profile-name").append(`<span> &#9660;</span>`);
+        $(".profile-name").append(`<span class="arrow">&#9660;</span>`);
     }
 
 
@@ -1301,14 +1336,22 @@ $(function () {
         oszlop();
         kor();
         timeLine();
+        
        // table();
         //Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
         //-következő
+
+        function reszponziv(callback){
+            $(window).resize(function(){
+                callback()
+              });
+        }
+
         function oszlop() {
             ajaxGet("http://localhost:8000/api/munkakorstat", (adatok) => {
-
+                
                 googleChartsKonyvtar("corechart", drawChart);
-
+                reszponziv(drawChart);
                 function drawChart() {
                     data = new google.visualization.DataTable();
                     chart = new google.visualization.PieChart(statisztikaElem1);
@@ -1335,7 +1378,7 @@ $(function () {
         function kor() {
             ajaxGet("http://localhost:8000/api/hetioraszamstat", (adatok) => {
                 googleChartsKonyvtar("corechart", drawChart);
-
+                reszponziv(drawChart);
                 function drawChart() {
                     data = new google.visualization.DataTable();
                     chart = new google.visualization.ColumnChart(
@@ -1365,7 +1408,7 @@ $(function () {
         function timeLine() {
             ajaxGet("http://localhost:8000/"+"api/szabadsagstat", (adatok) => {
                 googleChartsKonyvtar("timeline", drawChart);
-
+                reszponziv(drawChart);
                 function drawChart() {
                     chart = new google.visualization.Timeline(statisztikaElem3);
                     dataTable = new google.visualization.DataTable();
@@ -1400,7 +1443,8 @@ $(function () {
                             ],
                         ]);
                     }
-                    options = { tooltip: { isHtml: true } };
+                    options = { tooltip: { isHtml: true }, height: 300,
+                    width_units: '%' };
                     chart.draw(dataTable, options);
                     $(statisztikaElem3).prepend("<div class=" + "stat-title" + ">Szabadság </div>");
                 }
@@ -2375,19 +2419,7 @@ $(function () {
                 let munkakorok = new Set();
                 osszesbeosztas.forEach(beo=>{munkakorok.add(beo.alkalmazott_adat[0].munkakor)});
                 szulo.empty();
-                szulo.append("<button class="+"nezet1"+">Nezet1</button>");
-                szulo.append("<button class="+"nezet2"+">Nezet2</button>");
-                $(".nezet1").on("click",()=>{
-                    $(".beosztas-megtekintes-tabla tr").css("display","table-row");
-                    $(".beosztas-megtekintes-tabla td").css("display","table-cell");
-                    $(".beosztas-megtekintes-tabla td").css("text-align","center");
-                    $(".beosztas-megtekintes-tabla").css("display","table");
-                });
-                $(".nezet2").on("click",()=>{
-                    $(".beosztas-megtekintes-tabla tr").css("display","grid");
-                    $(".beosztas-megtekintes-tabla td").css("display","flex");
-                    $(".beosztas-megtekintes-tabla").css("display","flex");
-                });
+                szulo.append(`<h3 class="beosztas-cim">Beosztások</h3>`)
                 munkakorok.forEach((munkakor)=>{
                     
                 const hetiTabla2 = new Hetitablazat(napok,szulo,osszesbeosztas,munkakor);
@@ -2406,7 +2438,16 @@ $(function () {
                 
                 this.szulo.append(`<div class="beosztas-megtekinktes-munkakor">${this.munkakor}</div><div class="beosztas-megtekintes-heti"></div>`);
                 this.elem = this.szulo.find(".beosztas-megtekintes-heti:last");
+                this.elem.hide();
                 
+                this.szulo.find(".beosztas-megtekinktes-munkakor:last").on("click",()=>{
+                    $(".beosztas-megtekintes-heti").hide();
+                    this.elem.slideDown(500);
+                    this.szulo.find(".beosztas-megtekinktes-munkakor").css("background","white");
+                    this.elem.prev().css("background","var(--fds-highlight-cell-background)");
+                 
+
+                });
             }
            
             letrehozNapok(){
@@ -2447,10 +2488,16 @@ $(function () {
                 this.szulo.append(`<div class="beosztas-megtekintes-grid"><div class="beosztas-megtekintes-nap"></div><table class="beosztas-megtekintes-tabla"></table></div>`);
                 this.elem = this.szulo.find(".beosztas-megtekintes-nap:last");
                 this.muszakeloszlasElem = this.szulo.find(".beosztas-megtekintes-tabla:last");
-                this.tabla = this.szulo.find(".beosztas-megtekintes-tabla");
+                this.tabla = this.szulo.find(".beosztas-megtekintes-tabla:last");
+                this.tabla.hide();
                 this.setElem();
                 this.datumbolNap();
                 this.muszakFeloszlas();
+                this.elem.on("click",()=>{
+                    $(".beosztas-megtekintes-tabla").hide();
+                    this.tabla.slideDown(500);
+                }); 
+                
               
                 
             }
@@ -2462,7 +2509,7 @@ $(function () {
             datumbolNap(){
                 let ujDatum = new Date(this.adat.nap).getDay();
                 const napok = ["Vasárnap","Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"];
-                this.elem.append(`<div>${napok[ujDatum]}</div>`);
+                this.elem.append(`<div class="nap">${napok[ujDatum]}</div>`);
             }
 
             muszakFeloszlas(){
