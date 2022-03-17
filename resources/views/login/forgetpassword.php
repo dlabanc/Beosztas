@@ -14,9 +14,9 @@
     <form id="form" method="POST" action=<?php $route=route('password.email'); echo $route?>>
         <div class="logo-container">
         <h2>Chill Out Café</h2>
-        <p class="kerdes">Elfelejtetted a jelszavad?</p>
-        <p>Adja meg a regisztrációkor használt e-mail címét, és elküldjük a jelszó visszaállításához szükséges utasításokat.</p>
-        <p>Biztonsági okokból NEM tároljuk jelszavát. Biztos lehet benne, hogy soha nem küldjük el jelszavát e-mailben.</p>
+        <p class="kerdes">Elfelejtette a jelszavad?</p>
+        <p>Adja meg a regisztrációkor használt e-mail címét és elküldjük a jelszó visszaállításához szükséges utasításokat.</p>
+        <p>Biztonsági okokból NEM tároljuk jelszavát. Biztos lehet benne, hogy soha nem küldjük el jelszavát e-mailben!</p>
         </div>
         <fieldset>
             <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
