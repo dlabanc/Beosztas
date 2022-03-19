@@ -8,6 +8,7 @@ use App\Models\BejelentkezesiAdatok;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class JelszoVisszaAllitasController extends Controller
 {
@@ -18,12 +19,15 @@ class JelszoVisszaAllitasController extends Controller
         );
      
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+                    ? throw ValidationException::withMessages(['status' => __($status)])
+                    : throw ValidationException::withMessages(['email' => __($status)]);
     }
 
 
     public function passwordReset(Request $request){
+        if(!strcmp($request->password,$request->password_confirm)==0){
+            throw ValidationException::withMessages(['passerror'=>'A két jelszó nem egyezik!']);
+        }
         $alk = BejelentkezesiAdatok::where('email',$request->only('email'))->get()->first();
         $credentials=['user_login' => $alk->user_login, 'password' => $request->only('password')['password'], 'email'=>$alk->email, 'token'=>$request->token2];
         $status = Password::reset(
@@ -40,7 +44,7 @@ class JelszoVisszaAllitasController extends Controller
         );
      
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('bejelentkezes')->with('status', __($status))
-                    : back()->withErrors(['email' => [__($status)]]);
+                    ? redirect()->route('bejelentkezes')
+                    : throw ValidationException::withMessages(['reseterror' => __($status)]);
     }
 }

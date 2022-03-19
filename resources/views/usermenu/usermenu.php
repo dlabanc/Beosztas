@@ -186,23 +186,23 @@
             </div>
 
         </article>
-        <div class="password-window" <?php if(session('errors')!==null) {?>style="display:block"<?php } ?>>
+        <div class="password-window">
             <div class="password-window-bg">
              <button class="fas fa-times close"></button>   
-            <form id="form" method="POST" action=<?php $route=route('password.change'); echo $route?>>
+            <form id="form" method="POST" >
                     <fieldset>
                     <legend>Jelszó Módosítás</legend>
                     <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
                     <label for="oldpwd">Régi jelszó:</label><br>                   
                     <input type="password" id="oldpwd" name="oldpwd"><br>
-                    <p><?php if(session('errors')!==null) { $error=session('errors')->first('oldpwd'); if ($error!==''){echo $error; echo "<br>";}} ?></p>
+                    <p id="oldpwderror"></p>
                     <label for="newpwd">Új jelszó:</label><br>
                     <input type="password" id="newpwd" name="newpwd"><br>
-                    <p><?php if(session('errors')!==null) { $error=session('errors')->first('newpwd'); if ($error!==''){echo $error; echo "<br>";}} ?></p>
+                    <p id="newpwderror"></p>
                     <label for="confirmpwd">Jelszó megerősítése:</label><br>
                     <input type="password" id="confirmpwd" name="confirmpwd"><br>
-                    <p><?php if(session('errors')!==null) { $error=session('errors')->first('currentpwd'); if ($error!==''){echo $error; echo "<br>";}} ?></p>
-                    <input type="submit" id="submit" value="OK">
+                    <p id="confirmpwderror"></p>
+                    <button type="submit" id="submit">OK</button>
          
                 </fieldset> 
                 </form>

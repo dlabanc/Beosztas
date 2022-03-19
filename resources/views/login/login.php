@@ -10,9 +10,10 @@
       href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
     />
     <link rel="stylesheet" href="/css/login/login.css" />
-
+    <meta name="csrf-token" content=<?php $token=csrf_token(); echo $token;?>>
     <script src="/node_modules/darkmode-js/lib/darkmode-js.js"></script>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/js/global/Ajax.js"></script>
     <script src="/js/global/Oldalesemenyek.js"></script>
     
     <title>Bejelentkezés</title>
@@ -27,8 +28,8 @@
         <h3 class="label">Login</h3>
       </div>
       <div class="form">
-      <?php if(session('errors')!==null) { $error=session('errors')->first('loginlimit'); if ($error!==''){echo $error; echo "<br>";}} ?>
-        <form method="POST" action=<?php $route=route('hitelesites'); echo $route?>>
+        <p id="loginerror"></p>
+        <form method="POST">
           <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
           <div class="inputs">
             <div class="field">
@@ -55,12 +56,9 @@
           </div>
          
           <div class="input_buttons">
-            <input
-              type="submit"
+            <button             
               id="login"
-              name="login"
-              value="Bejelentkezés"
-            />
+            >Bejelentkezés</button>
             <a href="/elfelejtett-jelszo" class="forgotpass">Elfelejtetted a jelszavadat?</a>
           </div>
         </form>

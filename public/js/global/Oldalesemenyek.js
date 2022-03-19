@@ -5,6 +5,8 @@ $(function () {
     compactMode();
     postAll();
     dropDownMenus();
+    const token=$('meta[name="csrf-token"]').attr('content');
+    const ajax=new Ajax(token);
     
 
     const options = {
@@ -156,5 +158,56 @@ $(function () {
       
     }
 
+    let url = "http://localhost:8000/change";
+    $("#submit").on("click",(event)=>{
+        event.preventDefault();
+        let oldpwd=$("#oldpwd").val();
+        let newpwd=$("#newpwd").val();
+        let confirmpwd=$("#confirmpwd").val();
+        let ujAdat={
+            oldpwd:oldpwd,
+            newpwd:newpwd,
+            confirmpwd:confirmpwd,
+        };
+        ajax.fetchAjax(url, ujAdat);
+    });
+
+    let login_url = "http://localhost:8000/authenticate";
+    $('#login').on("click",(event)=>{
+        event.preventDefault();
+        let user_login=$("#user_login").val();
+        let password=$("#password").val();
+        let ujAdat={
+            user_login:user_login,
+            password:password,
+        };
+        ajax.fetchAjax(login_url, ujAdat);
+    });
+
+    let email_url = "http://localhost:8000/elfelejtettjelszo";
+    $('#esubmit').on("click",(event)=>{
+        event.preventDefault();
+        let email=$("#email").val();
+        let ujAdat={
+            email:email,
+        };
+        ajax.fetchAjax(email_url, ujAdat);
+    });
+
+    let reset_url = "http://localhost:8000/reset-password";
+    $('#rsubmit').on("click",(event)=>{
+        event.preventDefault();
+        let email=$("#email").val();
+        let password=$("#password").val();
+        let password_confirm=$("#password_confirm").val();
+        let token=$("#token2").val();
+        let ujAdat={
+            email:email,
+            password:password,
+            password_confirm:password_confirm,
+            token2:token,
+        };
+        ajax.fetchAjax(reset_url, ujAdat);
+    });
     
 });
