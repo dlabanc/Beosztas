@@ -87,14 +87,16 @@
     <div id="Nemerekra" >
 </div>
 <div id="Beosztas" >
-                <h3>Hali</h3>
-            
+                <h3>Szia, Kérlek vess egy pillantást a beosztásodra!</h3>
+            <div class="beosztas-container">
             <ul class="Datumok">
                
             </ul>
-            <div class="BeosztasDatum"></div>
+            <div>
+          
             <div class="BeosztasTabla"></div>
-
+            </div>
+            </div>
         </div>
         <aside class="useraside">
            

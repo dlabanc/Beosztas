@@ -461,32 +461,97 @@ aside{
     "Beosztas Beosztas Beosztas";
     gap:2rem;
 }
+.beosztas-container{
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    gap:1rem;
+}
+#Beosztas h3{
+    font-size: 1.5rem;
+    font-weight: 350;
+    border-bottom: 1px solid var(--fds-gray-20);
+    padding: 1rem;
+    width: fit-content;
+    
+}
 #Beosztas{
     display: block;
     grid-area: Beosztas;
     width: 100%;
     margin: auto;
+       
 }
-.BeosztasTabla div{
+.BeosztasTabla{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 500px;
+    
+   
+}
+.BeosztasTabla .sor .jelol{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin: auto;
     
 }
 
-.Datumok{
-    display: grid;
-    width: 100%;
-    margin: auto;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.focus{
+    background-color: var(--fds-blue-60)!important;
+    color:var(--always-white);
+    text-indent: 10px;
+}
+.BeosztasTabla .sor{
     background-color: var(--always-white);
+    border-bottom: 1px solid var(--fds-gray-20);
+    display: grid;
+    grid-template-columns: min-content 25%;
+    gap: 1rem;
+    
+}
+
+.BeosztasTabla .sor .ido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:.5rem;
+    border-right: 1px solid var(--fds-gray-20);
+    
+    border-left: 1px solid var(--fds-gray-20);
+    padding: 1rem;
+    width: 100px;
+ 
+}
+
+
+.Datumok{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 0;
+    padding: 0;
+   
 }
 .Datumok li:hover{
     background-color: var(--fds-highlight-cell-background);
 
 }
 .Datumok li{
+    border-radius: 10px;
+    display: flex;
+    padding: 1rem;
     list-style-type: none;
-    padding: .5rem;
+    border:1px solid var(--fds-gray-10);
     cursor: pointer;
-    width: fit-content;
+    width: 100%;
+    background-color: var(--always-white);
+    cursor: pointer;
+    border-bottom: 1px solid var(--fds-gray-20);
+    font-weight: 400;
+    font-size: 1.1rem;
+    justify-content: center;
 }
 .container aside .posts {
     
@@ -501,14 +566,8 @@ aside{
     gap: .5rem;
     
 }
-/* .post::before{
-    content: ' ';
-    width: 5px;
-    height: 5px;
-    border-radius: 50px;
-    margin: auto;
-    background-color:var(--bs-teal);
-} */
+
+
 .post {
     margin-top: 0.5rem;
     width: 100%;
@@ -1303,10 +1362,10 @@ h1 {
             width: auto;
         }
         body{
-            min-width: 650px;
+            min-width: 700px;
         }
         .managerinfo{
-            width: 650px;
+            width: 700px;
            left:0;
         }
         #mySidenav > a.links.links2{
@@ -1329,5 +1388,13 @@ h1 {
         }
         .openbtn{
             grid-template-columns: 100%;
+        }
+        .beosztas-container{
+            display: grid;
+            grid-template-columns: 100%;
+        }
+        .BeosztasTabla{
+            width: 100%;
+            max-width: none;
         }
 }
