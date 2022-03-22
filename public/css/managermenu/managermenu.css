@@ -1345,14 +1345,41 @@ input:focus, textarea:focus, select:focus{
     
     width: 100%;
   }
+
+  .munkaero input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 45px;
+    width: 35px;
+    background-color: var(--bs-info);
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    margin-top: -8px;
+  }
+  
+  .munkaero input[type=range] {
+    -webkit-appearance: none;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 60%;
+  }
+
+  .munkaero .sliderErtek {
+    position: relative;
+  }
+
+  
   .munkaero span{
+    /*Átírni slider-re*/
     background-color: var(--always-white);
     padding: 1rem;
-    background-color: var(--bs-info);
+    
     color:var(--always-white);
     cursor: pointer;
-    font-size: 1.1rem;
-    border-radius: 50px;
+    
   }
   .muszakeloszlasok-timeline .oratol,  .napi-igenyek .oratol
   {
