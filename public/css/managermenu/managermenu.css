@@ -1342,8 +1342,11 @@ input:focus, textarea:focus, select:focus{
   .munkaero{
     display: flex;
     align-items: center;
-    
     width: 100%;
+  }
+
+  .napi-igenyek-db-input {
+    margin-left:1.5rem;
   }
 
   .munkaero input[type=range]::-webkit-slider-thumb {
@@ -1368,18 +1371,7 @@ input:focus, textarea:focus, select:focus{
   }
 
   .munkaero .sliderErtek {
-    position: relative;
-  }
-
-  
-  .munkaero span{
-    /*Átírni slider-re*/
-    background-color: var(--always-white);
-    padding: 1rem;
-    
-    color:var(--always-white);
-    cursor: pointer;
-    
+    padding-right: 1.5rem;
   }
   .muszakeloszlasok-timeline .oratol,  .napi-igenyek .oratol
   {

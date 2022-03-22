@@ -1972,52 +1972,31 @@ $(function () {
                     <div class="munkaero-db">
                     Szükséges ${obj.adat.munkakor}: 
                     </div>
-                    <input type="range" class="napi-igenyek-db" min="0" value="${obj.adat.db}">
                     <div class='sliderErtek'>${obj.adat.db}</div>
-                    <div class="napi-igenyek-form"></div>
-                    </div>
-                    <div>`
+                    <input type="range" class="napi-igenyek-db" min="0" value="${obj.adat.db}">
+                        <div class="napi-igenyek-form">
+                            <div class="napi-igenyek-db-input">
+                                <button class="fas fa-times napi-igenyek-torles"></button>
+                            </div>
+                        </div>`
                 );
                 
-                obj.elem.find(".napi-igenyek-db-input").hide(); 
                 obj.elem.find(".napi-igenyek-db").on("input",()=>{
                     obj.elem.find(".sliderErtek").text(obj.elem.find(".napi-igenyek-db").val())
                     //let x = slider.width
-
-                    console.log(obj.elem.find(".napi-igenyek-db"))
                 })   
                 obj.elem.find(".napi-igenyek-db").on("click",()=>{
-                    $(".napi-igenyek-db-input").remove();
-                    obj.elem.find(".napi-igenyek-form").append(`
-                    <div class="napi-igenyek-db-input">
-                    <button class="fas fa-check napi-igenyek-ok"></button>
-                    <button class="napi-igenyek-megse">Mégse</button>
-                    <button class="fas fa-times napi-igenyek-torles"></button>
-                    </div>`);
-                    
-                    obj.elem.find(".napi-igenyek-db-input").show();
-
-                    obj.elem.find(".napi-igenyek-ok").on("click",()=>{
-                        
                         let ertek = obj.elem.find(".napi-igenyek-db").val();
                         obj.adat.db=ertek;
-                        this.setBadge(obj.elem,obj.adat.db);
                         this.put(obj);
-                        $(".napi-igenyek-db-input").remove();
-                    });
+                });
 
-                    obj.elem.find(".napi-igenyek-torles").on("click",()=>{
-                        obj.adat.db=0;
-                        this.setBadge(obj.elem,obj.adat.db);
-                        this.put(obj);
-                        $(".napi-igenyek-db-input").remove();
-                       
-                    });
+                obj.elem.find(".napi-igenyek-torles").on("click",()=>{
+                    obj.adat.db=0;
+                    this.setBadge(obj.elem,obj.adat.db);
+                    this.put(obj);
+                    
 
-                    obj.elem.find(".napi-igenyek-megse").on("click",()=>{
-                        $(".napi-igenyek-db-input").remove();
-                        
-                    });
                 });
 
                 ajax.ajaxApiGet("http://localhost:8000/api/munkakorstat", (munkakor) => {
@@ -2028,8 +2007,8 @@ $(function () {
                
             }
             setBadge(obj,db){
-                obj.find(".napi-igenyek-db").text(db);
-                
+                obj.find(".sliderErtek").text(db)
+                obj.find(".napi-igenyek-db").val(db)          
             }
             put(obj){
                 ajax.ajaxApiPut("http://localhost:8000/api/napimunkaeroigeny",obj.adat.napim_azonosito,obj.adat);
