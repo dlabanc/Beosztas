@@ -457,25 +457,17 @@ aside{
     display: grid;
     grid-template-areas: 
     "Faliujsag article article"
-    "Nemerekra article article"
-    "Beosztas Beosztas Beosztas";
+    "Nemerekra article article";
     gap:2rem;
 }
 .beosztas-container{
     display: grid;
-    grid-template-columns: 25% 1fr;
-    gap:1rem;
+    grid-template-columns: 100%;
+    height: 100%;
 }
-#Beosztas h3{
-    font-size: 1.5rem;
-    font-weight: 350;
-    border-bottom: 1px solid var(--fds-gray-20);
-    padding: 1rem;
-    width: fit-content;
-    
-}
+
 #Beosztas{
-    display: block;
+    min-height: 100%;
     grid-area: Beosztas;
     width: 100%;
     margin: auto;
@@ -485,8 +477,8 @@ aside{
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    max-width: 500px;
-    
+    width: 100%;
+   
    
 }
 .BeosztasTabla .sor .jelol{
@@ -501,10 +493,13 @@ aside{
     background-color: var(--fds-blue-60)!important;
     color:var(--always-white);
     text-indent: 10px;
+    border: none!important;
 }
+
 .BeosztasTabla .sor{
     background-color: var(--always-white);
     border-bottom: 1px solid var(--fds-gray-20);
+    border-right: 1px solid var(--fds-gray-20);
     display: grid;
     grid-template-columns: min-content 25%;
     gap: 1rem;
@@ -528,8 +523,8 @@ aside{
 
 .Datumok{
     display: flex;
-    flex-direction: column;
-    gap: .5rem;
+    flex-direction: row;
+    
     margin: 0;
     padding: 0;
    
@@ -539,7 +534,7 @@ aside{
 
 }
 .Datumok li{
-    border-radius: 10px;
+   
     display: flex;
     padding: 1rem;
     list-style-type: none;
