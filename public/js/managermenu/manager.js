@@ -1158,7 +1158,7 @@ $(function () {
 
     });
 
-    //ajaxApiGet - Hibás
+
     function muszakEloszlas() {
         muszakApiGet();
 

@@ -171,9 +171,11 @@ class Munkakor {
             </li>`
         );
         ajax.ajaxApiGet ("http://localhost:8000/api/alkalmazottak",(adatok)=>{
+
         this.munkakorAlkalmazottai = adatok.filter(alkalmazott=>{
             return alkalmazott.munkakor == this.adat.megnevezes;
         });
+
         });
         this.elem = szulo.find(".munkakor-listitem:last");
         this.elem.find(".details").on("click",()=>{
@@ -214,6 +216,7 @@ class Munkakor {
                     });
                       
                 });
+                console.log(this.munkakorAlkalmazottai);
                
                 
             
