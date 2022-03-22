@@ -4,13 +4,16 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
     let logged ;
+
     $(".post-info").hide();
     ProfilAdatok();
     newPost();
     nemErekRaUser();
+    userBeosztas();
     
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
+       
     });
 
     function faliujsagUser(adatok) {
@@ -637,5 +640,64 @@ $(function () {
                 tabla.find(elem).eq(index).hide();
             }
         }
+    }
+
+    function userBeosztas(){
+
+        const SZULO = $("#Beosztas");
+        const beosztasHelye = $(".BeosztasTabla");
+        const beosztasDatum = $(".BeosztasDatum");
+        const loggeduser = "http://localhost:8000/loggeduser";
+        const beosztasok = "http://localhost:8000/api/beosztasok/expand";
+        const muszakeloszlas = "http://localhost:8000/api/muszakeloszlas/";
+        const beosztasNapjai = new Set(); 
+        ajax.ajaxGet(loggeduser,(adatok)=>{
+
+            const bejelentkezettFelhasznalo = adatok;
+           
+            ajax.ajaxApiGet(beosztasok,(beosztasok)=>{
+               
+                bejelentkezettBeosztasa = beosztasok.filter(beosztas=>{
+                    return beosztas.alkalmazott == logged;
+                });
+
+                bejelentkezettBeosztasa.forEach((beosztas)=>{
+                beosztasNapjai.add(beosztas.napimunkaeroigeny[0].datum); 
+                });
+                
+                beosztasNapjai.forEach(nap=>{
+                    
+                    $(".Datumok").append(`<li>${nap}</li>`);
+                    let sorElem = $(".Datumok").find("li:last");
+                    let kivalasztottNap = nap;
+                    sorElem.on("click",()=>{
+                      
+                        beosztasHelye.empty();
+                        beosztasDatum.empty();
+                        beosztasDatum.append(`<div>Dátum: ${nap}</div>`);
+                        let idoTomb = [];
+                        let kivalasztottBeosztas = bejelentkezettBeosztasa.filter((beosztas)=>{
+                            return beosztas.napimunkaeroigeny[0].datum == kivalasztottNap;
+                        });
+                        kivalasztottBeosztas.forEach(beo=>{
+                            ajax.ajaxApiGet(muszakeloszlas+beo.napimunkaeroigeny[0].muszakelo_azon,(muszakelo)=>{
+                                    
+                                    beosztasHelye.append(`
+                                    
+                                    <div><span>${muszakelo.oratol+":00"}</span><span>${muszakelo.oraig+":00"}</span></div>
+                                    
+                                    `);
+                                    
+                            });
+                        });
+                    });
+                })
+                
+            });
+
+
+        });
+
+         
     }
 });

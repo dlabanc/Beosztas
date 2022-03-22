@@ -56,9 +56,9 @@ $(function () {
             for (let i = 0; i < $(".tabcontent").length; i++) {
                 $(".tabcontent").css("display", "none");
             }
+            console.log(pageName)
             $(pageName).fadeIn(1000);
             $(pageName).css("visibility", "visible");
-
             $(".container").css("opacity", "1");
         }
     }

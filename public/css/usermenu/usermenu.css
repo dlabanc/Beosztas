@@ -423,7 +423,6 @@ a:visited{
 
 .tabcontent {
     background-color: var(--always-white);
-  
     border-radius: 10px;
     margin: auto;
     display: none;
@@ -449,8 +448,6 @@ aside{
     
 }
 .container {
- 
-    
     width: 100%;
     background-color: var(--fds-gray-05);
     border-radius: 10px;
@@ -460,11 +457,37 @@ aside{
     display: grid;
     grid-template-areas: 
     "Faliujsag article article"
-    "Nemerekra article article";
-   
+    "Nemerekra article article"
+    "Beosztas Beosztas Beosztas";
     gap:2rem;
 }
+#Beosztas{
+    display: block;
+    grid-area: Beosztas;
+    width: 100%;
+    margin: auto;
+}
+.BeosztasTabla div{
+    
+}
 
+.Datumok{
+    display: grid;
+    width: 100%;
+    margin: auto;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    background-color: var(--always-white);
+}
+.Datumok li:hover{
+    background-color: var(--fds-highlight-cell-background);
+
+}
+.Datumok li{
+    list-style-type: none;
+    padding: .5rem;
+    cursor: pointer;
+    width: fit-content;
+}
 .container aside .posts {
     
   
@@ -1096,9 +1119,7 @@ aside{
     margin: auto;
     
 }
-.tabcontent {
-   
-}
+
 .tabcontent > h3,
 h1 {
     width: fit-content;
@@ -1272,7 +1293,8 @@ h1 {
         grid-template-areas:
         "Faliujsag"
         "article"
-        "Nemerekra";
+        "Nemerekra"
+        "Beosztas";
     }
 }
 @media screen and (max-width:750px) {
