@@ -126,7 +126,7 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
                             <div class="flex items-center">
                             <div> <img  src="https://www.svgrepo.com/show/54809/lock.svg" /></div>
-                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white"><a href="/login" class="a">Kijelentkezés</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white"><a href="/logout" class="a">Kijelentkezés</a></div>
                             </div>
 
                             

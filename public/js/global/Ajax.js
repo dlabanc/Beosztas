@@ -160,7 +160,6 @@
                 window.location.href = response.url;
             }    
         }).catch(error => {
-            console.log(error);
             if(error.name == 'oldpwd'){
                 $('#newpwderror').empty();
                 $('#confirmpwderror').empty();

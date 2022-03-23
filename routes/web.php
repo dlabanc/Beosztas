@@ -18,8 +18,10 @@ use App\Http\Controllers\SzabadsagStatController;
 use App\Http\Controllers\HitelesitesController;
 use App\Http\Controllers\DolgozottNapokStatController;
 use App\Http\Controllers\StatisztikaController;
-use App\Http\Middleware\IsAuthenticated;
 use App\Http\Controllers\JelszoVisszaAllitasController;
+use App\Http\Middleware\IsAuthenticated;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsManager;
 
 
 
@@ -36,19 +38,19 @@ use App\Http\Controllers\JelszoVisszaAllitasController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
 Route::get('/admin', function () {
     return view('admin/admin');
-});
+})->middleware('admin');
 
 Route::get('/managermenu', function () {
     return view('managermenu/managermenu');
-});
+})->middleware('uzletvezeto');
 
 Route::get('/usermenu', function () {
     return view('usermenu/usermenu');
-});
+})->middleware('auth');
 
 Route::get('/login', function () {
     return view('login/login');
@@ -65,135 +67,150 @@ Route::get('/reset-password/{token}', function ($token2) {
 Route::get('/login', [HitelesitesController::class, 'index'])->name('bejelentkezes');
 Route::post('/authenticate', [HitelesitesController::class, 'authenticate'])->name('hitelesites');
 Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentkezes');
-Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
 
-##ALKALMAZOTT
-/*az összes route belekerül majd middleware-k közé így autentikáció nélkül nem lesznek elérhetők*/
-// Route::middleware(['auth', IsAuthenticated::class])->group(function () {
-//     Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
-//     Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
-//     Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
-//     Route::put('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'update']);
-//     Route::post('/api/alkalmazott', [AlkalmazottController::class, 'store']);
-//     Route::delete('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'destroy']);
-// });
-Route::get('/api/alkalmazott/expand', [AlkalmazottController::class, 'expand']);
-Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
-Route::get('/api/alkalmazott/sort', [AlkalmazottController::class, 'sortBy']);
-Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
-Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
-Route::put('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'update']);
-Route::post('/api/alkalmazott', [AlkalmazottController::class, 'store']);
-Route::delete('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'destroy']);
+##MANAGERMENU
+Route::middleware(['role:Üzletvezető,Adminisztrátor'])->group(function () {
+    ##ALKALMAZOTT
+    Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
+    Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
+    Route::put('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'update']);
 
-##MUSZAKELOSZLAS
-Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
-Route::get('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'show']);
-Route::put('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'update']);
-Route::post('/api/muszakeloszlas', [MuszakEloszlasController::class, 'store']);
-Route::delete('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'destroy']);
+    ##MUSZAKELOSZLAS
+    Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
+    Route::get('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'show']);
+    Route::put('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'update']);
+    Route::post('/api/muszakeloszlas', [MuszakEloszlasController::class, 'store']);
+    Route::delete('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'destroy']);
 
-##MUSZAKTIPUS
-Route::get('/api/muszaktipusok', [MuszakTipusController::class, 'index']);
-Route::get('/api/muszaktipus/{tipus}', [MuszakTipusController::class, 'show']);
-Route::put('/api/muszaktipus/{tipus}', [MuszakTipusController::class, 'update']);
-Route::post('/api/muszaktipus', [MuszakTipusController::class, 'store']);
-Route::delete('/api/muszaktipus/{tipus}', [MuszakTipusController::class, 'destroy']);
+    ##MUSZAKTIPUS
+    Route::get('/api/muszaktipusok', [MuszakTipusController::class, 'index']);
+    Route::get('/api/muszaktipus/{tipus}', [MuszakTipusController::class, 'show']);
+    Route::put('/api/muszaktipus/{tipus}', [MuszakTipusController::class, 'update']);
+    Route::post('/api/muszaktipus', [MuszakTipusController::class, 'store']);
+    Route::delete('/api/muszaktipus/{tipus}', [MuszakTipusController::class, 'destroy']);
 
-##BEOSZTAS
-Route::get('/api/beosztas/{beo_azonosito}/expand', [BeosztasController::class, 'expandId']);
-Route::get('/api/beosztasok/expand', [BeosztasController::class, 'expandAll']);
-Route::get('/api/beosztasok', [BeosztasController::class, 'index']);
-Route::get('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'show']);
-Route::put('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'update']);
-Route::post('/api/beosztas', [BeosztasController::class, 'store']);
-Route::delete('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'destroy']);
+    ##BEOSZTAS
+    Route::get('/api/beosztasok/expand', [BeosztasController::class, 'expandAll']);
+    Route::get('/api/beosztasok', [BeosztasController::class, 'index']);
+    Route::get('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'show']);
+    Route::put('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'update']);
+    Route::post('/api/beosztas', [BeosztasController::class, 'store']);
+    Route::delete('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'destroy']);
 
-##FALIUJSAG
-Route::get('/api/faliujsag/search', [FaliujsagController::class, 'search']);
-Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
-Route::get('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'show']);
-Route::put('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'update']);
-Route::post('/api/faliujsag', [FaliujsagController::class, 'store']);
-Route::delete('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'destroy']);
+    ##FALIUJSAG
+    Route::get('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'show']);
+    Route::put('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'update']);
+    Route::delete('/api/faliujsag/{faliu_azonosito}', [FaliujsagController::class, 'destroy']);
 
-##MUNKAKOR
-Route::get('/api/munkakorok', [MunkakorController::class, 'index']);
-Route::get('/api/munkakor/{megnevezes}', [MunkakorController::class, 'show']);
-Route::put('/api/munkakor/{megnevezes}', [MunkakorController::class, 'update']);
-Route::post('/api/munkakor', [MunkakorController::class, 'store']);
-Route::delete('/api/munkakor/{megnevezes}', [MunkakorController::class, 'destroy']);
+    ##MUNKAKOR
+    Route::get('/api/munkakorok', [MunkakorController::class, 'index']);
+    Route::get('/api/munkakor/{megnevezes}', [MunkakorController::class, 'show']);
+    Route::put('/api/munkakor/{megnevezes}', [MunkakorController::class, 'update']);
+    Route::post('/api/munkakor', [MunkakorController::class, 'store']);
+    Route::delete('/api/munkakor/{megnevezes}', [MunkakorController::class, 'destroy']);
 
-##NAPIMUNKAEROIGENY
-Route::get('/api/napimunkaeroigeny/{napim_azonosito}/expand', [NapiMunkaeroIgenyController::class, 'expandId']);
-Route::get('/api/napimunkaeroigenyek/expand', [NapiMunkaeroIgenyController::class, 'expandAll']);
-Route::get('/api/napimunkaeroigenyek', [NapiMunkaeroIgenyController::class, 'index']);
-Route::get('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'show']);
-Route::put('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'update']);
-Route::post('/api/napimunkaeroigeny', [NapiMunkaeroIgenyController::class, 'store']);
-Route::delete('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'destroy']);
+    ##NAPIMUNKAEROIGENY
+    Route::get('/api/napimunkaeroigenyek/expand', [NapiMunkaeroIgenyController::class, 'expandAll']);
+    Route::put('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'update']);
 
-##NAPOK
-Route::get('/api/napokossz', [NapokController::class, 'index']);
-Route::get('/api/napok/{nap}', [NapokController::class, 'show']);
-Route::put('/api/napok/{nap}', [NapokController::class, 'update']);
-Route::post('/api/napok', [NapokController::class, 'store']);
-Route::delete('/api/napok/{nap}', [NapokController::class, 'destroy']);
+    ##NAPOK
+    Route::get('/api/napokossz', [NapokController::class, 'index']);
+    Route::put('/api/napok/{nap}', [NapokController::class, 'update']);
+    Route::post('/api/napok', [NapokController::class, 'store']);
+    Route::delete('/api/napok/{nap}', [NapokController::class, 'destroy']);
 
-##NEMDOLGOZNA
-Route::get('/api/nemdolgoznaossz/expand', [NemDolgoznaController::class, 'expandAll']);
-Route::get('/api/nemdolgoznaossz', [NemDolgoznaController::class, 'index']);
-Route::get('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'show']);
-Route::put('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'update']);
-Route::post('/api/nemdolgozna', [NemDolgoznaController::class, 'store']);
-Route::delete('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'destroy']);
+    ##NEMDOLGOZNA
+    Route::get('/api/nemdolgoznaossz/expand', [NemDolgoznaController::class, 'expandAll']);
+    
+    ##VIEWOK
+    ##AKTUALIS HET
+    Route::get('/api/aktualishet/expand', [StatisztikaController::class, 'aktualishetExpand']);
+    
+    ##MUNKAKORSTAT
+    Route::get('/api/munkakorstat', [StatisztikaController::class, 'munkakor']);
 
-##SZABADSAG
-Route::get('/api/szabadsagok/expand', [SzabadsagController::class, 'expandAll']);
-Route::get('/api/szabadsagok', [SzabadsagController::class, 'index']);
-Route::get('/api/szabadsag/{szabadsag_azonosito}', [SzabadsagController::class, 'show']);
-Route::put('/api/szabadsag/{szabadsag_azonosito}', [SzabadsagController::class, 'update']);
-Route::post('/api/szabadsag', [SzabadsagController::class, 'store']);
-Route::delete('/api/szabadsag/{szabadsag_azonosito}', [SzabadsagController::class, 'destroy']);
+    ##HETIORASZAMSTAT
+    Route::get('/api/hetioraszamstat', [StatisztikaController::class, 'hetioraszam']);
 
-##BEJELENTKEZESIADATOK
-Route::get('/api/bejelentkezesiadatok', [BejelentkezesiAdatokController::class, 'index']);
-Route::get('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokController::class, 'show']);
-Route::put('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokController::class, 'update']);
-Route::post('/api/bejelentkezesiadat', [BejelentkezesiAdatokController::class, 'store']);
-Route::delete('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokController::class, 'destroy']);
+    ##SZABADSAGSTAT
+    Route::get('/api/szabadsagstat', [StatisztikaController::class, 'szabadsagstat']);
 
-##VIEWOK
-##MUNKAKORSTAT
-Route::get('/api/munkakorstat', [StatisztikaController::class, 'munkakor']);
 
-##HETIORASZAMSTAT
-Route::get('/api/hetioraszamstat', [StatisztikaController::class, 'hetioraszam']);
+});
+Route::middleware(['admin'])->group(function () {
+    ##ALKALMAZOTT
+    Route::get('/api/alkalmazott/expand', [AlkalmazottController::class, 'expand']);
+    Route::get('/api/alkalmazott/sort', [AlkalmazottController::class, 'sortBy']);
+    Route::post('/api/alkalmazott', [AlkalmazottController::class, 'store']);
+    Route::delete('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'destroy']);
 
-##SZABADSAGSTAT
-Route::get('/api/szabadsagstat', [StatisztikaController::class, 'szabadsagstat']);
+    ##BEOSZTAS
+    Route::get('/api/beosztas/{beo_azonosito}/expand', [BeosztasController::class, 'expandId']);
 
-##DOLGOZOTTNAPOKSTAT
-Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
+    ##NAPIMUNKAEROIGENY
+    Route::get('/api/napimunkaeroigeny/{napim_azonosito}/expand', [NapiMunkaeroIgenyController::class, 'expandId']);
+    Route::get('/api/napimunkaeroigenyek', [NapiMunkaeroIgenyController::class, 'index']);
+    Route::get('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'show']);
+    Route::post('/api/napimunkaeroigeny', [NapiMunkaeroIgenyController::class, 'store']);
+    Route::delete('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'destroy']);
 
-##AKTUALIS(NAPI) POSZT
-Route::get('/api/napiposzt', [StatisztikaController::class, 'napiposzt']);
+    ##NEMDOLGOZNA
+    Route::get('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'show']);
+    Route::put('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'update']);
+    Route::delete('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'destroy']);
 
-##SZABADSAG KEROK
-Route::get('/api/szabadsagkerok', [StatisztikaController::class, 'szabadsag_kerok']);
+    ##SZABADSAG
+    Route::get('/api/szabadsagok/expand', [SzabadsagController::class, 'expandAll']);
+    Route::get('/api/szabadsagok', [SzabadsagController::class, 'index']);
+    Route::get('/api/szabadsag/{szabadsag_azonosito}', [SzabadsagController::class, 'show']);
+    Route::put('/api/szabadsag/{szabadsag_azonosito}', [SzabadsagController::class, 'update']);
+    Route::post('/api/szabadsag', [SzabadsagController::class, 'store']);
+    Route::delete('/api/szabadsag/{szabadsag_azonosito}', [SzabadsagController::class, 'destroy']);
 
-##JOVOHET
-Route::get('/api/jovohet', [StatisztikaController::class, 'jovohet']);
+    ##BEJELENTKEZESIADATOK
+    Route::get('/api/bejelentkezesiadatok', [BejelentkezesiAdatokController::class, 'index']);
+    Route::get('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokController::class, 'show']);
+    Route::put('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokController::class, 'update']);
+    Route::post('/api/bejelentkezesiadat', [BejelentkezesiAdatokController::class, 'store']);
+    Route::delete('/api/bejelentkezesiadat/{user_login}', [BejelentkezesiAdatokController::class, 'destroy']);
 
-##AKTUALIS HET
-Route::get('/api/aktualishet', [StatisztikaController::class, 'aktualishet']);
-Route::get('/api/aktualishet/expand', [StatisztikaController::class, 'aktualishetExpand']);
+    ##VIEWOK
+    ##DOLGOZOTTNAPOKSTAT
+    Route::get('/api/dolgozottnapok', [StatisztikaController::class, 'dolgozottnapok']);
 
-##ALKALMAZHATO ALKALMAZATTAK
-Route::get('/api/alkalmazhatoak', [StatisztikaController::class, 'aktualishet']);
+    ##AKTUALIS(NAPI) POSZT
+    Route::get('/api/napiposzt', [StatisztikaController::class, 'napiposzt']);
 
-##JOVOHETI NAPIMUNKAEROIGENY
-Route::get('/api/jovohet-nmi', [StatisztikaController::class, 'jovoheti_napimunkaeroigeny']);
+    ##SZABADSAG KEROK
+    Route::get('/api/szabadsagkerok', [StatisztikaController::class, 'szabadsag_kerok']);
+
+    ##JOVOHET
+    Route::get('/api/jovohet', [StatisztikaController::class, 'jovohet']);
+
+    ##AKTUALIS HET
+    Route::get('/api/aktualishet', [StatisztikaController::class, 'aktualishet']);
+
+    ##ALKALMAZHATO ALKALMAZATTAK
+    Route::get('/api/alkalmazhatoak', [StatisztikaController::class, 'aktualishet']);
+
+    ##JOVOHETI NAPIMUNKAEROIGENY
+    Route::get('/api/jovohet-nmi', [StatisztikaController::class, 'jovoheti_napimunkaeroigeny']);
+});
+
+##USERMENU
+Route::middleware(['auth'])->group(function () {
+    Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
+    Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
+    Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
+    Route::post('/api/faliujsag', [FaliujsagController::class, 'store']);
+    Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
+    Route::get('/api/nemdolgoznaossz', [NemDolgoznaController::class, 'index']);
+    Route::post('/api/nemdolgozna', [NemDolgoznaController::class, 'store']);
+    Route::delete('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'destroy']);
+    Route::get('/api/napok/{nap}', [NapokController::class, 'show']);
+    Route::post('/api/napok', [NapokController::class, 'store']);
+    
+});
 
 ## 
 Route::post('/elfelejtettjelszo', [JelszoVisszaAllitasController::class, 'sendResetLink'])->name('password.email');

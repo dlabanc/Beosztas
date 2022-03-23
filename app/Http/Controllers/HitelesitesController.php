@@ -24,13 +24,15 @@ class HitelesitesController extends Controller
         if (RateLimiter::tooManyAttempts('login', 3)) {
             $seconds = RateLimiter::availableIn('login');
             throw ValidationException::withMessages(['loginlimit'=>'Túl sok sikertelen próbálkozás! Próbáld újra '.$seconds.' másodperc múlva!']); 
-            //return  redirect()->back()->withErrors(['loginlimit'=>'Too many failed login attempts!'.$seconds.' s left to try again!']);
         }
 
         if(Auth::attempt($credentials))
         {
-            RateLimiter::clear('login');          
-            return redirect('/usermenu');           
+            RateLimiter::clear('login');
+            if (Auth::user()->alkalmazott->munkakor!='Adminisztrátor' && Auth::user()->alkalmazott->munkakor!='Üzletvezető') {
+                return redirect('/usermenu');
+            }          
+            return redirect('/');           
         }
         else{ 
             RateLimiter::hit('login', $seconds = 60);

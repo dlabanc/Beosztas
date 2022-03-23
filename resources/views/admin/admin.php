@@ -41,7 +41,7 @@
                 <li id="nemdolgozna">Nem dolgozna</li>
                 <li id="szabadsag">Szabadság</li>
                 <li class="btn">Kompakt mód</li>
-                <li class="logout"><a href="../login/login.html"><div class="fas fa-sign-out-alt">
+                <li class="logout"><a href="/login"><div class="fas fa-sign-out-alt">
                 </div><span> Kijelentkezés</span>
                 </a>
                 </li>
