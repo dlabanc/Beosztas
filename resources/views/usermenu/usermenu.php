@@ -70,7 +70,7 @@
      
         <a id="statisztika">Statisztika</a>
         <a id="faliujsag">Faliújság</a>
-        <a id="">Beosztás</a>
+        <a id="beosztas">Beosztás</a>
         <a href="logout" class="logout">
             <div class="logout-text">Kijelentkezés</div><span class="fas fa-sign-out-alt"></span>
         </a>
@@ -86,16 +86,7 @@
         
     <div id="Nemerekra" >
 </div>
-<div id="Beosztas" >
-                <h3>Hali</h3>
-            
-            <ul class="Datumok">
-               
-            </ul>
-            <div class="BeosztasDatum"></div>
-            <div class="BeosztasTabla"></div>
 
-        </div>
         <aside class="useraside">
            
 
@@ -140,7 +131,18 @@
                 </div>
             </div>
 
-
+            <div id="Beosztas" class="tabcontent">
+              
+            <div class="beosztas-container">
+            <ul class="Datumok">
+               
+            </ul>
+            <div>
+          
+            <div class="BeosztasTabla"></div>
+            </div>
+            </div>
+        </div>
             <div id="Statisztika" class="tabcontent">
                 <h3>Statisztika</h3>
 

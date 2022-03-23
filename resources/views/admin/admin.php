@@ -23,8 +23,6 @@
 </head>
 
 <body>
-
-
     <div class="admin-article">
         <div class="admininfo">
             <h4>Chill out Cafe</h4>

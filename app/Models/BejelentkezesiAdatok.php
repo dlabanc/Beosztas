@@ -22,4 +22,8 @@ class BejelentkezesiAdatok extends Authenticatable
     public function alkalmazott(){
         return $this->hasOne(Alkalmazott::class, 'dolgozoi_azon', 'user_login');
     }
+
+    public function hasRole($role){
+        return $this->alkalmazott->where('munkakor', $role)->get();
+    }
 }
