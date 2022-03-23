@@ -80,20 +80,13 @@
 <body>
 <header>
 
-
-
-
-
-
 </header>
     
     <div class="container">
         
     <div id="Nemerekra" >
-
-
-
 </div>
+
         <aside class="useraside">
            
 
@@ -138,7 +131,18 @@
                 </div>
             </div>
 
-
+            <div id="Beosztas" class="tabcontent">
+              
+            <div class="beosztas-container">
+            <ul class="Datumok">
+               
+            </ul>
+            <div>
+          
+            <div class="BeosztasTabla"></div>
+            </div>
+            </div>
+        </div>
             <div id="Statisztika" class="tabcontent">
                 <h3>Statisztika</h3>
 
@@ -183,6 +187,10 @@
                     <h3>Beosztás</h3>
 
                 </div>
+            </div>
+
+            
+            
             </div>
 
         </article>

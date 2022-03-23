@@ -4,13 +4,16 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
     let logged ;
+
     $(".post-info").hide();
     ProfilAdatok();
     newPost();
     nemErekRaUser();
+    userBeosztas();
     
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
+       
     });
 
     function faliujsagUser(adatok) {
@@ -637,5 +640,82 @@ $(function () {
                 tabla.find(elem).eq(index).hide();
             }
         }
+    }
+
+    function userBeosztas(){
+
+        
+        const beosztasHelye = $(".BeosztasTabla");
+      
+        const loggeduser = "http://localhost:8000/loggeduser";
+        const beosztasok = "http://localhost:8000/api/beosztasok/expand";
+        const muszakeloszlas = "http://localhost:8000/api/muszakeloszlas/";
+        const beosztasNapjai = new Set(); 
+
+        ajax.ajaxGet(loggeduser,(adatok)=>{
+
+            const bejelentkezettFelhasznalo = adatok;
+            
+            ajax.ajaxApiGet(beosztasok,(beosztasok)=>{
+                ajax.ajaxApiGet("http://localhost:8000/api/muszakeloszlasok",(muszakeloszlasok)=>{
+                    console.log(muszakeloszlasok)
+                    ajax.ajaxApiGet("http://localhost:8000/api/napokossz",(napok)=>{
+                        
+                        bejelentkezettBeosztasa = beosztasok.filter(beosztas=>{
+                            return beosztas.alkalmazott == logged;
+                        });
+        
+                        bejelentkezettBeosztasa.forEach((beosztas)=>{
+                        beosztasNapjai.add(beosztas.napimunkaeroigeny[0].datum); 
+                        });
+                        
+                        beosztasNapjai.forEach(nap=>{
+                            
+                            $(".Datumok").append(`<li>${nap}</li>`);
+                            let sorElem = $(".Datumok").find("li:last");
+                            let kivalasztottNap = nap;
+                            sorElem.on("click",()=>{
+                                let tabla = napok.filter(nap=>{
+                                    return nap.nap == kivalasztottNap;
+                                });
+                                for (let index = 0; index < $(".Datumok li").length; index++) {
+                                    $(".Datumok li").eq(index).removeClass("focus");
+                                    
+                                }
+                                sorElem.addClass("focus");
+                                let tipusok = muszakeloszlasok.filter(eloszlas=>{
+                                    return eloszlas.muszaktipus==tabla[0].muszaktipus;
+                                });
+                              
+                                beosztasHelye.empty();
+                           
+                               
+                                let kivalasztottBeosztas = bejelentkezettBeosztasa.filter((beosztas)=>{
+                                    return beosztas.napimunkaeroigeny[0].datum == kivalasztottNap;
+                                });
+        
+                                tipusok.forEach(tipus=>{
+                                    beosztasHelye.append(`<div class="${tipus.muszakelo_azon} sor"><div class="ido"><span>${tipus.oratol+":00"}</span><span>${tipus.oraig+":00"}</span></div><span class="jelol"></span></div>`);
+                                })
+                                
+                                kivalasztottBeosztas.forEach(beo=>{
+                                    ajax.ajaxApiGet(muszakeloszlas+beo.napimunkaeroigeny[0].muszakelo_azon,(muszakelo)=>{
+                                            beosztasHelye.find(`.${muszakelo.muszakelo_azon} .jelol`).css("background","var(--bs-teal)");
+                                            
+                                    });
+                                });
+                            });
+                        })
+                    });
+                }); 
+                 
+              
+                
+            });
+
+
+        });
+
+         
     }
 });
