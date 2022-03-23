@@ -5,6 +5,7 @@ $(function () {
     const apivegpont = "http://localhost:8000/api";
     UjelemEsemenyek();
     ajaxHivasok();
+    let oldalhossz = 9;
     
 
     $(document).ajaxStop(function () {
@@ -26,11 +27,172 @@ $(function () {
 
     infoAblak();
 
+    function pagination(szulo,tabla,sablon,elem,elemPerOldal){
+        szulo.find(".tablaAdatok").remove();
+
+        szulo.append("<div class='tablaAdatok'>" +
+            "<div id='navigacio'></div>" +
+            "</div>");
+
+            szulo.find("#navigacio").empty();
+
+            szulo.find(".tablaAdatok").prepend(
+                `<div class="navigacio-grid"> ` +
+                
+                "<label>Ugrás ide:</label><input type='number' name='oldalUgras' id='oldalUgras'" + ">" +
+                "<p id='oldalSzamok'></p>" +
+                "<p id='oldalSzam'></p></div>")
+
+        szulo.find("#navigacio").append("<button class='fas fa-angle-double-left' id='hatraUgrik'>"
+        +"</button><button class='fas fa-angle-left' id='hatraLepeget'></button>"
+        +"<button class='fas fa-angle-right' id='eloreLepeget'></button>"
+        +"<button class='fas fa-angle-double-right' id='eloreUgrik'></button>")
+
+        szulo.find("#eloreLepeget").on("click",eloreLepeget);
+        szulo.find("#hatraLepeget").on("click",hatraLepeget);
+        szulo.find("#eloreUgrik").on("click",eloreUgrik);
+        szulo.find("#hatraUgrik").on("click",hatraUgrik);
+        oldalSzamKiir(tabla);
+
+        let oldalUgras = szulo.find("#oldalUgras");
+        oldalUgras.on("keyup", function (e) {
+            if (e.key === "Enter" || e.which == 13 || e.keyCode == 13) {
+                e.preventDefault();
+
+                if (oldalUgras.val()>0 && oldalUgras.val()*elemPerOldal-tabla.find(elem).length<=elemPerOldal) {
+                    sablon.remove();
+
+                let elsoElem = (oldalUgras.val())-1;
+
+                kiurit();
+
+                for (let index = elsoElem*elemPerOldal; index < (elsoElem*elemPerOldal) + elemPerOldal; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+                }
+            } else {
+                alert("Nincs ilyen oldal!")
+            }
+
+            oldalSzamKiir(tabla)
+            oldalSzamol(tabla);
+        }
+        });
+
+        
+
+        function eloreLepeget(){
+            sablon.remove();
+            let utolsoElem = 0;
+            for (let index = 0; index < tabla.find(elem).length; index++) {
+                if (tabla.find(elem).eq(index).css("display")!="none"){
+                    utolsoElem = index; 
+                }
+                    
+            }
+
+            if (utolsoElem+1!=tabla.find(elem).length){
+                
+                kiurit();
+
+                for (let index = utolsoElem+1; index < utolsoElem+1+elemPerOldal; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+
+                }
+
+            }
+            oldalSzamKiir(tabla);
+        }
+
+        function hatraLepeget(){
+            sablon.remove();
+            elsoElem = 0;
+            
+            while (tabla.find(elem).eq(elsoElem).css("display")=="none"){
+                elsoElem++;
+            }
+
+            if (elsoElem!=0){
+                
+                kiurit();
+
+                for (let index = elsoElem-elemPerOldal; index < elsoElem; index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+                }
+
+            }
+            oldalSzamKiir(tabla);
+        }
+            
+
+        function eloreUgrik() {
+            sablon.remove();
+            
+                let utolsoElem = tabla.find(elem).length;
+
+                if ((tabla.find(elem).eq(utolsoElem-1)).css("display")=="none"){ 
+                let megjelenitettUtolso = 1; 
+
+                while ((utolsoElem - megjelenitettUtolso) % elemPerOldal != 0) {
+                    megjelenitettUtolso++;
+                }
+
+                kiurit();
+
+                for (let index = utolsoElem - megjelenitettUtolso;index < utolsoElem;index++) {
+                    tabla.find(elem).eq(index).fadeIn(500);
+                }
+            }
+            oldalSzamKiir(tabla);
+        }
+
+        function hatraUgrik(){
+            sablon.remove();
+            elsoElem=0;
+
+            if ((tabla.find(elem).eq(elsoElem)).css("display")=="none")
+            {
+
+            kiurit();
+
+            for (let index = elsoElem; index < elsoElem+elemPerOldal; index++) {
+                tabla.find(elem).eq(index).fadeIn(500);
+
+            }
+        }
+        oldalSzamKiir(tabla);
+        }
+
+            function kiurit() {
+                for (let index = 0; index < tabla.find(elem).length; index++) {
+                    tabla.find(elem).eq(index).hide();
+                }
+            }
+
+            function oldalSzamKiir(tabla) {
+                let utolsoElem = 0;
+    
+                for (let index = 0; index < tabla.find(elem).length; index++) {
+                    if (tabla.find(elem).eq(index).css("display")!="none"){
+                        utolsoElem = index; 
+                    }
+                }
+                let elsoElem = 0;
+                
+                while (tabla.find(elem).eq(elsoElem).css("display")=="none"){
+                    elsoElem++;
+                }
+                szulo.find("#oldalSzamok").html((elsoElem+1)+" - "+(utolsoElem+1) +" elem ennyiből: "+ (tabla.find(elem).length))
+                szulo.find("#oldalSzam").html((elsoElem/elemPerOldal+1)+ ". / " + (Math.ceil(tabla.find(elem).length/elemPerOldal) + " oldal"))
+        }
+
+    }
+
     function alkalmazottAdmin(eredmeny) {
         beallitasok(eredmeny, ".Alkalmazottak", Alkalmazott);
     }
     function faliujsagAdmin(eredmeny) {
         beallitasok(eredmeny, ".Faliujsag", FaliujsagPost);
+        
     }
     function munkakorAdmin(eredmeny) {
         beallitasok(eredmeny, ".Munkakorok", MunkakorA);
@@ -71,9 +233,20 @@ $(function () {
         SZULO.prepend(fejlec);
         SZULO.find(".fejlec").html(fej);
 
-        eredmeny.forEach((e) => {
-            let obj = new osztaly(SZULO, e, ajax);
-        });
+        
+
+            for (let oldalIndex = 0; oldalIndex < eredmeny.length; oldalIndex += oldalhossz) {
+                let darabolt = eredmeny.slice(oldalIndex, oldalIndex + oldalhossz)
+                darabolt.forEach(elem => {
+                    console.log(darabolt)
+                    let obj = new osztaly(SZULO, elem, ajax);
+                     if (oldalIndex > 1) {
+                        obj.elem.hide();
+                    } 
+                });
+            }
+
+            pagination(SZULO.parent(),SZULO,$(""),SZULO.find(".mutat"),10)
     }
 
     function infoAblak() {

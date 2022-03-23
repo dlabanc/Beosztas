@@ -70,7 +70,7 @@ class Trigger extends Migration
             IF (new.allapot=0) THEN
                 DELETE b FROM beosztas b
                 INNER JOIN napimunkaeroigeny n ON b.napim_azonosito=n.napim_azonosito 
-                WHERE new.nap=napimunkaeroigeny.datum;
+                WHERE new.nap=n.datum;
             END IF;
         END
         ");
