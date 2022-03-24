@@ -25,17 +25,6 @@ class Trigger extends Migration
         END");
 
         DB::unprepared("
-        CREATE TRIGGER `engedUpdate` BEFORE UPDATE ON `muszakeloszlas` FOR EACH ROW begin
-            SET @oratoldb=(select count(*) from muszakeloszlas where oratol<new.oratol);
-            SET @oraigdb=(select count(*) from muszakeloszlas where oraig<new.oraig);
-            if @oratoldb!=@oraigdb
-            THEN
-                SIGNAL SQLSTATE '45000' 
-                SET MESSAGE_TEXT = 'Nem lehet atfedes';
-            END IF;
-        END");
-
-        DB::unprepared("
         CREATE TRIGGER user_felvet
         AFTER INSERT
         ON alkalmazott FOR EACH ROW
@@ -84,7 +73,6 @@ class Trigger extends Migration
     public function down()
     {
         DB::unprepared('DROP TRIGGER IF EXISTS engedInsert');
-        DB::unprepared('DROP TRIGGER IF EXISTS engedUpdate');
         DB::unprepared('DROP TRIGGER IF EXISTS user_felvet');
         DB::unprepared('DROP TRIGGER IF EXISTS muszakeloszlas_feltolt');
         DB::unprepared('DROP TRIGGER IF EXISTS beo_torles');
