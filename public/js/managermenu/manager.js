@@ -1476,10 +1476,7 @@ $(function () {
             szuloElem.empty();
 
             let oldalhossz = 5;
-            // muszakok.forEach((elem) => {
-            //     new Faliujsag(szuloElem, elem, ajax);
-
-            // });
+            
 
             for (let oldalIndex = 0; oldalIndex < muszakok.length; oldalIndex += oldalhossz) {
                 let darabolt = muszakok.slice(oldalIndex, oldalIndex + oldalhossz)
@@ -1490,6 +1487,7 @@ $(function () {
                     }
                 });
             }
+            
             ajaxGet(
                 "https://randomuser.me/api/?results=" + muszakok.length,
                 (kepek, i) => {

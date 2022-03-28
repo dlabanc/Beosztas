@@ -46,7 +46,7 @@
                 type: "DELETE",
                 
                 error:function(data,textStatus,errorThrown){
-                    alert(data.responseJSON.message);
+                    console.log(data.responseJSON.message);
                         
                 }
                 
@@ -62,8 +62,7 @@
             data: data,
            
             error:function(data,textStatus,errorThrown){
-                alert(data.responseJSON.message);
-                   
+                console.log(data.responseJSON.message);
             },
 
             success:callback()
@@ -78,7 +77,7 @@
             data: data,
            
             error:function(data,textStatus,errorThrown){
-                alert(data.responseJSON.message);
+                console.log(data.responseJSON.message);
                    
             },
         })
@@ -92,7 +91,7 @@
             data: data,
             
             error:function(data,textStatus,errorThrown){
-                alert(data.responseJSON.message);
+                console.log(data.responseJSON.message);
                    
             }
         })

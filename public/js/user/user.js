@@ -10,7 +10,8 @@ $(function () {
     newPost();
     nemErekRaUser();
     userBeosztas();
-    
+
+
     $(document).ajaxStop(function () {
         $(".loading").fadeOut(1000, () => {});
        
