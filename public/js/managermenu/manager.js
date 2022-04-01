@@ -216,7 +216,7 @@ $(function () {
                     ujbeosztasNaptar.parent().find(".ujbeosztas-valasztott-datum").change("change",function(){
                         
                     beosztasNaptar( this.value);
-                    console.log(this.value);
+    
                     });
                     
                 });
@@ -413,7 +413,7 @@ $(function () {
                         
                         this.beosztottakElem.empty();
                         tomb.splice(0,tomb.length);
-                        console.log(tomb)
+                        
                         let dolgozoDarab = 0;
                         this.darabEllenorzes(this.dolgozoTomb.length,this.darabElem);
                         this.darabElem.text(this.adat.db);
@@ -914,7 +914,7 @@ $(function () {
                                     let szurt = this.muszakok.filter((muszak) => {
                                         return muszak.aktiv;
                                     });
-                                    console.log(szurt);
+                                 
                                     if (szurt.length > 0) {
                                         let muszaktipusa = szurt[0].adat.tipus;
                                         ajax.ajaxApiPost(napok, {
@@ -1389,7 +1389,7 @@ $(function () {
                     data.addColumn("number", "db");
 
                     for (const iterator of adatok) {
-                        console.log(iterator);
+                     
                         data.addRows([
                             [iterator.heti_oraszam + " óra", iterator.db],
                         ]);
@@ -1588,7 +1588,7 @@ $(function () {
 
         newpostElem.on("click", () => {
             newpostForm.slideDown(500);
-            console.log("szaaa");
+            
         });
         newpostMegse.on("click", () => {
             newpostForm.slideUp(500);
@@ -1599,7 +1599,7 @@ $(function () {
             let ma = formatDate(new Date());
             bejelentkezettFelhasznalo(
                 (adatok) => {
-                    console.log(adatok);
+                  
                     let obj = {
 
                         dolgozoi_azon: adatok.dolgozoi_azon,
@@ -1607,7 +1607,7 @@ $(function () {
                         cim: $("#newpost-cim").val(),
                         tartalom: $("#newpost-tartalom").val(),
                     };
-                    console.log(obj)
+                   
 
                     ajax.ajaxApiPost(apivegpont, obj);
                     newpostForm.effect("clip", "1500");
@@ -1678,7 +1678,7 @@ $(function () {
 
         $(".search").keyup(function (e) {
             let ertek = $(this).val();
-            console.log(ertek);
+         
             ajaxApiGet(
                 apivegpont + "/alkalmazott/search?q=" + ertek,
                 alkalmazottTabla
@@ -1958,7 +1958,7 @@ $(function () {
             }
 
             megjelenit(obj,szulo){                
-                console.log(this.munkakor)
+             
                 obj.szulo.append("<div class="+"napi-igenyek"+"></div>");
                 obj.elem = szulo.find("div:last");
                 obj.elem.append(`
@@ -1999,7 +1999,7 @@ $(function () {
 
                 ajax.ajaxApiGet("http://localhost:8000/api/munkakorstat", (munkakor) => {
                     let db = munkakor.filter((m)=>{return m.munkakor == this.adat.munkakor})
-                    console.log(db)
+              
                     obj.elem.find(".napi-igenyek-db").attr("max",db[0].db)
                 })
                
@@ -2069,7 +2069,7 @@ $(function () {
             logged = adatok;
             if (id != undefined) {
                 logged = id;
-                console.log(logged);
+                
             }
             ajaxApiGet(apivegpont + "/alkalmazott/" + logged, (adatok) => {
 
@@ -2496,7 +2496,7 @@ $(function () {
                     $(".beosztas-megtekintes-tabla").hide();
                     this.tabla.slideDown(500);
                 }); 
-                
+                console.log(this)
               
                 
             }
@@ -2522,6 +2522,7 @@ $(function () {
                     this.tomb.push({nev});
                 });
                 ajax.ajaxApiGet("https://randomuser.me/api/?results="+(this.tomb.length),adatok=>{
+                   
                     adatok.results.forEach((ember,index)=>{
                       this.tomb[index].kep = ember.picture.large;
                       
@@ -2533,21 +2534,59 @@ $(function () {
                         stringFejlec+= `<th class="${d.nev.replace(" ","")} nemszinezheto"><span class="nnn">${d.nev}</span><img src="${d.kep}" /></th>`; 
                         string+=`<td class="${d.nev.replace(" ","")} "></td>`;
                     });
+                   
                     this.muszakeloszlasElem.append(`<tr  class="beosztas-megtekintese-fejlec"><th class="f"></th>${stringFejlec}</tr>`);
-                    this.adat.muszakeloszlas.forEach(muszakelo=>{
-                        this.muszakeloszlasElem.append(`<tr id="${muszakelo.muszakelo_azon}"><td class="beosztas-megtekintes-times"><span>${muszakelo.oratol}:00</span><span>${muszakelo.oraig}:00</span></td>${string}</tr>`)
-                        
-                        let beosztottAlkalmazottak = this.beosztasok.filter(beosztott=>{
-                            return( beosztott.napimunkaeroigeny[0].muszakelo_azon == muszakelo.muszakelo_azon);
+                    if (this.adat.muszakeloszlas instanceof Array) {
+                        beosztasFeltolt(
+                            this.adat.muszakeloszlas,
+                            this.muszakeloszlasElem,
+                            this.beosztasok
+                        );
+                    } else {
+                        let tomb = [];
+                        for (const key in this.adat.muszakeloszlas) {
+                            tomb.push(this.adat.muszakeloszlas[key]);
+                        }
+                        beosztasFeltolt(
+                            tomb,
+                            this.muszakeloszlasElem,
+                            this.beosztasok
+                        );
+                    }
+                    function beosztasFeltolt(tomb,dom,beosztasok){
+                        tomb.forEach((muszakelo) => {
+                            dom.append(
+                                `<tr id="${muszakelo.muszakelo_azon}"><td class="beosztas-megtekintes-times"><span>${muszakelo.oratol}:00</span><span>${muszakelo.oraig}:00</span></td>${string}</tr>`
+                            );
+
+                            let beosztottAlkalmazottak = beosztasok.filter(
+                                (beosztott) => {
+                                    return (
+                                        beosztott.napimunkaeroigeny[0]
+                                            .muszakelo_azon ==
+                                        muszakelo.muszakelo_azon
+                                    );
+                                }
+                            );
+
+                            beosztottAlkalmazottak.forEach((dolgozo) => {
+                                let beosztottElem = dom
+                                    .find(
+                                        `#${dolgozo.napimunkaeroigeny[0].muszakelo_azon}`
+                                    )
+                                    .find(
+                                        `.${dolgozo.alkalmazott_adat[0].nev.replace(
+                                            " ",
+                                            ""
+                                        )}`
+                                    );
+                                new BeosztottAlkalmazott(
+                                    beosztottElem,
+                                    dolgozo
+                                );
+                            });
                         });
-    
-                        beosztottAlkalmazottak.forEach((dolgozo)=>{
-                            
-                            let beosztottElem = this.muszakeloszlasElem.find(`#${dolgozo.napimunkaeroigeny[0].muszakelo_azon}`).find(`.${dolgozo.alkalmazott_adat[0].nev.replace(" ","")}`);
-                            new BeosztottAlkalmazott(beosztottElem,dolgozo);
-                        }); 
-                        
-                    });
+                    }
                 });
                 
                 
@@ -2573,7 +2612,7 @@ $(function () {
 
             klikk(){
                 this.elem.on("click",()=>{
-                    console.log(this);
+                    
                 });
             }
             
