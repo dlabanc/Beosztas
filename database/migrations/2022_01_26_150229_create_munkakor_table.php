@@ -29,6 +29,7 @@ class CreateMunkakorTable extends Migration
         Munkakor::create(['megnevezes' => 'Szakácssegéd', 'leiras' => 'Aki segít a szakácsnak kaját csinálni', 'munkafonok' => NULL]);
         Munkakor::create(['megnevezes' => 'Takarító', 'leiras' => 'Aki a mocskot tisztává varázsolja', 'munkafonok' => NULL]);
         Munkakor::create(['megnevezes' => 'Üzletvezető', 'leiras' => 'Ő jár a legjobban pénzügyileg', 'munkafonok' => NULL]);
+        Munkakor::create(['megnevezes' => 'Adminisztrátor', 'leiras' => 'Ő az admin', 'munkafonok' => NULL]);
     }
 
     /**

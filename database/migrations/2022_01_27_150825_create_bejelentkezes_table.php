@@ -46,6 +46,7 @@ class CreateBejelentkezesTable extends Migration
         BejelentkezesiAdatok::create(['user_login' => '40021', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'poharaspatrik@chilloutcafe.hu']);
         BejelentkezesiAdatok::create(['user_login' => '40022', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'szeddleszabolcs@chilloutcafe.hu']);
         BejelentkezesiAdatok::create(['user_login' => '40023', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'elteszemaborravalotedvard@chilloutcafe.hu']);
+        BejelentkezesiAdatok::create(['user_login' => '40034', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'adminandras@chilloutcafe.hu']);
     }
 
     /**

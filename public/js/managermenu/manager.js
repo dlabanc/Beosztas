@@ -2397,7 +2397,7 @@ $(function () {
                     elsoElem++;
                 }
             $("#oldalSzamok").html((elsoElem+1)+" - "+(utolsoElem+1) +" elem ennyiből: "+ (tabla.find(elem).length))
-            $("#oldalSzam").html((elsoElem/elemPerOldal+1)+ ". / " + (Math.ceil(tabla.find(elem).length/elemPerOldal) + " oldal"))
+            $("#oldalSzam").html(Math.ceil(elsoElem/elemPerOldal+1)+ ". / " + (Math.ceil(tabla.find(elem).length/elemPerOldal) + " oldal"))
         }
 
     }

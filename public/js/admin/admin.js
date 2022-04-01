@@ -182,7 +182,7 @@ $(function () {
                     elsoElem++;
                 }
                 szulo.find("#oldalSzamok").html((elsoElem+1)+" - "+(utolsoElem+1) +" elem ennyiből: "+ (tabla.find(elem).length))
-                szulo.find("#oldalSzam").html((elsoElem/elemPerOldal+1)+ ". / " + (Math.ceil(tabla.find(elem).length/elemPerOldal) + " oldal"))
+                szulo.find("#oldalSzam").html(Math.ceil(elsoElem/elemPerOldal+1)+ ". / " + (Math.ceil(tabla.find(elem).length/elemPerOldal) + " oldal"))
         }
 
     }
