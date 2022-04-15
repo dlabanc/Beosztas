@@ -15,15 +15,15 @@ use App\Http\Controllers\BejelentkezesiAdatokController;
 use App\Http\Controllers\MunkakorStatController;
 use App\Http\Controllers\HetiOraszamController;
 use App\Http\Controllers\SzabadsagStatController;
-use App\Http\Controllers\HitelesitesController;
+// use App\Http\Controllers\HitelesitesController;
 use App\Http\Controllers\DolgozottNapokStatController;
 use App\Http\Controllers\StatisztikaController;
-use App\Http\Controllers\JelszoVisszaAllitasController;
-use App\Http\Middleware\IsAuthenticated;
-use App\Http\Middleware\IsAdmin;
-use App\Http\Middleware\IsManager;
+// use App\Http\Controllers\JelszoVisszaAllitasController;
+// use App\Http\Middleware\IsAuthenticated;
+// use App\Http\Middleware\IsAdmin;
+// use App\Http\Middleware\IsManager;
 
-
+require __DIR__.'/auth.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -52,9 +52,9 @@ Route::get('/usermenu', function () {
     return view('usermenu/usermenu');
 })->middleware('auth');
 
-Route::get('/login', function () {
-    return view('login/login');
-});
+// Route::get('/login', function () {
+//     return view('login/login');
+// });
 
 Route::get('/elfelejtett-jelszo', function () {
     return view('login/forgetpassword');
@@ -64,9 +64,9 @@ Route::get('/reset-password/{token}', function ($token2) {
     return view('login/resetpassword', ['token2' => $token2]);
 })->name('password.reset');
 
-Route::get('/login', [HitelesitesController::class, 'index'])->name('bejelentkezes');
-Route::post('/authenticate', [HitelesitesController::class, 'authenticate'])->name('hitelesites');
-Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentkezes');
+// Route::get('/login', [HitelesitesController::class, 'index'])->name('bejelentkezes');
+// Route::post('/authenticate', [HitelesitesController::class, 'authenticate'])->name('hitelesites');
+// Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentkezes');
 
 ##MANAGERMENU
 Route::middleware(['role:Üzletvezető,Adminisztrátor'])->group(function () {
@@ -203,7 +203,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
     Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
     Route::post('/api/faliujsag', [FaliujsagController::class, 'store']);
-    Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
+    // Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
     Route::get('/api/nemdolgoznaossz', [NemDolgoznaController::class, 'index']);
     Route::post('/api/nemdolgozna', [NemDolgoznaController::class, 'store']);
     Route::delete('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'destroy']);
@@ -213,6 +213,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 ## 
-Route::post('/elfelejtettjelszo', [JelszoVisszaAllitasController::class, 'sendResetLink'])->name('password.email');
-Route::post('/reset-password', [JelszoVisszaAllitasController::class, 'passwordReset'])->name('password.update');
-Route::post('/change', [HitelesitesController::class, 'changePassword'])->name('password.change');
+// Route::post('/elfelejtettjelszo', [JelszoVisszaAllitasController::class, 'sendResetLink'])->name('password.email');
+// Route::post('/reset-password', [JelszoVisszaAllitasController::class, 'passwordReset'])->name('password.update');
+// Route::post('/change', [HitelesitesController::class, 'changePassword'])->name('password.change');
