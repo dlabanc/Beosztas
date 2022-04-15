@@ -21,7 +21,7 @@
     <fieldset>
             
             <input type="hidden" name="_token" value=<?php $token=csrf_token(); echo $token;?>>
-            <input type="hidden" id="token2" name="token2" value=<?php echo $token2;?>>
+            <input type="hidden" id="reset_token" name="reset_token" value=<?php echo $reset_token;?>>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email">
             <label for="password">Jelszó:</label>

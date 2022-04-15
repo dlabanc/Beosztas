@@ -29,7 +29,7 @@ class JelszoVisszaAllitasController extends Controller
             throw ValidationException::withMessages(['passerror'=>'A két jelszó nem egyezik!']);
         }
         $alk = BejelentkezesiAdatok::where('email',$request->only('email'))->get()->first();
-        $credentials=['user_login' => $alk->user_login, 'password' => $request->only('password')['password'], 'email'=>$alk->email, 'token'=>$request->token2];
+        $credentials=['user_login' => $alk->user_login, 'password' => $request->only('password')['password'], 'email'=>$alk->email, 'token'=>$request->reset_token];
         $status = Password::reset(
             $credentials,
             function ($user, $password) {
