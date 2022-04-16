@@ -115,7 +115,6 @@ Route::middleware(['signedin', 'role:Üzletvezető,Adminisztrátor'])->group(fun
     Route::put('/api/napimunkaeroigeny/{napim_azonosito}', [NapiMunkaeroIgenyController::class, 'update']);
 
     ##NAPOK
-    Route::get('/api/napokossz', [NapokController::class, 'index']);
     Route::put('/api/napok/{nap}', [NapokController::class, 'update']);
     Route::post('/api/napok', [NapokController::class, 'store']);
     Route::delete('/api/napok/{nap}', [NapokController::class, 'destroy']);
@@ -199,15 +198,27 @@ Route::middleware(['signedin', 'admin'])->group(function () {
 
 ##USERMENU
 Route::middleware(['signedin', 'auth'])->group(function () {
+    ##ALKALMAZOTT
     Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
+
+    ##BEOSZTAS
     Route::get('/api/beosztasok/expand', [BeosztasController::class, 'expandAll']);
+
+    ##MUSZAKELOSZLAS
     Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
+
+    ##FALIUJSAG
     Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
     Route::post('/api/faliujsag', [FaliujsagController::class, 'store']);
     // Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
+
+    ##NEMDOLGOZNA
     Route::get('/api/nemdolgoznaossz', [NemDolgoznaController::class, 'index']);
     Route::post('/api/nemdolgozna', [NemDolgoznaController::class, 'store']);
     Route::delete('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'destroy']);
+
+    ##NAPOK
+    Route::get('/api/napokossz', [NapokController::class, 'index']);
     Route::get('/api/napok/{nap}', [NapokController::class, 'show']);
     Route::post('/api/napok', [NapokController::class, 'store']);
     
