@@ -206,6 +206,7 @@ Route::middleware(['signedin', 'auth'])->group(function () {
 
     ##MUSZAKELOSZLAS
     Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
+    Route::get('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'show']);
 
     ##FALIUJSAG
     Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
