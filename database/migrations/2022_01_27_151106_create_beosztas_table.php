@@ -42,7 +42,7 @@ class CreateBeosztasTable extends Migration
         Beosztas::create(['beo_azonosito' => '18', 'napim_azonosito' => '24', 'alkalmazott' => '40008']);
         Beosztas::create(['beo_azonosito' => '19', 'napim_azonosito' => '24', 'alkalmazott' => '40009']);
         Beosztas::create(['beo_azonosito' => '20', 'napim_azonosito' => '27', 'alkalmazott' => '40008']);
-        Beosztas::create(['beo_azonosito' => '21', 'napim_azonosito' => '28', 'alkalmazott' => '30001']);
+        Beosztas::create(['beo_azonosito' => '21', 'napim_azonosito' => '28', 'alkalmazott' => '40035']);
         Beosztas::create(['beo_azonosito' => '22', 'napim_azonosito' => '28', 'alkalmazott' => '40001']);
         Beosztas::create(['beo_azonosito' => '23', 'napim_azonosito' => '28', 'alkalmazott' => '40002']);
         Beosztas::create(['beo_azonosito' => '24', 'napim_azonosito' => '29', 'alkalmazott' => '40016']);
@@ -66,7 +66,7 @@ class CreateBeosztasTable extends Migration
         Beosztas::create(['beo_azonosito' => '42', 'napim_azonosito' => '41', 'alkalmazott' => '40020']);
         Beosztas::create(['beo_azonosito' => '43', 'napim_azonosito' => '43', 'alkalmazott' => '40010']);
         Beosztas::create(['beo_azonosito' => '44', 'napim_azonosito' => '43', 'alkalmazott' => '40011']);
-        Beosztas::create(['beo_azonosito' => '45', 'napim_azonosito' => '46', 'alkalmazott' => '30001']);
+        Beosztas::create(['beo_azonosito' => '45', 'napim_azonosito' => '46', 'alkalmazott' => '40035']);
         Beosztas::create(['beo_azonosito' => '46', 'napim_azonosito' => '46', 'alkalmazott' => '40002']);
         Beosztas::create(['beo_azonosito' => '47', 'napim_azonosito' => '47', 'alkalmazott' => '40017']);
         Beosztas::create(['beo_azonosito' => '48', 'napim_azonosito' => '48', 'alkalmazott' => '40022']);
@@ -85,7 +85,7 @@ class CreateBeosztasTable extends Migration
         Beosztas::create(['beo_azonosito' => '61', 'napim_azonosito' => '61', 'alkalmazott' => '40011']);
         Beosztas::create(['beo_azonosito' => '62', 'napim_azonosito' => '71', 'alkalmazott' => '40008']);
         Beosztas::create(['beo_azonosito' => '63', 'napim_azonosito' => '72', 'alkalmazott' => '40008']);
-        Beosztas::create(['beo_azonosito' => '64', 'napim_azonosito' => '73', 'alkalmazott' => '30001']);
+        Beosztas::create(['beo_azonosito' => '64', 'napim_azonosito' => '73', 'alkalmazott' => '40035']);
     }
 
     /**

@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'uzletvezeto' => \App\Http\Middleware\IsManager::class,
         'role' => \App\Http\Middleware\Role::class,
+        'signedin' => \App\Http\Middleware\RedirectIfNotAuthenticated::class,
     ];
 }

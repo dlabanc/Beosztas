@@ -18,7 +18,7 @@ class Createviews extends Migration
             AS 
             SELECT `faliujsag`.`faliu_azonosito` AS `faliu_azonosito`, `faliujsag`.`dolgozoi_azon` AS `dolgozoi_azon`, `faliujsag`.`mikor` AS `mikor`, `faliujsag`.`cim` AS `cim`, `faliujsag`.`tartalom` AS `tartalom` 
             FROM `faliujsag` 
-            WHERE `faliujsag`.`mikor` = current_timestamp() ;');
+            WHERE `faliujsag`.`mikor` = date(current_timestamp()) ;');
         
         DB::unprepared(
             'CREATE OR REPLACE VIEW `dolgozottstat_nev`  

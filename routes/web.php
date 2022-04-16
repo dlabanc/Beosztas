@@ -56,20 +56,22 @@ Route::get('/usermenu', function () {
 //     return view('login/login');
 // });
 
-Route::get('/elfelejtett-jelszo', function () {
-    return view('login/forgetpassword');
-});
+Route::middleware(['guest'])->group(function () {
+    Route::get('/elfelejtett-jelszo', function () {
+        return view('login/forgetpassword');
+    });
 
-Route::get('/reset-password/{token}', function ($token2) {
-    return view('login/resetpassword', ['token2' => $token2]);
-})->name('password.reset');
+    Route::get('/reset-password/{token}', function ($token2) {
+        return view('login/resetpassword', ['token2' => $token2]);
+    })->name('password.reset');
+});
 
 // Route::get('/login', [HitelesitesController::class, 'index'])->name('bejelentkezes');
 // Route::post('/authenticate', [HitelesitesController::class, 'authenticate'])->name('hitelesites');
 // Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentkezes');
 
 ##MANAGERMENU
-Route::middleware(['role:Üzletvezető,Adminisztrátor'])->group(function () {
+Route::middleware(['signedin', 'role:Üzletvezető,Adminisztrátor'])->group(function () {
     ##ALKALMAZOTT
     Route::get('/api/alkalmazott/search', [AlkalmazottController::class, 'search']);
     Route::get('/api/alkalmazottak', [AlkalmazottController::class, 'index']);
@@ -90,7 +92,6 @@ Route::middleware(['role:Üzletvezető,Adminisztrátor'])->group(function () {
     Route::delete('/api/muszaktipus/{tipus}', [MuszakTipusController::class, 'destroy']);
 
     ##BEOSZTAS
-    Route::get('/api/beosztasok/expand', [BeosztasController::class, 'expandAll']);
     Route::get('/api/beosztasok', [BeosztasController::class, 'index']);
     Route::get('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'show']);
     Route::put('/api/beosztas/{beo_azonosito}', [BeosztasController::class, 'update']);
@@ -137,9 +138,8 @@ Route::middleware(['role:Üzletvezető,Adminisztrátor'])->group(function () {
 
 
 });
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['signedin', 'admin'])->group(function () {
     ##ALKALMAZOTT
-    Route::get('/api/alkalmazott/expand', [AlkalmazottController::class, 'expand']);
     Route::get('/api/alkalmazott/sort', [AlkalmazottController::class, 'sortBy']);
     Route::post('/api/alkalmazott', [AlkalmazottController::class, 'store']);
     Route::delete('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'destroy']);
@@ -191,15 +191,16 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/api/aktualishet', [StatisztikaController::class, 'aktualishet']);
 
     ##ALKALMAZHATO ALKALMAZATTAK
-    Route::get('/api/alkalmazhatoak', [StatisztikaController::class, 'aktualishet']);
+    Route::get('/api/alkalmazhatoak', [StatisztikaController::class, 'alkalmazhatoak']);
 
     ##JOVOHETI NAPIMUNKAEROIGENY
     Route::get('/api/jovohet-nmi', [StatisztikaController::class, 'jovoheti_napimunkaeroigeny']);
 });
 
 ##USERMENU
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['signedin', 'auth'])->group(function () {
     Route::get('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'show']);
+    Route::get('/api/beosztasok/expand', [BeosztasController::class, 'expandAll']);
     Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
     Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
     Route::post('/api/faliujsag', [FaliujsagController::class, 'store']);

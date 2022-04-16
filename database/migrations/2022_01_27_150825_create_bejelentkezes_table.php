@@ -21,8 +21,6 @@ class CreateBejelentkezesTable extends Migration
             $table->foreign('user_login')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        BejelentkezesiAdatok::create(['user_login' => '30001', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'kispista@chilloutcafe.hu']);
-        BejelentkezesiAdatok::create(['user_login' => '35001', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'nagymari@chilloutcafe.hu']);
         BejelentkezesiAdatok::create(['user_login' => '40001', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'hosszuivan@chilloutcafe.hu']);
         BejelentkezesiAdatok::create(['user_login' => '40002', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'rovidpeti@chilloutcafe.hu']);
         BejelentkezesiAdatok::create(['user_login' => '40003', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'aranyosaranka@chilloutcafe.hu']);
@@ -47,6 +45,8 @@ class CreateBejelentkezesTable extends Migration
         BejelentkezesiAdatok::create(['user_login' => '40022', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'szeddleszabolcs@chilloutcafe.hu']);
         BejelentkezesiAdatok::create(['user_login' => '40023', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'elteszemaborravalotedvard@chilloutcafe.hu']);
         BejelentkezesiAdatok::create(['user_login' => '40034', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'adminandras@chilloutcafe.hu']);
+        BejelentkezesiAdatok::create(['user_login' => '40035', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'kispista@chilloutcafe.hu']);
+        BejelentkezesiAdatok::create(['user_login' => '40036', 'password' => '$2a$10$U2bZjDFDXtRqgE.1AXu8pOJbKt.0NaE8pF0Nm1wVq6JyGdI.IrCIi', 'email' => 'nagymari@chilloutcafe.hu']);
     }
 
     /**

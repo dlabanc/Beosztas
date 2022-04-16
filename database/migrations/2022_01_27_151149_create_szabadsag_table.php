@@ -23,7 +23,7 @@ class CreateSzabadsagTable extends Migration
             $table->foreign('alkalmazott')->references('dolgozoi_azon')->on('alkalmazott')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Szabadsag::create(['szabadsag_azonosito' => '1', 'alkalmazott' => '30001', 'tol' => '2022.09.05', 'ig' => '2022.09.10', 'szabadsagtipus' => 'N']);
+        Szabadsag::create(['szabadsag_azonosito' => '1', 'alkalmazott' => '40035', 'tol' => '2022.09.05', 'ig' => '2022.09.10', 'szabadsagtipus' => 'N']);
         Szabadsag::create(['szabadsag_azonosito' => '2', 'alkalmazott' => '40020', 'tol' => '2022.01.12', 'ig' => '2022.01.14', 'szabadsagtipus' => 'B']);
         Szabadsag::create(['szabadsag_azonosito' => '3', 'alkalmazott' => '40024', 'tol' => '2022.01.13', 'ig' => '2022.01.15', 'szabadsagtipus' => 'N']);
         Szabadsag::create(['szabadsag_azonosito' => '4', 'alkalmazott' => '40025', 'tol' => '2022.01.11', 'ig' => '2022.01.12', 'szabadsagtipus' => 'F']);

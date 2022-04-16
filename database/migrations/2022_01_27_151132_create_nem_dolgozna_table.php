@@ -23,9 +23,9 @@ class CreateNemDolgoznaTable extends Migration
             $table->foreign('muszakelo_azon')->references('muszakelo_azon')->on('muszakeloszlas')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        NemDolgozna::create(['nemdolgozna_azon' => '1', 'alkalmazott' => '30001', 'datum' => '2022.01.11', 'muszakelo_azon' => '1']);
-        NemDolgozna::create(['nemdolgozna_azon' => '2', 'alkalmazott' => '30001', 'datum' => '2022.01.12', 'muszakelo_azon' => '1']);
-        NemDolgozna::create(['nemdolgozna_azon' => '3', 'alkalmazott' => '35001', 'datum' => '2022.01.11', 'muszakelo_azon' => '3']);
+        NemDolgozna::create(['nemdolgozna_azon' => '1', 'alkalmazott' => '40035', 'datum' => '2022.01.11', 'muszakelo_azon' => '1']);
+        NemDolgozna::create(['nemdolgozna_azon' => '2', 'alkalmazott' => '40035', 'datum' => '2022.01.12', 'muszakelo_azon' => '1']);
+        NemDolgozna::create(['nemdolgozna_azon' => '3', 'alkalmazott' => '40036', 'datum' => '2022.01.11', 'muszakelo_azon' => '3']);
         NemDolgozna::create(['nemdolgozna_azon' => '4', 'alkalmazott' => '40001', 'datum' => '2022.01.13', 'muszakelo_azon' => '4']);
         NemDolgozna::create(['nemdolgozna_azon' => '5', 'alkalmazott' => '40006', 'datum' => '2022.01.14', 'muszakelo_azon' => '1']);
         NemDolgozna::create(['nemdolgozna_azon' => '6', 'alkalmazott' => '40006', 'datum' => '2022.01.14', 'muszakelo_azon' => '2']);

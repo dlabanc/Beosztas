@@ -2,7 +2,7 @@ $(function () {
     const token = $('meta[name="csrf-token"]').attr("content");
     const ajax = new Ajax(token);
     const apivegpont = "http://localhost:8000/api";
-    ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagUser);
+    ajax.ajaxApiGet("/api/faliujsagok", faliujsagUser);
     let logged ;
 
     $(".post-info").hide();
@@ -73,7 +73,7 @@ $(function () {
             let darabolt = adatok.slice(oldalIndex, oldalIndex + oldalhossz)
             darabolt.forEach((adat) => {
                 
-                ajax.ajaxApiGet(apivegpont + "/alkalmazott/" + adat.dolgozoi_azon, (a) => 
+                ajax.ajaxApiGet("/api/alkalmazott/" + adat.dolgozoi_azon, (a) => 
                 {
                     
                         postinfoTomb.push(a);
@@ -164,7 +164,7 @@ $(function () {
             
             ajax.ajaxApiGet(
 
-                "http://localhost:8000/api/faliujsagok",
+                "/api/faliujsagok",
                
                
                 faliujsagUser
@@ -188,9 +188,9 @@ $(function () {
 
     function ProfilAdatok() {
         
-        ajax.ajaxApiGet("http://localhost:8000/loggeduser", (adatok)=>{
+        ajax.ajaxApiGet("/loggeduser", (adatok)=>{
             logged = adatok;
-            ajax.ajaxApiGet("http://localhost:8000/api/alkalmazott/"+logged, (adatok) => {
+            ajax.ajaxApiGet("/api/alkalmazott/"+logged, (adatok) => {
                 
                 sor = 0;
                 $(".profile-name").text("Üdvözöllek, "+adatok.nev);
@@ -344,7 +344,7 @@ $(function () {
                     this.infoElem.show(500);
                     this.elemekKezelese();
                     let logged;
-                    ajax.ajaxApiGet("http://localhost:8000/loggeduser",(adatok) => {logged=adatok});
+                    ajax.ajaxApiGet("/loggeduser",(adatok) => {logged=adatok});
                     
                             
                     
@@ -411,7 +411,7 @@ $(function () {
                         this.torolElem.on("click",()=>{
                                     
                             
-                            ajax.ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz",(adatok) => {
+                            ajax.ajaxApiGet("/api/nemdolgoznaossz",(adatok) => {
                                
                                 let muszakelo_azonTomb = [];
                               // adatok.filter((nemdolgozna)=>{return nemdolgozna.alkalmazott == logged && nemdolgozna.datum == this.napNev && nemdolgozna.muszakelo_azon == element.attr("id"); });
@@ -434,7 +434,7 @@ $(function () {
                                     
                                 }
                                 
-                                veglegTorolheto.forEach((adat)=>{ajax.ajaxApiDelete("http://localhost:8000/api/nemdolgozna",adat.nemdolgozna_azon)
+                                veglegTorolheto.forEach((adat)=>{ajax.ajaxApiDelete("/api/nemdolgozna",adat.nemdolgozna_azon)
     
                                 this.muszakokFeltoltes();
                                 ujNaptar.naptarSzinez();
@@ -468,7 +468,7 @@ $(function () {
     
             muszakokKihuzasa(logged){
                 
-                ajax.ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz",(adatok) => {
+                ajax.ajaxApiGet("/api/nemdolgoznaossz",(adatok) => {
                         if (adatok.length > 0) {
                             
                             let szurt = adatok.filter((adat) => {return ( adat.alkalmazott == logged && adat.datum == this.napNev);});
@@ -566,9 +566,9 @@ $(function () {
                     opacity: "0",
                 }).show().animate({ opacity: 1 });
                 let dolgozo;
-                ajax.ajaxApiGet("http://localhost:8000/loggeduser",(adatok) => {
+                ajax.ajaxApiGet("/loggeduser",(adatok) => {
                     dolgozo=adatok;
-                    ajax.ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz",(adatok) => {
+                    ajax.ajaxApiGet("/api/nemdolgoznaossz",(adatok) => {
                     let szurtAdatok = adatok.filter(adat=>{return adat.alkalmazott==dolgozo});
                     szurtAdatok.forEach(adat=>{
                         
@@ -648,9 +648,9 @@ $(function () {
         
         const beosztasHelye = $(".BeosztasTabla");
       
-        const loggeduser = "http://localhost:8000/loggeduser";
-        const beosztasok = "http://localhost:8000/api/beosztasok/expand";
-        const muszakeloszlas = "http://localhost:8000/api/muszakeloszlas/";
+        const loggeduser = "/loggeduser";
+        const beosztasok = "/api/beosztasok/expand";
+        const muszakeloszlas = "/api/muszakeloszlas/";
         const beosztasNapjai = new Set(); 
 
         ajax.ajaxGet(loggeduser,(adatok)=>{
@@ -658,9 +658,9 @@ $(function () {
             const bejelentkezettFelhasznalo = adatok;
             
             ajax.ajaxApiGet(beosztasok,(beosztasok)=>{
-                ajax.ajaxApiGet("http://localhost:8000/api/muszakeloszlasok",(muszakeloszlasok)=>{
+                ajax.ajaxApiGet("/api/muszakeloszlasok",(muszakeloszlasok)=>{
                     console.log(muszakeloszlasok)
-                    ajax.ajaxApiGet("http://localhost:8000/api/napokossz",(napok)=>{
+                    ajax.ajaxApiGet("/api/napokossz",(napok)=>{
                         
                         bejelentkezettBeosztasa = beosztasok.filter(beosztas=>{
                             return beosztas.alkalmazott == logged;

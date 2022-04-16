@@ -20,7 +20,7 @@ $(function () {
     $(".search").keyup(function (e) {
         let ertek = $(this).val();
         ajax.ajaxApiGet(
-            apivegpont + "/alkalmazott/search?q=" + ertek,
+            "/api/alkalmazott/search?q=" + ertek,
             alkalmazottAdmin
         );
     });
@@ -238,7 +238,6 @@ $(function () {
             for (let oldalIndex = 0; oldalIndex < eredmeny.length; oldalIndex += oldalhossz) {
                 let darabolt = eredmeny.slice(oldalIndex, oldalIndex + oldalhossz)
                 darabolt.forEach(elem => {
-                    console.log(darabolt)
                     let obj = new osztaly(SZULO, elem, ajax);
                      if (oldalIndex > 1) {
                         obj.elem.hide();
@@ -250,18 +249,18 @@ $(function () {
     }
 
     function infoAblak() {
-        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", (adatok) => {
+        ajax.ajaxApiGet("/api/alkalmazottak", (adatok) => {
             $(".stat1value").html(`${adatok.length}`);
         });
-        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", (adatok) => {
+        ajax.ajaxApiGet("/api/alkalmazottak", (adatok) => {
             if (adatok.length > 0) {
                 $(".stat2value").html(`${adatok[adatok.length - 1].nev}`);
             }
         });
-        ajax.ajaxGet(apivegpont + "/bejelentkezesiadatok", (adatok) => {
+        ajax.ajaxGet("/api/bejelentkezesiadatok", (adatok) => {
             $(".stat4value").html(`${adatok.length}`);
         });
-        ajax.ajaxApiGet(apivegpont + "/faliujsagok", (adatok) => {
+        ajax.ajaxApiGet("/api/faliujsagok", (adatok) => {
             let d = new Date();
             let db = 0;
             let nap =
@@ -410,7 +409,7 @@ $(function () {
 
     //Kész
     function alkalmazottInput(mezo, callback) {
-        ajax.ajaxApiGet(apivegpont + "/munkakorok", munkakorSelect);
+        ajax.ajaxApiGet("/api/munkakorok", munkakorSelect);
         function munkakorSelect(eredmeny) {
             let select =
                 '<select id="munkakors"><option>Válassz az munkakörök közül...</option>';
@@ -474,7 +473,7 @@ $(function () {
     }
     //Kész
     function bejelentkezesekInput(mezo, callback) {
-        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", bejelentkezesekSelect);
+        ajax.ajaxApiGet("/api/alkalmazottak", bejelentkezesekSelect);
         function bejelentkezesekSelect(eredmeny) {
             let select =
                 '<select id="dolgozos2"><option>Válassz az alkalmazottak közül...</option>';
@@ -499,7 +498,7 @@ $(function () {
     }
     //Kész
     function faliujsagInput(mezo, callback) {
-        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", dolgozokSelect);
+        ajax.ajaxApiGet("/api/alkalmazottak", dolgozokSelect);
         function dolgozokSelect(eredmeny) {
             let select =
                 '<select id="dolgozos"><option>Válassz az alkalmazottak közül...</option>';
@@ -540,7 +539,7 @@ $(function () {
     //Kész
     function napimunkaeroigenyInput(mezo, callback) {
         ajax.ajaxApiGet(
-            apivegpont + "/muszakeloszlasok",
+            "/api/muszakeloszlasok",
             muszakeloszlasokSelect
         );
 
@@ -590,7 +589,7 @@ $(function () {
 
     //Kész
     function nemDolgoznaInput(mezo, callback) {
-        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", bejelentkezesekSelect);
+        ajax.ajaxApiGet("/api/alkalmazottak", bejelentkezesekSelect);
         function bejelentkezesekSelect(eredmeny) {
             let select =
                 '<select id="dolgozos4"><option>Válassz az alkalmazottak közül...</option>';
@@ -611,7 +610,7 @@ $(function () {
                 `<div class="label-input"><label>Dátum:</label><input type="date"" name="datum"></div>`
             );
             ajax.ajaxApiGet(
-                apivegpont + "/muszakeloszlasok",
+                "/api/muszakeloszlasok",
                 muszakeloszlasokSelect
             );
 
@@ -658,7 +657,7 @@ $(function () {
     //Kész
     function beosztasInput(mezo, callback) {
         let napigenyek = [];
-        ajax.ajaxApiGet(apivegpont + "/napokossz", (eredmeny) => {
+        ajax.ajaxApiGet("/api/napokossz", (eredmeny) => {
             let select =
                 '<select id="napok"><option>Válassz a napok közül!</option>';
             eredmeny.forEach((e) => {
@@ -668,7 +667,7 @@ $(function () {
             mezo.append(select);
 
             ajax.ajaxApiGet(
-                apivegpont + "/napimunkaeroigenyek",
+                "/api/napimunkaeroigenyek",
                 beosztasokSelect
             );
         });
@@ -704,8 +703,7 @@ $(function () {
                     let obj = new NapiMunkaSorok(tabla, e);
                    
                     ajax.ajaxApiGet(
-                        apivegpont +
-                            "/muszakeloszlas/" +
+                            "/api/muszakeloszlas/" +
                             obj.adat.muszakelo_azon,
                         (adat) => {
                             obj.tol = adat.oratol;
@@ -752,7 +750,7 @@ $(function () {
                         );
                         $(".ujmezo  .box").html(`<div>${this.adat.datum} ${this.tol}:00 - ${this.ig}:00 </div><div class="box-infos"></div>`);    
                         ajax.ajaxApiGet(
-                            apivegpont + "/alkalmazottak",
+                            "/api/alkalmazottak",
                             alkalmazottLista
                         );
 
@@ -775,7 +773,7 @@ $(function () {
                             selectElem.change("change", function () {
                                 $("#alkalmazott").attr("value", this.value);
                                 dolgozoi_azon = this.value;
-                                ajax.ajaxApiGet(apivegpont + "/alkalmazott/"+dolgozoi_azon, alkalmazott=>{
+                                ajax.ajaxApiGet("/api/alkalmazott/"+dolgozoi_azon, alkalmazott=>{
                                     
                                     let text = `${alkalmazott.nev} ${alkalmazott.munkakor}`;
                                     $(".ujmezo .box .box-infos").html(text);
@@ -846,7 +844,7 @@ $(function () {
         } else if (detail instanceof Bejelentkezes) {
             ajax.ajaxApiGet(detail.apivegpont, bejelenetkezesekAdmin);
         } else if (detail instanceof FaliujsagPost) {
-            ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagAdmin);
+            ajax.ajaxApiGet("/api/faliujsagok", faliujsagAdmin);
         } else if (detail instanceof Napimunkaeroigeny) {
             ajax.ajaxApiGet(detail.apivegpont, napiMunkaEroIgenyAdmin);
         } else if (detail instanceof Napok) {
@@ -862,22 +860,16 @@ $(function () {
     });
 
     function ajaxHivasok() {
-        ajax.ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottAdmin);
-        ajax.ajaxApiGet(apivegpont + "/faliujsagok", faliujsagAdmin);
-        ajax.ajaxApiGet(apivegpont + "/munkakorok", munkakorAdmin);
-        ajax.ajaxGet(
-            apivegpont + "/bejelentkezesiadatok",
-            bejelenetkezesekAdmin
-        );
-        ajax.ajaxApiGet(apivegpont + "/muszaktipusok", muszakTipusAdmin);
-        ajax.ajaxApiGet(
-            apivegpont + "/napimunkaeroigenyek",
-            napiMunkaEroIgenyAdmin
-        );
-        ajax.ajaxApiGet(apivegpont + "/napokossz", napokAdmin);
-        ajax.ajaxApiGet(apivegpont + "/beosztasok", beosztasAdmin);
-        ajax.ajaxApiGet(apivegpont + "/nemdolgoznaossz", nemdolgoznaAdmin);
-        ajax.ajaxApiGet(apivegpont + "/szabadsagok", szabadsagAdmin);
+        ajax.ajaxApiGet("/api/alkalmazottak", alkalmazottAdmin);
+        ajax.ajaxApiGet("/api/faliujsagok", faliujsagAdmin);
+        ajax.ajaxApiGet("/api/munkakorok", munkakorAdmin);
+        ajax.ajaxGet("/api/bejelentkezesiadatok", bejelenetkezesekAdmin);
+        ajax.ajaxApiGet("/api/muszaktipusok", muszakTipusAdmin);
+        ajax.ajaxApiGet("/api/napimunkaeroigenyek", napiMunkaEroIgenyAdmin);
+        ajax.ajaxApiGet("/api/napokossz", napokAdmin);
+        ajax.ajaxApiGet("/api/beosztasok", beosztasAdmin);
+        ajax.ajaxApiGet("/api/nemdolgoznaossz", nemdolgoznaAdmin);
+        ajax.ajaxApiGet("/api/szabadsagok", szabadsagAdmin);
     }
     infoAblak();
 });
