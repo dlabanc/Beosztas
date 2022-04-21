@@ -137,6 +137,8 @@ Route::middleware(['signedin', 'role:Üzletvezető,Adminisztrátor'])->group(fun
 
 
 });
+
+##ADMIN
 Route::middleware(['signedin', 'admin'])->group(function () {
     ##ALKALMAZOTT
     Route::get('/api/alkalmazott/sort', [AlkalmazottController::class, 'sortBy']);
