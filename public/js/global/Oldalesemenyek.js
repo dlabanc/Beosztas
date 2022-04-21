@@ -158,7 +158,7 @@ $(function () {
       
     }
 
-    let url = "http://localhost:8000/change";
+    let url = "/change";
     $("#submit").on("click",(event)=>{
         event.preventDefault();
         let oldpwd=$("#oldpwd").val();
@@ -172,7 +172,7 @@ $(function () {
         ajax.fetchAjax(url, ujAdat);
     });
 
-    let login_url = "http://localhost:8000/authenticate";
+    let login_url = "/authenticate";
     $('#login').on("click",(event)=>{
         event.preventDefault();
         let user_login=$("#user_login").val();
@@ -184,7 +184,7 @@ $(function () {
         ajax.fetchAjax(login_url, ujAdat);
     });
 
-    let email_url = "http://localhost:8000/elfelejtettjelszo";
+    let email_url = "/elfelejtettjelszo";
     $('#esubmit').on("click",(event)=>{
         event.preventDefault();
         let email=$("#email").val();
@@ -194,7 +194,7 @@ $(function () {
         ajax.fetchAjax(email_url, ujAdat);
     });
 
-    let reset_url = "http://localhost:8000/reset-password";
+    let reset_url = "/reset-password";
     $('#rsubmit').on("click",(event)=>{
         event.preventDefault();
         let email=$("#email").val();
