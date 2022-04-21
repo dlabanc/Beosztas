@@ -79,7 +79,6 @@ Route::middleware(['signedin', 'role:Üzletvezető,Adminisztrátor'])->group(fun
 
     ##MUSZAKELOSZLAS
     Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
-    Route::get('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'show']);
     Route::put('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'update']);
     Route::post('/api/muszakeloszlas', [MuszakEloszlasController::class, 'store']);
     Route::delete('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'destroy']);

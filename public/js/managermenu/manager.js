@@ -4,7 +4,6 @@ $(function () {
     const token = $('meta[name="csrf-token"]').attr("content");
     const ajax = new Ajax(token);
     const { ajaxGet, ajaxApiGet, ajaxApiPut, ajaxApiDelete } = ajax;
-    const apivegpont = "http://localhost:8000/api";
 
     let article = $("article");
 
@@ -150,7 +149,7 @@ $(function () {
             const nemdolgoznaTomb = [];
             const munkakorSet = new Set();
             let kivalasztottDatum;
-            ajaxApiGet("http://localhost:8000/api/alkalmazottak",(alkalmazottak)=>{ 
+            ajaxApiGet("/api/alkalmazottak",(alkalmazottak)=>{ 
                 
                 muszakNaphozRendelese();
 
@@ -165,7 +164,7 @@ $(function () {
                         beosztasAklamazottak.push(new BeosztasAlkalmazott(fehasznaloLista,randomAlkalmazottKepek[index],alkalmazott));
                         munkakorSet.add(alkalmazott.munkakor);
                     });
-                    ajaxApiGet("http://localhost:8000/api/nemdolgoznaossz/expand",adatok=>{
+                    ajaxApiGet("/api/nemdolgoznaossz/expand",adatok=>{
                             
                         adatok.forEach(adat=>{nemdolgoznaTomb.push(adat)});
                         beosztasAklamazottak.forEach(alkalmazott=>{
@@ -189,7 +188,7 @@ $(function () {
                         let ertek = this.value;
                         listaFeltolt(ertek);
                 
-                        ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
+                        ajaxApiGet("/api/napimunkaeroigenyek/expand",(napok)=>{
                         
                         if(napok.length>0){
                             napiMunkaErok.splice(0,napiMunkaErok.length);
@@ -205,7 +204,7 @@ $(function () {
                     });
                 });
                
-                ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
+                ajaxApiGet("/api/napimunkaeroigenyek/expand",(napok)=>{
                     
                     napiMunkaErok.splice(0,napiMunkaErok.length);
                     napok.forEach(napigeny => {
@@ -569,7 +568,7 @@ $(function () {
             }
 
             function beosztasNaptar(datum){
-                ajaxApiGet("http://localhost:8000/api/beosztasok/",beosztasok=>{
+                ajaxApiGet("/api/beosztasok/",beosztasok=>{
                     ujbeosztasNaptar.empty();
                     ujbeosztasNaptar.html(`
                     <button class="fas fa-question beosztas-info-lenyit"></button>
@@ -766,7 +765,7 @@ $(function () {
                             
                         this.elem.on("click", () => {
                             
-                            ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(napok)=>{
+                            ajaxApiGet("/api/napimunkaeroigenyek/expand",(napok)=>{
                               
                                 napiMunkaErok.splice(0,napiMunkaErok.length);
                                 napok.forEach(napigeny => {
@@ -826,7 +825,7 @@ $(function () {
         
                                         this.torolElem.on("click", () => {
                                             this.elkuldElem.show();
-                                            let napok = apivegpont + "/napok";
+                                            let napok ="/napok";
                                             ajax.ajaxApiDelete(napok, this.napNev);
                                             ujNaptar.naptarSzinez();
                                             this.setMuszakok();
@@ -910,7 +909,7 @@ $(function () {
                                 this.muszakTipusElem.fadeIn(500);
                                 $(".dateinfo-buttons").fadeIn(500);
                                 this.elkuldElem.on("click", () => {
-                                    let napok = apivegpont + "/napok";
+                                    let napok = "/napok";
                                     let szurt = this.muszakok.filter((muszak) => {
                                         return muszak.aktiv;
                                     });
@@ -927,7 +926,7 @@ $(function () {
                                 });
         
                                 this.torolElem.on("click", () => {
-                                    let napok = apivegpont + "/napok";
+                                    let napok ="/api/napok";
                                     ajax.ajaxApiDelete(napok, this.napNev);
                                     ujNaptar.naptarSzinez();
                                 });
@@ -1025,9 +1024,9 @@ $(function () {
 
 
     function bejelentkezettFelhasznalo(callback) {
-        ajaxApiGet("http://localhost:8000/loggeduser", (adatok) => {
+        ajaxApiGet("/loggeduser", (adatok) => {
             let logged = adatok;
-            ajaxApiGet(apivegpont + "/alkalmazott/" + logged, (adatok) => {
+            ajaxApiGet("/api/alkalmazott/" + logged, (adatok) => {
                 callback(adatok);
                 
             });
@@ -1050,7 +1049,7 @@ $(function () {
     function munkakorok() {
         ajaxApiGet("/api/munkakorok", munkakorBeallitas);
 
-        const munkakorApi = "http://localhost:8000/api/munkakor";
+        const munkakorApi = "/api/munkakor";
         const szuloElem = $(".munkakor-container");
 
         $(window).on("MunkakorTorles", ({ detail }) => {
@@ -1130,7 +1129,7 @@ $(function () {
     }
     //ajaxApiGet - Rendben
     function muszakok() {
-        ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
+        ajaxApiGet("/api/muszaktipusok", muszakBeallitas);
 
         function muszakBeallitas(muszakok) {
             const szuloElem = $(".muszaktipush-container");
@@ -1141,7 +1140,7 @@ $(function () {
                 new MuszakHozzaAdas(tabla, elem, ajax);
             });
             MuszakHozzaAdas.hozzaAd(tabla, ajax, () => {
-                ajaxApiGet(apivegpont + "/muszaktipusok", muszakBeallitas);
+                ajaxApiGet("/api/muszaktipusok", muszakBeallitas);
             });
         }
 
@@ -1176,7 +1175,7 @@ $(function () {
             muszakokSelect.prepend(`<div class="fa fa-angle-left arrows"></div>`);
             const tablazat = szuloElem.find(".muszakeloszlasok-timeline");
 
-            ajaxApiGet("http://localhost:8000/api/muszaktipusok",muszakok=>{
+            ajaxApiGet("/api/muszaktipusok",muszakok=>{
               
                 muszakok.forEach((muszak,index)=>{
                     let optionElem = `<div class="muszak-info-${index} muszak-info"></div>`;
@@ -1266,7 +1265,7 @@ $(function () {
         });
 
         function aktivMuszaktipus (tipus,elem){
-            ajaxApiGet("http://localhost:8000/api/muszaktipus/"+tipus,(muszak)=>{
+            ajaxApiGet("/api/muszaktipus/"+tipus,(muszak)=>{
             elem.text(muszak.leiras);
             });
         }
@@ -1285,7 +1284,7 @@ $(function () {
         }
 
         function muszakApiGet(){
-            ajaxApiGet(apivegpont + "/muszakeloszlasok", muszakeloszlasBeallitas);
+            ajaxApiGet("/api/muszakeloszlasok", muszakeloszlasBeallitas);
         }
 
         function muszakTablazatFeltolt(tablazat,muszakEloszlasok,event){
@@ -1348,7 +1347,7 @@ $(function () {
         }
 
         function oszlop() {
-            ajaxGet("http://localhost:8000/api/munkakorstat", (adatok) => {
+            ajaxGet("/api/munkakorstat", (adatok) => {
                 
                 googleChartsKonyvtar("corechart", drawChart);
                 reszponziv(drawChart);
@@ -1376,7 +1375,7 @@ $(function () {
         }
 
         function kor() {
-            ajaxGet("http://localhost:8000/api/hetioraszamstat", (adatok) => {
+            ajaxGet("/api/hetioraszamstat", (adatok) => {
                 googleChartsKonyvtar("corechart", drawChart);
                 reszponziv(drawChart);
                 function drawChart() {
@@ -1406,7 +1405,7 @@ $(function () {
         }
 
         function timeLine() {
-            ajaxGet("http://localhost:8000/"+"api/szabadsagstat", (adatok) => {
+            ajaxGet("/api/szabadsagstat", (adatok) => {
                 googleChartsKonyvtar("timeline", drawChart);
                 reszponziv(drawChart);
                 function drawChart() {
@@ -1468,7 +1467,7 @@ $(function () {
     //ajaxApiGet - Rendben
     function faliujsag() {
         
-        ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
+        ajaxApiGet("/api/faliujsagok", faliujsagBeallitas);
 
         function faliujsagBeallitas(muszakok) {
             
@@ -1569,18 +1568,18 @@ $(function () {
         $(window).on("modositf", (event) => {
 
             event.detail.put();
-            ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
+            ajaxApiGet("/api/faliujsagok", faliujsagBeallitas);
         });
 
         $(window).on("torolf", () => {
-            ajaxApiGet(apivegpont + "/faliujsagok", faliujsagBeallitas);
+            ajaxApiGet("/api/faliujsagok", faliujsagBeallitas);
         });
 
         
     }
 
     function newPost() {
-        const apivegpont = "http://localhost:8000/api/faliujsag/";
+        const apivegpont = "/api/faliujsag/";
         const newpostElem = $("#ManFaliujsag").find("#newpost");
         const newpostForm = $("#ManFaliujsag").find("fieldset");
         const newpostMegse = $("#ManFaliujsag").find("fieldset").find(".fa-times");
@@ -1649,7 +1648,7 @@ $(function () {
         $(menu).hide();
         $("#Alkalmazottak").prepend(`<input type="text" placeholder="&#x1F50E Keresés..." class="search">`);
 
-        ajaxApiGet(apivegpont + "/alkalmazottak", alkalmazottTabla);
+        ajaxApiGet("/api/alkalmazottak", alkalmazottTabla);
 
         function alkalmazottTabla(alkalmazottak) {
 
@@ -1680,13 +1679,13 @@ $(function () {
             let ertek = $(this).val();
          
             ajaxApiGet(
-                apivegpont + "/alkalmazott/search?q=" + ertek,
+                "/api/alkalmazott/search?q=" + ertek,
                 alkalmazottTabla
             );
         });
 
         $(window).on("klikk", (event) => {
-            ajaxApiGet(apivegpont + "/munkakorok", (adatok) => {
+            ajaxApiGet("/api/munkakorok", (adatok) => {
                 let select = '<select id="munkakor-alkalmazott">';
                 adatok.forEach(a => {
                     select += '<option>' + a.megnevezes + '</option>';
@@ -1800,11 +1799,11 @@ $(function () {
             szuloElem.show();
         });
 
-        ajaxApiGet("http://localhost:8000/api/napokossz",(napok)=>{
+        ajaxApiGet("/api/napokossz",(napok)=>{
 
             
                 
-                    ajaxApiGet("http://localhost:8000/api/napimunkaeroigenyek/expand",(a)=>{
+                    ajaxApiGet("/api/napimunkaeroigenyek/expand",(a)=>{
 
                 const napimunkaeroigenyek = [];
                 const napiMunkaeroigenyNapok = [];

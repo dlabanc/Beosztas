@@ -160,7 +160,7 @@ class AlkalmazottTabla {
 class Munkakor {
     
     constructor(szulo, adat, ajax) {
-        this.api = "http://localhost:8000/api/munkakor";
+        this.api = "/api/munkakor";
         this.ajax = ajax;
         this.szulo = szulo;
         this.adat = adat;
@@ -170,7 +170,7 @@ class Munkakor {
             <div class="details">Részletek</div>
             </li>`
         );
-        ajax.ajaxApiGet ("http://localhost:8000/api/alkalmazottak",(adatok)=>{
+        ajax.ajaxApiGet ("/api/alkalmazottak",(adatok)=>{
 
         this.munkakorAlkalmazottai = adatok.filter(alkalmazott=>{
             return alkalmazott.munkakor == this.adat.megnevezes;
@@ -330,11 +330,11 @@ class MuszakEloszlas {
         this.adat.muszakszam = this.clone.find("input").eq(2).val();
        
             ///api/muszakeloszlas/{muszakelo_azon}
-        this.ajax.ajaxApiPut("http://localhost:8000/api/muszakeloszlas",this.muszakeloazon,this.adat);
+        this.ajax.ajaxApiPut("/api/muszakeloszlas",this.muszakeloazon,this.adat);
     }
 
     delete(){
-        this.ajax.ajaxApiDelete("http://localhost:8000/api/muszakeloszlas",this.muszakeloazon);
+        this.ajax.ajaxApiDelete("/api/muszakeloszlas",this.muszakeloazon);
     }
 
     hoverEffect(){
@@ -354,7 +354,7 @@ class MuszakEloszlas {
 class MuszakHozzaAdas {
     constructor(szulo, adat, ajax) {
         this.click = 1;
-        this.api = "http://localhost:8000/api/muszaktipus";
+        this.api = "/api/muszaktipus";
         this.ajax = ajax;
         this.szulo = szulo;
         this.szulo.append(`<tr class="muszak-sorok"></tr>`);
@@ -412,7 +412,7 @@ class MuszakHozzaAdas {
                 let leiras = ujMuszak.elem.find("#leiras").val();
                 ujMuszak.adat.tipus = muszaktipus;
                 ujMuszak.adat.leiras = leiras;
-                ajax.ajaxApiPost("http://localhost:8000/api/muszaktipus",ujMuszak.adat);
+                ajax.ajaxApiPost("/api/muszaktipus",ujMuszak.adat);
                 callback();
             });
             ujMuszak.megseElem.on("click",()=>{
@@ -443,7 +443,7 @@ class MuszakHozzaAdas {
                 let leiras = this.elem.find("#leiras").val();
                 this.adat.tipus = muszaktipus;
                 this.adat.leiras = leiras;
-                this.ajax.ajaxApiPut("http://localhost:8000/api/muszaktipus",muszaktipus,this.adat);
+                this.ajax.ajaxApiPut("/api/muszaktipus",muszaktipus,this.adat);
                 this.reszletekElem.show();
                 this.reszletek.show();
                 callback();
@@ -464,7 +464,7 @@ class MuszakHozzaAdas {
         this.reszletek.empty();
         this.reszletek.append('<ul class="reszletek-lista"></ul>');
         this.reszletek.children("ul").hide();
-        this.ajax.ajaxApiGet("http://localhost:8000/api/muszakeloszlasok",(adatok)=>{
+        this.ajax.ajaxApiGet("/api/muszakeloszlasok",(adatok)=>{
             console.log(adatok);
                 let szurt = adatok.filter(eloszlas=>{
                     return eloszlas.muszaktipus==this.adat.tipus;
@@ -544,7 +544,7 @@ class Faliujsag {
         this.szulo = szulo;
         this.ajax = ajax;
         this.clickcounter = 0;
-        this.api = "http://localhost:8000/"+"api/faliujsag";
+        this.api = "/api/faliujsag";
         szulo.append(`
           <tr class="post-title"><td><img src="" alt="" /></td><td><h3></h3></   td><td class="details">Részletek</td></tr>    
           <tr class="post-content">
@@ -678,8 +678,8 @@ class NapiMin {
 class Alkalmazott extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/alkalmazott";
-        this.apivegpont = "http://localhost:8000/api/alkalmazottak";
+        this.api = "/api/alkalmazott";
+        this.apivegpont = "/api/alkalmazottak";
     }
     delete() {
         this.ajax.ajaxApiDelete(this.api, this.adat.dolgozoi_azon);
@@ -691,8 +691,8 @@ class Alkalmazott extends Adminelemek {
 class FaliujsagPost extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/faliujsag";
-        this.apivegpont = "http://localhost:8000/api/faliujsagok";
+        this.api = "/api/faliujsag";
+        this.apivegpont = "/api/faliujsagok";
   
     }
     delete() {
@@ -706,8 +706,8 @@ class FaliujsagPost extends Adminelemek {
 class MunkakorA extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/munkakor";
-        this.apivegpont = "http://localhost:8000/api/munkakorok";
+        this.api = "/api/munkakor";
+        this.apivegpont = "/api/munkakorok";
     }
     delete() {
         this.ajax.ajaxApiDelete(this.api, this.adat.megnevezes);
@@ -719,8 +719,8 @@ class MunkakorA extends Adminelemek {
 class Bejelentkezes extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/bejelentkezesiadat";
-        this.apivegpont = "http://localhost:8000/api/bejelentkezesiadatok";
+        this.api = "/api/bejelentkezesiadat";
+        this.apivegpont = "/api/bejelentkezesiadatok";
     }
     put() {
         this.ajax.ajaxApiPut(this.api, this.adat.tipus, this.adat);
@@ -732,8 +732,8 @@ class Bejelentkezes extends Adminelemek {
 class Muszaktipus extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/muszaktipus";
-        this.apivegpont = "http://localhost:8000/api/muszaktipusok";
+        this.api = "/api/muszaktipus";
+        this.apivegpont = "/api/muszaktipusok";
     }
     put() {
         this.ajax.ajaxApiPut(this.api, this.adat.tipus, this.adat);
@@ -749,8 +749,8 @@ class Napimunkaeroigeny extends Adminelemek {
     constructor(szulo, adat, ajax) {
        
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/napimunkaeroigeny";
-        this.apivegpont = "http://localhost:8000/api/napimunkaeroigenyek";
+        this.api = "/api/napimunkaeroigeny";
+        this.apivegpont = "/api/napimunkaeroigenyek";
         this.id = `${this.adat.napim_azonosito}`;
       
     }
@@ -764,8 +764,8 @@ class Napimunkaeroigeny extends Adminelemek {
 class Napok extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/napok";
-        this.apivegpont = "http://localhost:8000/api/napokossz";
+        this.api = "/api/napok";
+        this.apivegpont = "/api/napokossz";
         this.id = this.adat.nap;
     }
     delete() {
@@ -775,8 +775,8 @@ class Napok extends Adminelemek {
 class Beosztas extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/beosztas";
-        this.apivegpont = "http://localhost:8000/api/beosztasok";
+        this.api = "/api/beosztas";
+        this.apivegpont = "/api/beosztasok";
         this.id =this.adat.beo_azonosito;
     }
     delete() {
@@ -790,8 +790,8 @@ class Szabadsag extends Adminelemek {
     
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/szabadsag";
-        this.apivegpont = "http://localhost:8000/api/szabadsagok";
+        this.api = "/api/szabadsag";
+        this.apivegpont = "/api/szabadsagok";
         this.id = `${this.adat.szabadsag_azonosito}/`;
     }
     delete() {
@@ -804,8 +804,8 @@ class Szabadsag extends Adminelemek {
 class Nemdolgozna extends Adminelemek {
     constructor(szulo, adat, ajax) {
         super(szulo, adat, ajax);
-        this.api = "http://localhost:8000/api/nemdolgozna";
-        this.apivegpont = "http://localhost:8000/api/nemdolgoznaossz";
+        this.api = "/api/nemdolgozna";
+        this.apivegpont = "/api/nemdolgoznaossz";
         this.id = this.adat.nemdolgozna_azon;
         
     }

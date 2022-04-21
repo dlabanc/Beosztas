@@ -77,7 +77,7 @@
                     <li id="beosztas">Beosztás</li>
                     <li id="nemdolgozna">Nem dolgozna</li>
                     <li id="szabadsag">Szabadság</li>
-                    <li class="logout"><a href="../login/login.html">
+                    <li class="logout"><a href="/logout">
                             <div class="fas fa-sign-out-alt">
                             </div><span> Kijelentkezés</span>
                         </a>
