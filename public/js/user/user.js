@@ -1,7 +1,6 @@
 $(function () {
     const token = $('meta[name="csrf-token"]').attr("content");
     const ajax = new Ajax(token);
-    const apivegpont = "http://localhost:8000/api";
     ajax.ajaxApiGet("/api/faliujsagok", faliujsagUser);
     let logged ;
 
@@ -138,7 +137,7 @@ $(function () {
     }
 
     function newPost() {
-        const apivegpont = "http://localhost:8000/api/faliujsag/";
+        const apivegpont = "/api/faliujsag/";
         const newpostElem = $("#newpost");
         const newpostForm = $("#Faliujsag").find("fieldset");
         const newpostMegse = $("#Faliujsag").find("fieldset").find(".fa-times");
@@ -235,7 +234,7 @@ $(function () {
         nemErekSegedElemek();
        
     
-        const nemDolgoznaApi = "http://localhost:8000/api/nemdolgozna/";
+        const nemDolgoznaApi = "/api/nemdolgozna/";
         const token = $('meta[name="csrf-token"]').attr("content");
         const ajax = new Ajax(token);
         const naptar = SZULO.find(".naptar");
@@ -322,9 +321,9 @@ $(function () {
     
         class Nap {
             constructor(szulo, nap, napok, elem) {
-                this.api = "http://localhost:8000/api/napok/";
+                this.api = "/api/napok/";
                 this.muszakEloszlasokApi =
-                    "http://localhost:8000/api/muszakeloszlasok";
+                    "/api/muszakeloszlasok";
                 this.szulo = szulo;
                 this.nap = nap;
                 this.napok = napok;

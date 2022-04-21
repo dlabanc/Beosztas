@@ -2,7 +2,6 @@ $(function () {
     const token = $('meta[name="csrf-token"]').attr("content");
     console.log(token);
     const ajax = new Ajax(token);
-    const apivegpont = "http://localhost:8000/api";
     UjelemEsemenyek();
     ajaxHivasok();
     let oldalhossz = 9;
