@@ -15,7 +15,7 @@ class BejelentkezesiAdatok extends Authenticatable
     public $incrementing = false;
     public $timestamps = false;
     protected $fillable = [
-        'user_login', 'password'
+        'user_login', 'password', 'email',
     ];
     protected $hidden = ['email'];
 

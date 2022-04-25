@@ -38,8 +38,9 @@ class BejelentkezesiAdatokController extends Controller
     {
         $bejelentkezesiAdat = new BejelentkezesiAdatok();
         $bejelentkezesiAdat->user_login = $request->user_login;
-        $bejelentkezesiAdat->jelszo = $request->jelszo;
-
+        $bejelentkezesiAdat->password = $request->password;
+        $bejelentkezesiAdat->email = $request->email;
+        
         $bejelentkezesiAdat->save();
     }
 
@@ -77,7 +78,8 @@ class BejelentkezesiAdatokController extends Controller
     {
         $bejelentkezesiAdat = BejelentkezesiAdatok::find($bejelentkezesiAdatokId);
         $bejelentkezesiAdat->user_login = $request->user_login;
-        $bejelentkezesiAdat->jelszo = $request->jelszo;
+        $bejelentkezesiAdat->password = $request->password;
+        $bejelentkezesiAdat->email = $request->email;
 
         $bejelentkezesiAdat->save();
     }

@@ -15,13 +15,8 @@ use App\Http\Controllers\BejelentkezesiAdatokController;
 use App\Http\Controllers\MunkakorStatController;
 use App\Http\Controllers\HetiOraszamController;
 use App\Http\Controllers\SzabadsagStatController;
-// use App\Http\Controllers\HitelesitesController;
 use App\Http\Controllers\DolgozottNapokStatController;
 use App\Http\Controllers\StatisztikaController;
-// use App\Http\Controllers\JelszoVisszaAllitasController;
-// use App\Http\Middleware\IsAuthenticated;
-// use App\Http\Middleware\IsAdmin;
-// use App\Http\Middleware\IsManager;
 
 require __DIR__.'/auth.php';
 
@@ -52,10 +47,6 @@ Route::get('/usermenu', function () {
     return view('usermenu/usermenu');
 })->middleware('auth');
 
-// Route::get('/login', function () {
-//     return view('login/login');
-// });
-
 Route::middleware(['guest'])->group(function () {
     Route::get('/elfelejtett-jelszo', function () {
         return view('login/forgetpassword');
@@ -66,9 +57,6 @@ Route::middleware(['guest'])->group(function () {
     })->name('password.reset');
 });
 
-// Route::get('/login', [HitelesitesController::class, 'index'])->name('bejelentkezes');
-// Route::post('/authenticate', [HitelesitesController::class, 'authenticate'])->name('hitelesites');
-// Route::get('/logout', [HitelesitesController::class, 'logout'])->name('kijelentkezes');
 
 ##MANAGERMENU
 Route::middleware(['signedin', 'role:Üzletvezető,Adminisztrátor'])->group(function () {
@@ -78,7 +66,6 @@ Route::middleware(['signedin', 'role:Üzletvezető,Adminisztrátor'])->group(fun
     Route::put('/api/alkalmazott/{dolgozoi_azon}', [AlkalmazottController::class, 'update']);
 
     ##MUSZAKELOSZLAS
-    Route::get('/api/muszakeloszlasok', [MuszakEloszlasController::class, 'index']);
     Route::put('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'update']);
     Route::post('/api/muszakeloszlas', [MuszakEloszlasController::class, 'store']);
     Route::delete('/api/muszakeloszlas/{muszakelo_azon}', [MuszakEloszlasController::class, 'destroy']);
@@ -115,7 +102,6 @@ Route::middleware(['signedin', 'role:Üzletvezető,Adminisztrátor'])->group(fun
 
     ##NAPOK
     Route::put('/api/napok/{nap}', [NapokController::class, 'update']);
-    Route::post('/api/napok', [NapokController::class, 'store']);
     Route::delete('/api/napok/{nap}', [NapokController::class, 'destroy']);
 
     ##NEMDOLGOZNA
@@ -157,7 +143,6 @@ Route::middleware(['signedin', 'admin'])->group(function () {
     ##NEMDOLGOZNA
     Route::get('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'show']);
     Route::put('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'update']);
-    Route::delete('/api/nemdolgozna/{nemdolgozna_azon}', [NemDolgoznaController::class, 'destroy']);
 
     ##SZABADSAG
     Route::get('/api/szabadsagok/expand', [SzabadsagController::class, 'expandAll']);
@@ -212,7 +197,6 @@ Route::middleware(['signedin', 'auth'])->group(function () {
     ##FALIUJSAG
     Route::get('/api/faliujsagok', [FaliujsagController::class, 'index']);
     Route::post('/api/faliujsag', [FaliujsagController::class, 'store']);
-    // Route::get('/loggeduser', [HitelesitesController::class, 'loggedInUser']);
 
     ##NEMDOLGOZNA
     Route::get('/api/nemdolgoznaossz', [NemDolgoznaController::class, 'index']);
@@ -225,8 +209,3 @@ Route::middleware(['signedin', 'auth'])->group(function () {
     Route::post('/api/napok', [NapokController::class, 'store']);
     
 });
-
-## 
-// Route::post('/elfelejtettjelszo', [JelszoVisszaAllitasController::class, 'sendResetLink'])->name('password.email');
-// Route::post('/reset-password', [JelszoVisszaAllitasController::class, 'passwordReset'])->name('password.update');
-// Route::post('/change', [HitelesitesController::class, 'changePassword'])->name('password.change');
