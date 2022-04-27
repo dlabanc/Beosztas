@@ -193,29 +193,32 @@ class Munkakor {
 
                 munkakorAdatok.append(`<div class="munkakor-dolgozo"></div>`);
                 munkakorAdatok.append(`<div class="munkakor-dolgozo-adatok">Válassz az alkalmazottak képei közül!</div>`);
-                if(this.munkakorAlkalmazottai.length<=0){
+                if( this.munkakorAlkalmazottai==undefined|| this.munkakorAlkalmazottai.length<=0){
                     $(".loading").hide();
                     munkakorAdatok.slideDown(500);
                     munkakorAdatok.find(".munkakor-dolgozo-adatok").html(`<div class="munkakor-dolgozo-adatok nincs-dolgozo">Ehhez a munkakörhöz még nincs hozzárendelve dolgozó!</div>`);
                 }
-                this.munkakorAlkalmazottai.forEach(alkalmazott=>{
+                else{
+                    this.munkakorAlkalmazottai.forEach(alkalmazott=>{
                    
-                    let munkakorDolgozok = munkakorAdatok.find(".munkakor-dolgozo");
-                    ajax.ajaxApiGet("https://randomuser.me/api/?results=1",(adat)=>{
-
-                        munkakorDolgozok.append(`<img alt="p">`);
-                        let dolgozoElem = munkakorDolgozok.find("img:last");
-                        let fenykep = adat.results[0].picture.large;
-                        new MunkakorAlkalmazott(fenykep,alkalmazott,dolgozoElem);
-
-                       
+                        let munkakorDolgozok = munkakorAdatok.find(".munkakor-dolgozo");
+                        ajax.ajaxApiGet("https://randomuser.me/api/?results=1",(adat)=>{
+    
+                            munkakorDolgozok.append(`<img alt="p">`);
+                            let dolgozoElem = munkakorDolgozok.find("img:last");
+                            let fenykep = adat.results[0].picture.large;
+                            new MunkakorAlkalmazott(fenykep,alkalmazott,dolgozoElem);
+    
+                           
+                        });
+                        $(document).ajaxStop(()=>{
+                            $(".loading").hide();
+                            munkakorAdatok.slideDown(500);
+                        });
+                          
                     });
-                    $(document).ajaxStop(()=>{
-                        $(".loading").hide();
-                        munkakorAdatok.slideDown(500);
-                    });
-                      
-                });
+                }
+               
                 console.log(this.munkakorAlkalmazottai);
                
                 

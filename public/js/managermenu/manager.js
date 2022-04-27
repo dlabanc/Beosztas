@@ -316,21 +316,23 @@ $(function () {
     
                 darabEllenorzes(db,darabelem){
                     
+                
+                    console.log(db , " ",this.adat.db)
                     if(db==this.adat.db){
+                        
                         darabelem.text(db);
                         darabelem.removeClass("megkell");
                         darabelem.addClass("ok");
                         this.elem.parent().find(this.mentesElem).show();
                         this.elem.parent().find(this.mentesElem).attr("disabled",false);
                         
-    
-                      
                     }
                     else if(db>this.adat.db){
                         darabelem.text(db);
                         darabelem.addClass("hibas");
                         removeOkMegkell();
                         gombLetilt(this.mentesElem);
+                    
                     }
     
                     else if(db==0){
@@ -338,6 +340,7 @@ $(function () {
                         darabelem.removeClass("hibas");
                         removeOkMegkell();
                         gombLetilt(this.mentesElem);
+                    
                         
                     }
                     else{
@@ -345,10 +348,13 @@ $(function () {
                         darabelem.addClass("megkell");
                         darabelem.removeClass("ok");
                         gombLetilt(this.mentesElem);
+                       
                     }
-                     
-                      
-    
+                 
+                    if(this.darabElem.hasClass("ok") && this.beosztasok.length!=0){
+                        this.mentesElem.hide();
+                        console.log(this)
+                    }
                     function gombLetilt(elem){
                         elem.attr("disabled",true);
                         elem.hide();
@@ -413,7 +419,7 @@ $(function () {
                         this.beosztottakElem.empty();
                         tomb.splice(0,tomb.length);
                         
-                        let dolgozoDarab = 0;
+            
                         this.darabEllenorzes(this.dolgozoTomb.length,this.darabElem);
                         this.darabElem.text(this.adat.db);
                         this.megseElem.hide();
@@ -435,6 +441,8 @@ $(function () {
     
                         this.elem.parent().find(this.mentesElem).remove();
                         this.mentesElem.prop("onclick",null).off("click");
+                        
+                       
                     });
                 }
     
