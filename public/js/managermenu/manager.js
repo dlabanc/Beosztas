@@ -825,7 +825,7 @@ $(function () {
         
                                         this.torolElem.on("click", () => {
                                             this.elkuldElem.show();
-                                            let napok ="/napok";
+                                            let napok ="/api/napok";
                                             ajax.ajaxApiDelete(napok, this.napNev);
                                             ujNaptar.naptarSzinez();
                                             this.setMuszakok();
@@ -909,7 +909,7 @@ $(function () {
                                 this.muszakTipusElem.fadeIn(500);
                                 $(".dateinfo-buttons").fadeIn(500);
                                 this.elkuldElem.on("click", () => {
-                                    let napok = "/napok";
+                                    let napok = "/api/napok";
                                     let szurt = this.muszakok.filter((muszak) => {
                                         return muszak.aktiv;
                                     });
