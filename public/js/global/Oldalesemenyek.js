@@ -200,12 +200,12 @@ $(function () {
         let email=$("#email").val();
         let password=$("#password").val();
         let password_confirm=$("#password_confirm").val();
-        let token=$("#token2").val();
+        let token=$("#reset_token").val();
         let ujAdat={
             email:email,
             password:password,
             password_confirm:password_confirm,
-            token2:token,
+            reset_token:token,
         };
         ajax.fetchAjax(reset_url, ujAdat);
     });

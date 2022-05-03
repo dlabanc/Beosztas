@@ -52,8 +52,8 @@ Route::middleware(['guest'])->group(function () {
         return view('login/forgetpassword');
     });
 
-    Route::get('/reset-password/{token}', function ($token2) {
-        return view('login/resetpassword', ['token2' => $token2]);
+    Route::get('/reset-password/{token}', function ($reset_token) {
+        return view('login/resetpassword', ['reset_token' => $reset_token]);
     })->name('password.reset');
 });
 
