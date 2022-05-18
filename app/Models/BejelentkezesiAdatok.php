@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class BejelentkezesiAdatok extends Authenticatable
 {
     use HasFactory, Notifiable;
-    protected $table = 'Bejelentkezesi_Adatok';
+    protected $table = 'bejelentkezesi_adatok';
     protected $primaryKey = 'user_login';
     public $incrementing = false;
     public $timestamps = false;

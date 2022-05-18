@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class NapiMunkaeroIgeny extends Model
 {
     use HasFactory;
-    protected $table = 'Napimunkaeroigeny';
+    protected $table = 'napimunkaeroigeny';
     protected $primaryKey = 'napim_azonosito';
     public $timestamps = false;
     protected $fillable = [

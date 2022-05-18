@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Beosztas extends Model
 {
     use HasFactory;
-    protected $table = 'Beosztas';
+    protected $table = 'beosztas';
     protected $primaryKey = 'beo_azonosito';
     protected $keyType = 'int';
     public $timestamps = false;

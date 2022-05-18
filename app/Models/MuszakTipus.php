@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MuszakTipus extends Model
 {
     use HasFactory;
-    protected $table = 'Muszaktipus';
+    protected $table = 'muszaktipus';
     protected $primaryKey = 'tipus';
     public $incrementing = false;
     public $timestamps = false;

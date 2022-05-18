@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\BejelentkezesiAdatok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Hash;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
-use Exception;
 use Illuminate\Validation\ValidationException;
 
 class HitelesitesController extends Controller

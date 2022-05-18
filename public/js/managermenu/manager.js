@@ -576,7 +576,7 @@ $(function () {
             }
 
             function beosztasNaptar(datum){
-                ajaxApiGet("/api/beosztasok/",beosztasok=>{
+                ajaxApiGet("/api/beosztasok",beosztasok=>{
                     ujbeosztasNaptar.empty();
                     ujbeosztasNaptar.html(`
                     <button class="fas fa-question beosztas-info-lenyit"></button>

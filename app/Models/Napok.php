@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Napok extends Model
 {
     use HasFactory;
-    protected $table = 'Napok';
+    protected $table = 'napok';
     protected $primaryKey = 'nap';
     public $incrementing = false;
     public $timestamps = false;
