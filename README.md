@@ -1,3 +1,6 @@
+## A projekthez tartozó dokumentáció elérhető a projekt gyökérkönyvtárában:
+### <i>Dokumentáció - Záródolgozat Joó Edvárd, Kotán Péter, Labanc Dániel.docx</i>
+
 ## Alapfeltételek:
 ### PHP + Adatbázis (XAMPP csomag tartalmazza, DB: MySQL)
 
